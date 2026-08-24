@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台股融資融券維持率計算器</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans TC",sans-serif;background:#f4f6f8;color:#18212b}
+  .wrap{max-width:1050px;margin:32px auto;padding:0 18px}
+  h1{margin:0 0 8px;font-size:30px}
+  .sub{color:#66717d;margin-bottom:24px}
+  .card{background:#fff;border-radius:16px;padding:22px;box-shadow:0 5px 24px rgba(0,0,0,.07);margin-bottom:18px}
+  .tabs{display:flex;gap:8px;margin-bottom:20px}
+  button,.tab{border:0;border-radius:10px;padding:11px 18px;font-size:15px;cursor:pointer}
+  .tab{background:#e9edf1}.tab.active{background:#18212b;color:#fff}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+  label{display:block;font-size:14px;font-weight:700;margin-bottom:7px}
+  input,select{width:100%;padding:12px;border:1px solid #d7dde3;border-radius:9px;font-size:16px;background:#fff}
+  .result{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+  .metric{background:#f6f8fa;border-radius:12px;padding:16px}
+  .metric .k{font-size:13px;color:#6b7680}.metric .v{font-size:24px;font-weight:800;margin-top:5px}
+  .highlight{background:#fff3cd}
+  .danger{background:#fde8e8}
+  .safe{background:#e9f7ef}
+  .table-wrap{overflow:auto}
+  table{width:100%;border-collapse:collapse;margin-top:8px}
+  th,td{padding:11px 9px;border-bottom:1px solid #e8ecef;text-align:right}
+  th:first-child,td:first-child{text-align:left}
+  th{font-size:13px;color:#65707b}
+  .note{font-size:13px;color:#68737d;line-height:1.6}
+  .formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#f5f6f7;padding:12px;border-radius:9px}
+  @media(max-width:760px){.grid,.result{grid-template-columns:1fr 1fr}}
+  @media(max-width:500px){.grid,.result{grid-template-columns:1fr}.wrap{margin:18px auto}}
+
+.navbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.navlink{display:inline-block;text-decoration:none;border:1px solid #d9e1e9;background:#fff;color:#344454;border-radius:9px;padding:9px 13px;font-weight:700;font-size:14px}
+.navlink.active{background:#1677ff;color:#fff;border-color:#1677ff}
+.hidden{display:none!important}
+</style>
+
+<style id="pmStyles">
+.pm-panel{max-width:1100px;margin:28px auto;padding:22px;background:#fff;border:1px solid #e2e8f0;border-radius:18px;box-shadow:0 8px 28px rgba(15,23,42,.06);font-family:inherit;color:#17202a}
+.pm-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.pm-kicker{font-size:12px;font-weight:800;color:#6b7a88}.pm-head h2{margin:3px 0 5px;font-size:24px}.pm-head p{margin:0;color:#71808d;font-size:13px}.pm-toggle,.pm-btn{border:1px solid #d7e0e8;background:#fff;border-radius:9px;padding:9px 13px;font-weight:800;cursor:pointer}.pm-btn.primary{background:#1677ff;color:#fff;border-color:#1677ff}.pm-btn.ghost{color:#667481}.pm-note{margin:16px 0;padding:12px 14px;background:#f7faff;border:1px solid #dbe9f7;border-radius:10px;font-size:12px;line-height:1.7;color:#526575}
+.pm-row{display:grid;grid-template-columns:1.2fr .7fr .9fr 1fr auto;gap:9px;align-items:end;padding:12px;margin:9px 0;background:#fafcfe;border:1px solid #e1e8ee;border-radius:11px}.pm-row label{display:block;font-size:11px;font-weight:800;color:#6c7b88;margin-bottom:5px}.pm-row input{width:100%;padding:9px;border:1px solid #d5dee7;border-radius:8px;font-size:14px}.pm-remove{border:1px solid #d8e1e8;background:#fff;border-radius:8px;padding:9px 11px;cursor:pointer}.pm-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}.pm-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.pm-card{padding:15px;border:1px solid #e0e7ee;border-radius:12px;background:#fbfcfd}.pm-card span{display:block;font-size:11px;color:#74818c}.pm-card strong{display:block;font-size:20px;margin-top:5px}.pm-card.bigcard{background:#eff8f2;border-color:#cfe7d8}.pm-card small{display:block;margin-top:5px;color:#547160}.pm-stress{margin-top:16px;padding:16px;border-radius:12px;background:#f8fafc;border:1px solid #e2e8ee}.pm-stress h3{margin:0 0 12px;font-size:16px}.pm-stress-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.pm-stress-grid div{padding:11px 7px;text-align:center;border:1px solid #e1e7ed;border-radius:9px;background:#fff;font-size:12px}.pm-stress-grid b{display:block;margin-top:4px;font-size:15px}.pm-extra{display:flex;justify-content:space-between;gap:12px;margin-top:12px;padding-top:12px;border-top:1px solid #e2e8ee;font-size:13px}.pm-good{color:#17854c}.pm-warn{color:#b97800}.pm-danger{color:#d33b3b}
+@media(max-width:800px){.pm-summary{grid-template-columns:1fr 1fr}.pm-stress-grid{grid-template-columns:repeat(3,1fr)}.pm-row{grid-template-columns:1fr 1fr}.pm-remove{width:100%}}
+@media(max-width:500px){.pm-panel{margin:18px 10px;padding:15px}.pm-head h2{font-size:20px}.pm-summary{grid-template-columns:1fr}.pm-stress-grid{grid-template-columns:1fr 1fr}.pm-extra{flex-direction:column}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<nav class="navbar" aria-label="工具導覽">
+  <a class="navlink active" href="index.html">📊 融資融券維持率</a>
+  <a class="navlink" href="warrant_calculator.html">📈 權證試算器</a>
+  <a class="navlink" href="portfolio.html">📊 投資績效名片</a>
+</nav>
+
+  <h1>台股融資融券維持率計算器</h1>
+  <div class="sub">輸入價格、張數與融資／融券條件，立即估算 130% 維持率追繳價格。</div>
+
+  <div class="card">
+    <div class="tabs">
+      <button class="tab active" id="marginTab">融資</button>
+      <button class="tab" id="shortTab">融券</button>
+    </div>
+
+    <div class="grid">
+      <div>
+        <label>市場</label>
+        <select id="market">
+          <option value="listed">上市（融資60%、融券90%）</option>
+          <option value="otc">上櫃（融資50%、融券100%）</option>
+        </select>
+      </div>
+      <div>
+        <label>買進／放空價格（元）</label>
+        <input id="price" type="number" value="312" min="0.01" step="0.01">
+      </div>
+      <div>
+        <label>張數</label>
+        <input id="lots" type="number" value="2" min="1" step="1">
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:15px">
+      <div>
+        <label id="ratioLabel">融資成數</label>
+        <input id="ratio" type="number" value="60" min="0" max="100" step="1">
+      </div>
+      <div>
+        <label>維持率警戒線（%）</label>
+        <input id="maintenance" type="number" value="130" min="1" step="1">
+      </div>
+      <div>
+        <label>目前股價（可與買進價不同）</label>
+        <input id="current" type="number" value="312" min="0.01" step="0.01">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="result">
+      <div class="metric"><div class="k">原始部位市值</div><div class="v" id="position">—</div></div>
+      <div class="metric"><div class="k" id="debtLabel">融資金額</div><div class="v" id="debt">—</div></div>
+      <div class="metric highlight"><div class="k">130%追繳價格</div><div class="v" id="trigger">—</div></div>
+      <div class="metric"><div class="k">距離追繳</div><div class="v" id="distance">—</div></div>
+    </div>
+    <div class="result">
+      <div class="metric"><div class="k">目前維持率</div><div class="v" id="maint">—</div></div>
+      <div class="metric"><div class="k">原始自備／保證金</div><div class="v" id="equity">—</div></div>
+      <div class="metric"><div class="k">追繳時部位淨值</div><div class="v" id="net">—</div></div>
+      <div class="metric"><div class="k">從買進價變動</div><div class="v" id="change">—</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">價格情境</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>股價</th><th>相對買進</th><th>維持率</th><th>部位市值</th><th>狀態</th></tr></thead>
+        <tbody id="scenarios"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">計算方式</h2>
+    <div class="formula" id="formula">維持率 = 股票市值 ÷ 融資金額 × 100%</div>
+    <p class="note" style="margin-bottom:0">
+      本工具依你提供的簡化規則計算：上市融資60%、上櫃融資50%；上市融券90%、上櫃融券100%；警戒線預設130%。
+      實際券商追繳、整戶維持率、融資融券保證金、除權息、手續費、利息及特殊處置股票規則可能不同，實際交易請以券商與交易所規定為準。
+    </p>
+  </div>
+</div>
+
+<script>
+let mode = "margin";
+const $ = id => document.getElementById(id);
+const money = n => Number.isFinite(n) ? Math.round(n).toLocaleString("zh-TW") : "—";
+const num = n => Number.isFinite(n) ? n.toLocaleString("zh-TW",{maximumFractionDigits:2}) : "—";
+
+function syncDefaults(){
+  const market = $("market").value;
+  if(mode==="margin"){
+    $("ratioLabel").textContent="融資成數";
+    $("ratio").value = market==="listed" ? 60 : 50;
+  }else{
+    $("ratioLabel").textContent="融券保證金成數";
+    $("ratio").value = market==="listed" ? 90 : 100;
+  }
+}
+function calculate(){
+  const p=+$("price").value, lots=+$("lots").value, r=+$("ratio").value/100;
+  const m=+$("maintenance").value/100, cur=+$("current").value;
+  if(!(p>0&&lots>0&&r>0&&m>0)) return;
+  const shares=lots*1000, position=p*shares, debt=position*r;
+  // Simplified maintenance ratio: position market value / financing (or short guarantee basis)
+  const trigger = debt*m/shares;
+  const currentValue=cur*shares;
+  const mr=currentValue/debt*100;
+  const equity=position-debt;
+  const triggerNet=trigger*shares-debt;
+  const dist=(cur-trigger)/trigger*100;
+  const ch=(trigger/p-1)*100;
+  $("position").textContent=money(position);
+  $("debtLabel").textContent=mode==="margin"?"融資金額":"融券保證金基準";
+  $("debt").textContent=money(debt);
+  $("trigger").textContent=num(trigger)+" 元";
+  $("distance").textContent=(dist>=0?"+":"")+num(dist)+"%";
+  $("maint").textContent=num(mr)+"%";
+  $("equity").textContent=money(equity);
+  $("net").textContent=money(triggerNet);
+  $("change").textContent=(ch>=0?"+":"")+num(ch)+"%";
+  $("formula").textContent=mode==="margin"
+    ?"維持率 = 股票市值 ÷ 融資金額 × 100%"
+    :"（簡化）維持率 = 部位市值 ÷ 保證金基準 × 100%";
+
+  const factors=[1,0.95,0.9,0.85,0.8,0.75,0.7,0.65,0.6,0.55,0.5];
+  const prices=[...new Set([p,trigger,...factors.map(x=>p*x)])].filter(x=>x>0).sort((a,b)=>b-a);
+  $("scenarios").innerHTML=prices.map(x=>{
+    const value=x*shares, ratio=value/debt*100, pct=(x/p-1)*100;
+    let status=ratio<100?"🔴 危險":ratio<130?"🟠 追繳區":"🟢 安全";
+    const cls=ratio<100?"danger":ratio<130?"highlight":"safe";
+    return `<tr class="${Math.abs(x-trigger)<0.01?'highlight':''}">
+      <td>${num(x)} 元</td><td>${pct>=0?"+":""}${num(pct)}%</td>
+      <td>${num(ratio)}%</td><td>${money(value)}</td><td>${status}</td></tr>`;
+  }).join("");
+}
+$("marginTab").onclick=()=>{mode="margin";$("marginTab").classList.add("active");$("shortTab").classList.remove("active");syncDefaults();calculate()};
+$("shortTab").onclick=()=>{mode="short";$("shortTab").classList.add("active");$("marginTab").classList.remove("active");syncDefaults();calculate()};
+$("market").onchange=()=>{syncDefaults();calculate()};
+document.querySelectorAll("input").forEach(x=>x.addEventListener("input",calculate));
+syncDefaults(); calculate();
+</script>
+
+<section id="portfolioMarginPanel" class="pm-panel">
+  <div class="pm-head">
+    <div>
+      <div class="pm-kicker">進階工具</div>
+      <h2>📊 整戶融資維持率</h2>
+      <p>多檔融資股票一起計算，並可快速做下跌壓力測試。</p>
+    </div>
+    <button type="button" class="pm-toggle" onclick="pmToggle()">收合</button>
+  </div>
+
+  <div id="pmBody">
+    <div class="pm-note">
+      <b>簡易估算：</b>本工具以「擔保品市值 ÷ 融資餘額」估算整戶維持率。
+      實際券商整戶維持率可能因現金、其他擔保品、融券及券商規則而不同。
+    </div>
+
+    <div id="pmRows"></div>
+
+    <div class="pm-actions">
+      <button type="button" class="pm-btn" onclick="pmAddRow()">＋ 新增融資股票</button>
+      <button type="button" class="pm-btn primary" onclick="pmCalculate()">重新計算</button>
+      <button type="button" class="pm-btn ghost" onclick="pmClear()">清空</button>
+    </div>
+
+    <div class="pm-summary">
+      <div class="pm-card">
+        <span>股票總市值</span><strong id="pmValue">—</strong>
+      </div>
+      <div class="pm-card">
+        <span>融資總餘額</span><strong id="pmDebt">—</strong>
+      </div>
+      <div class="pm-card bigcard">
+        <span>簡易整戶維持率</span><strong id="pmRatio">—</strong>
+        <small id="pmRatioHint">—</small>
+      </div>
+      <div class="pm-card">
+        <span>距離 130%</span><strong id="pmBuffer">—</strong>
+      </div>
+    </div>
+
+    <div class="pm-stress">
+      <h3>📉 下跌壓力測試</h3>
+      <div class="pm-stress-grid">
+        <div>跌 5% <b id="pmS5">—</b></div>
+        <div>跌 10% <b id="pmS10">—</b></div>
+        <div>跌 15% <b id="pmS15">—</b></div>
+        <div>跌 20% <b id="pmS20">—</b></div>
+        <div>跌 25% <b id="pmS25">—</b></div>
+        <div>跌 30% <b id="pmS30">—</b></div>
+      </div>
+      <div class="pm-extra">
+        <span>估算跌至 130% 的跌幅</span>
+        <b id="pmDrop130">—</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script id="pmScript">
+(function(){
+  const fmt=n=>Number.isFinite(n)?Math.round(n).toLocaleString("zh-TW"):"—";
+  function addRow(data={code:"",shares:"",price:"",debt:""}) {
+    const box=document.getElementById("pmRows");
+    const r=document.createElement("div");
+    r.className="pm-row";
+    r.innerHTML=`<div><label>股票代號</label><input class="pm-code" maxlength="6" inputmode="numeric" value="${data.code||""}" placeholder="2330"></div>
+    <div><label>持有股數</label><input class="pm-shares" type="number" min="0" value="${data.shares||""}" placeholder="2000"></div>
+    <div><label>目前價格</label><input class="pm-price" type="number" min="0" step="0.01" value="${data.price||""}" placeholder="2410"></div>
+    <div><label>融資餘額</label><input class="pm-debt" type="number" min="0" step="1" value="${data.debt||""}" placeholder="1,000,000"></div>
+    <button class="pm-remove" type="button" onclick="this.parentElement.remove();pmCalculate()">刪除</button>`;
+    box.appendChild(r);
+  }
+  window.pmAddRow=addRow;
+  window.pmToggle=()=>{const b=document.getElementById("pmBody"),t=document.querySelector(".pm-toggle");const h=b.classList.toggle("hidden");t.textContent=h?"展開":"收合"};
+  window.pmClear=()=>{document.getElementById("pmRows").innerHTML="";addRow();pmCalculate()};
+  window.pmCalculate=()=>{
+    let value=0,debt=0;
+    document.querySelectorAll(".pm-row").forEach(r=>{
+      const shares=Number(r.querySelector(".pm-shares").value)||0;
+      const price=Number(r.querySelector(".pm-price").value)||0;
+      const d=Number(r.querySelector(".pm-debt").value)||0;
+      value+=shares*price; debt+=d;
+    });
+    const ratio=debt>0?value/debt*100:NaN;
+    document.getElementById("pmValue").textContent=fmt(value);
+    document.getElementById("pmDebt").textContent=fmt(debt);
+    const ratioEl=document.getElementById("pmRatio");
+    const hint=document.getElementById("pmRatioHint");
+    ratioEl.textContent=Number.isFinite(ratio)?ratio.toFixed(2)+"%":"—";
+    ratioEl.className="";
+    hint.textContent=Number.isFinite(ratio)?(ratio>=166?"相對充裕":ratio>=130?"接近警戒":"低於 130%，需特別注意"):"請輸入融資餘額";
+    if(Number.isFinite(ratio)){ratioEl.classList.add(ratio>=166?"pm-good":ratio>=130?"pm-warn":"pm-danger")}
+    document.getElementById("pmBuffer").textContent=Number.isFinite(ratio)?(ratio-130).toFixed(2)+" 個百分點":"—";
+    [5,10,15,20,25,30].forEach(p=>{
+      const v=Number.isFinite(ratio)?ratio*(1-p/100):NaN;
+      const el=document.getElementById("pmS"+p);el.textContent=Number.isFinite(v)?v.toFixed(2)+"%":"—";
+      el.className=Number.isFinite(v)?(v>=166?"pm-good":v>=130?"pm-warn":"pm-danger"):"";
+    });
+    const drop=Number.isFinite(ratio)&&ratio>130?(1-130/ratio)*100:0;
+    document.getElementById("pmDrop130").textContent=Number.isFinite(ratio)?drop.toFixed(2)+"%":"—";
+  };
+  // Start with two rows so the feature is immediately understandable.
+  addRow(); addRow(); pmCalculate();
+})();
+</script>
+
+</body>
+</html>
