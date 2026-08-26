@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>融資融券變化</title>
-
 <style>
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; width: 100%; max-width: 100%; }
@@ -154,7 +153,6 @@ tbody tr:hover { background: #fafafa; }
 }
 </style>
 </head>
-
 <body>
 <div class="wrap">
 
@@ -168,15 +166,37 @@ tbody tr:hover { background: #fafafa; }
     </div>
 </header>
 
-<h1>💰 融券增減排名</h1>
-
+<h1>💰 融資融券變化</h1>
 <div class="data-date" id="dataInfo">資料載入中...</div>
 
 <div class="summary-grid">
     <div class="summary-card">
-        <div class="summary-label">融券增減張數</div>
-        <div class="summary-value summary-neutral" id="shortTotal">載入中...</div>
-        <div class="summary-sub">全市場融券餘額每日增減</div>
+        <div class="summary-label">全市場融資餘額增減</div>
+        <div class="summary-value summary-neutral" id="marginTotal">載入中...</div>
+        <div class="summary-sub">今日相較前一交易日</div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">
+        <h2>🔴 融資增加 TOP 10</h2>
+        <div class="section-note">依融資增減金額排序</div>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>股票代號</th>
+                    <th>股票名稱</th>
+                    <th>收盤價</th>
+                    <th>融資增減金額</th>
+                </tr>
+            </thead>
+            <tbody id="marginIncreaseBody">
+                <tr><td colspan="5" class="loading">正在載入資料...</td></tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -197,29 +217,6 @@ tbody tr:hover { background: #fafafa; }
                 </tr>
             </thead>
             <tbody id="shortIncreaseBody">
-                <tr><td colspan="5" class="loading">正在載入資料...</td></tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="section">
-    <div class="section-title">
-        <h2>🟢 融券減少 TOP 10</h2>
-        <div class="section-note">依融券減少張數排序</div>
-    </div>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>股票代號</th>
-                    <th>股票名稱</th>
-                    <th>收盤價</th>
-                    <th>融券增減張數</th>
-                </tr>
-            </thead>
-            <tbody id="shortDecreaseBody">
                 <tr><td colspan="5" class="loading">正在載入資料...</td></tr>
             </tbody>
         </table>
@@ -250,6 +247,15 @@ function getClosePrice(item) {
     return toNumber(item.close_price ?? item.closePrice ?? item.price);
 }
 
+function getMarginChange(item) {
+    return toNumber(
+        item.margin_change ??
+        item.marginChange ??
+        item.margin_amount_change ??
+        item.margin_change_amount
+    );
+}
+
 function getShortChange(item) {
     return toNumber(
         item.short_change ??
@@ -266,37 +272,71 @@ function formatPrice(value) {
     });
 }
 
+function formatAmount(value) {
+    const n = toNumber(value);
+    const sign = n > 0 ? "+" : n < 0 ? "-" : "";
+    return sign + Math.abs(n).toLocaleString("zh-TW") + " 元";
+}
+
+function formatAmountYi(value) {
+    const n = toNumber(value);
+    const yi = n / 100000000;
+    const sign = yi > 0 ? "+" : yi < 0 ? "-" : "";
+    return sign + Math.abs(yi).toLocaleString("zh-TW", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }) + " 億元";
+}
+
 function formatSignedCount(value) {
-    const number = toNumber(value);
-    if (number > 0) return "+" + number.toLocaleString("zh-TW") + " 張";
-    if (number < 0) return number.toLocaleString("zh-TW") + " 張";
+    const n = toNumber(value);
+    if (n > 0) return "+" + n.toLocaleString("zh-TW") + " 張";
+    if (n < 0) return n.toLocaleString("zh-TW") + " 張";
     return "0 張";
 }
 
 function getChangeClass(value) {
-    const number = toNumber(value);
-    if (number > 0) return "change-positive";
-    if (number < 0) return "change-negative";
+    const n = toNumber(value);
+    if (n > 0) return "change-positive";
+    if (n < 0) return "change-negative";
     return "change-zero";
 }
 
-function renderRows(targetId, rows) {
-    const tbody = document.getElementById(targetId);
+function renderMarginRows(rows) {
+    const tbody = document.getElementById("marginIncreaseBody");
     tbody.innerHTML = "";
 
     if (rows.length === 0) {
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="5" class="loading">目前沒有符合條件的資料。</td>
-            </tr>
+        tbody.innerHTML = '<tr><td colspan="5" class="loading">目前沒有符合條件的資料。</td></tr>';
+        return;
+    }
+
+    rows.slice(0, 10).forEach((item, index) => {
+        const change = getMarginChange(item);
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td class="rank">${index + 1}</td>
+            <td class="stock-id">${getStockId(item) || "-"}</td>
+            <td>${getStockName(item) || "-"}</td>
+            <td>${formatPrice(getClosePrice(item))}</td>
+            <td class="${getChangeClass(change)}">${formatAmount(change)}</td>
         `;
+        tbody.appendChild(row);
+    });
+}
+
+function renderShortRows(rows) {
+    const tbody = document.getElementById("shortIncreaseBody");
+    tbody.innerHTML = "";
+
+    if (rows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="loading">目前沒有符合條件的資料。</td></tr>';
         return;
     }
 
     rows.slice(0, 10).forEach((item, index) => {
         const change = getShortChange(item);
         const row = document.createElement("tr");
-
         row.innerHTML = `
             <td class="rank">${index + 1}</td>
             <td class="stock-id">${getStockId(item) || "-"}</td>
@@ -304,22 +344,8 @@ function renderRows(targetId, rows) {
             <td>${formatPrice(getClosePrice(item))}</td>
             <td class="${getChangeClass(change)}">${formatSignedCount(change)}</td>
         `;
-
         tbody.appendChild(row);
     });
-}
-
-function renderTables() {
-    const shortIncrease = creditData
-        .filter(item => getShortChange(item) > 0)
-        .sort((a, b) => getShortChange(b) - getShortChange(a));
-
-    const shortDecrease = creditData
-        .filter(item => getShortChange(item) < 0)
-        .sort((a, b) => getShortChange(a) - getShortChange(b));
-
-    renderRows("shortIncreaseBody", shortIncrease);
-    renderRows("shortDecreaseBody", shortDecrease);
 }
 
 async function loadData() {
@@ -340,21 +366,23 @@ async function loadData() {
         document.getElementById("dataInfo").textContent =
             `資料日期：${dataDate}　｜　更新時間：${updateTime}`;
 
-        const shortTotal =
-            data.short_total ??
-            data.shortTotal ??
-            data.short_change_total ??
-            data.short_amount_change ??
-            0;
-
-        const summary = document.getElementById("shortTotal");
-        const shortNumber = toNumber(shortTotal);
-        summary.className = "summary-value";
-        summary.classList.add(
-            shortNumber > 0 ? "count-positive" :
-            shortNumber < 0 ? "count-negative" : "summary-neutral"
+        // 這裡只顯示「融資增減金額」。
+        // 若 JSON 已經改成正確的官方增減數字，會直接換算成億元。
+        const marginTotal = toNumber(
+            data.margin_total ??
+            data.marginTotal ??
+            data.margin_change_total ??
+            data.margin_amount_change ??
+            0
         );
-        summary.textContent = formatSignedCount(shortNumber);
+
+        const summary = document.getElementById("marginTotal");
+        summary.textContent = formatAmountYi(marginTotal);
+        summary.className =
+            "summary-value " +
+            (marginTotal > 0 ? "amount-positive" :
+             marginTotal < 0 ? "amount-negative" :
+             "summary-neutral");
 
         const rawCredit = data.credit ?? data.data ?? data.stocks ?? [];
 
@@ -363,22 +391,33 @@ async function loadData() {
         }
 
         creditData = rawCredit;
-        console.log("credit_rank.json：", data);
-        console.log("credit 資料筆數：", creditData.length);
 
-        renderTables();
+        const marginIncrease = creditData
+            .filter(item => getMarginChange(item) > 0)
+            .sort((a, b) => getMarginChange(b) - getMarginChange(a));
+
+        const shortIncrease = creditData
+            .filter(item => getShortChange(item) > 0)
+            .sort((a, b) => getShortChange(b) - getShortChange(a));
+
+        renderMarginRows(marginIncrease);
+        renderShortRows(shortIncrease);
+
+        console.log("credit_rank.json：", data);
+        console.log("融資增加：", marginIncrease.length, "檔");
+        console.log("融券增加：", shortIncrease.length, "檔");
 
     } catch (error) {
-        console.error("融券資料錯誤：", error);
+        console.error("credit 資料錯誤：", error);
 
         document.getElementById("dataInfo").textContent = "資料載入失敗";
-        document.getElementById("shortTotal").textContent = "載入失敗";
+        document.getElementById("marginTotal").textContent = "載入失敗";
 
         const message = `
             <tr>
                 <td colspan="5">
                     <div class="error">
-                        <strong>❌ 無法載入融券資料</strong>
+                        <strong>❌ 無法載入資料</strong>
                         <br><br>
                         ${error.message}
                         <br><br>
@@ -388,8 +427,8 @@ async function loadData() {
             </tr>
         `;
 
+        document.getElementById("marginIncreaseBody").innerHTML = message;
         document.getElementById("shortIncreaseBody").innerHTML = message;
-        document.getElementById("shortDecreaseBody").innerHTML = message;
     }
 }
 
