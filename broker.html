@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>券商分點籌碼</title>
+<title>投信買賣超</title>
 
 <style>
 
@@ -171,7 +171,7 @@ h1 {
 
 
 /* =========================================================
-   券商選擇區
+   搜尋區
 ========================================================= */
 
 .search-area {
@@ -204,55 +204,11 @@ h1 {
 }
 
 
-.broker-select {
-
-    width: 100%;
-
-    padding: 15px;
-
-    border:
-        1px
-        solid
-        #ccc;
-
-    border-radius: 8px;
-
-    background: white;
-
-    font-size: 16px;
-
-    color: #222;
-
-}
-
-
-.broker-select:focus {
-
-    outline: none;
-
-    border-color: #222;
-
-}
-
-
-.status {
-
-    margin-top: 10px;
-
-    color: #777;
-
-    font-size: 14px;
-
-}
-
-
 .search-row {
 
     display: flex;
 
     gap: 10px;
-
-    margin-top: 15px;
 
 }
 
@@ -261,7 +217,7 @@ h1 {
 
     flex: 1;
 
-    padding: 13px;
+    padding: 14px;
 
     border:
         1px
@@ -290,7 +246,7 @@ h1 {
 
     padding:
         13px
-        24px;
+        25px;
 
     border: none;
 
@@ -314,79 +270,19 @@ h1 {
 }
 
 
-/* =========================================================
-   分點資訊
-========================================================= */
+.status {
 
-.broker-title {
-
-    display: none;
-
-    background: white;
-
-    padding: 20px;
-
-    border-radius: 14px;
-
-    margin-bottom: 20px;
-
-    box-shadow:
-        0
-        4px
-        14px
-        rgba(0,0,0,0.05);
-
-}
-
-
-.broker-title.show {
-
-    display: block;
-
-}
-
-
-.broker-name {
-
-    font-size: 22px;
-
-    font-weight: bold;
-
-}
-
-
-.broker-detail {
+    margin-top: 10px;
 
     color: #777;
 
-    margin-top: 6px;
-
-    line-height: 1.7;
-
-}
-
-
-.demo-warning {
-
-    margin-top: 12px;
-
-    padding:
-        10px
-        14px;
-
-    background: #fff8e1;
-
-    border-radius: 8px;
-
-    color: #8a6500;
-
-    display: inline-block;
+    font-size: 14px;
 
 }
 
 
 /* =========================================================
-   控制按鈕
+   排序控制
 ========================================================= */
 
 .controls {
@@ -481,6 +377,42 @@ h1 {
 
 
 /* =========================================================
+   資料說明
+========================================================= */
+
+.info-box {
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding:
+        14px
+        18px;
+
+    margin-bottom: 20px;
+
+    color: #666;
+
+    font-size: 14px;
+
+    box-shadow:
+        0
+        4px
+        14px
+        rgba(0,0,0,0.04);
+
+}
+
+
+.info-box strong {
+
+    color: #222;
+
+}
+
+
+/* =========================================================
    表格
 ========================================================= */
 
@@ -508,7 +440,7 @@ table {
     border-collapse:
         collapse;
 
-    min-width: 850px;
+    min-width: 900px;
 
 }
 
@@ -522,6 +454,8 @@ th {
     text-align: right;
 
     font-weight: 800;
+
+    white-space: nowrap;
 
 }
 
@@ -548,6 +482,8 @@ td {
 
     text-align: right;
 
+    white-space: nowrap;
+
 }
 
 
@@ -567,9 +503,19 @@ tr:hover {
 }
 
 
+.rank {
+
+    font-weight: 800;
+
+    color: #777;
+
+}
+
+
 .stock-id {
 
-    font-family: monospace;
+    font-family:
+        monospace;
 
     color: #666;
 
@@ -617,7 +563,7 @@ tr:hover {
 
 
 /* =========================================================
-   手機
+   手機版
 ========================================================= */
 
 @media (max-width: 850px) {
@@ -755,7 +701,7 @@ tr:hover {
             class="nav-btn active"
             href="broker.html"
         >
-            🏢 券商分點
+            🏢 投信買賣超
         </a>
 
     </div>
@@ -768,7 +714,7 @@ tr:hover {
 ===================================================== -->
 
 <h1>
-    券商分點籌碼
+    🏢 投信買賣超
 </h1>
 
 
@@ -781,34 +727,14 @@ tr:hover {
 
 
 <!-- =====================================================
-     券商選擇
+     搜尋
 ===================================================== -->
 
 <div class="search-area">
 
 
     <div class="search-title">
-        選擇券商分點
-    </div>
-
-
-    <select
-        id="brokerSelect"
-        class="broker-select"
-    >
-
-        <option value="">
-            正在載入券商分點...
-        </option>
-
-    </select>
-
-
-    <div
-        class="status"
-        id="brokerStatus"
-    >
-        正在讀取券商主檔...
+        搜尋股票
     </div>
 
 
@@ -818,7 +744,7 @@ tr:hover {
         <input
             id="searchInput"
             type="text"
-            placeholder="搜尋券商，例如：元大、富邦、麥格理"
+            placeholder="輸入股票代號或名稱，例如：2330、台積電"
         >
 
 
@@ -832,20 +758,36 @@ tr:hover {
     </div>
 
 
+    <div
+        class="status"
+        id="searchStatus"
+    >
+        正在讀取投信資料...
+    </div>
+
+
 </div>
 
 
 <!-- =====================================================
-     注意：
-     這裡故意沒有任何「請選擇券商分點」
-     
-     選擇券商後才會顯示資訊。
+     說明
 ===================================================== -->
 
-<div
-    class="broker-title"
-    id="brokerTitle"
-></div>
+<div class="info-box">
+
+    <strong>資料說明：</strong>
+
+    本頁顯示投信每日買賣超排行。
+
+    <br>
+
+    買賣超數量單位：
+    <strong>張</strong>
+
+    ；金額單位：
+    <strong>元</strong>。
+
+</div>
 
 
 <!-- =====================================================
@@ -871,22 +813,6 @@ tr:hover {
             data-type="sell"
         >
             賣超
-        </button>
-
-
-        <button
-            class="tab"
-            data-type="buy_money"
-        >
-            買進金額
-        </button>
-
-
-        <button
-            class="tab"
-            data-type="sell_money"
-        >
-            賣出金額
         </button>
 
 
@@ -918,17 +844,21 @@ tr:hover {
             TOP 10
         </option>
 
+
         <option value="20">
             TOP 20
         </option>
+
 
         <option value="50">
             TOP 50
         </option>
 
-        <option value="999999">
-            全部
+
+        <option value="100">
+            TOP 100
         </option>
+
 
     </select>
 
@@ -938,9 +868,6 @@ tr:hover {
 
 <!-- =====================================================
      表格
-     
-     這裡完全空白。
-     不再顯示第二個「請選擇券商分點」。
 ===================================================== -->
 
 <div class="table-wrapper">
@@ -957,25 +884,21 @@ tr:hover {
         Rank
     </th>
 
+
     <th>
         股票代號
     </th>
+
 
     <th>
         股票名稱
     </th>
 
-    <th>
-        買進
-    </th>
 
     <th>
-        賣出
+        投信買賣超
     </th>
 
-    <th>
-        淨買超
-    </th>
 
     <th>
         淨買超金額
@@ -986,7 +909,9 @@ tr:hover {
 </thead>
 
 
-<tbody id="tableBody">
+<tbody
+    id="tableBody"
+>
 </tbody>
 
 
@@ -1003,119 +928,14 @@ tr:hover {
 
 
 // ========================================================
-// 全域資料
+// 全域變數
 // ========================================================
 
-let brokerMaster = null;
-
-let brokerTradeData = null;
-
-let currentMasterBroker = null;
-
-let currentBroker = null;
+let moneyData = null;
 
 let currentType = "buy";
 
-
-// ========================================================
-// 安全取得券商代號
-//
-// 優先使用 broker_code。
-// 同時兼容舊格式。
-// ========================================================
-
-function getBrokerCode(broker) {
-
-    if (!broker) {
-
-        return "";
-
-    }
-
-
-    return String(
-
-        broker.broker_code ??
-        broker.broker_id ??
-        broker.code ??
-        broker.id ??
-        ""
-
-    ).trim();
-
-}
-
-
-// ========================================================
-// 券商名稱
-// ========================================================
-
-function getBrokerName(broker) {
-
-    if (!broker) {
-
-        return "";
-
-    }
-
-
-    return String(
-
-        broker.broker_name ??
-        broker.name ??
-        ""
-
-    ).trim();
-
-}
-
-
-// ========================================================
-// 地址
-// ========================================================
-
-function getBrokerAddress(broker) {
-
-    if (!broker) {
-
-        return "";
-
-    }
-
-
-    return String(
-
-        broker.address ??
-        broker.addr ??
-        ""
-
-    ).trim();
-
-}
-
-
-// ========================================================
-// 電話
-// ========================================================
-
-function getBrokerPhone(broker) {
-
-    if (!broker) {
-
-        return "";
-
-    }
-
-
-    return String(
-
-        broker.phone ??
-        broker.tel ??
-        ""
-
-    ).trim();
-
-}
+let currentRows = [];
 
 
 // ========================================================
@@ -1124,10 +944,13 @@ function getBrokerPhone(broker) {
 
 function formatNumber(value) {
 
-    const n = Number(value);
+    const n =
+        Number(value);
 
 
-    if (!Number.isFinite(n)) {
+    if (
+        !Number.isFinite(n)
+    ) {
 
         return "-";
 
@@ -1147,38 +970,15 @@ function formatNumber(value) {
 
 function formatMoney(value) {
 
-    const n = Number(value);
+    const n =
+        Number(value);
 
 
-    if (!Number.isFinite(n)) {
+    if (
+        !Number.isFinite(n)
+    ) {
 
         return "-";
-
-    }
-
-
-    const abs =
-        Math.abs(n);
-
-
-    if (abs >= 100000000) {
-
-        return (
-            (n / 100000000)
-                .toFixed(2)
-            + " 億"
-        );
-
-    }
-
-
-    if (abs >= 10000) {
-
-        return (
-            (n / 10000)
-                .toFixed(0)
-            + " 萬"
-        );
 
     }
 
@@ -1191,368 +991,318 @@ function formatMoney(value) {
 
 
 // ========================================================
-// 建立券商下拉選單
+// 把股數轉成張
+//
+// TWSE 原始資料通常是「股」。
+// 1 張 = 1,000 股。
 // ========================================================
 
-function buildBrokerSelect() {
+function sharesToLots(value) {
+
+    const n =
+        Number(value);
 
 
-    const select =
-        document.getElementById(
-            "brokerSelect"
-        );
+    if (
+        !Number.isFinite(n)
+    ) {
+
+        return "-";
+
+    }
 
 
-    select.innerHTML = "";
+    return (
+        n / 1000
+    ).toLocaleString(
+        "zh-TW",
+        {
+            maximumFractionDigits: 2
+        }
+    );
+
+}
 
 
-    const first =
-        document.createElement(
-            "option"
-        );
+// ========================================================
+// 取得投信排行資料
+// ========================================================
+
+function getInvestmentTrustData() {
 
 
-    first.value = "";
+    if (
+        !moneyData
+    ) {
+
+        return [];
+
+    }
 
 
-    const count =
+    // money_rank.json 原本的欄位
+    // 是 investment_trust
+
+    if (
         Array.isArray(
-            brokerMaster?.brokers
-        )
-            ? brokerMaster.brokers.length
-            : 0;
-
-
-    first.textContent =
-        `請選擇券商分點（共 ${count} 個）`;
-
-
-    select.appendChild(
-        first
-    );
-
-
-    if (
-        !Array.isArray(
-            brokerMaster?.brokers
+            moneyData.investment_trust
         )
     ) {
 
-        document
-            .getElementById(
-                "brokerStatus"
-            )
-            .textContent =
-            "❌ broker_master.json 格式錯誤";
-
-        return;
+        return [
+            ...moneyData.investment_trust
+        ];
 
     }
 
 
-    brokerMaster.brokers.forEach(
-        broker => {
+    // 萬一未來 JSON 改成 investmentTrust
 
-
-            const code =
-                getBrokerCode(
-                    broker
-                );
-
-
-            const name =
-                getBrokerName(
-                    broker
-                );
-
-
-            if (
-                !code &&
-                !name
-            ) {
-
-                return;
-
-            }
-
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-
-            option.value =
-                code;
-
-
-            option.textContent =
-                code
-                    ? `${name}（${code}）`
-                    : name;
-
-
-            select.appendChild(
-                option
-            );
-
-        }
-    );
-
-
-    document
-        .getElementById(
-            "brokerStatus"
+    if (
+        Array.isArray(
+            moneyData.investmentTrust
         )
-        .textContent =
-        `已載入 ${count} 個券商分點`;
+    ) {
+
+        return [
+            ...moneyData.investmentTrust
+        ];
+
+    }
+
+
+    return [];
 
 }
 
 
 // ========================================================
-// 顯示分點資料
+// 取得淨買賣超股數
 // ========================================================
 
-function showBrokerInfo(
-    broker
-) {
+function getNetShares(row) {
 
+    // 第一優先：
+    // 原始三大法人欄位
 
-    const box =
-        document.getElementById(
-            "brokerTitle"
-        );
+    const candidates = [
 
+        row["投信買賣超股數"],
 
-    const name =
-        getBrokerName(
-            broker
-        );
+        row["投信買賣超"],
 
+        row["investment_trust_shares"],
 
-    const code =
-        getBrokerCode(
-            broker
-        );
+        row["net_shares"],
 
+        row["net"]
 
-    const address =
-        getBrokerAddress(
-            broker
-        );
+    ];
 
 
-    const phone =
-        getBrokerPhone(
-            broker
-        );
-
-
-    box.innerHTML = `
-
-        <div class="broker-name">
-
-            ${name || "券商分點"}
-
-        </div>
-
-
-        <div class="broker-detail">
-
-            分點代號：
-            ${code || "-"}
-
-            <br>
-
-            地址：
-            ${address || "-"}
-
-            <br>
-
-            電話：
-            ${phone || "-"}
-
-        </div>
-
-    `;
-
-
-    box.classList.add(
-        "show"
-    );
-
-}
-
-
-// ========================================================
-// 沒有每日交易資料
-// ========================================================
-
-function showNoTradeData() {
-
-
-    document
-        .getElementById(
-            "tableBody"
-        )
-        .innerHTML = `
-
-        <tr>
-
-            <td
-                colspan="7"
-                class="message"
-            >
-
-                此分點已存在於官方券商主檔。
-
-                <br><br>
-
-                目前尚未接入
-                「每日分點交易資料」。
-
-            </td>
-
-        </tr>
-
-    `;
-
-}
-
-
-// ========================================================
-// 選擇券商
-// ========================================================
-
-function selectBrokerByCode(
-    brokerCode
-) {
-
-
-    if (
-        !brokerMaster ||
-        !Array.isArray(
-            brokerMaster.brokers
-        )
-    ) {
-
-        return;
-
-    }
-
-
-    const code =
-        String(
-            brokerCode
-        ).trim();
-
-
-    const master =
-        brokerMaster.brokers.find(
-            broker =>
-                getBrokerCode(
-                    broker
-                ) === code
-        );
-
-
-    if (!master) {
-
-        return;
-
-    }
-
-
-    currentMasterBroker =
-        master;
-
-
-    showBrokerInfo(
-        master
-    );
-
-
-    currentBroker =
-        null;
-
-
-    // ====================================================
-    // 如果存在 broker_data.json
-    // ====================================================
-
-    if (
-        brokerTradeData &&
-        brokerTradeData.brokers
+    for (
+        const value of candidates
     ) {
 
 
-        const brokers =
-            Array.isArray(
-                brokerTradeData.brokers
-            )
-                ? brokerTradeData.brokers
-                : Object.values(
-                    brokerTradeData.brokers
-                );
+        const n =
+            Number(value);
 
 
-        currentBroker =
-            brokers.find(
-                broker =>
-                    getBrokerCode(
-                        broker
-                    ) === code
-            );
+        if (
+            Number.isFinite(n)
+        ) {
 
-
-        // 再用名稱比對
-
-        if (!currentBroker) {
-
-
-            const masterName =
-                getBrokerName(
-                    master
-                );
-
-
-            currentBroker =
-                brokers.find(
-                    broker =>
-                        getBrokerName(
-                            broker
-                        ) === masterName
-                );
+            return n;
 
         }
 
     }
 
 
-    // ====================================================
-    // 找到每日交易資料
-    // ====================================================
+    return 0;
 
-    if (currentBroker) {
+}
 
 
-        renderTable(
-            currentType
-        );
+// ========================================================
+// 取得投信資金
+// ========================================================
+
+function getInvestmentTrustMoney(
+    row
+) {
+
+
+    const candidates = [
+
+        row.investment_trust_money,
+
+        row["investmentTrustMoney"],
+
+        row["投信買賣超金額"],
+
+        row["net_money"]
+
+    ];
+
+
+    for (
+        const value of candidates
+    ) {
+
+
+        const n =
+            Number(value);
+
+
+        if (
+            Number.isFinite(n)
+        ) {
+
+            return n;
+
+        }
 
     }
 
 
-    // ====================================================
-    // 找不到每日交易資料
-    // ====================================================
+    return 0;
 
+}
+
+
+// ========================================================
+// 建立統一資料格式
+// ========================================================
+
+function normalizeRows() {
+
+
+    const source =
+        getInvestmentTrustData();
+
+
+    return source.map(
+        row => {
+
+
+            const netShares =
+                getNetShares(
+                    row
+                );
+
+
+            const money =
+                getInvestmentTrustMoney(
+                    row
+                );
+
+
+            return {
+
+                stock_id:
+                    row.stock_id ??
+                    row["證券代號"] ??
+                    row.code ??
+                    "-",
+
+                stock_name:
+                    row.stock_name ??
+                    row["證券名稱"] ??
+                    row.name ??
+                    "-",
+
+                net_shares:
+                    netShares,
+
+                net_money:
+                    money
+
+            };
+
+        }
+    );
+
+}
+
+
+// ========================================================
+// 排序
+// ========================================================
+
+function sortRows(
+    rows,
+    type
+) {
+
+
+    const result =
+        [
+            ...rows
+        ];
+
+
+    if (
+        type === "buy"
+    ) {
+
+
+        result.sort(
+            (a, b) =>
+                b.net_shares
+                -
+                a.net_shares
+        );
+
+
+    }
+    else if (
+        type === "sell"
+    ) {
+
+
+        result.sort(
+            (a, b) =>
+                a.net_shares
+                -
+                b.net_shares
+        );
+
+
+    }
+    else if (
+        type === "net_money"
+    ) {
+
+
+        result.sort(
+            (a, b) =>
+                b.net_money
+                -
+                a.net_money
+        );
+
+
+    }
     else {
 
-        showNoTradeData();
+
+        result.sort(
+            (a, b) =>
+                Math.abs(
+                    b.net_shares
+                )
+                -
+                Math.abs(
+                    a.net_shares
+                )
+        );
 
     }
+
+
+    return result;
 
 }
 
@@ -1561,166 +1311,13 @@ function selectBrokerByCode(
 // 顯示表格
 // ========================================================
 
-function renderTable(
-    type
-) {
+function renderTable() {
 
 
-    if (!currentBroker) {
-
-        showNoTradeData();
-
-        return;
-
-    }
-
-
-    currentType =
-        type;
-
-
-    let rows =
-        Array.isArray(
-            currentBroker.stocks
-        )
-            ? [
-                ...currentBroker.stocks
-            ]
-            : [];
-
-
-    // ====================================================
-    // 買超
-    // ====================================================
-
-    if (
-        type === "buy"
-    ) {
-
-        rows.sort(
-            (a, b) =>
-                Number(
-                    b.net ?? 0
-                )
-                -
-                Number(
-                    a.net ?? 0
-                )
+    const body =
+        document.getElementById(
+            "tableBody"
         );
-
-    }
-
-
-    // ====================================================
-    // 賣超
-    // ====================================================
-
-    else if (
-        type === "sell"
-    ) {
-
-        rows.sort(
-            (a, b) =>
-                Number(
-                    a.net ?? 0
-                )
-                -
-                Number(
-                    b.net ?? 0
-                )
-        );
-
-    }
-
-
-    // ====================================================
-    // 買進金額
-    // ====================================================
-
-    else if (
-        type === "buy_money"
-    ) {
-
-        rows.sort(
-            (a, b) =>
-                Number(
-                    b.buy_money ?? 0
-                )
-                -
-                Number(
-                    a.buy_money ?? 0
-                )
-        );
-
-    }
-
-
-    // ====================================================
-    // 賣出金額
-    // ====================================================
-
-    else if (
-        type === "sell_money"
-    ) {
-
-        rows.sort(
-            (a, b) =>
-                Number(
-                    b.sell_money ?? 0
-                )
-                -
-                Number(
-                    a.sell_money ?? 0
-                )
-        );
-
-    }
-
-
-    // ====================================================
-    // 淨買超金額
-    // ====================================================
-
-    else if (
-        type === "net_money"
-    ) {
-
-        rows.sort(
-            (a, b) =>
-                Number(
-                    b.net_money ?? 0
-                )
-                -
-                Number(
-                    a.net_money ?? 0
-                )
-        );
-
-    }
-
-
-    // ====================================================
-    // 全部
-    // ====================================================
-
-    else {
-
-        rows.sort(
-            (a, b) =>
-                Math.abs(
-                    Number(
-                        b.net ?? 0
-                    )
-                )
-                -
-                Math.abs(
-                    Number(
-                        a.net ?? 0
-                    )
-                )
-        );
-
-    }
 
 
     const limit =
@@ -1733,194 +1330,16 @@ function renderTable(
         );
 
 
-    rows =
-        rows.slice(
-            0,
-            limit
+    let rows =
+        sortRows(
+            currentRows,
+            currentType
         );
 
 
-    const body =
-        document.getElementById(
-            "tableBody"
-        );
-
-
-    body.innerHTML = "";
-
-
-    if (
-        rows.length === 0
-    ) {
-
-        body.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="7"
-                    class="message"
-                >
-
-                    此券商目前沒有可顯示的交易資料。
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
-    }
-
-
-    rows.forEach(
-        (
-            item,
-            index
-        ) => {
-
-
-            const net =
-                Number(
-                    item.net ?? 0
-                );
-
-
-            const css =
-                net > 0
-                    ? "positive"
-                    : net < 0
-                        ? "negative"
-                        : "";
-
-
-            const stockId =
-                item.stock_id ??
-                item.stock_code ??
-                item.code ??
-                "-";
-
-
-            const stockName =
-                item.stock_name ??
-                item.name ??
-                "-";
-
-
-            const buy =
-                item.buy ??
-                0;
-
-
-            const sell =
-                item.sell ??
-                0;
-
-
-            const netMoney =
-                item.net_money ??
-                0;
-
-
-            const row =
-                document.createElement(
-                    "tr"
-                );
-
-
-            row.innerHTML = `
-
-                <td>
-                    ${index + 1}
-                </td>
-
-                <td class="stock-id">
-                    ${stockId}
-                </td>
-
-                <td>
-                    ${stockName}
-                </td>
-
-                <td>
-                    ${formatNumber(
-                        buy
-                    )}
-                </td>
-
-                <td>
-                    ${formatNumber(
-                        sell
-                    )}
-                </td>
-
-                <td class="${css}">
-                    ${formatNumber(
-                        net
-                    )}
-                </td>
-
-                <td class="${css}">
-                    ${formatMoney(
-                        netMoney
-                    )}
-                </td>
-
-            `;
-
-
-            body.appendChild(
-                row
-            );
-
-        }
-    );
-
-}
-
-
-// ========================================================
-// 下拉選單
-// ========================================================
-
-document
-    .getElementById(
-        "brokerSelect"
-    )
-    .addEventListener(
-        "change",
-        function() {
-
-
-            if (
-                this.value
-            ) {
-
-                selectBrokerByCode(
-                    this.value
-                );
-
-            }
-
-        }
-    );
-
-
-// ========================================================
-// 搜尋
-// ========================================================
-
-function searchBroker() {
-
-
-    if (!brokerMaster) {
-
-        return;
-
-    }
-
+    // ====================================================
+    // 如果搜尋股票
+    // ====================================================
 
     const keyword =
         document
@@ -1932,115 +1351,319 @@ function searchBroker() {
             .toLowerCase();
 
 
-    if (!keyword) {
+    if (
+        keyword
+    ) {
+
+
+        rows =
+            rows.filter(
+                row => {
+
+
+                    const id =
+                        String(
+                            row.stock_id
+                        )
+                        .toLowerCase();
+
+
+                    const name =
+                        String(
+                            row.stock_name
+                        )
+                        .toLowerCase();
+
+
+                    return (
+                        id.includes(
+                            keyword
+                        )
+                        ||
+                        name.includes(
+                            keyword
+                        )
+                    );
+
+                }
+            );
+
+    }
+
+
+    rows =
+        rows.slice(
+            0,
+            limit
+        );
+
+
+    body.innerHTML = "";
+
+
+    if (
+        rows.length === 0
+    ) {
+
+
+        body.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="message"
+                >
+
+                    沒有符合條件的資料。
+
+                </td>
+
+            </tr>
+
+        `;
+
 
         return;
 
     }
 
 
-    const broker =
-        brokerMaster.brokers.find(
-            item => {
+    rows.forEach(
+        (
+            row,
+            index
+        ) => {
 
 
-                const name =
-                    getBrokerName(
-                        item
-                    )
-                    .toLowerCase();
+            const net =
+                row.net_shares;
 
 
-                const code =
-                    getBrokerCode(
-                        item
-                    )
-                    .toLowerCase();
+            const css =
+                net > 0
+                    ? "positive"
+                    : net < 0
+                        ? "negative"
+                        : "";
 
 
-                return (
-                    name.includes(
-                        keyword
-                    )
-                    ||
-                    code.includes(
-                        keyword
-                    )
+            const tr =
+                document.createElement(
+                    "tr"
                 );
 
-            }
-        );
+
+            tr.innerHTML = `
+
+                <td class="rank">
+
+                    ${index + 1}
+
+                </td>
 
 
-    if (!broker) {
+                <td class="stock-id">
 
-        alert(
-            `找不到券商：${keyword}`
-        );
+                    ${row.stock_id}
 
-        return;
-
-    }
+                </td>
 
 
-    const code =
-        getBrokerCode(
-            broker
-        );
+                <td>
+
+                    ${row.stock_name}
+
+                </td>
 
 
-    document
-        .getElementById(
-            "brokerSelect"
-        )
-        .value =
-        code;
+                <td
+                    class="${css}"
+                >
+
+                    ${sharesToLots(
+                        net
+                    )}
+
+                    張
+
+                </td>
 
 
-    selectBrokerByCode(
-        code
+                <td
+                    class="${css}"
+                >
+
+                    ${formatMoney(
+                        row.net_money
+                    )}
+
+                    元
+
+                </td>
+
+            `;
+
+
+            body.appendChild(
+                tr
+            );
+
+        }
     );
 
 }
 
 
 // ========================================================
-// 搜尋按鈕
+// 搜尋
 // ========================================================
 
-document
-    .getElementById(
-        "searchButton"
-    )
-    .addEventListener(
-        "click",
-        searchBroker
-    );
+function searchStock() {
+
+    renderTable();
+
+}
 
 
 // ========================================================
-// Enter 搜尋
+// 載入 money_rank.json
 // ========================================================
 
-document
-    .getElementById(
-        "searchInput"
-    )
-    .addEventListener(
-        "keydown",
-        function(event) {
+async function loadData() {
 
-            if (
-                event.key ===
-                "Enter"
-            ) {
 
-                searchBroker();
+    try {
 
-            }
+
+        const response =
+            await fetch(
+                "money_rank.json?ts="
+                + Date.now()
+            );
+
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "money_rank.json 載入失敗"
+            );
 
         }
-    );
+
+
+        moneyData =
+            await response.json();
+
+
+        // ==================================================
+        // 日期
+        // ==================================================
+
+        const date =
+            moneyData.data_date ??
+            "-";
+
+
+        document
+            .getElementById(
+                "dataDate"
+            )
+            .textContent =
+            `資料日期：${date}`;
+
+
+        // ==================================================
+        // 建立投信資料
+        // ==================================================
+
+        currentRows =
+            normalizeRows();
+
+
+        // ==================================================
+        // 顯示資料筆數
+        // ==================================================
+
+        document
+            .getElementById(
+                "searchStatus"
+            )
+            .textContent =
+            `已載入 ${currentRows.length} 筆投信排行資料`;
+
+
+        // ==================================================
+        // 顯示表格
+        // ==================================================
+
+        renderTable();
+
+
+    }
+    catch(error) {
+
+
+        console.error(
+            error
+        );
+
+
+        document
+            .getElementById(
+                "searchStatus"
+            )
+            .innerHTML = `
+
+                <span
+                    class="error-message"
+                >
+
+                    ❌ ${error.message}
+
+                </span>
+
+            `;
+
+
+        document
+            .getElementById(
+                "tableBody"
+            )
+            .innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="message error-message"
+                >
+
+                    無法載入投信資料。
+
+                    <br><br>
+
+                    請確認
+                    <strong>
+                        money_rank.json
+                    </strong>
+                    是否與
+                    <strong>
+                        broker.html
+                    </strong>
+                    位於同一個資料夾。
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
 
 
 // ========================================================
@@ -2065,14 +1688,11 @@ document
                             ".tab"
                         )
                         .forEach(
-                            btn => {
-
+                            btn =>
                                 btn.classList
                                     .remove(
                                         "active"
-                                    );
-
-                            }
+                                    )
                         );
 
 
@@ -2085,15 +1705,7 @@ document
                         this.dataset.type;
 
 
-                    if (
-                        currentBroker
-                    ) {
-
-                        renderTable(
-                            currentType
-                        );
-
-                    }
+                    renderTable();
 
                 }
             );
@@ -2103,7 +1715,7 @@ document
 
 
 // ========================================================
-// TOP 數量
+// TOP 選擇
 // ========================================================
 
 document
@@ -2114,14 +1726,44 @@ document
         "change",
         function() {
 
+            renderTable();
+
+        }
+    );
+
+
+// ========================================================
+// 搜尋按鈕
+// ========================================================
+
+document
+    .getElementById(
+        "searchButton"
+    )
+    .addEventListener(
+        "click",
+        searchStock
+    );
+
+
+// ========================================================
+// Enter 搜尋
+// ========================================================
+
+document
+    .getElementById(
+        "searchInput"
+    )
+    .addEventListener(
+        "keydown",
+        function(event) {
 
             if (
-                currentBroker
+                event.key ===
+                "Enter"
             ) {
 
-                renderTable(
-                    currentType
-                );
+                searchStock();
 
             }
 
@@ -2130,206 +1772,10 @@ document
 
 
 // ========================================================
-// 載入資料
-// ========================================================
-
-async function loadData() {
-
-
-    try {
-
-
-        // ==================================================
-        // 載入 broker_master.json
-        // ==================================================
-
-        const masterResponse =
-            await fetch(
-                "broker_master.json?ts="
-                + Date.now()
-            );
-
-
-        if (
-            !masterResponse.ok
-        ) {
-
-            throw new Error(
-                "broker_master.json 載入失敗"
-            );
-
-        }
-
-
-        brokerMaster =
-            await masterResponse.json();
-
-
-        if (
-            !brokerMaster ||
-            !Array.isArray(
-                brokerMaster.brokers
-            )
-        ) {
-
-            throw new Error(
-                "broker_master.json 格式錯誤"
-            );
-
-        }
-
-
-        // ==================================================
-        // 嘗試載入每日交易資料
-        // ==================================================
-
-        brokerTradeData =
-            null;
-
-
-        try {
-
-
-            const tradeResponse =
-                await fetch(
-                    "broker_data.json?ts="
-                    + Date.now()
-                );
-
-
-            if (
-                tradeResponse.ok
-            ) {
-
-                brokerTradeData =
-                    await tradeResponse.json();
-
-            }
-
-        }
-        catch(error) {
-
-            console.warn(
-                "目前沒有 broker_data.json"
-            );
-
-        }
-
-
-        // ==================================================
-        // 日期
-        // ==================================================
-
-        if (
-            brokerTradeData &&
-            brokerTradeData.data_date
-        ) {
-
-            document
-                .getElementById(
-                    "dataDate"
-                )
-                .textContent =
-                `交易資料日期：${brokerTradeData.data_date}`;
-
-        }
-        else {
-
-            document
-                .getElementById(
-                    "dataDate"
-                )
-                .textContent =
-                "券商分點主檔";
-
-        }
-
-
-        // ==================================================
-        // 建立券商選單
-        // ==================================================
-
-        buildBrokerSelect();
-
-
-        // ==================================================
-        // 重點：
-        // 初始表格保持完全空白
-        // 不再出現「請選擇券商分點」
-        // ==================================================
-
-        document
-            .getElementById(
-                "tableBody"
-            )
-            .innerHTML = "";
-
-
-    }
-    catch(error) {
-
-
-        console.error(
-            error
-        );
-
-
-        document
-            .getElementById(
-                "brokerStatus"
-            )
-            .innerHTML = `
-
-                <span
-                    class="error-message"
-                >
-
-                    ❌ ${error.message}
-
-                </span>
-
-            `;
-
-
-        document
-            .getElementById(
-                "tableBody"
-            )
-            .innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="7"
-                    class="message error-message"
-                >
-
-                    無法載入券商主檔。
-
-                    <br><br>
-
-                    請確認
-                    broker_master.json
-                    與 broker.html
-                    位於同一個資料夾。
-
-                </td>
-
-            </tr>
-
-        `;
-
-    }
-
-}
-
-
-// ========================================================
 // 啟動
 // ========================================================
 
 loadData();
-
 
 </script>
 
