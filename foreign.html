@@ -7,7 +7,7 @@
 
 <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 >
 
 <title>外資買賣超</title>
@@ -16,14 +16,21 @@
 
 /* =========================================================
    基本
-========================================================= */
+   ========================================================= */
 
 * {
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+body {
 
     font-family:
         Arial,
@@ -33,29 +40,33 @@ body {
     background: #f5f7fa;
 
     color: #222;
+
+    overflow-x: hidden;
+
 }
 
 .wrap {
+
+    width: 100%;
+
     max-width: 1200px;
 
     margin: 0 auto;
 
-    padding:
-        24px
-        20px
-        50px;
+    padding: 24px 20px 50px;
+
 }
 
 
 /* =========================================================
    Header
-========================================================= */
+   ========================================================= */
 
 .top {
+
     display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
     align-items: center;
 
@@ -64,32 +75,36 @@ body {
     margin-bottom: 28px;
 
     flex-wrap: wrap;
+
 }
 
 .brand {
+
     font-size: 23px;
 
     font-weight: 900;
 
     white-space: nowrap;
+
 }
 
 .actions {
+
     display: flex;
 
     gap: 8px;
 
     flex-wrap: wrap;
+
 }
 
 .nav-btn {
+
     display: inline-block;
 
     text-decoration: none;
 
-    border:
-        1px solid
-        #d5dee8;
+    border: 1px solid #d5dee8;
 
     background: #fff;
 
@@ -97,9 +112,7 @@ body {
 
     border-radius: 9px;
 
-    padding:
-        9px
-        13px;
+    padding: 9px 13px;
 
     font-weight: 800;
 
@@ -108,52 +121,60 @@ body {
     transition: 0.15s;
 
     white-space: nowrap;
+
 }
 
 .nav-btn:hover {
+
     background: #f3f6f9;
+
 }
 
 .nav-btn.active {
+
     background: #222;
 
     color: #fff;
 
     border-color: #222;
+
 }
 
 
 /* =========================================================
    標題
-========================================================= */
+   ========================================================= */
 
 h1 {
-    margin:
-        0
-        0
-        5px;
+
+    margin: 0 0 5px;
 
     font-size: 32px;
+
+    line-height: 1.3;
+
 }
 
 .date {
+
     color: #777;
 
     margin-bottom: 25px;
 
     font-size: 16px;
+
 }
 
 
 /* =========================================================
    控制區
-========================================================= */
+   ========================================================= */
 
 .controls {
+
     display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
     align-items: center;
 
@@ -162,31 +183,31 @@ h1 {
     margin-bottom: 20px;
 
     flex-wrap: wrap;
+
 }
 
 
 /* =========================================================
    三個模式按鈕
-========================================================= */
+   ========================================================= */
 
 .tabs {
+
     display: flex;
 
     gap: 8px;
 
     flex-wrap: wrap;
+
 }
 
 .tab {
-    border:
-        1px solid
-        #ddd;
+
+    border: 1px solid #ddd;
 
     background: white;
 
-    padding:
-        10px
-        18px;
+    padding: 10px 18px;
 
     border-radius: 8px;
 
@@ -197,34 +218,35 @@ h1 {
     font-weight: 700;
 
     transition: 0.15s;
+
 }
 
 .tab:hover {
+
     background: #f3f6f9;
+
 }
 
 .tab.active {
+
     background: #222;
 
     color: white;
 
     border-color: #222;
+
 }
 
 
 /* =========================================================
    TOP
-========================================================= */
+   ========================================================= */
 
 #topSelect {
-    padding:
-        10px
-        14px;
 
-    border:
-        1px
-        solid
-        #ddd;
+    padding: 10px 14px;
+
+    border: 1px solid #ddd;
 
     border-radius: 8px;
 
@@ -233,20 +255,24 @@ h1 {
     font-size: 15px;
 
     cursor: pointer;
+
 }
 
 #topSelect:focus {
+
     outline: none;
 
     border-color: #222;
+
 }
 
 
 /* =========================================================
    Summary
-========================================================= */
+   ========================================================= */
 
 .summary {
+
     width: 100%;
 
     color: #666;
@@ -256,157 +282,178 @@ h1 {
     margin-top: -8px;
 
     margin-bottom: 15px;
+
 }
 
 
 /* =========================================================
    表格
-========================================================= */
+   ========================================================= */
 
 .table-wrapper {
+
+    width: 100%;
+
     background: white;
 
     border-radius: 14px;
 
     overflow-x: auto;
 
+    -webkit-overflow-scrolling: touch;
+
     box-shadow:
-        0
-        4px
-        14px
-        rgba(0,0,0,0.05);
+        0 4px 14px rgba(0,0,0,0.05);
+
 }
 
 table {
+
     width: 100%;
 
     border-collapse: collapse;
 
     min-width: 800px;
+
 }
 
 thead th {
+
     background: #f0f2f5;
 
-    padding:
-        15px
-        14px;
+    padding: 15px 14px;
 
     text-align: right;
 
     white-space: nowrap;
 
     font-weight: 800;
+
 }
 
 thead th:first-child,
 thead th:nth-child(2),
 thead th:nth-child(3) {
+
     text-align: left;
+
 }
 
 tbody td {
-    padding:
-        14px;
 
-    border-top:
-        1px
-        solid
-        #eee;
+    padding: 14px;
+
+    border-top: 1px solid #eee;
 
     text-align: right;
 
     white-space: nowrap;
+
 }
 
 tbody td:first-child,
 tbody td:nth-child(2),
 tbody td:nth-child(3) {
+
     text-align: left;
+
 }
 
 tbody tr:hover {
+
     background: #fafafa;
+
 }
 
 
 /* =========================================================
    Rank
-========================================================= */
+   ========================================================= */
 
 .rank {
+
     width: 70px;
 
     font-weight: bold;
 
     color: #777;
+
 }
 
 
 /* =========================================================
    股票代號
-========================================================= */
+   ========================================================= */
 
 .stock-id {
+
     color: #555;
 
     font-family: monospace;
+
 }
 
 
 /* =========================================================
    買超
-========================================================= */
+   ========================================================= */
 
 .money-positive {
+
     color: #e53935;
 
     font-weight: bold;
+
 }
 
 
 /* =========================================================
    賣超
-========================================================= */
+   ========================================================= */
 
 .money-negative {
+
     color: #16803c;
 
     font-weight: bold;
+
 }
 
 
 /* =========================================================
    零
-========================================================= */
+   ========================================================= */
 
 .money-zero {
+
     color: #777;
 
     font-weight: bold;
+
 }
 
 
 /* =========================================================
    載入
-========================================================= */
+   ========================================================= */
 
 .loading {
-    padding:
-        55px !important;
 
-    text-align:
-        center !important;
+    padding: 55px !important;
+
+    text-align: center !important;
 
     color: #777;
+
 }
 
 
 /* =========================================================
    錯誤
-========================================================= */
+   ========================================================= */
 
 .error {
+
     padding: 40px;
 
     text-align: center;
@@ -414,69 +461,346 @@ tbody tr:hover {
     color: #c62828;
 
     line-height: 1.8;
+
+}
+
+
+/* =========================================================
+   平板
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .wrap {
+
+        padding:
+            18px
+            12px
+            40px;
+
+    }
+
+    .top {
+
+        align-items: flex-start;
+
+        margin-bottom: 22px;
+
+    }
+
+    .brand {
+
+        width: 100%;
+
+    }
+
+    .actions {
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 7px;
+
+    }
+
+    .nav-btn {
+
+        width: 100%;
+
+        text-align: center;
+
+        padding:
+            10px 6px;
+
+    }
+
+    h1 {
+
+        font-size: 28px;
+
+    }
+
+    .controls {
+
+        align-items:
+            stretch;
+
+        flex-direction:
+            column;
+
+        gap: 10px;
+
+    }
+
+    .tabs {
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr 1fr;
+
+        gap: 7px;
+
+    }
+
+    .tab {
+
+        width: 100%;
+
+        min-width: 0;
+
+        text-align: center;
+
+        padding:
+            10px 5px;
+
+        font-size: 13px;
+
+    }
+
+    #topSelect {
+
+        width: 100%;
+
+    }
+
 }
 
 
 /* =========================================================
    手機
-========================================================= */
+   ========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 600px) {
 
     .wrap {
+
         padding:
-            18px
-            12px
+            12px 10px
             40px;
+
     }
 
-    .top {
-        align-items:
-            flex-start;
 
-        margin-bottom: 22px;
+    /* Header */
+
+    .top {
+
+        display: block;
+
+        margin-bottom: 18px;
+
     }
 
     .brand {
-        width: 100%;
+
+        font-size: 21px;
+
+        margin-bottom: 11px;
+
     }
 
     .actions {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
         width: 100%;
+
+        gap: 7px;
+
     }
 
     .nav-btn {
-        flex: 1;
 
-        text-align: center;
+        font-size: 12px;
+
+        padding:
+            10px 4px;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
     }
+
+
+    /* 標題 */
 
     h1 {
-        font-size: 28px;
+
+        font-size: 25px;
+
+        line-height: 1.35;
+
     }
 
-    .controls {
-        align-items:
-            flex-start;
+    .date {
 
-        flex-direction:
-            column;
+        font-size: 14px;
+
+        margin-bottom: 18px;
+
+    }
+
+
+    /* 控制區 */
+
+    .controls {
+
+        width: 100%;
+
+        margin-bottom: 15px;
+
     }
 
     .tabs {
-        width: 100%;
+
+        grid-template-columns:
+            1fr 1fr 1fr;
+
+        gap: 6px;
+
     }
 
     .tab {
-        flex: 1;
 
-        min-width: 90px;
+        font-size: 12px;
 
-        text-align: center;
+        padding:
+            10px 3px;
+
+        border-radius: 7px;
+
     }
 
     #topSelect {
+
         width: 100%;
+
+        min-height: 42px;
+
+        font-size: 14px;
+
+    }
+
+
+    /* Summary */
+
+    .summary {
+
+        font-size: 12px;
+
+        line-height: 1.6;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    /* 表格 */
+
+    .table-wrapper {
+
+        border-radius: 12px;
+
+        overflow-x: auto;
+
+    }
+
+    table {
+
+        min-width: 720px;
+
+    }
+
+    thead th {
+
+        padding:
+            12px 10px;
+
+        font-size: 12px;
+
+    }
+
+    tbody td {
+
+        padding:
+            12px 10px;
+
+        font-size: 12px;
+
+    }
+
+
+    /* 讓第一欄稍微固定 */
+
+    thead th:first-child,
+    tbody td:first-child {
+
+        min-width: 55px;
+
+    }
+
+}
+
+
+/* =========================================================
+   超小手機
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .wrap {
+
+        padding:
+            10px 8px
+            35px;
+
+    }
+
+    .brand {
+
+        font-size: 20px;
+
+    }
+
+    .nav-btn {
+
+        font-size: 11px;
+
+        padding:
+            9px 3px;
+
+    }
+
+    h1 {
+
+        font-size: 23px;
+
+    }
+
+    .tabs {
+
+        gap: 5px;
+
+    }
+
+    .tab {
+
+        font-size: 11px;
+
+        padding:
+            9px 2px;
+
     }
 
 }
@@ -488,7 +812,6 @@ tbody tr:hover {
 
 <body>
 
-
 <div class="wrap">
 
 
@@ -499,9 +822,7 @@ tbody tr:hover {
 <header class="top">
 
     <div class="brand">
-
         📈 投資績效名片
-
     </div>
 
 
@@ -511,9 +832,7 @@ tbody tr:hover {
             class="nav-btn"
             href="index.html"
         >
-
             📊 融資融券維持率
-
         </a>
 
 
@@ -521,9 +840,7 @@ tbody tr:hover {
             class="nav-btn active"
             href="foreign.html"
         >
-
             🏦 外資買賣超
-
         </a>
 
 
@@ -531,9 +848,7 @@ tbody tr:hover {
             class="nav-btn"
             href="broker.html"
         >
-
             🏢 投信買賣超
-
         </a>
 
     </div>
@@ -546,9 +861,7 @@ tbody tr:hover {
 ===================================================== -->
 
 <h1>
-
     🏦 外資買賣超
-
 </h1>
 
 
@@ -556,9 +869,7 @@ tbody tr:hover {
     class="date"
     id="dataDate"
 >
-
     資料載入中...
-
 </div>
 
 
@@ -576,9 +887,7 @@ tbody tr:hover {
             class="tab active"
             data-type="buy"
         >
-
             🔴 買超
-
         </button>
 
 
@@ -586,9 +895,7 @@ tbody tr:hover {
             class="tab"
             data-type="sell"
         >
-
             🟢 賣超
-
         </button>
 
 
@@ -596,18 +903,14 @@ tbody tr:hover {
             class="tab"
             data-type="net"
         >
-
             ⚖️ 淨買賣
-
         </button>
 
 
     </div>
 
 
-    <select
-        id="topSelect"
-    >
+    <select id="topSelect">
 
         <option value="10">
             TOP 10
@@ -638,9 +941,7 @@ tbody tr:hover {
     class="summary"
     id="summary"
 >
-
     正在載入外資資料...
-
 </div>
 
 
@@ -650,9 +951,7 @@ tbody tr:hover {
 
 <div class="table-wrapper">
 
-
 <table>
-
 
 <thead>
 
@@ -683,10 +982,7 @@ tbody tr:hover {
 </thead>
 
 
-<tbody
-    id="tableBody"
->
-
+<tbody id="tableBody">
 
 <tr>
 
@@ -694,22 +990,16 @@ tbody tr:hover {
         colspan="5"
         class="loading"
     >
-
         正在載入資料...
-
     </td>
 
 </tr>
 
-
 </tbody>
-
 
 </table>
 
-
 </div>
-
 
 </div>
 
@@ -717,9 +1007,9 @@ tbody tr:hover {
 <script>
 
 
-// ========================================================
-// 全域
-// ========================================================
+/* ========================================================
+   全域
+======================================================== */
 
 let foreignData = [];
 
@@ -728,9 +1018,9 @@ let currentType = "buy";
 let topN = 10;
 
 
-// ========================================================
-// 數字
-// ========================================================
+/* ========================================================
+   數字
+======================================================== */
 
 function toNumber(value) {
 
@@ -760,9 +1050,9 @@ function toNumber(value) {
 }
 
 
-// ========================================================
-// 金額格式
-// ========================================================
+/* ========================================================
+   金額格式
+======================================================== */
 
 function formatMoney(value) {
 
@@ -770,9 +1060,7 @@ function formatMoney(value) {
         toNumber(value);
 
 
-    if (
-        number === 0
-    ) {
+    if (number === 0) {
 
         return "0";
 
@@ -783,9 +1071,7 @@ function formatMoney(value) {
         Math.abs(number);
 
 
-    if (
-        abs >= 100000000
-    ) {
+    if (abs >= 100000000) {
 
         return (
 
@@ -799,9 +1085,7 @@ function formatMoney(value) {
     }
 
 
-    if (
-        abs >= 10000
-    ) {
+    if (abs >= 10000) {
 
         return (
 
@@ -822,9 +1106,9 @@ function formatMoney(value) {
 }
 
 
-// ========================================================
-// 股價格式
-// ========================================================
+/* ========================================================
+   股價格式
+======================================================== */
 
 function formatPrice(value) {
 
@@ -852,13 +1136,9 @@ function formatPrice(value) {
 }
 
 
-// ========================================================
-// 取得外資金額
-//
-// 你的 money_rank.json:
-// foreign
-//   └── foreign_money
-// ========================================================
+/* ========================================================
+   取得外資金額
+======================================================== */
 
 function getForeignMoney(item) {
 
@@ -869,9 +1149,9 @@ function getForeignMoney(item) {
 }
 
 
-// ========================================================
-// 取得股票代號
-// ========================================================
+/* ========================================================
+   股票代號
+======================================================== */
 
 function getStockId(item) {
 
@@ -885,9 +1165,9 @@ function getStockId(item) {
 }
 
 
-// ========================================================
-// 取得股票名稱
-// ========================================================
+/* ========================================================
+   股票名稱
+======================================================== */
 
 function getStockName(item) {
 
@@ -901,9 +1181,9 @@ function getStockName(item) {
 }
 
 
-// ========================================================
-// 買超
-// ========================================================
+/* ========================================================
+   買超
+======================================================== */
 
 function getBuyRows() {
 
@@ -924,9 +1204,9 @@ function getBuyRows() {
 }
 
 
-// ========================================================
-// 賣超
-// ========================================================
+/* ========================================================
+   賣超
+======================================================== */
 
 function getSellRows() {
 
@@ -947,11 +1227,9 @@ function getSellRows() {
 }
 
 
-// ========================================================
-// 淨買賣
-//
-// 由最大買超一路排到最大賣超
-// ========================================================
+/* ========================================================
+   淨買賣
+======================================================== */
 
 function getNetRows() {
 
@@ -969,9 +1247,9 @@ function getNetRows() {
 }
 
 
-// ========================================================
-// 目前模式資料
-// ========================================================
+/* ========================================================
+   目前模式資料
+======================================================== */
 
 function getCurrentRows() {
 
@@ -998,9 +1276,9 @@ function getCurrentRows() {
 }
 
 
-// ========================================================
-// 模式名稱
-// ========================================================
+/* ========================================================
+   模式名稱
+======================================================== */
 
 function getModeName() {
 
@@ -1027,9 +1305,9 @@ function getModeName() {
 }
 
 
-// ========================================================
-// 顯示表格
-// ========================================================
+/* ========================================================
+   顯示表格
+======================================================== */
 
 function renderTable() {
 
@@ -1048,17 +1326,9 @@ function renderTable() {
     tableBody.innerHTML = "";
 
 
-    // ----------------------------------------------------
-    // 取得目前模式
-    // ----------------------------------------------------
-
     const sortedRows =
         getCurrentRows();
 
-
-    // ----------------------------------------------------
-    // TOP
-    // ----------------------------------------------------
 
     const rows =
         sortedRows.slice(
@@ -1066,10 +1336,6 @@ function renderTable() {
             topN
         );
 
-
-    // ----------------------------------------------------
-    // Summary
-    // ----------------------------------------------------
 
     summary.textContent =
 
@@ -1079,10 +1345,6 @@ function renderTable() {
         +
         `顯示 TOP ${rows.length}`;
 
-
-    // ----------------------------------------------------
-    // 沒資料
-    // ----------------------------------------------------
 
     if (
         rows.length === 0
@@ -1096,9 +1358,7 @@ function renderTable() {
                     colspan="5"
                     class="loading"
                 >
-
                     目前沒有符合條件的資料。
-
                 </td>
 
             </tr>
@@ -1109,10 +1369,6 @@ function renderTable() {
 
     }
 
-
-    // ----------------------------------------------------
-    // 建立表格
-    // ----------------------------------------------------
 
     rows.forEach(
         (
@@ -1140,7 +1396,6 @@ function renderTable() {
 
             }
 
-
             else if (
                 money < 0
             ) {
@@ -1162,8 +1417,7 @@ function renderTable() {
             ) {
 
                 displayMoney =
-                    "+"
-                    +
+                    "+" +
                     displayMoney;
 
             }
@@ -1236,9 +1490,9 @@ function renderTable() {
 }
 
 
-// ========================================================
-// 載入 JSON
-// ========================================================
+/* ========================================================
+   載入 JSON
+======================================================== */
 
 async function loadData() {
 
@@ -1250,7 +1504,6 @@ async function loadData() {
 
     try {
 
-
         tableBody.innerHTML = `
 
             <tr>
@@ -1259,19 +1512,13 @@ async function loadData() {
                     colspan="5"
                     class="loading"
                 >
-
                     正在載入外資資料...
-
                 </td>
 
             </tr>
 
         `;
 
-
-        // ------------------------------------------------
-        // 直接讀 money_rank.json
-        // ------------------------------------------------
 
         const response =
             await fetch(
@@ -1306,9 +1553,9 @@ async function loadData() {
         );
 
 
-        // ------------------------------------------------
-        // 日期
-        // ------------------------------------------------
+        /* ------------------------------------------------
+           日期
+        ------------------------------------------------ */
 
         document
             .getElementById(
@@ -1325,9 +1572,9 @@ async function loadData() {
             );
 
 
-        // ------------------------------------------------
-        // foreign
-        // ------------------------------------------------
+        /* ------------------------------------------------
+           foreign
+        ------------------------------------------------ */
 
         if (
             !Array.isArray(
@@ -1373,9 +1620,9 @@ async function loadData() {
         );
 
 
-        // ------------------------------------------------
-        // 計算買超 / 賣超數量
-        // ------------------------------------------------
+        /* ------------------------------------------------
+           買超 / 賣超統計
+        ------------------------------------------------ */
 
         const buyCount =
             foreignData.filter(
@@ -1403,16 +1650,12 @@ async function loadData() {
         );
 
 
-        // ------------------------------------------------
-        // 顯示
-        // ------------------------------------------------
-
         renderTable();
 
-
     }
-    catch (error) {
 
+
+    catch (error) {
 
         console.error(
             "外資資料錯誤：",
@@ -1475,9 +1718,9 @@ async function loadData() {
 }
 
 
-// ========================================================
-// 三個按鈕
-// ========================================================
+/* ========================================================
+   三個按鈕
+======================================================== */
 
 document
     .querySelectorAll(
@@ -1486,15 +1729,10 @@ document
     .forEach(
         button => {
 
-
             button.addEventListener(
                 "click",
                 function() {
 
-
-                    // ------------------------------------
-                    // 移除所有 active
-                    // ------------------------------------
 
                     document
                         .querySelectorAll(
@@ -1509,26 +1747,14 @@ document
                         );
 
 
-                    // ------------------------------------
-                    // 目前按鈕 active
-                    // ------------------------------------
-
                     this.classList.add(
                         "active"
                     );
 
 
-                    // ------------------------------------
-                    // 更新模式
-                    // ------------------------------------
-
                     currentType =
                         this.dataset.type;
 
-
-                    // ------------------------------------
-                    // 重新排序
-                    // ------------------------------------
 
                     renderTable();
 
@@ -1539,9 +1765,9 @@ document
     );
 
 
-// ========================================================
-// TOP
-// ========================================================
+/* ========================================================
+   TOP
+======================================================== */
 
 document
     .getElementById(
@@ -1556,20 +1782,20 @@ document
                     this.value
                 );
 
+
             renderTable();
 
         }
     );
 
 
-// ========================================================
-// 啟動
-// ========================================================
+/* ========================================================
+   啟動
+======================================================== */
 
 loadData();
 
 </script>
-
 
 </body>
 
