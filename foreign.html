@@ -32,6 +32,7 @@
             background: #f5f7fa;
 
             color: #222;
+
         }
 
 
@@ -39,15 +40,19 @@
 
             max-width: 1100px;
 
-            margin: 40px auto;
+            margin: 35px auto;
 
             padding: 0 20px;
+
         }
 
 
         h1 {
 
-            margin-bottom: 8px;
+            margin: 0 0 8px 0;
+
+            font-size: 32px;
+
         }
 
 
@@ -56,8 +61,47 @@
             color: #777;
 
             margin-bottom: 25px;
+
         }
 
+
+        /* ==============================
+           回首頁
+        ============================== */
+
+        .back-home {
+
+            display: inline-block;
+
+            padding: 10px 18px;
+
+            margin-bottom: 18px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            background: white;
+
+            color: #222;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+        }
+
+
+        .back-home:hover {
+
+            background: #eee;
+
+        }
+
+
+        /* ==============================
+           法人分類
+        ============================== */
 
         .tabs {
 
@@ -65,9 +109,10 @@
 
             gap: 8px;
 
-            margin-bottom: 20px;
+            margin-bottom: 18px;
 
             flex-wrap: wrap;
+
         }
 
 
@@ -84,12 +129,14 @@
             cursor: pointer;
 
             font-size: 15px;
+
         }
 
 
         .tab:hover {
 
             background: #eee;
+
         }
 
 
@@ -98,44 +145,56 @@
             background: #222;
 
             color: white;
+
         }
 
 
-        .sub-tabs {
+        /* ==============================
+           TOP 選擇
+        ============================== */
+
+        .controls {
 
             display: flex;
 
-            gap: 8px;
+            justify-content: space-between;
 
-            margin-bottom: 20px;
+            align-items: center;
+
+            margin-bottom: 18px;
+
+            gap: 10px;
 
             flex-wrap: wrap;
+
         }
 
 
-        .sub-tab {
+        .summary {
+
+            color: #555;
+
+        }
+
+
+        select {
+
+            padding: 9px 14px;
 
             border: 1px solid #ddd;
 
+            border-radius: 8px;
+
             background: white;
 
-            padding: 8px 15px;
-
-            border-radius: 7px;
-
-            cursor: pointer;
-
             font-size: 14px;
+
         }
 
 
-        .sub-tab.active {
-
-            background: #555;
-
-            color: white;
-        }
-
+        /* ==============================
+           表格
+        ============================== */
 
         .table-wrapper {
 
@@ -146,7 +205,9 @@
             overflow-x: auto;
 
             box-shadow:
-                0 2px 10px rgba(0,0,0,0.05);
+                0 2px 10px
+                rgba(0,0,0,0.05);
+
         }
 
 
@@ -156,7 +217,8 @@
 
             border-collapse: collapse;
 
-            min-width: 700px;
+            min-width: 750px;
+
         }
 
 
@@ -169,6 +231,7 @@
             text-align: right;
 
             white-space: nowrap;
+
         }
 
 
@@ -177,6 +240,7 @@
         th:nth-child(3) {
 
             text-align: left;
+
         }
 
 
@@ -187,6 +251,7 @@
             border-top: 1px solid #eee;
 
             text-align: right;
+
         }
 
 
@@ -195,12 +260,14 @@
         td:nth-child(3) {
 
             text-align: left;
+
         }
 
 
         tr:hover {
 
             background: #fafafa;
+
         }
 
 
@@ -208,7 +275,8 @@
 
             font-weight: bold;
 
-            width: 60px;
+            width: 65px;
+
         }
 
 
@@ -217,14 +285,16 @@
             color: #666;
 
             font-family: monospace;
+
         }
 
 
         .money-positive {
 
-            color: #d32f2f;
+            color: #e53935;
 
             font-weight: bold;
+
         }
 
 
@@ -233,36 +303,62 @@
             color: #16803c;
 
             font-weight: bold;
+
         }
 
 
         .loading {
 
-            padding: 40px;
+            padding: 50px;
 
             text-align: center;
 
             color: #777;
+
         }
 
 
         .error {
 
-            padding: 30px;
+            padding: 35px;
 
             color: #c62828;
 
-            background: #fff;
+            text-align: center;
 
-            border-radius: 10px;
+            line-height: 1.8;
+
         }
 
 
-        .summary {
+        .error strong {
 
-            margin: 20px 0;
+            font-weight: bold;
 
-            color: #555;
+        }
+
+
+        /* ==============================
+           手機
+        ============================== */
+
+        @media (max-width: 700px) {
+
+            .container {
+
+                margin-top: 20px;
+
+                padding: 0 10px;
+
+            }
+
+
+            h1 {
+
+                font-size: 26px;
+
+            }
+
         }
 
     </style>
@@ -276,7 +372,23 @@
 <div class="container">
 
 
-    <h1 id="pageTitle">
+    <!-- ==========================================
+         回首頁
+    =========================================== -->
+
+    <a
+        class="back-home"
+        href="index.html"
+    >
+        ← 回首頁
+    </a>
+
+
+    <!-- ==========================================
+         標題
+    =========================================== -->
+
+    <h1>
         法人資金排行榜
     </h1>
 
@@ -289,49 +401,23 @@
     </div>
 
 
-    <!-- =====================================================
-         第一層：個股 / 據點
-         ===================================================== -->
+    <!-- ==========================================
+         法人分類
+    =========================================== -->
 
     <div class="tabs">
 
+
         <button
             class="tab active"
-            data-view="stocks"
+            data-type="total"
         >
-            個股排名
+            三大法人
         </button>
 
 
         <button
             class="tab"
-            data-view="locations"
-        >
-            📍 據點排名
-        </button>
-
-    </div>
-
-
-    <!-- =====================================================
-         第二層：法人類型
-         ===================================================== -->
-
-    <div
-        class="sub-tabs"
-        id="stockTabs"
-    >
-
-        <button
-            class="sub-tab active"
-            data-type="total"
-        >
-            三大法人
-        </button>
-
-
-        <button
-            class="sub-tab"
             data-type="foreign"
         >
             外資
@@ -339,7 +425,7 @@
 
 
         <button
-            class="sub-tab"
+            class="tab"
             data-type="investment_trust"
         >
             投信
@@ -347,66 +433,58 @@
 
 
         <button
-            class="sub-tab"
+            class="tab"
             data-type="dealer"
         >
             自營商
         </button>
 
-    </div>
-
-
-    <div
-        class="sub-tabs"
-        id="locationTabs"
-        style="display:none;"
-    >
-
-        <button
-            class="sub-tab active"
-            data-type="total"
-        >
-            三大法人
-        </button>
-
-
-        <button
-            class="sub-tab"
-            data-type="foreign"
-        >
-            外資
-        </button>
-
-
-        <button
-            class="sub-tab"
-            data-type="investment_trust"
-        >
-            投信
-        </button>
-
-
-        <button
-            class="sub-tab"
-            data-type="dealer"
-        >
-            自營商
-        </button>
 
     </div>
 
 
-    <div
-        class="summary"
-        id="summary"
-    >
-        載入資料中...
+    <!-- ==========================================
+         排名控制
+    =========================================== -->
+
+    <div class="controls">
+
+
+        <div
+            class="summary"
+            id="summary"
+        >
+            載入資料中...
+        </div>
+
+
+        <select id="topSelect">
+
+            <option value="10">
+                TOP 10
+            </option>
+
+            <option value="20">
+                TOP 20
+            </option>
+
+            <option value="50">
+                TOP 50
+            </option>
+
+            <option value="100">
+                TOP 100
+            </option>
+
+        </select>
+
+
     </div>
 
 
-    <!-- =====================================================
+    <!-- ==========================================
          表格
-         ===================================================== -->
+    =========================================== -->
 
     <div class="table-wrapper">
 
@@ -414,19 +492,29 @@
         <table>
 
 
-            <thead id="tableHead">
+            <thead>
 
                 <tr>
 
-                    <th>Rank</th>
+                    <th>
+                        Rank
+                    </th>
 
-                    <th>股票代號</th>
+                    <th>
+                        股票代號
+                    </th>
 
-                    <th>股票名稱</th>
+                    <th>
+                        股票名稱
+                    </th>
 
-                    <th>收盤價</th>
+                    <th>
+                        收盤價
+                    </th>
 
-                    <th>買賣超金額</th>
+                    <th>
+                        買賣超金額
+                    </th>
 
                 </tr>
 
@@ -435,18 +523,18 @@
 
             <tbody id="tableBody">
 
+
                 <tr>
 
                     <td
                         colspan="5"
                         class="loading"
                     >
-
-                        資料載入中...
-
+                        正在載入資料...
                     </td>
 
                 </tr>
+
 
             </tbody>
 
@@ -464,28 +552,29 @@
 <script>
 
 
-/* =========================================================
-   全域資料
-   ========================================================= */
+/* ============================================================
+   全域變數
+============================================================ */
+
 
 let moneyData = null;
 
-let locationData = null;
-
-let currentView = "stocks";
-
 let currentType = "total";
 
+let topN = 10;
 
 
-/* =========================================================
-   格式化金額
-   ========================================================= */
+
+/* ============================================================
+   金額格式
+============================================================ */
+
 
 function formatMoney(value) {
 
 
-    const number = Number(value);
+    const number =
+        Number(value);
 
 
     if (!Number.isFinite(number)) {
@@ -495,23 +584,36 @@ function formatMoney(value) {
     }
 
 
-    const abs = Math.abs(number);
+    const abs =
+        Math.abs(number);
 
 
     if (abs >= 100000000) {
 
+
         return (
-            number / 100000000
-        ).toFixed(2) + " 億";
+
+            (number / 100000000)
+                .toFixed(2)
+
+            + " 億"
+
+        );
 
     }
 
 
     if (abs >= 10000) {
 
+
         return (
-            number / 10000
-        ).toFixed(0) + " 萬";
+
+            (number / 10000)
+                .toFixed(0)
+
+            + " 萬"
+
+        );
 
     }
 
@@ -524,14 +626,16 @@ function formatMoney(value) {
 
 
 
-/* =========================================================
-   格式化價格
-   ========================================================= */
+/* ============================================================
+   價格格式
+============================================================ */
+
 
 function formatPrice(value) {
 
 
-    const number = Number(value);
+    const number =
+        Number(value);
 
 
     if (
@@ -546,65 +650,82 @@ function formatPrice(value) {
 
 
     return number.toLocaleString(
+
         "zh-TW",
+
         {
+
             minimumFractionDigits: 2,
+
             maximumFractionDigits: 2
+
         }
+
     );
 
 }
 
 
 
-/* =========================================================
-   金額顏色
-   ========================================================= */
-
-function getMoneyClass(value) {
+/* ============================================================
+   取得目前法人金額欄位
+============================================================ */
 
 
-    const number = Number(value);
+function getMoney(item) {
 
 
-    if (number > 0) {
+    if (currentType === "total") {
 
-        return "money-positive";
-
-    }
-
-
-    if (number < 0) {
-
-        return "money-negative";
+        return Number(
+            item.total_money || 0
+        );
 
     }
 
 
-    return "";
+    if (currentType === "foreign") {
+
+        return Number(
+            item.foreign_money || 0
+        );
+
+    }
+
+
+    if (
+        currentType ===
+        "investment_trust"
+    ) {
+
+        return Number(
+            item.investment_trust_money || 0
+        );
+
+    }
+
+
+    if (currentType === "dealer") {
+
+        return Number(
+            item.dealer_money || 0
+        );
+
+    }
+
+
+    return 0;
 
 }
 
 
 
-/* =========================================================
-   顯示個股表格
-   ========================================================= */
-
-function renderStockTable(type) {
+/* ============================================================
+   顯示表格
+============================================================ */
 
 
-    currentType = type;
-
-
-    const rows =
-        moneyData[type] || [];
-
-
-    const tableHead =
-        document.getElementById(
-            "tableHead"
-        );
+function renderTable() {
 
 
     const tableBody =
@@ -619,79 +740,82 @@ function renderStockTable(type) {
         );
 
 
-    tableHead.innerHTML = `
+    if (!moneyData) {
 
-        <tr>
+        return;
 
-            <th>Rank</th>
+    }
 
-            <th>股票代號</th>
 
-            <th>股票名稱</th>
-
-            <th>收盤價</th>
-
-            <th>買賣超金額</th>
-
-        </tr>
-
-    `;
+    const rows =
+        moneyData[currentType] || [];
 
 
     tableBody.innerHTML = "";
 
 
+    const displayRows =
+        rows.slice(0, topN);
+
+
     summary.textContent =
-        `顯示買超排名 TOP ${rows.length}`;
+        `顯示買超排名 TOP ${displayRows.length}`;
 
 
-    rows.forEach(
+
+    if (displayRows.length === 0) {
+
+
+        tableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="loading"
+                >
+
+                    沒有資料
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    displayRows.forEach(
         (item, index) => {
 
 
-            let money;
+            const money =
+                getMoney(item);
 
 
-            if (type === "total") {
-
-                money =
-                    Number(
-                        item.total_money || 0
-                    );
-
-            }
+            let moneyClass = "";
 
 
-            else if (type === "foreign") {
+            if (money > 0) {
 
-                money =
-                    Number(
-                        item.foreign_money || 0
-                    );
+                moneyClass =
+                    "money-positive";
 
             }
 
 
-            else if (
-                type === "investment_trust"
-            ) {
+            if (money < 0) {
 
-                money =
-                    Number(
-                        item.investment_trust_money || 0
-                    );
+                moneyClass =
+                    "money-negative";
 
             }
 
-
-            else {
-
-                money =
-                    Number(
-                        item.dealer_money || 0
-                    );
-
-            }
 
 
             const row =
@@ -700,34 +824,70 @@ function renderStockTable(type) {
                 );
 
 
+
             row.innerHTML = `
 
+
                 <td class="rank">
-                    ${item.rank ?? index + 1}
+
+                    ${
+                        item.rank
+                        ??
+                        index + 1
+                    }
+
                 </td>
+
 
                 <td class="stock-id">
-                    ${item.stock_id ?? "-"}
+
+                    ${
+                        item.stock_id
+                        ??
+                        "-"
+                    }
+
                 </td>
+
 
                 <td>
-                    ${item.stock_name ?? "-"}
+
+                    ${
+                        item.stock_name
+                        ??
+                        "-"
+                    }
+
                 </td>
+
 
                 <td>
-                    ${formatPrice(
-                        item.close_price
-                    )}
+
+                    ${
+                        formatPrice(
+                            item.close_price
+                        )
+                    }
+
                 </td>
 
-                <td class="${getMoneyClass(money)}">
-                    ${formatMoney(money)}
+
+                <td
+                    class="${moneyClass}"
+                >
+
+                    ${
+                        formatMoney(money)
+                    }
+
                 </td>
+
 
             `;
 
 
             tableBody.appendChild(row);
+
 
         }
     );
@@ -736,227 +896,102 @@ function renderStockTable(type) {
 
 
 
-/* =========================================================
-   顯示據點表格
-   ========================================================= */
-
-function renderLocationTable(type) {
+/* ============================================================
+   載入 money_rank.json
+============================================================ */
 
 
-    currentType = type;
-
-
-    const rows =
-        locationData[type] || [];
-
-
-    const tableHead =
-        document.getElementById(
-            "tableHead"
-        );
+async function loadData() {
 
 
     const tableBody =
         document.getElementById(
             "tableBody"
         );
-
-
-    const summary =
-        document.getElementById(
-            "summary"
-        );
-
-
-    tableHead.innerHTML = `
-
-        <tr>
-
-            <th>Rank</th>
-
-            <th>據點</th>
-
-            <th>法人資金</th>
-
-        </tr>
-
-    `;
-
-
-    tableBody.innerHTML = "";
-
-
-    summary.textContent =
-        `法人資金地區排名 TOP ${rows.length}`;
-
-
-    rows.forEach(
-        (item, index) => {
-
-
-            let money;
-
-
-            if (type === "total") {
-
-                money =
-                    Number(
-                        item.total_money || 0
-                    );
-
-            }
-
-
-            else if (type === "foreign") {
-
-                money =
-                    Number(
-                        item.foreign_money || 0
-                    );
-
-            }
-
-
-            else if (
-                type === "investment_trust"
-            ) {
-
-                money =
-                    Number(
-                        item.investment_trust_money || 0
-                    );
-
-            }
-
-
-            else {
-
-                money =
-                    Number(
-                        item.dealer_money || 0
-                    );
-
-            }
-
-
-            const row =
-                document.createElement(
-                    "tr"
-                );
-
-
-            row.innerHTML = `
-
-                <td class="rank">
-                    ${item.rank ?? index + 1}
-                </td>
-
-                <td>
-                    ${item.city ?? "未知"}
-                </td>
-
-                <td class="${getMoneyClass(money)}">
-                    ${formatMoney(money)}
-                </td>
-
-            `;
-
-
-            tableBody.appendChild(row);
-
-        }
-    );
-
-}
-
-
-
-/* =========================================================
-   更新畫面
-   ========================================================= */
-
-function renderCurrentView() {
-
-
-    if (currentView === "stocks") {
-
-        renderStockTable(
-            currentType
-        );
-
-    }
-
-    else {
-
-        renderLocationTable(
-            currentType
-        );
-
-    }
-
-}
-
-
-
-/* =========================================================
-   載入兩個 JSON
-   ========================================================= */
-
-async function loadData() {
 
 
     try {
 
 
-        const [
-            moneyResponse,
-            locationResponse
-        ] = await Promise.all([
+        tableBody.innerHTML = `
 
-            fetch(
-                "money_rank.json"
-            ),
+            <tr>
 
-            fetch(
-                "location_rank.json"
-            )
+                <td
+                    colspan="5"
+                    class="loading"
+                >
 
-        ]);
+                    正在載入法人資料...
+
+                </td>
+
+            </tr>
+
+        `;
 
 
-        if (!moneyResponse.ok) {
+
+        /*
+         * 加上時間戳記，
+         * 避免 GitHub Pages / 瀏覽器
+         * 使用舊版 JSON 快取。
+         */
+
+        const url =
+            "money_rank.json?ts="
+            +
+            Date.now();
+
+
+
+        const response =
+            await fetch(url);
+
+
+
+        if (!response.ok) {
+
 
             throw new Error(
-                "找不到 money_rank.json"
+
+                `HTTP ${response.status}`
+
             );
 
         }
 
-
-        if (!locationResponse.ok) {
-
-            throw new Error(
-                "找不到 location_rank.json"
-            );
-
-        }
 
 
         moneyData =
-            await moneyResponse.json();
+            await response.json();
 
 
-        locationData =
-            await locationResponse.json();
+
+        /* ============================
+           日期
+        ============================ */
 
 
         document.getElementById(
             "dataDate"
         ).textContent =
-            `資料日期：${moneyData.data_date}`;
+
+            `資料日期：${
+                moneyData.data_date
+                ??
+                "-"
+            }`;
 
 
-        renderCurrentView();
+
+        /* ============================
+           顯示資料
+        ============================ */
+
+
+        renderTable();
+
 
 
     }
@@ -964,12 +999,25 @@ async function loadData() {
     catch (error) {
 
 
-        console.error(error);
+        console.error(
+            "載入法人資料失敗：",
+            error
+        );
 
 
         document.getElementById(
-            "tableBody"
-        ).innerHTML = `
+            "dataDate"
+        ).textContent =
+            "資料載入失敗";
+
+
+        document.getElementById(
+            "summary"
+        ).textContent =
+            "無法取得資料";
+
+
+        tableBody.innerHTML = `
 
             <tr>
 
@@ -977,11 +1025,14 @@ async function loadData() {
 
                     <div class="error">
 
-                        無法載入資料。
+                        <strong>
+                            無法載入法人資料
+                        </strong>
 
                         <br><br>
 
-                        請確認以下兩個檔案存在：
+                        請確認 GitHub Repository
+                        根目錄存在：
 
                         <br>
 
@@ -989,16 +1040,16 @@ async function loadData() {
                             money_rank.json
                         </strong>
 
-                        <br>
+                        <br><br>
 
-                        <strong>
-                            location_rank.json
-                        </strong>
+                        目前不需要
+                        location_rank.json。
 
                         <br><br>
 
-                        並且與 index.html
-                        位於同一個資料夾。
+                        如果 GitHub Actions
+                        剛剛才更新資料，
+                        請稍等幾十秒後重新整理。
 
                     </div>
 
@@ -1014,14 +1065,13 @@ async function loadData() {
 
 
 
-/* =========================================================
-   第一層：個股 / 據點
-   ========================================================= */
+/* ============================================================
+   法人按鈕
+============================================================ */
+
 
 document
-    .querySelectorAll(
-        ".tabs .tab"
-    )
+    .querySelectorAll(".tab")
     .forEach(button => {
 
 
@@ -1031,102 +1081,14 @@ document
 
 
                 document
-                    .querySelectorAll(
-                        ".tabs .tab"
-                    )
-                    .forEach(
-                        btn =>
-                            btn.classList.remove(
-                                "active"
-                            )
-                    );
+                    .querySelectorAll(".tab")
+                    .forEach(btn => {
 
+                        btn.classList.remove(
+                            "active"
+                        );
 
-                button.classList.add(
-                    "active"
-                );
-
-
-                currentView =
-                    button.dataset.view;
-
-
-                const stockTabs =
-                    document.getElementById(
-                        "stockTabs"
-                    );
-
-
-                const locationTabs =
-                    document.getElementById(
-                        "locationTabs"
-                    );
-
-
-                if (
-                    currentView ===
-                    "stocks"
-                ) {
-
-
-                    stockTabs.style.display =
-                        "flex";
-
-
-                    locationTabs.style.display =
-                        "none";
-
-
-                }
-
-                else {
-
-
-                    stockTabs.style.display =
-                        "none";
-
-
-                    locationTabs.style.display =
-                        "flex";
-
-                }
-
-
-                renderCurrentView();
-
-            }
-        );
-
-    });
-
-
-
-/* =========================================================
-   個股法人切換
-   ========================================================= */
-
-document
-    .querySelectorAll(
-        "#stockTabs .sub-tab"
-    )
-    .forEach(button => {
-
-
-        button.addEventListener(
-            "click",
-            () => {
-
-
-                document
-                    .querySelectorAll(
-                        "#stockTabs .sub-tab"
-                    )
-                    .forEach(
-                        btn =>
-                            btn.classList.remove(
-                                "active"
-                            )
-                    );
+                    });
 
 
                 button.classList.add(
@@ -1138,72 +1100,53 @@ document
                     button.dataset.type;
 
 
-                renderStockTable(
-                    currentType
-                );
+                renderTable();
+
 
             }
         );
+
 
     });
 
 
 
-/* =========================================================
-   據點法人切換
-   ========================================================= */
+/* ============================================================
+   TOP 選單
+============================================================ */
+
 
 document
-    .querySelectorAll(
-        "#locationTabs .sub-tab"
-    )
-    .forEach(button => {
+    .getElementById("topSelect")
+    .addEventListener(
+        "change",
+        event => {
 
 
-        button.addEventListener(
-            "click",
-            () => {
-
-
-                document
-                    .querySelectorAll(
-                        "#locationTabs .sub-tab"
-                    )
-                    .forEach(
-                        btn =>
-                            btn.classList.remove(
-                                "active"
-                            )
-                    );
-
-
-                button.classList.add(
-                    "active"
+            topN =
+                Number(
+                    event.target.value
                 );
 
 
-                currentType =
-                    button.dataset.type;
+            renderTable();
 
 
-                renderLocationTable(
-                    currentType
-                );
-
-            }
-        );
-
-    });
+        }
+    );
 
 
 
-/* =========================================================
+/* ============================================================
    啟動
-   ========================================================= */
+============================================================ */
+
 
 loadData();
 
+
 </script>
+
 
 </body>
 
