@@ -96,21 +96,54 @@ h1 {
 }
 
 /* =========================================================
-   說明
+   控制
    ========================================================= */
 
-.note {
-    background: #fff;
-    border: 1px solid #edf0f3;
-    border-radius: 12px;
-    padding: 14px 16px;
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
     margin-bottom: 14px;
-    color: #666;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+}
+
+.tab {
+    border: 1px solid #d5dee8;
+    background: #fff;
+    color: #222;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.tab.active {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}
+
+#topSelect {
+    border: 1px solid #d5dee8;
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px 13px;
     font-size: 14px;
 }
 
-.note strong {
-    color: #222;
+/* =========================================================
+   摘要
+   ========================================================= */
+
+.summary {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 
 /* =========================================================
@@ -129,13 +162,13 @@ h1 {
 
 table {
     width: 100%;
-    min-width: 1050px;
+    min-width: 720px;
     border-collapse: collapse;
 }
 
 thead th {
     background: #eef1f4;
-    padding: 13px 12px;
+    padding: 13px 14px;
     white-space: nowrap;
     text-align: right;
     font-weight: 800;
@@ -148,7 +181,7 @@ thead th:nth-child(3) {
 }
 
 tbody td {
-    padding: 12px;
+    padding: 13px 14px;
     border-top: 1px solid #eee;
     white-space: nowrap;
     text-align: right;
@@ -165,7 +198,6 @@ tbody tr:hover {
 }
 
 .rank {
-    width: 60px;
     color: #777;
     font-weight: 800;
 }
@@ -175,29 +207,30 @@ tbody tr:hover {
     font-family: monospace;
 }
 
-.positive {
-    color: #d32f2f;
+.money-positive {
+    color: #e53935;
     font-weight: 900;
 }
 
-.negative {
+.money-negative {
     color: #16803c;
     font-weight: 900;
 }
 
-.zero {
+.money-zero {
     color: #777;
+    font-weight: 900;
 }
 
 .loading,
 .error {
     text-align: center !important;
-    padding: 45px 20px !important;
+    padding: 50px 20px !important;
     color: #777;
 }
 
 .error {
-    color: #d32f2f;
+    color: #c62828;
     line-height: 1.8;
 }
 
@@ -249,23 +282,38 @@ tbody tr:hover {
     }
 
     .date {
-        line-height: 1.6;
         margin-bottom: 15px;
+        line-height: 1.6;
     }
 
-    .note {
-        font-size: 13px;
-        line-height: 1.6;
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tabs {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tab {
+        width: 100%;
+        padding: 11px 8px;
+    }
+
+    #topSelect {
+        width: 100%;
     }
 
     table {
-        min-width: 1050px;
+        min-width: 720px;
     }
 
     thead th,
     tbody td {
-        padding: 11px 9px;
-        font-size: 12px;
+        padding: 11px 10px;
+        font-size: 13px;
     }
 }
 
@@ -291,89 +339,141 @@ tbody tr:hover {
 
 <div class="container">
 
-    <!-- =====================================================
-         網站導覽
-         ===================================================== -->
+<header class="site-header">
 
-    <header class="site-header">
-
-        <div class="site-brand">
-            📈 投資績效名片
-        </div>
-
-        <nav class="site-actions">
-
-            <a class="site-nav-btn"
-               href="index.html">
-                📊 融資融券維持率
-            </a>
-
-            <a class="site-nav-btn"
-               href="portfolio.html">
-                📁 投資組合
-            </a>
-
-            <a class="site-nav-btn"
-               href="credit.html">
-                💰 融資融券增減
-            </a>
-
-            <a class="site-nav-btn"
-               href="foreign.html">
-                🏦 外資買賣超
-            </a>
-
-            <a class="site-nav-btn active"
-               href="broker.html">
-                🏢 投信買賣超
-            </a>
-
-        </nav>
-
-    </header>
-
-    <h1>🏢 投信買賣超</h1>
-
-    <div class="date" id="dataDate">
-        資料載入中...
+    <div class="site-brand">
+        📈 投資績效名片
     </div>
 
-    <div class="note">
-        <strong>投信買賣超 TOP 100</strong>
-       　直接顯示當日投信買進、賣出、淨買賣張數及金額。
+    <nav class="site-actions">
+
+        <a class="site-nav-btn"
+           href="index.html">
+            📊 融資融券維持率
+        </a>
+
+        <a class="site-nav-btn"
+           href="portfolio.html">
+            📁 投資組合
+        </a>
+
+        <a class="site-nav-btn"
+           href="credit.html">
+            💰 融資融券增減
+        </a>
+
+        <a class="site-nav-btn"
+           href="foreign.html">
+            🏦 外資買賣超
+        </a>
+
+        <a class="site-nav-btn active"
+           href="broker.html">
+            🏢 投信買賣超
+        </a>
+
+    </nav>
+
+</header>
+
+
+<h1>🏢 投信買賣超</h1>
+
+<div class="date" id="dataDate">
+    資料載入中...
+</div>
+
+
+<div class="controls">
+
+    <div class="tabs">
+
+        <button
+            class="tab active"
+            data-type="buy"
+        >
+            🔴 買超
+        </button>
+
+        <button
+            class="tab"
+            data-type="sell"
+        >
+            🟢 賣超
+        </button>
+
     </div>
 
-    <div class="table-wrapper">
 
-        <table>
+    <select id="topSelect">
 
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>股票代號</th>
-                    <th>股票名稱</th>
-                    <th>買進張數</th>
-                    <th>賣出張數</th>
-                    <th>淨買賣張數</th>
-                    <th>買進金額</th>
-                    <th>賣出金額</th>
-                    <th>淨買賣金額</th>
-                </tr>
-            </thead>
+        <option value="10">
+            TOP 10
+        </option>
 
-            <tbody id="tableBody">
+        <option value="20">
+            TOP 20
+        </option>
 
-                <tr>
-                    <td colspan="9" class="loading">
-                        正在載入投信買賣超資料...
-                    </td>
-                </tr>
+        <option value="50">
+            TOP 50
+        </option>
 
-            </tbody>
+        <option value="100">
+            TOP 100
+        </option>
 
-        </table>
+    </select>
 
-    </div>
+</div>
+
+
+<div class="summary" id="summary">
+    正在載入投信資料...
+</div>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+    <th>Rank</th>
+
+    <th>股票代號</th>
+
+    <th>股票名稱</th>
+
+    <th>收盤價</th>
+
+    <th>投信買賣超</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="tableBody">
+
+<tr>
+
+    <td
+        colspan="5"
+        class="loading"
+    >
+        正在載入資料...
+    </td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
 
 </div>
 
@@ -382,49 +482,40 @@ tbody tr:hover {
 
 /*
 =============================================================
-資料來源
+投信資料
 =============================================================
 
-直接讀取：
-    money_rank.json
-
-不讀取：
-    broker_master.json
-    broker_data.json
-
-不使用：
-    券商分點
-    券商搜尋
-    券商據點
-
-固定顯示 100 筆。
-
-money_rank.json 主要預期結構：
+money_rank.json 的實際結構：
 
 {
-    "data_date": "2026/08/26",
-    "update_time": "16:00:00",
-
-    "broker": [
+    "data_date": "...",
+    "investment_trust": [
         {
-            "stock_id": "2330",
-            "stock_name": "台積電",
-            "buy": 10000,
-            "sell": 5000,
-            "net": 5000,
-            "buy_money": 11800000000,
-            "sell_money": 5900000000,
-            "net_money": 5900000000
+            "stock_id": "...",
+            "stock_name": "...",
+            "close_price": ...,
+            "investment_trust_money": ...,
+            "rank": ...
         }
     ]
 }
 
+這裡只讀：
+    investment_trust
+
+完全不使用：
+    broker_master.json
+    broker_data.json
+    券商分點
+    券商搜尋
 =============================================================
 */
 
 const DATA_URL = "money_rank.json";
 
-let brokerData = [];
+let investmentTrustData = [];
+let currentType = "buy";
+let topN = 10;
 
 
 /* =========================================================
@@ -452,115 +543,8 @@ function toNumber(value) {
 
 
 /* =========================================================
-   欄位
-   ========================================================= */
-
-function getStockId(item) {
-
-    return String(
-        item.stock_id ??
-        item.stockId ??
-        item.code ??
-        ""
-    ).trim();
-}
-
-
-function getStockName(item) {
-
-    return String(
-        item.stock_name ??
-        item.stockName ??
-        item.name ??
-        ""
-    ).trim();
-}
-
-
-function getBuy(item) {
-
-    return toNumber(
-        item.buy ??
-        item.buy_shares ??
-        item.buy_volume ??
-        item.buy_qty
-    );
-}
-
-
-function getSell(item) {
-
-    return toNumber(
-        item.sell ??
-        item.sell_shares ??
-        item.sell_volume ??
-        item.sell_qty
-    );
-}
-
-
-function getNet(item) {
-
-    if (
-        item.net !== undefined &&
-        item.net !== null
-    ) {
-        return toNumber(item.net);
-    }
-
-    return getBuy(item) - getSell(item);
-}
-
-
-function getBuyMoney(item) {
-
-    return toNumber(
-        item.buy_money ??
-        item.buyMoney ??
-        item.buy_amount ??
-        item.buy_value
-    );
-}
-
-
-function getSellMoney(item) {
-
-    return toNumber(
-        item.sell_money ??
-        item.sellMoney ??
-        item.sell_amount ??
-        item.sell_value
-    );
-}
-
-
-function getNetMoney(item) {
-
-    if (
-        item.net_money !== undefined &&
-        item.net_money !== null
-    ) {
-        return toNumber(item.net_money);
-    }
-
-    return getBuyMoney(item) - getSellMoney(item);
-}
-
-
-/* =========================================================
    格式
    ========================================================= */
-
-function formatNumber(value) {
-
-    return toNumber(value).toLocaleString(
-        "zh-TW",
-        {
-            maximumFractionDigits: 0
-        }
-    );
-}
-
 
 function formatMoney(value) {
 
@@ -598,73 +582,24 @@ function formatMoney(value) {
 }
 
 
-function valueClass(value) {
+function moneyClass(value) {
 
     const n = toNumber(value);
 
     if (n > 0) {
-        return "positive";
+        return "money-positive";
     }
 
     if (n < 0) {
-        return "negative";
+        return "money-negative";
     }
 
-    return "zero";
+    return "money-zero";
 }
 
 
 /* =========================================================
-   找投信資料
-   =========================================================
-
-   優先使用：
-       data.broker
-
-   同時相容：
-       data.broker_money
-       data.investment_trust
-       data.investment_trust_money
-       data.data.broker
-       data.data.investment_trust
-
-   ========================================================= */
-
-function findBrokerData(data) {
-
-    const candidates = [
-
-        data.broker,
-
-        data.broker_money,
-
-        data.investment_trust,
-
-        data.investment_trust_money,
-
-        data.data?.broker,
-
-        data.data?.broker_money,
-
-        data.data?.investment_trust,
-
-        data.data?.investment_trust_money
-
-    ];
-
-    for (const candidate of candidates) {
-
-        if (Array.isArray(candidate)) {
-            return candidate;
-        }
-    }
-
-    return [];
-}
-
-
-/* =========================================================
-   顯示 100 筆
+   顯示表格
    ========================================================= */
 
 function renderTable() {
@@ -674,56 +609,107 @@ function renderTable() {
             "tableBody"
         );
 
-    let rows = [...brokerData];
+    let rows =
+        [...investmentTrustData];
+
 
     /*
-       預設：
-       依「淨買賣張數」由大到小排列
-
-       因此：
-       Rank 1 = 投信當日淨買超最多
+       買超：
+       由大到小
     */
 
-    rows.sort(
-        (a, b) =>
-            getNet(b) - getNet(a)
-    );
+    if (currentType === "buy") {
+
+        rows.sort(
+            (a, b) =>
+                toNumber(
+                    b.investment_trust_money
+                )
+                -
+                toNumber(
+                    a.investment_trust_money
+                )
+        );
+
+    }
+
 
     /*
-       固定 100 筆
+       賣超：
+       由小到大
     */
 
-    rows = rows.slice(0, 100);
+    else {
+
+        rows.sort(
+            (a, b) =>
+                toNumber(
+                    a.investment_trust_money
+                )
+                -
+                toNumber(
+                    b.investment_trust_money
+                )
+        );
+
+    }
+
+
+    rows =
+        rows
+            .filter(
+                item => {
+
+                    const money =
+                        toNumber(
+                            item.investment_trust_money
+                        );
+
+                    if (
+                        currentType === "buy"
+                    ) {
+                        return money > 0;
+                    }
+
+                    return money < 0;
+                }
+            )
+            .slice(0, topN);
+
 
     body.innerHTML = "";
+
 
     if (rows.length === 0) {
 
         body.innerHTML = `
+
             <tr>
+
                 <td
-                    colspan="9"
+                    colspan="5"
                     class="error"
                 >
-                    ❌ 找不到投信買賣超資料
-                    <br><br>
-                    請確認 money_rank.json
-                    內有 broker / investment_trust 資料。
+
+                    沒有符合條件的投信買賣超資料。
+
                 </td>
+
             </tr>
+
         `;
 
         return;
     }
 
+
     rows.forEach(
         (item, index) => {
 
-            const net =
-                getNet(item);
-
-            const netMoney =
-                getNetMoney(item);
+            const money =
+                toNumber(
+                    item.investment_trust_money
+                );
 
             const row =
                 document.createElement(
@@ -737,56 +723,48 @@ function renderTable() {
                 </td>
 
                 <td class="stock-id">
-                    ${getStockId(item) || "-"}
+                    ${item.stock_id ?? "-"}
                 </td>
 
                 <td>
-                    ${getStockName(item) || "-"}
+                    ${item.stock_name ?? "-"}
                 </td>
 
                 <td>
-                    ${formatNumber(
-                        getBuy(item)
+                    ${toNumber(
+                        item.close_price
+                    ).toLocaleString(
+                        "zh-TW",
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
                     )}
                 </td>
 
-                <td>
-                    ${formatNumber(
-                        getSell(item)
-                    )}
-                </td>
-
-                <td class="${valueClass(net)}">
-                    ${formatNumber(net)}
-                </td>
-
-                <td>
-                    ${formatMoney(
-                        getBuyMoney(item)
-                    )}
-                </td>
-
-                <td>
-                    ${formatMoney(
-                        getSellMoney(item)
-                    )}
-                </td>
-
-                <td class="${valueClass(netMoney)}">
-                    ${netMoney > 0 ? "+" : ""}
-                    ${formatMoney(netMoney)}
+                <td class="${moneyClass(money)}">
+                    ${money > 0 ? "+" : ""}
+                    ${formatMoney(money)}
                 </td>
 
             `;
 
             body.appendChild(row);
+
         }
     );
+
+
+    document.getElementById(
+        "summary"
+    ).textContent =
+        `目前顯示投信${currentType === "buy" ? "買超" : "賣超"} TOP ${rows.length}`;
+
 }
 
 
 /* =========================================================
-   載入
+   載入 money_rank.json
    ========================================================= */
 
 async function loadData() {
@@ -805,62 +783,66 @@ async function loadData() {
                 + Date.now()
             );
 
+
         if (!response.ok) {
 
             throw new Error(
                 `${DATA_URL} 載入失敗：HTTP ${response.status}`
             );
+
         }
+
 
         const data =
             await response.json();
+
 
         console.log(
             "money_rank.json：",
             data
         );
 
+
         /*
            日期
         */
 
-        const date =
-            data.data_date ??
-            data.date ??
-            data.data?.data_date ??
-            "-";
-
-        const update =
-            data.update_time ??
-            data.updateTime ??
-            data.updated_at ??
-            data.data?.update_time ??
-            "";
-
         document.getElementById(
             "dataDate"
         ).textContent =
-            `資料日期：${date}`
-            +
-            (
-                update
-                    ? `　｜　更新時間：${update}`
-                    : ""
-            );
+            `資料日期：${data.data_date ?? "-"}`;
+
 
         /*
-           投信資料
+           這裡只讀取真正存在的：
+           investment_trust
         */
 
-        brokerData =
-            findBrokerData(data);
+        if (
+            !Array.isArray(
+                data.investment_trust
+            )
+        ) {
+
+            throw new Error(
+                "money_rank.json 找不到 investment_trust 資料"
+            );
+
+        }
+
+
+        investmentTrustData =
+            data.investment_trust;
+
 
         console.log(
             "投信資料筆數：",
-            brokerData.length
+            investmentTrustData.length
         );
 
+
         renderTable();
+
 
     } catch (error) {
 
@@ -869,17 +851,19 @@ async function loadData() {
             error
         );
 
+
         document.getElementById(
             "dataDate"
         ).textContent =
             "資料載入失敗";
+
 
         body.innerHTML = `
 
             <tr>
 
                 <td
-                    colspan="9"
+                    colspan="5"
                     class="error"
                 >
 
@@ -902,8 +886,73 @@ async function loadData() {
             </tr>
 
         `;
+
     }
+
 }
+
+
+/* =========================================================
+   買超 / 賣超
+   ========================================================= */
+
+document
+    .querySelectorAll(".tab")
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    document
+                        .querySelectorAll(".tab")
+                        .forEach(
+                            btn =>
+                                btn.classList
+                                    .remove("active")
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    currentType =
+                        this.dataset.type;
+
+
+                    renderTable();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   TOP
+   ========================================================= */
+
+document
+    .getElementById(
+        "topSelect"
+    )
+    .addEventListener(
+        "change",
+        function() {
+
+            topN =
+                Number(
+                    this.value
+                );
+
+            renderTable();
+
+        }
+    );
 
 
 /* =========================================================
