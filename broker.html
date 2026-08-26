@@ -2,7 +2,6 @@
 <html lang="zh-Hant">
 
 <head>
-
 <meta charset="UTF-8">
 
 <meta
@@ -14,41 +13,24 @@
 
 <style>
 
-/* =========================================================
-   基本設定
-========================================================= */
-
 * {
     box-sizing: border-box;
 }
 
 body {
-
     margin: 0;
-
     font-family:
         Arial,
         "Microsoft JhengHei",
         sans-serif;
-
     background: #f5f7fa;
-
     color: #222;
-
 }
 
-
 .wrap {
-
     max-width: 1200px;
-
     margin: 0 auto;
-
-    padding:
-        24px
-        20px
-        50px;
-
+    padding: 24px 20px 50px;
 }
 
 
@@ -57,91 +39,51 @@ body {
 ========================================================= */
 
 .top {
-
     display: flex;
-
-    justify-content:
-        space-between;
-
+    justify-content: space-between;
     align-items: center;
-
     gap: 14px;
-
     margin-bottom: 28px;
-
     flex-wrap: wrap;
-
 }
-
 
 .brand {
-
     font-size: 23px;
-
     font-weight: 900;
-
     white-space: nowrap;
-
 }
-
 
 .actions {
-
     display: flex;
-
     gap: 8px;
-
     flex-wrap: wrap;
-
 }
 
-
 .nav-btn {
-
     display: inline-block;
-
     text-decoration: none;
 
-    border:
-        1px solid
-        #d5dee8;
-
+    border: 1px solid #d5dee8;
     background: #fff;
-
     color: #18222c;
 
     border-radius: 9px;
-
-    padding:
-        9px
-        13px;
+    padding: 9px 13px;
 
     font-weight: 800;
-
     cursor: pointer;
-
     transition: 0.15s;
-
     white-space: nowrap;
-
 }
-
 
 .nav-btn:hover {
-
     background: #f3f6f9;
-
 }
 
-
 .nav-btn.active {
-
     background: #222;
-
     color: #fff;
-
     border-color: #222;
-
 }
 
 
@@ -150,103 +92,65 @@ body {
 ========================================================= */
 
 h1 {
-
-    margin:
-        0
-        0
-        5px;
-
+    margin: 0 0 5px;
     font-size: 32px;
-
 }
 
-
 .date {
-
     color: #777;
-
     margin-bottom: 25px;
-
 }
 
 
 /* =========================================================
-   搜尋區
+   搜尋
 ========================================================= */
 
 .search-area {
-
     background: white;
-
     padding: 22px;
 
     border-radius: 14px;
 
     box-shadow:
-        0
-        4px
-        14px
-        rgba(0,0,0,0.05);
+        0 4px 14px rgba(0,0,0,0.05);
 
     margin-bottom: 20px;
-
 }
-
 
 .search-title {
-
     font-size: 17px;
-
     font-weight: bold;
-
     margin-bottom: 10px;
-
 }
-
 
 .search-row {
-
     display: flex;
-
     gap: 10px;
-
 }
 
-
 .search-row input {
-
     flex: 1;
 
     padding: 14px;
 
     border:
-        1px
-        solid
-        #ddd;
+        1px solid #ddd;
 
     border-radius: 8px;
 
     font-size: 16px;
 
     min-width: 0;
-
 }
-
 
 .search-row input:focus {
-
     outline: none;
-
     border-color: #222;
-
 }
 
-
 .search-row button {
-
-    padding:
-        13px
-        25px;
+    padding: 13px 25px;
 
     border: none;
 
@@ -259,120 +163,16 @@ h1 {
     cursor: pointer;
 
     font-weight: 700;
-
 }
-
 
 .search-row button:hover {
-
     background: #111;
-
 }
-
 
 .status {
-
     margin-top: 10px;
-
     color: #777;
-
     font-size: 14px;
-
-}
-
-
-/* =========================================================
-   排序控制
-========================================================= */
-
-.controls {
-
-    display: flex;
-
-    justify-content:
-        space-between;
-
-    align-items: center;
-
-    gap: 15px;
-
-    margin-bottom: 20px;
-
-    flex-wrap: wrap;
-
-}
-
-
-.tabs {
-
-    display: flex;
-
-    gap: 8px;
-
-    flex-wrap: wrap;
-
-}
-
-
-.tab {
-
-    border:
-        1px
-        solid
-        #ddd;
-
-    background: white;
-
-    padding:
-        10px
-        16px;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
-    transition: 0.15s;
-
-}
-
-
-.tab:hover {
-
-    background: #f3f6f9;
-
-}
-
-
-.tab.active {
-
-    background: #222;
-
-    color: white;
-
-    border-color: #222;
-
-}
-
-
-.limit-select {
-
-    padding:
-        10px
-        14px;
-
-    border:
-        1px
-        solid
-        #ddd;
-
-    border-radius: 8px;
-
-    background: white;
-
-    font-size: 14px;
-
 }
 
 
@@ -381,14 +181,11 @@ h1 {
 ========================================================= */
 
 .info-box {
-
     background: white;
 
     border-radius: 14px;
 
-    padding:
-        14px
-        18px;
+    padding: 14px 18px;
 
     margin-bottom: 20px;
 
@@ -397,18 +194,80 @@ h1 {
     font-size: 14px;
 
     box-shadow:
-        0
-        4px
-        14px
-        rgba(0,0,0,0.04);
+        0 4px 14px rgba(0,0,0,0.04);
 
+    line-height: 1.7;
+}
+
+.info-box strong {
+    color: #222;
 }
 
 
-.info-box strong {
+/* =========================================================
+   排序
+========================================================= */
 
-    color: #222;
+.controls {
+    display: flex;
 
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+    flex-wrap: wrap;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tab {
+    border:
+        1px solid #ddd;
+
+    background: white;
+
+    padding:
+        10px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.15s;
+}
+
+.tab:hover {
+    background: #f3f6f9;
+}
+
+.tab.active {
+    background: #222;
+    color: white;
+    border-color: #222;
+}
+
+.limit-select {
+    padding:
+        10px 14px;
+
+    border:
+        1px solid #ddd;
+
+    border-radius: 8px;
+
+    background: white;
+
+    font-size: 14px;
 }
 
 
@@ -417,7 +276,6 @@ h1 {
 ========================================================= */
 
 .table-wrapper {
-
     background: white;
 
     border-radius: 14px;
@@ -425,28 +283,18 @@ h1 {
     overflow-x: auto;
 
     box-shadow:
-        0
-        4px
-        14px
-        rgba(0,0,0,0.05);
-
+        0 4px 14px rgba(0,0,0,0.05);
 }
-
 
 table {
-
     width: 100%;
 
-    border-collapse:
-        collapse;
+    border-collapse: collapse;
 
     min-width: 900px;
-
 }
 
-
 th {
-
     background: #f0f2f5;
 
     padding: 14px;
@@ -456,109 +304,65 @@ th {
     font-weight: 800;
 
     white-space: nowrap;
-
 }
-
 
 th:first-child,
 th:nth-child(2),
 th:nth-child(3) {
-
     text-align: left;
-
 }
 
-
 td {
-
     padding:
-        13px
-        14px;
+        13px 14px;
 
     border-top:
-        1px
-        solid
-        #eee;
+        1px solid #eee;
 
     text-align: right;
 
     white-space: nowrap;
-
 }
-
 
 td:first-child,
 td:nth-child(2),
 td:nth-child(3) {
-
     text-align: left;
-
 }
-
 
 tr:hover {
-
     background: #fafafa;
-
 }
-
 
 .rank {
-
     font-weight: 800;
-
     color: #777;
-
 }
-
 
 .stock-id {
-
-    font-family:
-        monospace;
-
+    font-family: monospace;
     color: #666;
-
 }
-
 
 .positive {
-
     color: #d32f2f;
-
     font-weight: bold;
-
 }
-
 
 .negative {
-
     color: #16803c;
-
     font-weight: bold;
-
 }
-
 
 .message {
-
-    text-align:
-        center !important;
-
-    padding:
-        45px !important;
-
+    text-align: center !important;
+    padding: 45px !important;
     color: #777;
-
 }
 
-
 .error-message {
-
     color: #c62828;
-
     font-weight: bold;
-
 }
 
 
@@ -569,90 +373,51 @@ tr:hover {
 @media (max-width: 850px) {
 
     .wrap {
-
         padding:
-            18px
-            12px
-            40px;
-
+            18px 12px 40px;
     }
-
 
     .top {
-
-        align-items:
-            flex-start;
-
+        align-items: flex-start;
         margin-bottom: 22px;
-
     }
-
 
     .brand {
-
         width: 100%;
-
     }
-
 
     .actions {
-
         width: 100%;
-
     }
-
 
     .nav-btn {
-
         flex: 1;
-
         text-align: center;
-
     }
-
 
     h1 {
-
         font-size: 28px;
-
     }
-
 
     .search-row {
-
-        flex-direction:
-            column;
-
+        flex-direction: column;
     }
-
 
     .search-row button {
-
         width: 100%;
-
     }
-
 
     .tabs {
-
         width: 100%;
-
     }
-
 
     .tab {
-
         flex: 1;
-
         min-width: 90px;
-
     }
 
-
     .limit-select {
-
         width: 100%;
-
     }
 
 }
@@ -663,7 +428,6 @@ tr:hover {
 
 
 <body>
-
 
 <div class="wrap">
 
@@ -678,7 +442,6 @@ tr:hover {
         📈 投資績效名片
     </div>
 
-
     <div class="actions">
 
         <a
@@ -688,14 +451,12 @@ tr:hover {
             📊 融資融券維持率
         </a>
 
-
         <a
             class="nav-btn"
             href="foreign.html"
         >
             🏦 法人買賣超
         </a>
-
 
         <a
             class="nav-btn active"
@@ -717,7 +478,6 @@ tr:hover {
     🏢 投信買賣超
 </h1>
 
-
 <div
     class="date"
     id="dataDate"
@@ -732,14 +492,11 @@ tr:hover {
 
 <div class="search-area">
 
-
     <div class="search-title">
         搜尋股票
     </div>
 
-
     <div class="search-row">
-
 
         <input
             id="searchInput"
@@ -747,24 +504,20 @@ tr:hover {
             placeholder="輸入股票代號或名稱，例如：2330、台積電"
         >
 
-
         <button
             id="searchButton"
         >
             搜尋
         </button>
 
-
     </div>
-
 
     <div
         class="status"
         id="searchStatus"
     >
-        正在讀取投信資料...
+        正在讀取資料...
     </div>
-
 
 </div>
 
@@ -777,11 +530,11 @@ tr:hover {
 
     <strong>資料說明：</strong>
 
-    本頁顯示投信每日買賣超排行。
+    投信買賣超數量來自每日法人交易資料。
 
     <br>
 
-    買賣超數量單位：
+    數量單位：
     <strong>張</strong>
 
     ；金額單位：
@@ -796,9 +549,7 @@ tr:hover {
 
 <div class="controls">
 
-
     <div class="tabs">
-
 
         <button
             class="tab active"
@@ -807,14 +558,12 @@ tr:hover {
             買超
         </button>
 
-
         <button
             class="tab"
             data-type="sell"
         >
             賣超
         </button>
-
 
         <button
             class="tab"
@@ -823,14 +572,12 @@ tr:hover {
             淨買超金額
         </button>
 
-
         <button
             class="tab"
             data-type="all"
         >
             全部
         </button>
-
 
     </div>
 
@@ -844,24 +591,19 @@ tr:hover {
             TOP 10
         </option>
 
-
         <option value="20">
             TOP 20
         </option>
-
 
         <option value="50">
             TOP 50
         </option>
 
-
         <option value="100">
             TOP 100
         </option>
 
-
     </select>
-
 
 </div>
 
@@ -872,9 +614,7 @@ tr:hover {
 
 <div class="table-wrapper">
 
-
 <table>
-
 
 <thead>
 
@@ -884,21 +624,17 @@ tr:hover {
         Rank
     </th>
 
-
     <th>
         股票代號
     </th>
-
 
     <th>
         股票名稱
     </th>
 
-
     <th>
         投信買賣超
     </th>
-
 
     <th>
         淨買超金額
@@ -909,14 +645,11 @@ tr:hover {
 </thead>
 
 
-<tbody
-    id="tableBody"
->
+<tbody id="tableBody">
 </tbody>
 
 
 </table>
-
 
 </div>
 
@@ -931,31 +664,53 @@ tr:hover {
 // 全域變數
 // ========================================================
 
-let moneyData = null;
+let stockData = null;
 
-let currentType = "buy";
+let moneyData = null;
 
 let currentRows = [];
 
+let currentType = "buy";
+
 
 // ========================================================
-// 數字格式
+// 數字
+// ========================================================
+
+function toNumber(value) {
+
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+
+        return 0;
+
+    }
+
+    const n =
+        Number(
+            String(value)
+                .replace(/,/g, "")
+                .replace(/ /g, "")
+        );
+
+    return Number.isFinite(n)
+        ? n
+        : 0;
+
+}
+
+
+// ========================================================
+// 格式化數字
 // ========================================================
 
 function formatNumber(value) {
 
     const n =
-        Number(value);
-
-
-    if (
-        !Number.isFinite(n)
-    ) {
-
-        return "-";
-
-    }
-
+        toNumber(value);
 
     return n.toLocaleString(
         "zh-TW"
@@ -965,56 +720,18 @@ function formatNumber(value) {
 
 
 // ========================================================
-// 金額格式
-// ========================================================
-
-function formatMoney(value) {
-
-    const n =
-        Number(value);
-
-
-    if (
-        !Number.isFinite(n)
-    ) {
-
-        return "-";
-
-    }
-
-
-    return n.toLocaleString(
-        "zh-TW"
-    );
-
-}
-
-
-// ========================================================
-// 把股數轉成張
-//
-// TWSE 原始資料通常是「股」。
-// 1 張 = 1,000 股。
+// 股 → 張
 // ========================================================
 
 function sharesToLots(value) {
 
-    const n =
-        Number(value);
+    const shares =
+        toNumber(value);
 
+    const lots =
+        shares / 1000;
 
-    if (
-        !Number.isFinite(n)
-    ) {
-
-        return "-";
-
-    }
-
-
-    return (
-        n / 1000
-    ).toLocaleString(
+    return lots.toLocaleString(
         "zh-TW",
         {
             maximumFractionDigits: 2
@@ -1025,48 +742,76 @@ function sharesToLots(value) {
 
 
 // ========================================================
-// 取得投信排行資料
+// 金額
 // ========================================================
 
-function getInvestmentTrustData() {
+function formatMoney(value) {
 
+    const n =
+        toNumber(value);
+
+    return n.toLocaleString(
+        "zh-TW"
+    );
+
+}
+
+
+// ========================================================
+// 找出資料陣列
+//
+// 因為 data.json 可能有不同的外層結構，
+// 這裡會依序尋找常見的陣列。
+// ========================================================
+
+function findArray(
+    data
+) {
 
     if (
-        !moneyData
+        Array.isArray(data)
     ) {
+
+        return data;
+
+    }
+
+
+    if (!data) {
 
         return [];
 
     }
 
 
-    // money_rank.json 原本的欄位
-    // 是 investment_trust
+    const candidates = [
 
-    if (
-        Array.isArray(
-            moneyData.investment_trust
-        )
+        data.data,
+
+        data.stocks,
+
+        data.rows,
+
+        data.result,
+
+        data.results,
+
+        data.records
+
+    ];
+
+
+    for (
+        const item of candidates
     ) {
 
-        return [
-            ...moneyData.investment_trust
-        ];
+        if (
+            Array.isArray(item)
+        ) {
 
-    }
+            return item;
 
-
-    // 萬一未來 JSON 改成 investmentTrust
-
-    if (
-        Array.isArray(
-            moneyData.investmentTrust
-        )
-    ) {
-
-        return [
-            ...moneyData.investmentTrust
-        ];
+        }
 
     }
 
@@ -1077,41 +822,89 @@ function getInvestmentTrustData() {
 
 
 // ========================================================
-// 取得淨買賣超股數
+// 找股票代號
 // ========================================================
 
-function getNetShares(row) {
+function getStockId(
+    row
+) {
 
-    // 第一優先：
-    // 原始三大法人欄位
+    return String(
+
+        row.stock_id ??
+        row.stock_code ??
+        row["證券代號"] ??
+        row.code ??
+        row.id ??
+        ""
+
+    ).trim();
+
+}
+
+
+// ========================================================
+// 找股票名稱
+// ========================================================
+
+function getStockName(
+    row
+) {
+
+    return String(
+
+        row.stock_name ??
+        row["證券名稱"] ??
+        row.name ??
+        ""
+
+    ).trim();
+
+}
+
+
+// ========================================================
+// 找投信買賣超股數
+//
+// 這裡最重要。
+// ========================================================
+
+function getTrustNetShares(
+    row
+) {
 
     const candidates = [
+
+        row.investment_trust,
+
+        row.investment_trust_shares,
+
+        row.investmentTrust,
 
         row["投信買賣超股數"],
 
         row["投信買賣超"],
 
-        row["investment_trust_shares"],
+        row.trust_net,
 
-        row["net_shares"],
-
-        row["net"]
+        row.trust_net_shares
 
     ];
 
 
     for (
-        const value of candidates
+        const value
+        of candidates
     ) {
 
-
-        const n =
-            Number(value);
-
-
         if (
-            Number.isFinite(n)
+            value !== undefined &&
+            value !== null &&
+            value !== ""
         ) {
+
+            const n =
+                toNumber(value);
 
             return n;
 
@@ -1126,103 +919,137 @@ function getNetShares(row) {
 
 
 // ========================================================
-// 取得投信資金
+// 建立投信資料
 // ========================================================
 
-function getInvestmentTrustMoney(
-    row
-) {
+function buildRows() {
 
 
-    const candidates = [
-
-        row.investment_trust_money,
-
-        row["investmentTrustMoney"],
-
-        row["投信買賣超金額"],
-
-        row["net_money"]
-
-    ];
+    const dataRows =
+        findArray(
+            stockData
+        );
 
 
-    for (
-        const value of candidates
-    ) {
+    const moneyRows =
+        findArray(
+            moneyData
+        );
 
 
-        const n =
-            Number(value);
+    // ====================================================
+    // money_rank.json 建立索引
+    // ====================================================
+
+    const moneyMap =
+        new Map();
 
 
-        if (
-            Number.isFinite(n)
-        ) {
-
-            return n;
-
-        }
-
-    }
-
-
-    return 0;
-
-}
-
-
-// ========================================================
-// 建立統一資料格式
-// ========================================================
-
-function normalizeRows() {
-
-
-    const source =
-        getInvestmentTrustData();
-
-
-    return source.map(
+    moneyRows.forEach(
         row => {
 
 
-            const netShares =
-                getNetShares(
+            const id =
+                getStockId(
                     row
                 );
+
+
+            if (!id) {
+
+                return;
+
+            }
 
 
             const money =
-                getInvestmentTrustMoney(
+                toNumber(
+
+                    row.investment_trust_money ??
+                    row.investmentTrustMoney ??
+                    row["投信買賣超金額"] ??
+                    row.net_money ??
+                    0
+
+                );
+
+
+            moneyMap.set(
+                id,
+                money
+            );
+
+        }
+    );
+
+
+    // ====================================================
+    // data.json → 投信買賣超
+    // ====================================================
+
+    const rows = [];
+
+
+    dataRows.forEach(
+        row => {
+
+
+            const stockId =
+                getStockId(
                     row
                 );
 
 
-            return {
+            if (!stockId) {
+
+                return;
+
+            }
+
+
+            const stockName =
+                getStockName(
+                    row
+                );
+
+
+            const netShares =
+                getTrustNetShares(
+                    row
+                );
+
+
+            const netMoney =
+                moneyMap.has(
+                    stockId
+                )
+                    ? moneyMap.get(
+                        stockId
+                    )
+                    : 0;
+
+
+            rows.push({
 
                 stock_id:
-                    row.stock_id ??
-                    row["證券代號"] ??
-                    row.code ??
-                    "-",
+                    stockId,
 
                 stock_name:
-                    row.stock_name ??
-                    row["證券名稱"] ??
-                    row.name ??
-                    "-",
+                    stockName,
 
                 net_shares:
                     netShares,
 
                 net_money:
-                    money
+                    netMoney
 
-            };
+            });
 
         }
     );
+
+
+    return rows;
 
 }
 
@@ -1232,10 +1059,8 @@ function normalizeRows() {
 // ========================================================
 
 function sortRows(
-    rows,
-    type
+    rows
 ) {
-
 
     const result =
         [
@@ -1244,9 +1069,8 @@ function sortRows(
 
 
     if (
-        type === "buy"
+        currentType === "buy"
     ) {
-
 
         result.sort(
             (a, b) =>
@@ -1255,12 +1079,10 @@ function sortRows(
                 a.net_shares
         );
 
-
     }
     else if (
-        type === "sell"
+        currentType === "sell"
     ) {
-
 
         result.sort(
             (a, b) =>
@@ -1269,12 +1091,10 @@ function sortRows(
                 b.net_shares
         );
 
-
     }
     else if (
-        type === "net_money"
+        currentType === "net_money"
     ) {
-
 
         result.sort(
             (a, b) =>
@@ -1283,10 +1103,8 @@ function sortRows(
                 a.net_money
         );
 
-
     }
     else {
-
 
         result.sort(
             (a, b) =>
@@ -1320,25 +1138,14 @@ function renderTable() {
         );
 
 
-    const limit =
-        Number(
-            document
-                .getElementById(
-                    "limitSelect"
-                )
-                .value
-        );
-
-
     let rows =
         sortRows(
-            currentRows,
-            currentType
+            currentRows
         );
 
 
     // ====================================================
-    // 如果搜尋股票
+    // 搜尋
     // ====================================================
 
     const keyword =
@@ -1351,10 +1158,7 @@ function renderTable() {
             .toLowerCase();
 
 
-    if (
-        keyword
-    ) {
-
+    if (keyword) {
 
         rows =
             rows.filter(
@@ -1362,17 +1166,13 @@ function renderTable() {
 
 
                     const id =
-                        String(
-                            row.stock_id
-                        )
-                        .toLowerCase();
+                        row.stock_id
+                            .toLowerCase();
 
 
                     const name =
-                        String(
-                            row.stock_name
-                        )
-                        .toLowerCase();
+                        row.stock_name
+                            .toLowerCase();
 
 
                     return (
@@ -1391,6 +1191,20 @@ function renderTable() {
     }
 
 
+    // ====================================================
+    // TOP
+    // ====================================================
+
+    const limit =
+        Number(
+            document
+                .getElementById(
+                    "limitSelect"
+                )
+                .value
+        );
+
+
     rows =
         rows.slice(
             0,
@@ -1405,7 +1219,6 @@ function renderTable() {
         rows.length === 0
     ) {
 
-
         body.innerHTML = `
 
             <tr>
@@ -1415,14 +1228,13 @@ function renderTable() {
                     class="message"
                 >
 
-                    沒有符合條件的資料。
+                    沒有符合條件的投信資料。
 
                 </td>
 
             </tr>
 
         `;
-
 
         return;
 
@@ -1472,14 +1284,12 @@ function renderTable() {
 
                 <td>
 
-                    ${row.stock_name}
+                    ${row.stock_name || "-"}
 
                 </td>
 
 
-                <td
-                    class="${css}"
-                >
+                <td class="${css}">
 
                     ${sharesToLots(
                         net
@@ -1490,9 +1300,7 @@ function renderTable() {
                 </td>
 
 
-                <td
-                    class="${css}"
-                >
+                <td class="${css}">
 
                     ${formatMoney(
                         row.net_money
@@ -1516,18 +1324,7 @@ function renderTable() {
 
 
 // ========================================================
-// 搜尋
-// ========================================================
-
-function searchStock() {
-
-    renderTable();
-
-}
-
-
-// ========================================================
-// 載入 money_rank.json
+// 載入資料
 // ========================================================
 
 async function loadData() {
@@ -1536,26 +1333,68 @@ async function loadData() {
     try {
 
 
-        const response =
-            await fetch(
+        // ==================================================
+        // 同時載入兩個 JSON
+        // ==================================================
+
+        const [
+            dataResponse,
+            moneyResponse
+        ] = await Promise.all([
+
+            fetch(
+                "data.json?ts="
+                + Date.now()
+            ),
+
+            fetch(
                 "money_rank.json?ts="
                 + Date.now()
-            );
+            )
 
+        ]);
+
+
+        // ==================================================
+        // data.json
+        // ==================================================
 
         if (
-            !response.ok
+            !dataResponse.ok
         ) {
 
             throw new Error(
-                "money_rank.json 載入失敗"
+                "data.json 載入失敗"
             );
 
         }
 
 
-        moneyData =
-            await response.json();
+        stockData =
+            await dataResponse.json();
+
+
+        // ==================================================
+        // money_rank.json
+        // ==================================================
+
+        if (
+            moneyResponse.ok
+        ) {
+
+            moneyData =
+                await moneyResponse.json();
+
+        }
+        else {
+
+            console.warn(
+                "money_rank.json 載入失敗，金額將顯示 0 元"
+            );
+
+            moneyData = null;
+
+        }
 
 
         // ==================================================
@@ -1563,7 +1402,11 @@ async function loadData() {
         // ==================================================
 
         const date =
-            moneyData.data_date ??
+
+            stockData.data_date ??
+            stockData.date ??
+            moneyData?.data_date ??
+            moneyData?.date ??
             "-";
 
 
@@ -1580,11 +1423,11 @@ async function loadData() {
         // ==================================================
 
         currentRows =
-            normalizeRows();
+            buildRows();
 
 
         // ==================================================
-        // 顯示資料筆數
+        // 狀態
         // ==================================================
 
         document
@@ -1592,11 +1435,11 @@ async function loadData() {
                 "searchStatus"
             )
             .textContent =
-            `已載入 ${currentRows.length} 筆投信排行資料`;
+            `已載入 ${currentRows.length} 筆投信資料`;
 
 
         // ==================================================
-        // 顯示表格
+        // 顯示
         // ==================================================
 
         renderTable();
@@ -1607,6 +1450,7 @@ async function loadData() {
 
 
         console.error(
+            "投信資料載入錯誤：",
             error
         );
 
@@ -1646,14 +1490,10 @@ async function loadData() {
                     <br><br>
 
                     請確認
-                    <strong>
-                        money_rank.json
-                    </strong>
-                    是否與
-                    <strong>
-                        broker.html
-                    </strong>
-                    位於同一個資料夾。
+                    <strong>data.json</strong>
+                    與
+                    <strong>money_rank.json</strong>
+                    存在於網站同一個資料夾。
 
                 </td>
 
@@ -1715,7 +1555,7 @@ document
 
 
 // ========================================================
-// TOP 選擇
+// TOP
 // ========================================================
 
 document
@@ -1724,16 +1564,12 @@ document
     )
     .addEventListener(
         "change",
-        function() {
-
-            renderTable();
-
-        }
+        renderTable
     );
 
 
 // ========================================================
-// 搜尋按鈕
+// 搜尋
 // ========================================================
 
 document
@@ -1742,12 +1578,12 @@ document
     )
     .addEventListener(
         "click",
-        searchStock
+        renderTable
     );
 
 
 // ========================================================
-// Enter 搜尋
+// Enter
 // ========================================================
 
 document
@@ -1763,7 +1599,7 @@ document
                 "Enter"
             ) {
 
-                searchStock();
+                renderTable();
 
             }
 
@@ -1778,7 +1614,6 @@ document
 loadData();
 
 </script>
-
 
 </body>
 
