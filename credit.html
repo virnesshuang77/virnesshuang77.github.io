@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>融資融券增減排名</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+body {
+    font-family: Arial, "Microsoft JhengHei", sans-serif;
+    background: #f5f7fa;
+    color: #222;
+    overflow-x: hidden;
+}
+
+.wrap {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px 50px;
+}
+
+/* Header */
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.brand {
+    font-size: 23px;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid #d5dee8;
+    background: #fff;
+    color: #18222c;
+    border-radius: 9px;
+    padding: 9px 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.15s;
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    background: #f3f6f9;
+}
+
+.nav-btn.active {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}
+
+/* Title */
+h1 {
+    margin: 0 0 5px;
+    font-size: 32px;
+    line-height: 1.3;
+}
+
+.data-date {
+    color: #777;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+/* Summary */
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    border: 1px solid #edf0f3;
+}
+
+.summary-label {
+    font-size: 14px;
+    color: #777;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.summary-value {
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 900;
+}
+
+.summary-sub {
+    margin-top: 7px;
+    font-size: 13px;
+    color: #888;
+}
+
+.amount-positive,
+.count-positive {
+    color: #e53935;
+}
+
+.amount-negative,
+.count-negative {
+    color: #16803c;
+}
+
+.summary-neutral {
+    color: #777;
+}
+
+/* Section */
+.section {
+    margin-bottom: 24px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.section-title h2 {
+    margin: 0;
+    font-size: 21px;
+}
+
+.section-note {
+    color: #777;
+    font-size: 13px;
+}
+
+/* Table */
+.table-wrapper {
+    width: 100%;
+    background: #fff;
+    border-radius: 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+}
+
+thead th {
+    background: #f0f2f5;
+    padding: 14px;
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 800;
+}
+
+thead th:first-child,
+thead th:nth-child(2),
+thead th:nth-child(3) {
+    text-align: left;
+}
+
+tbody td {
+    padding: 13px 14px;
+    border-top: 1px solid #eee;
+    text-align: right;
+    white-space: nowrap;
+}
+
+tbody td:first-child,
+tbody td:nth-child(2),
+tbody td:nth-child(3) {
+    text-align: left;
+}
+
+tbody tr:hover {
+    background: #fafafa;
+}
+
+.rank {
+    width: 65px;
+    font-weight: 900;
+    color: #777;
+}
+
+.stock-id {
+    color: #555;
+    font-family: monospace;
+}
+
+.change-positive {
+    color: #e53935;
+    font-weight: 900;
+}
+
+.change-negative {
+    color: #16803c;
+    font-weight: 900;
+}
+
+.change-zero {
+    color: #777;
+    font-weight: 900;
+}
+
+.loading {
+    padding: 45px !important;
+    text-align: center !important;
+    color: #777;
+}
+
+.error {
+    padding: 35px;
+    text-align: center;
+    color: #c62828;
+    line-height: 1.8;
+}
+
+/* Tablet */
+@media (max-width: 850px) {
+    .wrap {
+        padding: 18px 12px 40px;
+    }
+
+    .top {
+        align-items: flex-start;
+        margin-bottom: 22px;
+    }
+
+    .brand {
+        width: 100%;
+    }
+
+    .actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+    }
+
+    .nav-btn {
+        width: 100%;
+        text-align: center;
+        padding: 10px 6px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .wrap {
+        padding: 12px 10px 40px;
+    }
+
+    .top {
+        display: block;
+        margin-bottom: 18px;
+    }
+
+    .brand {
+        font-size: 21px;
+        margin-bottom: 11px;
+    }
+
+    .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        gap: 7px;
+    }
+
+    .nav-btn {
+        font-size: 12px;
+        padding: 10px 4px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .data-date {
+        font-size: 13px;
+        line-height: 1.6;
+        margin-bottom: 16px;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+        gap: 9px;
+        margin-bottom: 20px;
+    }
+
+    .summary-card {
+        padding: 16px;
+    }
+
+    .summary-value {
+        font-size: 25px;
+    }
+
+    .section {
+        margin-bottom: 20px;
+    }
+
+    .section-title h2 {
+        font-size: 18px;
+    }
+
+    .section-note {
+        font-size: 11px;
+    }
+
+    table {
+        min-width: 680px;
+    }
+
+    thead th {
+        padding: 11px 9px;
+        font-size: 12px;
+    }
+
+    tbody td {
+        padding: 11px 9px;
+        font-size: 12px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 400px) {
+    .wrap {
+        padding: 10px 8px 35px;
+    }
+
+    .brand {
+        font-size: 20px;
+    }
+
+    .nav-btn {
+        font-size: 11px;
+        padding: 9px 3px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    .summary-value {
+        font-size: 23px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<header class="top">
+    <div class="brand">📈 投資績效名片</div>
+
+    <div class="actions">
+        <a class="nav-btn" href="index.html">📊 融資融券維持率</a>
+        <a class="nav-btn active" href="credit.html">💰 融資融券增減</a>
+        <a class="nav-btn" href="foreign.html">🏦 外資買賣超</a>
+        <a class="nav-btn" href="broker.html">🏢 投信買賣超</a>
+    </div>
+</header>
+
+<h1>💰 融資融券增減排名</h1>
+
+<div class="data-date" id="dataInfo">
+    資料載入中...
+</div>
+
+<div class="summary-grid">
+    <div class="summary-card">
+        <div class="summary-label">融資增減金額</div>
+        <div class="summary-value summary-neutral" id="marginTotal">載入中...</div>
+        <div class="summary-sub">全市場融資餘額每日增減</div>
+    </div>
+
+    <div class="summary-card">
+        <div class="summary-label">融券增減張數</div>
+        <div class="summary-value summary-neutral" id="shortTotal">載入中...</div>
+        <div class="summary-sub">全市場融券餘額每日增減</div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">
+        <h2>🔴 融資增加 TOP 10</h2>
+        <div class="section-note">依融資增減金額排序</div>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>股票代號</th>
+                    <th>股票名稱</th>
+                    <th>收盤價</th>
+                    <th>融資增減金額</th>
+                </tr>
+            </thead>
+            <tbody id="marginIncreaseBody">
+                <tr><td colspan="5" class="loading">正在載入資料...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">
+        <h2>🟢 融資減少 TOP 10</h2>
+        <div class="section-note">依融資減少金額排序</div>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>股票代號</th>
+                    <th>股票名稱</th>
+                    <th>收盤價</th>
+                    <th>融資增減金額</th>
+                </tr>
+            </thead>
+            <tbody id="marginDecreaseBody">
+                <tr><td colspan="5" class="loading">正在載入資料...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">
+        <h2>🔴 融券增加 TOP 10</h2>
+        <div class="section-note">依融券增減張數排序</div>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>股票代號</th>
+                    <th>股票名稱</th>
+                    <th>收盤價</th>
+                    <th>融券增減張數</th>
+                </tr>
+            </thead>
+            <tbody id="shortIncreaseBody">
+                <tr><td colspan="5" class="loading">正在載入資料...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">
+        <h2>🟢 融券減少 TOP 10</h2>
+        <div class="section-note">依融券減少張數排序</div>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>股票代號</th>
+                    <th>股票名稱</th>
+                    <th>收盤價</th>
+                    <th>融券增減張數</th>
+                </tr>
+            </thead>
+            <tbody id="shortDecreaseBody">
+                <tr><td colspan="5" class="loading">正在載入資料...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+
+<script>
+/*
+============================================================
+資料來源
+============================================================
+
+預設讀取：
+    credit_rank.json
+
+建議 JSON 結構：
+
+{
+    "data_date": "2026/08/26",
+    "update_time": "13:35:00",
+    "margin_total": 1234567890,
+    "short_total": -1234,
+    "credit": [
+        {
+            "stock_id": "2330",
+            "stock_name": "台積電",
+            "close_price": 1180,
+            "margin_change": 12345678,
+            "short_change": 120
+        }
+    ]
+}
+
+margin_change：
+    正數 = 融資增加
+    負數 = 融資減少
+
+short_change：
+    正數 = 融券增加
+    負數 = 融券減少
+
+============================================================
+*/
+
+const DATA_URL = "credit_rank.json";
+
+let creditData = [];
+
+function toNumber(value) {
+    if (value === null || value === undefined || value === "") {
+        return 0;
+    }
+
+    const n = Number(
+        String(value)
+            .replace(/,/g, "")
+            .trim()
+    );
+
+    return Number.isFinite(n) ? n : 0;
+}
+
+function getStockId(item) {
+    return String(
+        item.stock_id ??
+        item.stockId ??
+        item.code ??
+        ""
+    ).trim();
+}
+
+function getStockName(item) {
+    return String(
+        item.stock_name ??
+        item.stockName ??
+        item.name ??
+        ""
+    ).trim();
+}
+
+function getClosePrice(item) {
+    return toNumber(
+        item.close_price ??
+        item.closePrice ??
+        item.price
+    );
+}
+
+function getMarginChange(item) {
+    return toNumber(
+        item.margin_change ??
+        item.marginChange ??
+        item.margin_amount_change ??
+        item.credit_change
+    );
+}
+
+function getShortChange(item) {
+    return toNumber(
+        item.short_change ??
+        item.shortChange ??
+        item.short_amount_change ??
+        item.short_selling_change
+    );
+}
+
+function formatPrice(value) {
+    const number = toNumber(value);
+
+    return number.toLocaleString("zh-TW", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
+function formatAmount(value) {
+    const number = toNumber(value);
+
+    if (number === 0) {
+        return "0";
+    }
+
+    const abs = Math.abs(number);
+
+    if (abs >= 100000000) {
+        return (
+            (number / 100000000).toLocaleString("zh-TW", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }) + " 億元"
+        );
+    }
+
+    if (abs >= 10000) {
+        return (
+            (number / 10000).toLocaleString("zh-TW", {
+                maximumFractionDigits: 0
+            }) + " 萬元"
+        );
+    }
+
+    return number.toLocaleString("zh-TW") + " 元";
+}
+
+function formatSignedAmount(value) {
+    const number = toNumber(value);
+
+    if (number > 0) {
+        return "+" + formatAmount(number);
+    }
+
+    if (number < 0) {
+        return formatAmount(number);
+    }
+
+    return "0";
+}
+
+function formatSignedCount(value) {
+    const number = toNumber(value);
+
+    if (number > 0) {
+        return "+" + number.toLocaleString("zh-TW") + " 張";
+    }
+
+    if (number < 0) {
+        return number.toLocaleString("zh-TW") + " 張";
+    }
+
+    return "0 張";
+}
+
+function getChangeClass(value) {
+    const number = toNumber(value);
+
+    if (number > 0) {
+        return "change-positive";
+    }
+
+    if (number < 0) {
+        return "change-negative";
+    }
+
+    return "change-zero";
+}
+
+function setSummaryValue(element, value, formatter, positiveClass, negativeClass) {
+    const number = toNumber(value);
+
+    element.className = "summary-value";
+
+    if (number > 0) {
+        element.classList.add(positiveClass);
+    } else if (number < 0) {
+        element.classList.add(negativeClass);
+    } else {
+        element.classList.add("summary-neutral");
+    }
+
+    element.textContent = formatter(number);
+}
+
+function renderRows(targetId, rows, type) {
+    const tbody = document.getElementById(targetId);
+
+    tbody.innerHTML = "";
+
+    if (rows.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="5" class="loading">
+                    目前沒有符合條件的資料。
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    rows.slice(0, 10).forEach((item, index) => {
+        const change =
+            type === "margin"
+                ? getMarginChange(item)
+                : getShortChange(item);
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td class="rank">${index + 1}</td>
+
+            <td class="stock-id">
+                ${getStockId(item) || "-"}
+            </td>
+
+            <td>
+                ${getStockName(item) || "-"}
+            </td>
+
+            <td>
+                ${formatPrice(getClosePrice(item))}
+            </td>
+
+            <td class="${getChangeClass(change)}">
+                ${
+                    type === "margin"
+                        ? formatSignedAmount(change)
+                        : formatSignedCount(change)
+                }
+            </td>
+        `;
+
+        tbody.appendChild(row);
+    });
+}
+
+function renderTables() {
+    const marginIncrease = creditData
+        .filter(item => getMarginChange(item) > 0)
+        .sort((a, b) => getMarginChange(b) - getMarginChange(a));
+
+    const marginDecrease = creditData
+        .filter(item => getMarginChange(item) < 0)
+        .sort((a, b) => getMarginChange(a) - getMarginChange(b));
+
+    const shortIncrease = creditData
+        .filter(item => getShortChange(item) > 0)
+        .sort((a, b) => getShortChange(b) - getShortChange(a));
+
+    const shortDecrease = creditData
+        .filter(item => getShortChange(item) < 0)
+        .sort((a, b) => getShortChange(a) - getShortChange(b));
+
+    renderRows("marginIncreaseBody", marginIncrease, "margin");
+    renderRows("marginDecreaseBody", marginDecrease, "margin");
+    renderRows("shortIncreaseBody", shortIncrease, "short");
+    renderRows("shortDecreaseBody", shortDecrease, "short");
+}
+
+async function loadData() {
+    try {
+        const response = await fetch(
+            DATA_URL + "?ts=" + Date.now()
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                `${DATA_URL} 載入失敗：HTTP ${response.status}`
+            );
+        }
+
+        const data = await response.json();
+
+        const dataDate =
+            data.data_date ??
+            data.date ??
+            "-";
+
+        const updateTime =
+            data.update_time ??
+            data.updateTime ??
+            data.updated_at ??
+            "-";
+
+        document.getElementById("dataInfo").textContent =
+            `資料日期：${dataDate}　｜　更新時間：${updateTime}`;
+
+        const marginTotal =
+            data.margin_total ??
+            data.marginTotal ??
+            data.margin_change_total ??
+            data.margin_amount_change ??
+            0;
+
+        const shortTotal =
+            data.short_total ??
+            data.shortTotal ??
+            data.short_change_total ??
+            data.short_amount_change ??
+            0;
+
+        setSummaryValue(
+            document.getElementById("marginTotal"),
+            marginTotal,
+            formatSignedAmount,
+            "amount-positive",
+            "amount-negative"
+        );
+
+        setSummaryValue(
+            document.getElementById("shortTotal"),
+            shortTotal,
+            formatSignedCount,
+            "count-positive",
+            "count-negative"
+        );
+
+        const rawCredit =
+            data.credit ??
+            data.data ??
+            data.stocks ??
+            [];
+
+        if (!Array.isArray(rawCredit)) {
+            throw new Error(
+                `${DATA_URL} 找不到 credit 資料陣列`
+            );
+        }
+
+        creditData = rawCredit;
+
+        console.log("credit_rank.json：", data);
+        console.log("credit 資料筆數：", creditData.length);
+
+        renderTables();
+
+    } catch (error) {
+        console.error("融資融券資料錯誤：", error);
+
+        document.getElementById("dataInfo").textContent =
+            "資料載入失敗";
+
+        document.getElementById("marginTotal").textContent = "載入失敗";
+        document.getElementById("shortTotal").textContent = "載入失敗";
+
+        const message = `
+            <tr>
+                <td colspan="5">
+                    <div class="error">
+                        <strong>❌ 無法載入融資融券資料</strong>
+                        <br><br>
+                        ${error.message}
+                        <br><br>
+                        請確認
+                        <strong>${DATA_URL}</strong>
+                        存在於網站根目錄。
+                    </div>
+                </td>
+            </tr>
+        `;
+
+        document.getElementById("marginIncreaseBody").innerHTML = message;
+        document.getElementById("marginDecreaseBody").innerHTML = message;
+        document.getElementById("shortIncreaseBody").innerHTML = message;
+        document.getElementById("shortDecreaseBody").innerHTML = message;
+    }
+}
+
+loadData();
+</script>
+
+</body>
+</html>
