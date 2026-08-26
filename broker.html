@@ -7,7 +7,7 @@
 
 <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 >
 
 <title>投信買賣超</title>
@@ -38,6 +38,95 @@ body {
     overflow-x: hidden;
 }
 
+
+
+/* =========================================================
+   導覽列
+   ========================================================= */
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.site-brand {
+    font-size: 23px;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.site-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.site-nav-btn {
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid #d5dee8;
+    background: #fff;
+    color: #18222c;
+    border-radius: 9px;
+    padding: 9px 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.15s;
+    white-space: nowrap;
+}
+
+.site-nav-btn:hover {
+    background: #f3f6f9;
+}
+
+.site-nav-btn.active {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .site-brand {
+        font-size: 21px;
+        margin-bottom: 11px;
+    }
+
+    .site-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .site-nav-btn {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        padding: 10px 4px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .site-nav-btn:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 420px) {
+    .site-nav-btn {
+        font-size: 11px;
+        padding: 9px 3px;
+    }
+}
 
 /* =========================================================
    主容器
@@ -664,6 +753,51 @@ button {
 
 
 <div class="container">
+
+
+<!-- =======================================================
+     網站導覽
+     ======================================================= -->
+
+<header class="site-header">
+
+    <div class="site-brand">
+        📈 投資績效名片
+    </div>
+
+    <nav class="site-actions">
+
+        <a class="site-nav-btn"
+           href="index.html">
+            📊 融資融券維持率
+        </a>
+
+        <a class="site-nav-btn"
+           href="portfolio.html">
+            📁 投資組合
+        </a>
+
+        <a class="site-nav-btn"
+           href="credit.html">
+            💰 融資融券增減
+        </a>
+
+        <a class="site-nav-btn"
+           href="foreign.html">
+            🏦 外資買賣超
+        </a>
+
+        <a class="site-nav-btn active"
+           href="broker.html">
+            🏢 投信買賣超
+        </a>
+
+    </nav>
+
+</header>
+
+
+
 
 
 <!-- =======================================================
