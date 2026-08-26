@@ -703,6 +703,706 @@
       "close_price": 31.9,
       "foreign_money": 88768895.6,
       "rank": 100
+    },
+    {
+      "stock_id": "6669",
+      "stock_name": "緯穎",
+      "close_price": 6785.0,
+      "foreign_money": -3119234125.0,
+      "rank": 1
+    },
+    {
+      "stock_id": "8046",
+      "stock_name": "南電",
+      "close_price": 1180.0,
+      "foreign_money": -2882612560.0,
+      "rank": 2
+    },
+    {
+      "stock_id": "6213",
+      "stock_name": "聯茂",
+      "close_price": 583.0,
+      "foreign_money": -2096620746.0,
+      "rank": 3
+    },
+    {
+      "stock_id": "2303",
+      "stock_name": "聯電",
+      "close_price": 123.5,
+      "foreign_money": -2014908181.0,
+      "rank": 4
+    },
+    {
+      "stock_id": "3017",
+      "stock_name": "奇鋐",
+      "close_price": 3155.0,
+      "foreign_money": -1962627695.0,
+      "rank": 5
+    },
+    {
+      "stock_id": "3653",
+      "stock_name": "健策",
+      "close_price": 5725.0,
+      "foreign_money": -1775608750.0,
+      "rank": 6
+    },
+    {
+      "stock_id": "2609",
+      "stock_name": "陽明",
+      "close_price": 57.6,
+      "foreign_money": -1774895155.2,
+      "rank": 7
+    },
+    {
+      "stock_id": "3665",
+      "stock_name": "貿聯-KY",
+      "close_price": 2005.0,
+      "foreign_money": -1095868840.0,
+      "rank": 8
+    },
+    {
+      "stock_id": "8996",
+      "stock_name": "高力",
+      "close_price": 1195.0,
+      "foreign_money": -953804785.0,
+      "rank": 9
+    },
+    {
+      "stock_id": "3702",
+      "stock_name": "大聯大",
+      "close_price": 108.0,
+      "foreign_money": -800842140.0,
+      "rank": 10
+    },
+    {
+      "stock_id": "3008",
+      "stock_name": "大立光",
+      "close_price": 6290.0,
+      "foreign_money": -732558560.0,
+      "rank": 11
+    },
+    {
+      "stock_id": "3481",
+      "stock_name": "群創",
+      "close_price": 46.4,
+      "foreign_money": -664247180.8,
+      "rank": 12
+    },
+    {
+      "stock_id": "2301",
+      "stock_name": "光寶科",
+      "close_price": 307.0,
+      "foreign_money": -584278716.0,
+      "rank": 13
+    },
+    {
+      "stock_id": "3661",
+      "stock_name": "世芯-KY",
+      "close_price": 3960.0,
+      "foreign_money": -535546440.0,
+      "rank": 14
+    },
+    {
+      "stock_id": "2317",
+      "stock_name": "鴻海",
+      "close_price": 246.5,
+      "foreign_money": -510503472.0,
+      "rank": 15
+    },
+    {
+      "stock_id": "3006",
+      "stock_name": "晶豪科",
+      "close_price": 273.5,
+      "foreign_money": -481174567.0,
+      "rank": 16
+    },
+    {
+      "stock_id": "2484",
+      "stock_name": "希華",
+      "close_price": 76.7,
+      "foreign_money": -446180467.2,
+      "rank": 17
+    },
+    {
+      "stock_id": "2884",
+      "stock_name": "玉山金",
+      "close_price": 38.7,
+      "foreign_money": -435290092.20000005,
+      "rank": 18
+    },
+    {
+      "stock_id": "2489",
+      "stock_name": "瑞軒",
+      "close_price": 41.5,
+      "foreign_money": -414120241.5,
+      "rank": 19
+    },
+    {
+      "stock_id": "3036",
+      "stock_name": "文曄",
+      "close_price": 196.5,
+      "foreign_money": -407356486.5,
+      "rank": 20
+    },
+    {
+      "stock_id": "3605",
+      "stock_name": "宏致",
+      "close_price": 112.0,
+      "foreign_money": -396043200.0,
+      "rank": 21
+    },
+    {
+      "stock_id": "2360",
+      "stock_name": "致茂",
+      "close_price": 1980.0,
+      "foreign_money": -368014680.0,
+      "rank": 22
+    },
+    {
+      "stock_id": "1101",
+      "stock_name": "台泥",
+      "close_price": 24.3,
+      "foreign_money": -366410757.6,
+      "rank": 23
+    },
+    {
+      "stock_id": "2881",
+      "stock_name": "富邦金",
+      "close_price": 138.5,
+      "foreign_money": -351091129.0,
+      "rank": 24
+    },
+    {
+      "stock_id": "3533",
+      "stock_name": "嘉澤",
+      "close_price": 1625.0,
+      "foreign_money": -324601875.0,
+      "rank": 25
+    },
+    {
+      "stock_id": "2634",
+      "stock_name": "漢翔",
+      "close_price": 69.0,
+      "foreign_money": -323194206.0,
+      "rank": 26
+    },
+    {
+      "stock_id": "2486",
+      "stock_name": "一詮",
+      "close_price": 262.5,
+      "foreign_money": -279151162.5,
+      "rank": 27
+    },
+    {
+      "stock_id": "8112",
+      "stock_name": "至上",
+      "close_price": 93.1,
+      "foreign_money": -278610501.4,
+      "rank": 28
+    },
+    {
+      "stock_id": "2412",
+      "stock_name": "中華電",
+      "close_price": 136.0,
+      "foreign_money": -269610888.0,
+      "rank": 29
+    },
+    {
+      "stock_id": "6505",
+      "stock_name": "台塑化",
+      "close_price": 70.4,
+      "foreign_money": -251384883.20000002,
+      "rank": 30
+    },
+    {
+      "stock_id": "2426",
+      "stock_name": "鼎元",
+      "close_price": 99.8,
+      "foreign_money": -231786298.4,
+      "rank": 31
+    },
+    {
+      "stock_id": "3532",
+      "stock_name": "台勝科",
+      "close_price": 382.0,
+      "foreign_money": -230984322.0,
+      "rank": 32
+    },
+    {
+      "stock_id": "00830",
+      "stock_name": "國泰費城半導體",
+      "close_price": 82.2,
+      "foreign_money": -225039762.0,
+      "rank": 33
+    },
+    {
+      "stock_id": "6781",
+      "stock_name": "AES-KY",
+      "close_price": 1040.0,
+      "foreign_money": -221016640.0,
+      "rank": 34
+    },
+    {
+      "stock_id": "2492",
+      "stock_name": "華新科",
+      "close_price": 269.5,
+      "foreign_money": -220801350.0,
+      "rank": 35
+    },
+    {
+      "stock_id": "6472",
+      "stock_name": "保瑞",
+      "close_price": 457.0,
+      "foreign_money": -200693835.0,
+      "rank": 36
+    },
+    {
+      "stock_id": "6442",
+      "stock_name": "光聖",
+      "close_price": 1610.0,
+      "foreign_money": -194402670.0,
+      "rank": 37
+    },
+    {
+      "stock_id": "2451",
+      "stock_name": "創見",
+      "close_price": 301.0,
+      "foreign_money": -193415075.0,
+      "rank": 38
+    },
+    {
+      "stock_id": "009816",
+      "stock_name": "凱基台灣TOP50",
+      "close_price": 15.43,
+      "foreign_money": -192240425.82,
+      "rank": 39
+    },
+    {
+      "stock_id": "2834",
+      "stock_name": "臺企銀",
+      "close_price": 16.45,
+      "foreign_money": -188714844.15,
+      "rank": 40
+    },
+    {
+      "stock_id": "2464",
+      "stock_name": "盟立",
+      "close_price": 192.0,
+      "foreign_money": -181779456.0,
+      "rank": 41
+    },
+    {
+      "stock_id": "6715",
+      "stock_name": "嘉基",
+      "close_price": 363.0,
+      "foreign_money": -177071763.0,
+      "rank": 42
+    },
+    {
+      "stock_id": "8039",
+      "stock_name": "台虹",
+      "close_price": 320.5,
+      "foreign_money": -171698260.0,
+      "rank": 43
+    },
+    {
+      "stock_id": "6831",
+      "stock_name": "邁科",
+      "close_price": 576.0,
+      "foreign_money": -164725056.0,
+      "rank": 44
+    },
+    {
+      "stock_id": "6830",
+      "stock_name": "汎銓",
+      "close_price": 526.0,
+      "foreign_money": -157117252.0,
+      "rank": 45
+    },
+    {
+      "stock_id": "8033",
+      "stock_name": "雷虎",
+      "close_price": 192.5,
+      "foreign_money": -147545090.0,
+      "rank": 46
+    },
+    {
+      "stock_id": "1590",
+      "stock_name": "亞德客-KY",
+      "close_price": 1470.0,
+      "foreign_money": -146753040.0,
+      "rank": 47
+    },
+    {
+      "stock_id": "6271",
+      "stock_name": "同欣電",
+      "close_price": 208.0,
+      "foreign_money": -141317696.0,
+      "rank": 48
+    },
+    {
+      "stock_id": "1402",
+      "stock_name": "遠東新",
+      "close_price": 28.55,
+      "foreign_money": -141047192.35,
+      "rank": 49
+    },
+    {
+      "stock_id": "6257",
+      "stock_name": "矽格",
+      "close_price": 204.0,
+      "foreign_money": -134381532.0,
+      "rank": 50
+    },
+    {
+      "stock_id": "3135",
+      "stock_name": "凌航",
+      "close_price": 185.5,
+      "foreign_money": -132981425.5,
+      "rank": 51
+    },
+    {
+      "stock_id": "4904",
+      "stock_name": "遠傳",
+      "close_price": 101.0,
+      "foreign_money": -124704801.0,
+      "rank": 52
+    },
+    {
+      "stock_id": "2359",
+      "stock_name": "所羅門",
+      "close_price": 146.5,
+      "foreign_money": -123179983.5,
+      "rank": 53
+    },
+    {
+      "stock_id": "3033",
+      "stock_name": "威健",
+      "close_price": 45.4,
+      "foreign_money": -115102256.8,
+      "rank": 54
+    },
+    {
+      "stock_id": "6449",
+      "stock_name": "鈺邦",
+      "close_price": 212.0,
+      "foreign_money": -114430816.0,
+      "rank": 55
+    },
+    {
+      "stock_id": "3714",
+      "stock_name": "富采",
+      "close_price": 62.7,
+      "foreign_money": -110963826.60000001,
+      "rank": 56
+    },
+    {
+      "stock_id": "2890",
+      "stock_name": "永豐金",
+      "close_price": 39.15,
+      "foreign_money": -106462591.64999999,
+      "rank": 57
+    },
+    {
+      "stock_id": "2493",
+      "stock_name": "揚博",
+      "close_price": 181.5,
+      "foreign_money": -105911421.0,
+      "rank": 58
+    },
+    {
+      "stock_id": "3596",
+      "stock_name": "智易",
+      "close_price": 159.5,
+      "foreign_money": -105020701.5,
+      "rank": 59
+    },
+    {
+      "stock_id": "6919",
+      "stock_name": "康霈*",
+      "close_price": 106.0,
+      "foreign_money": -102624006.0,
+      "rank": 60
+    },
+    {
+      "stock_id": "6672",
+      "stock_name": "騰輝電子-KY",
+      "close_price": 276.5,
+      "foreign_money": -100421205.5,
+      "rank": 61
+    },
+    {
+      "stock_id": "2885",
+      "stock_name": "元大金",
+      "close_price": 62.8,
+      "foreign_money": -98450994.8,
+      "rank": 62
+    },
+    {
+      "stock_id": "1709",
+      "stock_name": "和益",
+      "close_price": 37.1,
+      "foreign_money": -95968647.60000001,
+      "rank": 63
+    },
+    {
+      "stock_id": "1717",
+      "stock_name": "長興",
+      "close_price": 71.9,
+      "foreign_money": -95011248.4,
+      "rank": 64
+    },
+    {
+      "stock_id": "9910",
+      "stock_name": "豐泰",
+      "close_price": 67.9,
+      "foreign_money": -89106324.30000001,
+      "rank": 65
+    },
+    {
+      "stock_id": "7711",
+      "stock_name": "永擎",
+      "close_price": 493.0,
+      "foreign_money": -83227767.0,
+      "rank": 66
+    },
+    {
+      "stock_id": "2351",
+      "stock_name": "順德",
+      "close_price": 219.0,
+      "foreign_money": -82346190.0,
+      "rank": 67
+    },
+    {
+      "stock_id": "00712",
+      "stock_name": "復華富時不動產",
+      "close_price": 8.84,
+      "foreign_money": -79772168.84,
+      "rank": 68
+    },
+    {
+      "stock_id": "2409",
+      "stock_name": "友達",
+      "close_price": 25.5,
+      "foreign_money": -77046822.0,
+      "rank": 69
+    },
+    {
+      "stock_id": "2404",
+      "stock_name": "漢唐",
+      "close_price": 1080.0,
+      "foreign_money": -74112840.0,
+      "rank": 70
+    },
+    {
+      "stock_id": "9904",
+      "stock_name": "寶成",
+      "close_price": 25.05,
+      "foreign_money": -74073651.60000001,
+      "rank": 71
+    },
+    {
+      "stock_id": "00988A",
+      "stock_name": "主動統一全球創新",
+      "close_price": 16.23,
+      "foreign_money": -71719672.11,
+      "rank": 72
+    },
+    {
+      "stock_id": "1476",
+      "stock_name": "儒鴻",
+      "close_price": 316.0,
+      "foreign_money": -67214780.0,
+      "rank": 73
+    },
+    {
+      "stock_id": "6414",
+      "stock_name": "樺漢",
+      "close_price": 398.0,
+      "foreign_money": -64651916.0,
+      "rank": 74
+    },
+    {
+      "stock_id": "5388",
+      "stock_name": "中磊",
+      "close_price": 77.4,
+      "foreign_money": -62152200.00000001,
+      "rank": 75
+    },
+    {
+      "stock_id": "6706",
+      "stock_name": "惠特",
+      "close_price": 123.0,
+      "foreign_money": -59520192.0,
+      "rank": 76
+    },
+    {
+      "stock_id": "6176",
+      "stock_name": "瑞儀",
+      "close_price": 98.2,
+      "foreign_money": -58030209.800000004,
+      "rank": 77
+    },
+    {
+      "stock_id": "006208",
+      "stock_name": "富邦台50",
+      "close_price": 242.85,
+      "foreign_money": -56193547.199999996,
+      "rank": 78
+    },
+    {
+      "stock_id": "00662",
+      "stock_name": "富邦NASDAQ",
+      "close_price": 119.4,
+      "foreign_money": -56086239.6,
+      "rank": 79
+    },
+    {
+      "stock_id": "4967",
+      "stock_name": "十銓",
+      "close_price": 272.5,
+      "foreign_money": -54627802.5,
+      "rank": 80
+    },
+    {
+      "stock_id": "6197",
+      "stock_name": "佳必琪",
+      "close_price": 307.0,
+      "foreign_money": -54096777.0,
+      "rank": 81
+    },
+    {
+      "stock_id": "2352",
+      "stock_name": "佳世達",
+      "close_price": 28.1,
+      "foreign_money": -53980100.0,
+      "rank": 82
+    },
+    {
+      "stock_id": "2332",
+      "stock_name": "友訊",
+      "close_price": 20.0,
+      "foreign_money": -52771980.0,
+      "rank": 83
+    },
+    {
+      "stock_id": "6214",
+      "stock_name": "精誠",
+      "close_price": 181.0,
+      "foreign_money": -52339408.0,
+      "rank": 84
+    },
+    {
+      "stock_id": "9941",
+      "stock_name": "裕融",
+      "close_price": 85.8,
+      "foreign_money": -52043105.4,
+      "rank": 85
+    },
+    {
+      "stock_id": "8271",
+      "stock_name": "宇瞻",
+      "close_price": 231.0,
+      "foreign_money": -51659916.0,
+      "rank": 86
+    },
+    {
+      "stock_id": "1477",
+      "stock_name": "聚陽",
+      "close_price": 197.0,
+      "foreign_money": -51312393.0,
+      "rank": 87
+    },
+    {
+      "stock_id": "9914",
+      "stock_name": "美利達",
+      "close_price": 84.9,
+      "foreign_money": -50488416.900000006,
+      "rank": 88
+    },
+    {
+      "stock_id": "1519",
+      "stock_name": "華城",
+      "close_price": 717.0,
+      "foreign_money": -49099443.0,
+      "rank": 89
+    },
+    {
+      "stock_id": "8261",
+      "stock_name": "富鼎",
+      "close_price": 186.0,
+      "foreign_money": -45018696.0,
+      "rank": 90
+    },
+    {
+      "stock_id": "7610",
+      "stock_name": "聯友金屬-創",
+      "close_price": 1610.0,
+      "foreign_money": -44844940.0,
+      "rank": 91
+    },
+    {
+      "stock_id": "1808",
+      "stock_name": "潤隆",
+      "close_price": 35.6,
+      "foreign_money": -44133889.6,
+      "rank": 92
+    },
+    {
+      "stock_id": "5876",
+      "stock_name": "上海商銀",
+      "close_price": 43.3,
+      "foreign_money": -43304806.3,
+      "rank": 93
+    },
+    {
+      "stock_id": "3023",
+      "stock_name": "信邦",
+      "close_price": 314.5,
+      "foreign_money": -42435170.5,
+      "rank": 94
+    },
+    {
+      "stock_id": "4956",
+      "stock_name": "光鋐",
+      "close_price": 37.2,
+      "foreign_money": -42229068.0,
+      "rank": 95
+    },
+    {
+      "stock_id": "3209",
+      "stock_name": "全科",
+      "close_price": 51.8,
+      "foreign_money": -41129200.0,
+      "rank": 96
+    },
+    {
+      "stock_id": "8021",
+      "stock_name": "尖點",
+      "close_price": 418.5,
+      "foreign_money": -40698288.0,
+      "rank": 97
+    },
+    {
+      "stock_id": "8028",
+      "stock_name": "昇陽半導體",
+      "close_price": 246.5,
+      "foreign_money": -40660421.5,
+      "rank": 98
+    },
+    {
+      "stock_id": "6949",
+      "stock_name": "沛爾生醫-創",
+      "close_price": 1490.0,
+      "foreign_money": -38740000.0,
+      "rank": 99
+    },
+    {
+      "stock_id": "3022",
+      "stock_name": "威強電",
+      "close_price": 92.5,
+      "foreign_money": -38609962.5,
+      "rank": 100
     }
   ],
   "investment_trust": [
@@ -1337,73 +2037,703 @@
       "rank": 90
     },
     {
-      "stock_id": "6908",
-      "stock_name": "宏碁遊戲-創",
-      "close_price": 31.0,
-      "investment_trust_money": 0.0,
+      "stock_id": "2327",
+      "stock_name": "國巨*",
+      "close_price": 537.0,
+      "investment_trust_money": -1543716048.0,
+      "rank": 1
+    },
+    {
+      "stock_id": "2330",
+      "stock_name": "台積電",
+      "close_price": 2415.0,
+      "investment_trust_money": -1513502235.0,
+      "rank": 2
+    },
+    {
+      "stock_id": "2345",
+      "stock_name": "智邦",
+      "close_price": 2055.0,
+      "investment_trust_money": -1266354705.0,
+      "rank": 3
+    },
+    {
+      "stock_id": "2308",
+      "stock_name": "台達電",
+      "close_price": 1750.0,
+      "investment_trust_money": -722946000.0,
+      "rank": 4
+    },
+    {
+      "stock_id": "3665",
+      "stock_name": "貿聯-KY",
+      "close_price": 2005.0,
+      "investment_trust_money": -607517005.0,
+      "rank": 5
+    },
+    {
+      "stock_id": "2303",
+      "stock_name": "聯電",
+      "close_price": 123.5,
+      "investment_trust_money": -487129818.5,
+      "rank": 6
+    },
+    {
+      "stock_id": "3711",
+      "stock_name": "日月光投控",
+      "close_price": 592.0,
+      "investment_trust_money": -474515824.0,
+      "rank": 7
+    },
+    {
+      "stock_id": "2454",
+      "stock_name": "聯發科",
+      "close_price": 3945.0,
+      "investment_trust_money": -436963980.0,
+      "rank": 8
+    },
+    {
+      "stock_id": "2376",
+      "stock_name": "技嘉",
+      "close_price": 351.5,
+      "investment_trust_money": -434467005.5,
+      "rank": 9
+    },
+    {
+      "stock_id": "4958",
+      "stock_name": "臻鼎-KY",
+      "close_price": 453.0,
+      "investment_trust_money": -291129963.0,
+      "rank": 10
+    },
+    {
+      "stock_id": "2360",
+      "stock_name": "致茂",
+      "close_price": 1980.0,
+      "investment_trust_money": -259294860.0,
+      "rank": 11
+    },
+    {
+      "stock_id": "3026",
+      "stock_name": "禾伸堂",
+      "close_price": 614.0,
+      "investment_trust_money": -251924200.0,
+      "rank": 12
+    },
+    {
+      "stock_id": "2428",
+      "stock_name": "興勤",
+      "close_price": 252.0,
+      "investment_trust_money": -235116000.0,
+      "rank": 13
+    },
+    {
+      "stock_id": "7769",
+      "stock_name": "鴻勁",
+      "close_price": 6335.0,
+      "investment_trust_money": -196689080.0,
+      "rank": 14
+    },
+    {
+      "stock_id": "3533",
+      "stock_name": "嘉澤",
+      "close_price": 1625.0,
+      "investment_trust_money": -140957375.0,
+      "rank": 15
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖",
+      "close_price": 14510.0,
+      "investment_trust_money": -97449160.0,
+      "rank": 16
+    },
+    {
+      "stock_id": "6831",
+      "stock_name": "邁科",
+      "close_price": 576.0,
+      "investment_trust_money": -84096000.0,
+      "rank": 17
+    },
+    {
+      "stock_id": "2357",
+      "stock_name": "華碩",
+      "close_price": 971.0,
+      "investment_trust_money": -78200456.0,
+      "rank": 18
+    },
+    {
+      "stock_id": "8210",
+      "stock_name": "勤誠",
+      "close_price": 974.0,
+      "investment_trust_money": -71102000.0,
+      "rank": 19
+    },
+    {
+      "stock_id": "6442",
+      "stock_name": "光聖",
+      "close_price": 1610.0,
+      "investment_trust_money": -67620000.0,
+      "rank": 20
+    },
+    {
+      "stock_id": "2892",
+      "stock_name": "第一金",
+      "close_price": 33.4,
+      "investment_trust_money": -55749743.599999994,
+      "rank": 21
+    },
+    {
+      "stock_id": "2880",
+      "stock_name": "華南金",
+      "close_price": 39.6,
+      "investment_trust_money": -43124400.0,
+      "rank": 22
+    },
+    {
+      "stock_id": "4904",
+      "stock_name": "遠傳",
+      "close_price": 101.0,
+      "investment_trust_money": -37876111.0,
+      "rank": 23
+    },
+    {
+      "stock_id": "2606",
+      "stock_name": "裕民",
+      "close_price": 72.0,
+      "investment_trust_money": -36792000.0,
+      "rank": 24
+    },
+    {
+      "stock_id": "6196",
+      "stock_name": "帆宣",
+      "close_price": 500.0,
+      "investment_trust_money": -32650000.0,
+      "rank": 25
+    },
+    {
+      "stock_id": "9945",
+      "stock_name": "潤泰新",
+      "close_price": 28.9,
+      "investment_trust_money": -32079000.0,
+      "rank": 26
+    },
+    {
+      "stock_id": "1477",
+      "stock_name": "聚陽",
+      "close_price": 197.0,
+      "investment_trust_money": -28317174.0,
+      "rank": 27
+    },
+    {
+      "stock_id": "3036",
+      "stock_name": "文曄",
+      "close_price": 196.5,
+      "investment_trust_money": -22402572.0,
+      "rank": 28
+    },
+    {
+      "stock_id": "2472",
+      "stock_name": "立隆電",
+      "close_price": 218.5,
+      "investment_trust_money": -20429750.0,
+      "rank": 29
+    },
+    {
+      "stock_id": "3034",
+      "stock_name": "聯詠",
+      "close_price": 557.0,
+      "investment_trust_money": -18612155.0,
+      "rank": 30
+    },
+    {
+      "stock_id": "9939",
+      "stock_name": "宏全",
+      "close_price": 133.0,
+      "investment_trust_money": -16683653.0,
+      "rank": 31
+    },
+    {
+      "stock_id": "2727",
+      "stock_name": "王品",
+      "close_price": 235.0,
+      "investment_trust_money": -13630000.0,
+      "rank": 32
+    },
+    {
+      "stock_id": "5234",
+      "stock_name": "達興材料",
+      "close_price": 300.0,
+      "investment_trust_money": -12000000.0,
+      "rank": 33
+    },
+    {
+      "stock_id": "2356",
+      "stock_name": "英業達",
+      "close_price": 66.8,
+      "investment_trust_money": -11558270.4,
+      "rank": 34
+    },
+    {
+      "stock_id": "6515",
+      "stock_name": "穎崴",
+      "close_price": 6025.0,
+      "investment_trust_money": -11465575.0,
+      "rank": 35
+    },
+    {
+      "stock_id": "2344",
+      "stock_name": "華邦電",
+      "close_price": 181.5,
+      "investment_trust_money": -10426993.5,
+      "rank": 36
+    },
+    {
+      "stock_id": "2890",
+      "stock_name": "永豐金",
+      "close_price": 39.15,
+      "investment_trust_money": -8774258.85,
+      "rank": 37
+    },
+    {
+      "stock_id": "2379",
+      "stock_name": "瑞昱",
+      "close_price": 734.0,
+      "investment_trust_money": -7344404.0,
+      "rank": 38
+    },
+    {
+      "stock_id": "2885",
+      "stock_name": "元大金",
+      "close_price": 62.8,
+      "investment_trust_money": -7110090.399999999,
+      "rank": 39
+    },
+    {
+      "stock_id": "5434",
+      "stock_name": "崇越",
+      "close_price": 536.0,
+      "investment_trust_money": -6968000.0,
+      "rank": 40
+    },
+    {
+      "stock_id": "6139",
+      "stock_name": "亞翔",
+      "close_price": 800.0,
+      "investment_trust_money": -6658400.0,
+      "rank": 41
+    },
+    {
+      "stock_id": "2458",
+      "stock_name": "義隆",
+      "close_price": 139.5,
+      "investment_trust_money": -6443365.5,
+      "rank": 42
+    },
+    {
+      "stock_id": "3045",
+      "stock_name": "台灣大",
+      "close_price": 115.5,
+      "investment_trust_money": -5454372.0,
+      "rank": 43
+    },
+    {
+      "stock_id": "3481",
+      "stock_name": "群創",
+      "close_price": 46.4,
+      "investment_trust_money": -5337670.399999999,
+      "rank": 44
+    },
+    {
+      "stock_id": "1513",
+      "stock_name": "中興電",
+      "close_price": 166.0,
+      "investment_trust_money": -5179532.0,
+      "rank": 45
+    },
+    {
+      "stock_id": "2455",
+      "stock_name": "全新",
+      "close_price": 428.0,
+      "investment_trust_money": -4708000.0,
+      "rank": 46
+    },
+    {
+      "stock_id": "2395",
+      "stock_name": "研華",
+      "close_price": 688.0,
+      "investment_trust_money": -4128000.0,
+      "rank": 47
+    },
+    {
+      "stock_id": "3004",
+      "stock_name": "豐達科",
+      "close_price": 119.5,
+      "investment_trust_money": -3585000.0,
+      "rank": 48
+    },
+    {
+      "stock_id": "6239",
+      "stock_name": "力成",
+      "close_price": 286.0,
+      "investment_trust_money": -3432000.0,
+      "rank": 49
+    },
+    {
+      "stock_id": "6770",
+      "stock_name": "力積電",
+      "close_price": 70.2,
+      "investment_trust_money": -3405331.8000000003,
+      "rank": 50
+    },
+    {
+      "stock_id": "6415",
+      "stock_name": "矽力*-KY",
+      "close_price": 469.0,
+      "investment_trust_money": -3283000.0,
+      "rank": 51
+    },
+    {
+      "stock_id": "2337",
+      "stock_name": "旺宏",
+      "close_price": 125.5,
+      "investment_trust_money": -3137500.0,
+      "rank": 52
+    },
+    {
+      "stock_id": "0052",
+      "stock_name": "富邦科技",
+      "close_price": 61.95,
+      "investment_trust_money": -3097500.0,
+      "rank": 53
+    },
+    {
+      "stock_id": "2324",
+      "stock_name": "仁寶",
+      "close_price": 40.95,
+      "investment_trust_money": -3050365.5,
+      "rank": 54
+    },
+    {
+      "stock_id": "1537",
+      "stock_name": "廣隆",
+      "close_price": 119.5,
+      "investment_trust_money": -2987500.0,
+      "rank": 55
+    },
+    {
+      "stock_id": "9904",
+      "stock_name": "寶成",
+      "close_price": 25.05,
+      "investment_trust_money": -2698210.65,
+      "rank": 56
+    },
+    {
+      "stock_id": "2409",
+      "stock_name": "友達",
+      "close_price": 25.5,
+      "investment_trust_money": -2430583.5,
+      "rank": 57
+    },
+    {
+      "stock_id": "6176",
+      "stock_name": "瑞儀",
+      "close_price": 98.2,
+      "investment_trust_money": -2356800.0,
+      "rank": 58
+    },
+    {
+      "stock_id": "6409",
+      "stock_name": "旭隼",
+      "close_price": 1030.0,
+      "investment_trust_money": -2064120.0,
+      "rank": 59
+    },
+    {
+      "stock_id": "6213",
+      "stock_name": "聯茂",
+      "close_price": 583.0,
+      "investment_trust_money": -1749000.0,
+      "rank": 60
+    },
+    {
+      "stock_id": "6285",
+      "stock_name": "啟碁",
+      "close_price": 242.0,
+      "investment_trust_money": -1735140.0,
+      "rank": 61
+    },
+    {
+      "stock_id": "2492",
+      "stock_name": "華新科",
+      "close_price": 269.5,
+      "investment_trust_money": -1617000.0,
+      "rank": 62
+    },
+    {
+      "stock_id": "3005",
+      "stock_name": "神基",
+      "close_price": 116.0,
+      "investment_trust_money": -1464384.0,
+      "rank": 63
+    },
+    {
+      "stock_id": "6257",
+      "stock_name": "矽格",
+      "close_price": 204.0,
+      "investment_trust_money": -1428000.0,
+      "rank": 64
+    },
+    {
+      "stock_id": "2451",
+      "stock_name": "創見",
+      "close_price": 301.0,
+      "investment_trust_money": -1414700.0,
+      "rank": 65
+    },
+    {
+      "stock_id": "8112",
+      "stock_name": "至上",
+      "close_price": 93.1,
+      "investment_trust_money": -1396500.0,
+      "rank": 66
+    },
+    {
+      "stock_id": "2385",
+      "stock_name": "群光",
+      "close_price": 107.0,
+      "investment_trust_money": -1294593.0,
+      "rank": 67
+    },
+    {
+      "stock_id": "3706",
+      "stock_name": "神達",
+      "close_price": 91.5,
+      "investment_trust_money": -1281000.0,
+      "rank": 68
+    },
+    {
+      "stock_id": "2368",
+      "stock_name": "金像電",
+      "close_price": 1040.0,
+      "investment_trust_money": -1204320.0,
+      "rank": 69
+    },
+    {
+      "stock_id": "6526",
+      "stock_name": "達發",
+      "close_price": 595.0,
+      "investment_trust_money": -1190000.0,
+      "rank": 70
+    },
+    {
+      "stock_id": "5269",
+      "stock_name": "祥碩",
+      "close_price": 1455.0,
+      "investment_trust_money": -1139265.0,
+      "rank": 71
+    },
+    {
+      "stock_id": "2474",
+      "stock_name": "可成",
+      "close_price": 206.5,
+      "investment_trust_money": -1081647.0,
+      "rank": 72
+    },
+    {
+      "stock_id": "4938",
+      "stock_name": "和碩",
+      "close_price": 89.3,
+      "investment_trust_money": -981585.6,
+      "rank": 73
+    },
+    {
+      "stock_id": "4919",
+      "stock_name": "新唐",
+      "close_price": 121.0,
+      "investment_trust_money": -978769.0,
+      "rank": 74
+    },
+    {
+      "stock_id": "2354",
+      "stock_name": "鴻準",
+      "close_price": 61.5,
+      "investment_trust_money": -922500.0,
+      "rank": 75
+    },
+    {
+      "stock_id": "6789",
+      "stock_name": "采鈺",
+      "close_price": 458.5,
+      "investment_trust_money": -917000.0,
+      "rank": 76
+    },
+    {
+      "stock_id": "3014",
+      "stock_name": "聯陽",
+      "close_price": 132.5,
+      "investment_trust_money": -787580.0,
+      "rank": 77
+    },
+    {
+      "stock_id": "4967",
+      "stock_name": "十銓",
+      "close_price": 272.5,
+      "investment_trust_money": -654000.0,
+      "rank": 78
+    },
+    {
+      "stock_id": "2855",
+      "stock_name": "統一證",
+      "close_price": 47.4,
+      "investment_trust_money": -619044.0,
+      "rank": 79
+    },
+    {
+      "stock_id": "3592",
+      "stock_name": "瑞鼎",
+      "close_price": 227.0,
+      "investment_trust_money": -611765.0,
+      "rank": 80
+    },
+    {
+      "stock_id": "2467",
+      "stock_name": "志聖",
+      "close_price": 570.0,
+      "investment_trust_money": -570000.0,
+      "rank": 81
+    },
+    {
+      "stock_id": "2882",
+      "stock_name": "國泰金",
+      "close_price": 102.5,
+      "investment_trust_money": -542737.5,
+      "rank": 82
+    },
+    {
+      "stock_id": "2891",
+      "stock_name": "中信金",
+      "close_price": 64.6,
+      "investment_trust_money": -536244.6,
+      "rank": 83
+    },
+    {
+      "stock_id": "8016",
+      "stock_name": "矽創",
+      "close_price": 296.0,
+      "investment_trust_money": -531024.0,
+      "rank": 84
+    },
+    {
+      "stock_id": "2353",
+      "stock_name": "宏碁",
+      "close_price": 31.4,
+      "investment_trust_money": -513421.39999999997,
+      "rank": 85
+    },
+    {
+      "stock_id": "2393",
+      "stock_name": "億光",
+      "close_price": 66.8,
+      "investment_trust_money": -510352.0,
+      "rank": 86
+    },
+    {
+      "stock_id": "6282",
+      "stock_name": "康舒",
+      "close_price": 45.3,
+      "investment_trust_money": -498299.99999999994,
+      "rank": 87
+    },
+    {
+      "stock_id": "4915",
+      "stock_name": "致伸",
+      "close_price": 60.2,
+      "investment_trust_money": -431814.60000000003,
+      "rank": 88
+    },
+    {
+      "stock_id": "2412",
+      "stock_name": "中華電",
+      "close_price": 136.0,
+      "investment_trust_money": -430712.0,
+      "rank": 89
+    },
+    {
+      "stock_id": "2881",
+      "stock_name": "富邦金",
+      "close_price": 138.5,
+      "investment_trust_money": -422702.0,
+      "rank": 90
+    },
+    {
+      "stock_id": "3030",
+      "stock_name": "德律",
+      "close_price": 288.5,
+      "investment_trust_money": -403900.0,
       "rank": 91
     },
     {
-      "stock_id": "4942",
-      "stock_name": "嘉彰",
-      "close_price": 33.25,
-      "investment_trust_money": 0.0,
+      "stock_id": "6414",
+      "stock_name": "樺漢",
+      "close_price": 398.0,
+      "investment_trust_money": -398000.0,
       "rank": 92
     },
     {
-      "stock_id": "7822",
-      "stock_name": "倍利科",
-      "close_price": 928.0,
-      "investment_trust_money": 0.0,
+      "stock_id": "8081",
+      "stock_name": "致新",
+      "close_price": 262.0,
+      "investment_trust_money": -393000.0,
       "rank": 93
     },
     {
-      "stock_id": "2901",
-      "stock_name": "欣欣",
-      "close_price": 23.55,
-      "investment_trust_money": 0.0,
+      "stock_id": "6206",
+      "stock_name": "飛捷",
+      "close_price": 142.5,
+      "investment_trust_money": -365940.0,
       "rank": 94
     },
     {
-      "stock_id": "2247",
-      "stock_name": "汎德永業",
-      "close_price": 226.0,
-      "investment_trust_money": 0.0,
+      "stock_id": "2493",
+      "stock_name": "揚博",
+      "close_price": 181.5,
+      "investment_trust_money": -363000.0,
       "rank": 95
     },
     {
-      "stock_id": "8482",
-      "stock_name": "商億-KY",
-      "close_price": 49.85,
-      "investment_trust_money": 0.0,
+      "stock_id": "2548",
+      "stock_name": "華固",
+      "close_price": 96.0,
+      "investment_trust_money": -336000.0,
       "rank": 96
     },
     {
-      "stock_id": "6862",
-      "stock_name": "三集瑞-KY",
-      "close_price": 139.5,
-      "investment_trust_money": 0.0,
+      "stock_id": "3023",
+      "stock_name": "信邦",
+      "close_price": 314.5,
+      "investment_trust_money": -314500.0,
       "rank": 97
     },
     {
-      "stock_id": "3018",
-      "stock_name": "隆銘綠能",
-      "close_price": 12.9,
-      "investment_trust_money": 0.0,
+      "stock_id": "6525",
+      "stock_name": "捷敏-KY",
+      "close_price": 141.5,
+      "investment_trust_money": -265595.5,
       "rank": 98
     },
     {
-      "stock_id": "5607",
-      "stock_name": "遠雄港",
-      "close_price": 54.3,
-      "investment_trust_money": 0.0,
+      "stock_id": "3033",
+      "stock_name": "威健",
+      "close_price": 45.4,
+      "investment_trust_money": -211745.6,
       "rank": 99
     },
     {
-      "stock_id": "3060",
-      "stock_name": "銘異",
-      "close_price": 27.35,
-      "investment_trust_money": 0.0,
+      "stock_id": "8114",
+      "stock_name": "振樺電",
+      "close_price": 198.0,
+      "investment_trust_money": -198000.0,
       "rank": 100
     }
   ],
@@ -2107,6 +3437,706 @@
       "close_price": 31.68,
       "dealer_money": 29869266.24,
       "rank": 100
+    },
+    {
+      "stock_id": "00632R",
+      "stock_name": "元大台灣50反1",
+      "close_price": 9.99,
+      "dealer_money": -734863650.75,
+      "rank": 1
+    },
+    {
+      "stock_id": "00919",
+      "stock_name": "群益台灣精選高息",
+      "close_price": 31.21,
+      "dealer_money": -538905816.48,
+      "rank": 2
+    },
+    {
+      "stock_id": "00406A",
+      "stock_name": "主動中信台灣收益",
+      "close_price": 9.66,
+      "dealer_money": -470326659.6,
+      "rank": 3
+    },
+    {
+      "stock_id": "8046",
+      "stock_name": "南電",
+      "close_price": 1180.0,
+      "dealer_money": -335486980.0,
+      "rank": 4
+    },
+    {
+      "stock_id": "00662",
+      "stock_name": "富邦NASDAQ",
+      "close_price": 119.4,
+      "dealer_money": -288023008.2,
+      "rank": 5
+    },
+    {
+      "stock_id": "00830",
+      "stock_name": "國泰費城半導體",
+      "close_price": 82.2,
+      "dealer_money": -266640360.0,
+      "rank": 6
+    },
+    {
+      "stock_id": "00646",
+      "stock_name": "元大S&P500",
+      "close_price": 76.95,
+      "dealer_money": -178137095.4,
+      "rank": 7
+    },
+    {
+      "stock_id": "2609",
+      "stock_name": "陽明",
+      "close_price": 57.6,
+      "dealer_money": -132715641.60000001,
+      "rank": 8
+    },
+    {
+      "stock_id": "2408",
+      "stock_name": "南亞科",
+      "close_price": 517.0,
+      "dealer_money": -129668770.0,
+      "rank": 9
+    },
+    {
+      "stock_id": "2383",
+      "stock_name": "台光電",
+      "close_price": 5895.0,
+      "dealer_money": -121938075.0,
+      "rank": 10
+    },
+    {
+      "stock_id": "00708L",
+      "stock_name": "期元大S&P黃金正2",
+      "close_price": 90.85,
+      "dealer_money": -112854051.69999999,
+      "rank": 11
+    },
+    {
+      "stock_id": "00953B",
+      "stock_name": "群益優選非投等債",
+      "close_price": 9.7,
+      "dealer_money": -111625019.8,
+      "rank": 12
+    },
+    {
+      "stock_id": "00984D",
+      "stock_name": "主動聯博全球非投",
+      "close_price": 10.07,
+      "dealer_money": -99592300.0,
+      "rank": 13
+    },
+    {
+      "stock_id": "2615",
+      "stock_name": "萬海",
+      "close_price": 115.0,
+      "dealer_money": -96149085.0,
+      "rank": 14
+    },
+    {
+      "stock_id": "009826",
+      "stock_name": "貝萊德世界股票",
+      "close_price": 10.16,
+      "dealer_money": -94701187.28,
+      "rank": 15
+    },
+    {
+      "stock_id": "00670L",
+      "stock_name": "富邦NASDAQ正2",
+      "close_price": 196.25,
+      "dealer_money": -85005883.75,
+      "rank": 16
+    },
+    {
+      "stock_id": "00715L",
+      "stock_name": "期街口布蘭特正2",
+      "close_price": 46.36,
+      "dealer_money": -80707335.88,
+      "rank": 17
+    },
+    {
+      "stock_id": "00881",
+      "stock_name": "國泰台灣科技龍頭",
+      "close_price": 49.53,
+      "dealer_money": -79026155.13,
+      "rank": 18
+    },
+    {
+      "stock_id": "2603",
+      "stock_name": "長榮",
+      "close_price": 231.0,
+      "dealer_money": -65158632.0,
+      "rank": 19
+    },
+    {
+      "stock_id": "3665",
+      "stock_name": "貿聯-KY",
+      "close_price": 2005.0,
+      "dealer_money": -62497855.0,
+      "rank": 20
+    },
+    {
+      "stock_id": "00961",
+      "stock_name": "FT臺灣永續高息",
+      "close_price": 13.16,
+      "dealer_money": -61826074.8,
+      "rank": 21
+    },
+    {
+      "stock_id": "00712",
+      "stock_name": "復華富時不動產",
+      "close_price": 8.84,
+      "dealer_money": -60275796.36,
+      "rank": 22
+    },
+    {
+      "stock_id": "3532",
+      "stock_name": "台勝科",
+      "close_price": 382.0,
+      "dealer_money": -53530806.0,
+      "rank": 23
+    },
+    {
+      "stock_id": "00960",
+      "stock_name": "野村全球航運龍頭",
+      "close_price": 21.19,
+      "dealer_money": -52443618.370000005,
+      "rank": 24
+    },
+    {
+      "stock_id": "00865B",
+      "stock_name": "國泰US短期公債",
+      "close_price": 48.86,
+      "dealer_money": -51498244.56,
+      "rank": 25
+    },
+    {
+      "stock_id": "1102",
+      "stock_name": "亞泥",
+      "close_price": 35.2,
+      "dealer_money": -50408265.6,
+      "rank": 26
+    },
+    {
+      "stock_id": "00985B",
+      "stock_name": "群益ESG投等債0-5",
+      "close_price": 10.26,
+      "dealer_money": -46231560.0,
+      "rank": 27
+    },
+    {
+      "stock_id": "2605",
+      "stock_name": "新興",
+      "close_price": 34.85,
+      "dealer_money": -44783434.9,
+      "rank": 28
+    },
+    {
+      "stock_id": "6472",
+      "stock_name": "保瑞",
+      "close_price": 457.0,
+      "dealer_money": -40001667.0,
+      "rank": 29
+    },
+    {
+      "stock_id": "2376",
+      "stock_name": "技嘉",
+      "close_price": 351.5,
+      "dealer_money": -38585209.5,
+      "rank": 30
+    },
+    {
+      "stock_id": "009805",
+      "stock_name": "台新美國電力基建",
+      "close_price": 15.18,
+      "dealer_money": -33297496.98,
+      "rank": 31
+    },
+    {
+      "stock_id": "00410A",
+      "stock_name": "主動永豐科技趨勢",
+      "close_price": 11.73,
+      "dealer_money": -31658753.880000003,
+      "rank": 32
+    },
+    {
+      "stock_id": "6442",
+      "stock_name": "光聖",
+      "close_price": 1610.0,
+      "dealer_money": -28949410.0,
+      "rank": 33
+    },
+    {
+      "stock_id": "2606",
+      "stock_name": "裕民",
+      "close_price": 72.0,
+      "dealer_money": -28900656.0,
+      "rank": 34
+    },
+    {
+      "stock_id": "009829",
+      "stock_name": "大華韓國KOSPI50",
+      "close_price": 10.42,
+      "dealer_money": -27615292.4,
+      "rank": 35
+    },
+    {
+      "stock_id": "009811",
+      "stock_name": "統一美國50",
+      "close_price": 13.21,
+      "dealer_money": -24399543.71,
+      "rank": 36
+    },
+    {
+      "stock_id": "2027",
+      "stock_name": "大成鋼",
+      "close_price": 50.0,
+      "dealer_money": -20735250.0,
+      "rank": 37
+    },
+    {
+      "stock_id": "00911",
+      "stock_name": "兆豐洲際半導體",
+      "close_price": 52.15,
+      "dealer_money": -20627671.75,
+      "rank": 38
+    },
+    {
+      "stock_id": "3450",
+      "stock_name": "聯鈞",
+      "close_price": 574.0,
+      "dealer_money": -20336820.0,
+      "rank": 39
+    },
+    {
+      "stock_id": "00664R",
+      "stock_name": "國泰臺灣加權反1",
+      "close_price": 1.61,
+      "dealer_money": -19209009.82,
+      "rank": 40
+    },
+    {
+      "stock_id": "00402A",
+      "stock_name": "主動安聯美國科技",
+      "close_price": 9.51,
+      "dealer_money": -18000784.77,
+      "rank": 41
+    },
+    {
+      "stock_id": "9921",
+      "stock_name": "巨大",
+      "close_price": 104.5,
+      "dealer_money": -17948815.5,
+      "rank": 42
+    },
+    {
+      "stock_id": "00757",
+      "stock_name": "統一FANG+",
+      "close_price": 137.2,
+      "dealer_money": -16720838.399999999,
+      "rank": 43
+    },
+    {
+      "stock_id": "8112",
+      "stock_name": "至上",
+      "close_price": 93.1,
+      "dealer_money": -16555600.6,
+      "rank": 44
+    },
+    {
+      "stock_id": "3605",
+      "stock_name": "宏致",
+      "close_price": 112.0,
+      "dealer_money": -16029664.0,
+      "rank": 45
+    },
+    {
+      "stock_id": "009819",
+      "stock_name": "中信數據及電力",
+      "close_price": 9.81,
+      "dealer_money": -15526571.49,
+      "rank": 46
+    },
+    {
+      "stock_id": "2464",
+      "stock_name": "盟立",
+      "close_price": 192.0,
+      "dealer_money": -14657856.0,
+      "rank": 47
+    },
+    {
+      "stock_id": "00676R",
+      "stock_name": "富邦臺灣加權反1",
+      "close_price": 5.53,
+      "dealer_money": -12457613.49,
+      "rank": 48
+    },
+    {
+      "stock_id": "1216",
+      "stock_name": "統一",
+      "close_price": 77.7,
+      "dealer_money": -12257874.3,
+      "rank": 49
+    },
+    {
+      "stock_id": "6505",
+      "stock_name": "台塑化",
+      "close_price": 70.4,
+      "dealer_money": -10665036.8,
+      "rank": 50
+    },
+    {
+      "stock_id": "2637",
+      "stock_name": "慧洋-KY",
+      "close_price": 91.2,
+      "dealer_money": -10400448.0,
+      "rank": 51
+    },
+    {
+      "stock_id": "00731",
+      "stock_name": "復華富時高息低波",
+      "close_price": 92.95,
+      "dealer_money": -8965585.200000001,
+      "rank": 52
+    },
+    {
+      "stock_id": "00770",
+      "stock_name": "國泰北美科技",
+      "close_price": 66.75,
+      "dealer_money": -8830824.75,
+      "rank": 53
+    },
+    {
+      "stock_id": "009824",
+      "stock_name": "群益美國科技巨頭",
+      "close_price": 9.88,
+      "dealer_money": -8716985.680000002,
+      "rank": 54
+    },
+    {
+      "stock_id": "9942",
+      "stock_name": "茂順",
+      "close_price": 114.5,
+      "dealer_money": -8587500.0,
+      "rank": 55
+    },
+    {
+      "stock_id": "1402",
+      "stock_name": "遠東新",
+      "close_price": 28.55,
+      "dealer_money": -8531311.0,
+      "rank": 56
+    },
+    {
+      "stock_id": "00728",
+      "stock_name": "第一金工業30",
+      "close_price": 68.25,
+      "dealer_money": -7930377.0,
+      "rank": 57
+    },
+    {
+      "stock_id": "2891",
+      "stock_name": "中信金",
+      "close_price": 64.6,
+      "dealer_money": -7919959.999999999,
+      "rank": 58
+    },
+    {
+      "stock_id": "2393",
+      "stock_name": "億光",
+      "close_price": 66.8,
+      "dealer_money": -7857750.8,
+      "rank": 59
+    },
+    {
+      "stock_id": "2634",
+      "stock_name": "漢翔",
+      "close_price": 69.0,
+      "dealer_money": -7849095.0,
+      "rank": 60
+    },
+    {
+      "stock_id": "00924",
+      "stock_name": "復華S&P500成長",
+      "close_price": 33.03,
+      "dealer_money": -7503557.220000001,
+      "rank": 61
+    },
+    {
+      "stock_id": "00907",
+      "stock_name": "永豐優息存股",
+      "close_price": 17.18,
+      "dealer_money": -7387623.34,
+      "rank": 62
+    },
+    {
+      "stock_id": "8478",
+      "stock_name": "東哥遊艇",
+      "close_price": 144.0,
+      "dealer_money": -7344000.0,
+      "rank": 63
+    },
+    {
+      "stock_id": "00981T",
+      "stock_name": "平衡凱基雙核收息",
+      "close_price": 11.86,
+      "dealer_money": -7300185.8,
+      "rank": 64
+    },
+    {
+      "stock_id": "2890",
+      "stock_name": "永豐金",
+      "close_price": 39.15,
+      "dealer_money": -7226189.55,
+      "rank": 65
+    },
+    {
+      "stock_id": "00401A",
+      "stock_name": "主動摩根台灣鑫收",
+      "close_price": 13.5,
+      "dealer_money": -6993513.0,
+      "rank": 66
+    },
+    {
+      "stock_id": "2618",
+      "stock_name": "長榮航",
+      "close_price": 43.0,
+      "dealer_money": -6876130.0,
+      "rank": 67
+    },
+    {
+      "stock_id": "2880",
+      "stock_name": "華南金",
+      "close_price": 39.6,
+      "dealer_money": -6452899.2,
+      "rank": 68
+    },
+    {
+      "stock_id": "2347",
+      "stock_name": "聯強",
+      "close_price": 87.1,
+      "dealer_money": -6446271.0,
+      "rank": 69
+    },
+    {
+      "stock_id": "3167",
+      "stock_name": "大量",
+      "close_price": 716.0,
+      "dealer_money": -6297220.0,
+      "rank": 70
+    },
+    {
+      "stock_id": "00686R",
+      "stock_name": "群益臺灣加權反1",
+      "close_price": 0.99,
+      "dealer_money": -6151914.45,
+      "rank": 71
+    },
+    {
+      "stock_id": "00910",
+      "stock_name": "第一金太空衛星",
+      "close_price": 58.65,
+      "dealer_money": -5990628.3,
+      "rank": 72
+    },
+    {
+      "stock_id": "1477",
+      "stock_name": "聚陽",
+      "close_price": 197.0,
+      "dealer_money": -5899362.0,
+      "rank": 73
+    },
+    {
+      "stock_id": "00980A",
+      "stock_name": "主動野村臺灣優選",
+      "close_price": 24.52,
+      "dealer_money": -5809106.76,
+      "rank": 74
+    },
+    {
+      "stock_id": "00875",
+      "stock_name": "國泰網路資安",
+      "close_price": 52.5,
+      "dealer_money": -5785920.0,
+      "rank": 75
+    },
+    {
+      "stock_id": "6153",
+      "stock_name": "嘉聯益",
+      "close_price": 17.0,
+      "dealer_money": -5493635.0,
+      "rank": 76
+    },
+    {
+      "stock_id": "7711",
+      "stock_name": "永擎",
+      "close_price": 493.0,
+      "dealer_money": -5401801.0,
+      "rank": 77
+    },
+    {
+      "stock_id": "3036",
+      "stock_name": "文曄",
+      "close_price": 196.5,
+      "dealer_money": -5369755.5,
+      "rank": 78
+    },
+    {
+      "stock_id": "00876",
+      "stock_name": "元大全球5G",
+      "close_price": 86.7,
+      "dealer_money": -5166886.5,
+      "rank": 79
+    },
+    {
+      "stock_id": "00642U",
+      "stock_name": "期元大S&P石油",
+      "close_price": 26.86,
+      "dealer_money": -4951829.02,
+      "rank": 80
+    },
+    {
+      "stock_id": "00991B",
+      "stock_name": "貝萊德A級公司債",
+      "close_price": 14.96,
+      "dealer_money": -4924128.88,
+      "rank": 81
+    },
+    {
+      "stock_id": "00762",
+      "stock_name": "元大全球AI",
+      "close_price": 111.05,
+      "dealer_money": -4892640.899999999,
+      "rank": 82
+    },
+    {
+      "stock_id": "2420",
+      "stock_name": "新巨",
+      "close_price": 53.6,
+      "dealer_money": -4742099.2,
+      "rank": 83
+    },
+    {
+      "stock_id": "00885",
+      "stock_name": "富邦越南",
+      "close_price": 18.41,
+      "dealer_money": -4628053.08,
+      "rank": 84
+    },
+    {
+      "stock_id": "00997A",
+      "stock_name": "主動群益美國增長",
+      "close_price": 11.07,
+      "dealer_money": -4561758.8100000005,
+      "rank": 85
+    },
+    {
+      "stock_id": "00951",
+      "stock_name": "台新日本半導體",
+      "close_price": 17.2,
+      "dealer_money": -4544240.0,
+      "rank": 86
+    },
+    {
+      "stock_id": "5534",
+      "stock_name": "長虹",
+      "close_price": 76.9,
+      "dealer_money": -4240804.300000001,
+      "rank": 87
+    },
+    {
+      "stock_id": "3023",
+      "stock_name": "信邦",
+      "close_price": 314.5,
+      "dealer_money": -4060824.0,
+      "rank": 88
+    },
+    {
+      "stock_id": "2883",
+      "stock_name": "凱基金",
+      "close_price": 32.25,
+      "dealer_money": -3972200.25,
+      "rank": 89
+    },
+    {
+      "stock_id": "1312",
+      "stock_name": "國喬",
+      "close_price": 13.0,
+      "dealer_money": -3870126.0,
+      "rank": 90
+    },
+    {
+      "stock_id": "8271",
+      "stock_name": "宇瞻",
+      "close_price": 231.0,
+      "dealer_money": -3813579.0,
+      "rank": 91
+    },
+    {
+      "stock_id": "4904",
+      "stock_name": "遠傳",
+      "close_price": 101.0,
+      "dealer_money": -3791944.0,
+      "rank": 92
+    },
+    {
+      "stock_id": "00949",
+      "stock_name": "復華日本龍頭",
+      "close_price": 21.87,
+      "dealer_money": -3740754.1500000004,
+      "rank": 93
+    },
+    {
+      "stock_id": "3045",
+      "stock_name": "台灣大",
+      "close_price": 115.5,
+      "dealer_money": -3712632.0,
+      "rank": 94
+    },
+    {
+      "stock_id": "6449",
+      "stock_name": "鈺邦",
+      "close_price": 212.0,
+      "dealer_money": -3657636.0,
+      "rank": 95
+    },
+    {
+      "stock_id": "00963",
+      "stock_name": "中信全球高股息",
+      "close_price": 13.23,
+      "dealer_money": -3498236.91,
+      "rank": 96
+    },
+    {
+      "stock_id": "3022",
+      "stock_name": "威強電",
+      "close_price": 92.5,
+      "dealer_money": -3494465.0,
+      "rank": 97
+    },
+    {
+      "stock_id": "3033",
+      "stock_name": "威健",
+      "close_price": 45.4,
+      "dealer_money": -3379666.8,
+      "rank": 98
+    },
+    {
+      "stock_id": "2612",
+      "stock_name": "中航",
+      "close_price": 61.5,
+      "dealer_money": -3317925.0,
+      "rank": 99
+    },
+    {
+      "stock_id": "00965",
+      "stock_name": "元大航太防衛科技",
+      "close_price": 25.67,
+      "dealer_money": -3312405.4600000004,
+      "rank": 100
     }
   ],
   "total": [
@@ -2808,6 +4838,706 @@
       "stock_name": "中信關鍵半導體",
       "close_price": 34.36,
       "total_money": 122566105.76,
+      "rank": 100
+    },
+    {
+      "stock_id": "2303",
+      "stock_name": "聯電",
+      "close_price": 123.5,
+      "total_money": -2456537018.0,
+      "rank": 1
+    },
+    {
+      "stock_id": "6213",
+      "stock_name": "聯茂",
+      "close_price": 583.0,
+      "total_money": -2062227827.0,
+      "rank": 2
+    },
+    {
+      "stock_id": "2609",
+      "stock_name": "陽明",
+      "close_price": 57.6,
+      "total_money": -1904215564.8,
+      "rank": 3
+    },
+    {
+      "stock_id": "3665",
+      "stock_name": "貿聯-KY",
+      "close_price": 2005.0,
+      "total_money": -1765883700.0,
+      "rank": 4
+    },
+    {
+      "stock_id": "8046",
+      "stock_name": "南電",
+      "close_price": 1180.0,
+      "total_money": -1419895180.0,
+      "rank": 5
+    },
+    {
+      "stock_id": "3653",
+      "stock_name": "健策",
+      "close_price": 5725.0,
+      "total_money": -1376261375.0,
+      "rank": 6
+    },
+    {
+      "stock_id": "2327",
+      "stock_name": "國巨*",
+      "close_price": 537.0,
+      "total_money": -1294492737.0,
+      "rank": 7
+    },
+    {
+      "stock_id": "8996",
+      "stock_name": "高力",
+      "close_price": 1195.0,
+      "total_money": -825970855.0,
+      "rank": 8
+    },
+    {
+      "stock_id": "00632R",
+      "stock_name": "元大台灣50反1",
+      "close_price": 9.99,
+      "total_money": -740178330.75,
+      "rank": 9
+    },
+    {
+      "stock_id": "3481",
+      "stock_name": "群創",
+      "close_price": 46.4,
+      "total_money": -661908017.6,
+      "rank": 10
+    },
+    {
+      "stock_id": "6669",
+      "stock_name": "緯穎",
+      "close_price": 6785.0,
+      "total_money": -621092115.0,
+      "rank": 11
+    },
+    {
+      "stock_id": "2345",
+      "stock_name": "智邦",
+      "close_price": 2055.0,
+      "total_money": -538021605.0,
+      "rank": 12
+    },
+    {
+      "stock_id": "00830",
+      "stock_name": "國泰費城半導體",
+      "close_price": 82.2,
+      "total_money": -491680122.0,
+      "rank": 13
+    },
+    {
+      "stock_id": "00919",
+      "stock_name": "群益台灣精選高息",
+      "close_price": 31.21,
+      "total_money": -484623823.98,
+      "rank": 14
+    },
+    {
+      "stock_id": "2360",
+      "stock_name": "致茂",
+      "close_price": 1980.0,
+      "total_money": -478296720.0,
+      "rank": 15
+    },
+    {
+      "stock_id": "3533",
+      "stock_name": "嘉澤",
+      "close_price": 1625.0,
+      "total_money": -450593000.0,
+      "rank": 16
+    },
+    {
+      "stock_id": "2484",
+      "stock_name": "希華",
+      "close_price": 76.7,
+      "total_money": -446638749.7,
+      "rank": 17
+    },
+    {
+      "stock_id": "3702",
+      "stock_name": "大聯大",
+      "close_price": 108.0,
+      "total_money": -436521960.0,
+      "rank": 18
+    },
+    {
+      "stock_id": "3036",
+      "stock_name": "文曄",
+      "close_price": 196.5,
+      "total_money": -435128814.0,
+      "rank": 19
+    },
+    {
+      "stock_id": "3006",
+      "stock_name": "晶豪科",
+      "close_price": 273.5,
+      "total_money": -434087986.5,
+      "rank": 20
+    },
+    {
+      "stock_id": "3605",
+      "stock_name": "宏致",
+      "close_price": 112.0,
+      "total_money": -410392864.0,
+      "rank": 21
+    },
+    {
+      "stock_id": "2489",
+      "stock_name": "瑞軒",
+      "close_price": 41.5,
+      "total_money": -408396769.0,
+      "rank": 22
+    },
+    {
+      "stock_id": "1101",
+      "stock_name": "台泥",
+      "close_price": 24.3,
+      "total_money": -358667975.7,
+      "rank": 23
+    },
+    {
+      "stock_id": "00662",
+      "stock_name": "富邦NASDAQ",
+      "close_price": 119.4,
+      "total_money": -344109247.8,
+      "rank": 24
+    },
+    {
+      "stock_id": "2317",
+      "stock_name": "鴻海",
+      "close_price": 246.5,
+      "total_money": -334696221.0,
+      "rank": 25
+    },
+    {
+      "stock_id": "2881",
+      "stock_name": "富邦金",
+      "close_price": 138.5,
+      "total_money": -334241357.5,
+      "rank": 26
+    },
+    {
+      "stock_id": "2634",
+      "stock_name": "漢翔",
+      "close_price": 69.0,
+      "total_money": -331043301.0,
+      "rank": 27
+    },
+    {
+      "stock_id": "8112",
+      "stock_name": "至上",
+      "close_price": 93.1,
+      "total_money": -296562602.0,
+      "rank": 28
+    },
+    {
+      "stock_id": "6442",
+      "stock_name": "光聖",
+      "close_price": 1610.0,
+      "total_money": -290972080.0,
+      "rank": 29
+    },
+    {
+      "stock_id": "2884",
+      "stock_name": "玉山金",
+      "close_price": 38.7,
+      "total_money": -282600751.5,
+      "rank": 30
+    },
+    {
+      "stock_id": "6505",
+      "stock_name": "台塑化",
+      "close_price": 70.4,
+      "total_money": -262049920.00000003,
+      "rank": 31
+    },
+    {
+      "stock_id": "2486",
+      "stock_name": "一詮",
+      "close_price": 262.5,
+      "total_money": -261210862.5,
+      "rank": 32
+    },
+    {
+      "stock_id": "2412",
+      "stock_name": "中華電",
+      "close_price": 136.0,
+      "total_money": -254401600.0,
+      "rank": 33
+    },
+    {
+      "stock_id": "4958",
+      "stock_name": "臻鼎-KY",
+      "close_price": 453.0,
+      "total_money": -220169778.0,
+      "rank": 34
+    },
+    {
+      "stock_id": "6781",
+      "stock_name": "AES-KY",
+      "close_price": 1040.0,
+      "total_money": -214916000.0,
+      "rank": 35
+    },
+    {
+      "stock_id": "2492",
+      "stock_name": "華新科",
+      "close_price": 269.5,
+      "total_money": -199972234.0,
+      "rank": 36
+    },
+    {
+      "stock_id": "6472",
+      "stock_name": "保瑞",
+      "close_price": 457.0,
+      "total_money": -199108502.0,
+      "rank": 37
+    },
+    {
+      "stock_id": "2451",
+      "stock_name": "創見",
+      "close_price": 301.0,
+      "total_money": -197770244.0,
+      "rank": 38
+    },
+    {
+      "stock_id": "3017",
+      "stock_name": "奇鋐",
+      "close_price": 3155.0,
+      "total_money": -194802320.0,
+      "rank": 39
+    },
+    {
+      "stock_id": "2426",
+      "stock_name": "鼎元",
+      "close_price": 99.8,
+      "total_money": -190241953.6,
+      "rank": 40
+    },
+    {
+      "stock_id": "2464",
+      "stock_name": "盟立",
+      "close_price": 192.0,
+      "total_money": -189525312.0,
+      "rank": 41
+    },
+    {
+      "stock_id": "00646",
+      "stock_name": "元大S&P500",
+      "close_price": 76.95,
+      "total_money": -183947897.70000002,
+      "rank": 42
+    },
+    {
+      "stock_id": "2834",
+      "stock_name": "臺企銀",
+      "close_price": 16.45,
+      "total_money": -182463844.15,
+      "rank": 43
+    },
+    {
+      "stock_id": "7769",
+      "stock_name": "鴻勁",
+      "close_price": 6335.0,
+      "total_money": -172945500.0,
+      "rank": 44
+    },
+    {
+      "stock_id": "3532",
+      "stock_name": "台勝科",
+      "close_price": 382.0,
+      "total_money": -170679128.0,
+      "rank": 45
+    },
+    {
+      "stock_id": "4904",
+      "stock_name": "遠傳",
+      "close_price": 101.0,
+      "total_money": -166372856.0,
+      "rank": 46
+    },
+    {
+      "stock_id": "2376",
+      "stock_name": "技嘉",
+      "close_price": 351.5,
+      "total_money": -165050691.5,
+      "rank": 47
+    },
+    {
+      "stock_id": "00406A",
+      "stock_name": "主動中信台灣收益",
+      "close_price": 9.66,
+      "total_money": -161674126.32,
+      "rank": 48
+    },
+    {
+      "stock_id": "6831",
+      "stock_name": "邁科",
+      "close_price": 576.0,
+      "total_money": -161663616.0,
+      "rank": 49
+    },
+    {
+      "stock_id": "6715",
+      "stock_name": "嘉基",
+      "close_price": 363.0,
+      "total_money": -157670139.0,
+      "rank": 50
+    },
+    {
+      "stock_id": "1402",
+      "stock_name": "遠東新",
+      "close_price": 28.55,
+      "total_money": -149379709.70000002,
+      "rank": 51
+    },
+    {
+      "stock_id": "8033",
+      "stock_name": "雷虎",
+      "close_price": 192.5,
+      "total_money": -148892782.5,
+      "rank": 52
+    },
+    {
+      "stock_id": "6830",
+      "stock_name": "汎銓",
+      "close_price": 526.0,
+      "total_money": -146898650.0,
+      "rank": 53
+    },
+    {
+      "stock_id": "2428",
+      "stock_name": "興勤",
+      "close_price": 252.0,
+      "total_money": -140235984.0,
+      "rank": 54
+    },
+    {
+      "stock_id": "00712",
+      "stock_name": "復華富時不動產",
+      "close_price": 8.84,
+      "total_money": -140047965.2,
+      "rank": 55
+    },
+    {
+      "stock_id": "3135",
+      "stock_name": "凌航",
+      "close_price": 185.5,
+      "total_money": -135985227.0,
+      "rank": 56
+    },
+    {
+      "stock_id": "1590",
+      "stock_name": "亞德客-KY",
+      "close_price": 1470.0,
+      "total_money": -135725100.0,
+      "rank": 57
+    },
+    {
+      "stock_id": "2890",
+      "stock_name": "永豐金",
+      "close_price": 39.15,
+      "total_money": -122463040.05,
+      "rank": 58
+    },
+    {
+      "stock_id": "2359",
+      "stock_name": "所羅門",
+      "close_price": 146.5,
+      "total_money": -122178216.5,
+      "rank": 59
+    },
+    {
+      "stock_id": "3033",
+      "stock_name": "威健",
+      "close_price": 45.4,
+      "total_money": -118693669.2,
+      "rank": 60
+    },
+    {
+      "stock_id": "6449",
+      "stock_name": "鈺邦",
+      "close_price": 212.0,
+      "total_money": -118088452.0,
+      "rank": 61
+    },
+    {
+      "stock_id": "6271",
+      "stock_name": "同欣電",
+      "close_price": 208.0,
+      "total_money": -117003744.0,
+      "rank": 62
+    },
+    {
+      "stock_id": "00708L",
+      "stock_name": "期元大S&P黃金正2",
+      "close_price": 90.85,
+      "total_money": -114489351.69999999,
+      "rank": 63
+    },
+    {
+      "stock_id": "00953B",
+      "stock_name": "群益優選非投等債",
+      "close_price": 9.7,
+      "total_money": -111256419.8,
+      "rank": 64
+    },
+    {
+      "stock_id": "6257",
+      "stock_name": "矽格",
+      "close_price": 204.0,
+      "total_money": -109769748.0,
+      "rank": 65
+    },
+    {
+      "stock_id": "3714",
+      "stock_name": "富采",
+      "close_price": 62.7,
+      "total_money": -108584048.10000001,
+      "rank": 66
+    },
+    {
+      "stock_id": "3596",
+      "stock_name": "智易",
+      "close_price": 159.5,
+      "total_money": -103888570.5,
+      "rank": 67
+    },
+    {
+      "stock_id": "6672",
+      "stock_name": "騰輝電子-KY",
+      "close_price": 276.5,
+      "total_money": -100323048.0,
+      "rank": 68
+    },
+    {
+      "stock_id": "00984D",
+      "stock_name": "主動聯博全球非投",
+      "close_price": 10.07,
+      "total_money": -99592300.0,
+      "rank": 69
+    },
+    {
+      "stock_id": "6919",
+      "stock_name": "康霈*",
+      "close_price": 106.0,
+      "total_money": -97326232.0,
+      "rank": 70
+    },
+    {
+      "stock_id": "2493",
+      "stock_name": "揚博",
+      "close_price": 181.5,
+      "total_money": -96245457.0,
+      "rank": 71
+    },
+    {
+      "stock_id": "2885",
+      "stock_name": "元大金",
+      "close_price": 62.8,
+      "total_money": -96114772.0,
+      "rank": 72
+    },
+    {
+      "stock_id": "009826",
+      "stock_name": "貝萊德世界股票",
+      "close_price": 10.16,
+      "total_money": -94670331.36,
+      "rank": 73
+    },
+    {
+      "stock_id": "8039",
+      "stock_name": "台虹",
+      "close_price": 320.5,
+      "total_money": -90083576.0,
+      "rank": 74
+    },
+    {
+      "stock_id": "3661",
+      "stock_name": "世芯-KY",
+      "close_price": 3960.0,
+      "total_money": -89733600.0,
+      "rank": 75
+    },
+    {
+      "stock_id": "7711",
+      "stock_name": "永擎",
+      "close_price": 493.0,
+      "total_money": -88629568.0,
+      "rank": 76
+    },
+    {
+      "stock_id": "9910",
+      "stock_name": "豐泰",
+      "close_price": 67.9,
+      "total_money": -87699300.5,
+      "rank": 77
+    },
+    {
+      "stock_id": "1477",
+      "stock_name": "聚陽",
+      "close_price": 197.0,
+      "total_money": -85528929.0,
+      "rank": 78
+    },
+    {
+      "stock_id": "00670L",
+      "stock_name": "富邦NASDAQ正2",
+      "close_price": 196.25,
+      "total_money": -85403878.75,
+      "rank": 79
+    },
+    {
+      "stock_id": "1709",
+      "stock_name": "和益",
+      "close_price": 37.1,
+      "total_money": -83857352.60000001,
+      "rank": 80
+    },
+    {
+      "stock_id": "2606",
+      "stock_name": "裕民",
+      "close_price": 72.0,
+      "total_money": -79373016.0,
+      "rank": 81
+    },
+    {
+      "stock_id": "1717",
+      "stock_name": "長興",
+      "close_price": 71.9,
+      "total_money": -78469574.9,
+      "rank": 82
+    },
+    {
+      "stock_id": "9904",
+      "stock_name": "寶成",
+      "close_price": 25.05,
+      "total_money": -75044013.45,
+      "rank": 83
+    },
+    {
+      "stock_id": "2404",
+      "stock_name": "漢唐",
+      "close_price": 1080.0,
+      "total_money": -74375280.0,
+      "rank": 84
+    },
+    {
+      "stock_id": "6414",
+      "stock_name": "樺漢",
+      "close_price": 398.0,
+      "total_money": -68218792.0,
+      "rank": 85
+    },
+    {
+      "stock_id": "1476",
+      "stock_name": "儒鴻",
+      "close_price": 316.0,
+      "total_money": -65842708.0,
+      "rank": 86
+    },
+    {
+      "stock_id": "2301",
+      "stock_name": "光寶科",
+      "close_price": 307.0,
+      "total_money": -65831545.0,
+      "rank": 87
+    },
+    {
+      "stock_id": "00715L",
+      "stock_name": "期街口布蘭特正2",
+      "close_price": 46.36,
+      "total_money": -64898575.88,
+      "rank": 88
+    },
+    {
+      "stock_id": "009805",
+      "stock_name": "台新美國電力基建",
+      "close_price": 15.18,
+      "total_money": -63961096.98,
+      "rank": 89
+    },
+    {
+      "stock_id": "6706",
+      "stock_name": "惠特",
+      "close_price": 123.0,
+      "total_money": -60804681.0,
+      "rank": 90
+    },
+    {
+      "stock_id": "2880",
+      "stock_name": "華南金",
+      "close_price": 39.6,
+      "total_money": -59708840.4,
+      "rank": 91
+    },
+    {
+      "stock_id": "5388",
+      "stock_name": "中磊",
+      "close_price": 77.4,
+      "total_money": -58914712.800000004,
+      "rank": 92
+    },
+    {
+      "stock_id": "6176",
+      "stock_name": "瑞儀",
+      "close_price": 98.2,
+      "total_money": -58820621.6,
+      "rank": 93
+    },
+    {
+      "stock_id": "2409",
+      "stock_name": "友達",
+      "close_price": 25.5,
+      "total_money": -57780807.0,
+      "rank": 94
+    },
+    {
+      "stock_id": "4967",
+      "stock_name": "十銓",
+      "close_price": 272.5,
+      "total_money": -56702890.0,
+      "rank": 95
+    },
+    {
+      "stock_id": "8271",
+      "stock_name": "宇瞻",
+      "close_price": 231.0,
+      "total_money": -55565895.0,
+      "rank": 96
+    },
+    {
+      "stock_id": "2352",
+      "stock_name": "佳世達",
+      "close_price": 28.1,
+      "total_money": -54137150.900000006,
+      "rank": 97
+    },
+    {
+      "stock_id": "9914",
+      "stock_name": "美利達",
+      "close_price": 84.9,
+      "total_money": -53081942.1,
+      "rank": 98
+    },
+    {
+      "stock_id": "00960",
+      "stock_name": "野村全球航運龍頭",
+      "close_price": 21.19,
+      "total_money": -53014985.53,
+      "rank": 99
+    },
+    {
+      "stock_id": "2332",
+      "stock_name": "友訊",
+      "close_price": 20.0,
+      "total_money": -52747080.0,
       "rank": 100
     }
   ]
