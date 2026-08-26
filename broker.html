@@ -1062,11 +1062,11 @@ function buildBrokerSelect() {
 
 
             option.value =
-                broker.broker_id;
+                broker.broker_code;
 
 
             option.textContent =
-                `${broker.broker_name}（${broker.broker_id}）`;
+                `${broker.broker_name}（${broker.broker_code}）`;
 
 
             select.appendChild(
@@ -1100,7 +1100,7 @@ function selectBrokerById(
     const master =
         brokerMaster.brokers.find(
             broker =>
-                broker.broker_id ===
+                broker.broker_code ===
                 brokerId
         );
 
@@ -1135,7 +1135,7 @@ function selectBrokerById(
         <div class="broker-detail">
 
             分點代號：
-            ${master.broker_id}
+            ${master.broker_code}
 
             <br>
 
@@ -1171,7 +1171,7 @@ function selectBrokerById(
         currentBroker =
             demoBrokers.find(
                 broker =>
-                    broker.broker_id ===
+                    broker.broker_code ===
                     brokerId
             );
 
@@ -1558,7 +1558,7 @@ function searchBroker() {
 
                 ||
 
-                item.broker_id
+                item.broker_code
                     .toLowerCase()
                     .includes(
                         keyword
@@ -1583,11 +1583,11 @@ function searchBroker() {
             "brokerSelect"
         )
         .value =
-        broker.broker_id;
+        broker.broker_code;
 
 
     selectBrokerById(
-        broker.broker_id
+        broker.broker_code
     );
 
 }
