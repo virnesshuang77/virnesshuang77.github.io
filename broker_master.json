@@ -1,0 +1,5706 @@
+{
+  "data_date": "2026-08-26",
+  "source": "TWSE OpenAPI",
+  "description": "證券商分公司基本資料",
+  "total": 814,
+  "brokers": [
+    {
+      "broker_code": "1021",
+      "broker_name": "合庫- 台中",
+      "open_date": "1001202",
+      "address": "台中市西區民權路91號6樓",
+      "phone": "04-22255141"
+    },
+    {
+      "broker_code": "1022",
+      "broker_name": "合庫-台南",
+      "open_date": "1001202",
+      "address": "台南市北區成功路48號3樓",
+      "phone": "06-2260148"
+    },
+    {
+      "broker_code": "1023",
+      "broker_name": "合庫-高雄",
+      "open_date": "1001202",
+      "address": "高雄市大勇路97號5樓",
+      "phone": "07-5319755"
+    },
+    {
+      "broker_code": "1024",
+      "broker_name": "合庫-嘉義",
+      "open_date": "1001202",
+      "address": "嘉義市國華街279號2樓",
+      "phone": "05-2220016"
+    },
+    {
+      "broker_code": "1025",
+      "broker_name": "合庫-基隆",
+      "open_date": "1001202",
+      "address": "基隆市仁二路255號3樓",
+      "phone": "02-24288468"
+    },
+    {
+      "broker_code": "1028",
+      "broker_name": "合庫 - 彰化",
+      "open_date": "1010516",
+      "address": "彰化縣彰化市民生路279號5樓",
+      "phone": "04-7295528"
+    },
+    {
+      "broker_code": "1029",
+      "broker_name": "合庫 - 鳳山",
+      "open_date": "1010518",
+      "address": "高雄市鳳山區鳳松路3號",
+      "phone": "07-7905555"
+    },
+    {
+      "broker_code": "102A",
+      "broker_name": "合庫-新竹",
+      "open_date": "1001202",
+      "address": "新竹市東區東門街60號5樓",
+      "phone": "03-5262711"
+    },
+    {
+      "broker_code": "102C",
+      "broker_name": "合庫-自強",
+      "open_date": "1001202",
+      "address": "台北市中山區南京東路2段85、87號3樓",
+      "phone": "02-25218815"
+    },
+    {
+      "broker_code": "102E",
+      "broker_name": "合庫-桃園",
+      "open_date": "1001202",
+      "address": "桃園市桃園區中華路12號3樓",
+      "phone": "03-347-3456"
+    },
+    {
+      "broker_code": "102F",
+      "broker_name": "合庫-西台中",
+      "open_date": "1050204",
+      "address": "台中市西屯區漢口路二段151號3樓",
+      "phone": "04-2316-6368"
+    },
+    {
+      "broker_code": "102G",
+      "broker_name": "合庫-三重",
+      "open_date": "1050307",
+      "address": "新北市三重區正義南路17號1樓",
+      "phone": "02-2977-9588"
+    },
+    {
+      "broker_code": "102Q",
+      "broker_name": "合庫-國際證券",
+      "open_date": "1061101",
+      "address": "台北市松山區長安東路二段225號5樓、6樓",
+      "phone": "02-27319987"
+    },
+    {
+      "broker_code": "102T",
+      "broker_name": "合庫-自營",
+      "open_date": "1001202",
+      "address": "",
+      "phone": "02-27312798"
+    },
+    {
+      "broker_code": "1031",
+      "broker_name": "土銀-台中",
+      "open_date": "530420",
+      "address": "台中市自由路2段1號4樓",
+      "phone": "04-22266845"
+    },
+    {
+      "broker_code": "1032",
+      "broker_name": "土銀-台南",
+      "open_date": "640819",
+      "address": "台南市中正路26號4樓",
+      "phone": "06-2200558"
+    },
+    {
+      "broker_code": "1033",
+      "broker_name": "土銀-高雄",
+      "open_date": "530420",
+      "address": "高雄市大勇路131號",
+      "phone": "07-5319591"
+    },
+    {
+      "broker_code": "1034",
+      "broker_name": "土銀-嘉義",
+      "open_date": "640409",
+      "address": "嘉義市中山路309號3樓",
+      "phone": "05-2224930"
+    },
+    {
+      "broker_code": "1035",
+      "broker_name": "土銀-新竹",
+      "open_date": "630612",
+      "address": "新竹市中央路1號4、5樓",
+      "phone": "03-5213211"
+    },
+    {
+      "broker_code": "1036",
+      "broker_name": "土銀-玉里",
+      "open_date": "890418",
+      "address": "花蓮縣玉里鎮中山路二段五十五號一、 二樓",
+      "phone": "03-8884900"
+    },
+    {
+      "broker_code": "1037",
+      "broker_name": "土銀-花蓮",
+      "open_date": "670216",
+      "address": "花蓮縣花蓮市中山路356號2樓",
+      "phone": "038-361171"
+    },
+    {
+      "broker_code": "1038",
+      "broker_name": "土銀-和平",
+      "open_date": "890622",
+      "address": "台北市和平東路3段15號3樓部分",
+      "phone": "02-27001555"
+    },
+    {
+      "broker_code": "1039",
+      "broker_name": "土銀-士林",
+      "open_date": "890627",
+      "address": "台北市中山北路五段六八九號三樓",
+      "phone": "02-28323842"
+    },
+    {
+      "broker_code": "103A",
+      "broker_name": "土銀-建國",
+      "open_date": "890612",
+      "address": "高雄市建國一路458號3樓",
+      "phone": "07-2224911"
+    },
+    {
+      "broker_code": "103B",
+      "broker_name": "土銀-彰化",
+      "open_date": "910730",
+      "address": "彰化市光復路九十八號六樓",
+      "phone": "04-7201777"
+    },
+    {
+      "broker_code": "103C",
+      "broker_name": "土銀-白河",
+      "open_date": "910716",
+      "address": "台南市白河區三民路三九五號三樓",
+      "phone": "06-6852888"
+    },
+    {
+      "broker_code": "103F",
+      "broker_name": "土銀-南港",
+      "open_date": "990927",
+      "address": "台北市南港區南港路1段364號5樓",
+      "phone": "02-26539955"
+    },
+    {
+      "broker_code": "1042",
+      "broker_name": "臺銀-臺南",
+      "open_date": "970102",
+      "address": "臺南市中正路240 號4樓",
+      "phone": "06-2202507"
+    },
+    {
+      "broker_code": "1043",
+      "broker_name": "臺銀-民權",
+      "open_date": "970102",
+      "address": "臺北市承德路2段239號3樓",
+      "phone": "02-25529458"
+    },
+    {
+      "broker_code": "1045",
+      "broker_name": "臺銀-新竹",
+      "open_date": "1010305",
+      "address": "新竹市林森路29號5樓",
+      "phone": "03-5266799"
+    },
+    {
+      "broker_code": "104A",
+      "broker_name": "臺銀-臺中",
+      "open_date": "970102",
+      "address": "台中市民權路95號3樓",
+      "phone": "04-22238370"
+    },
+    {
+      "broker_code": "104C",
+      "broker_name": "臺銀-高雄",
+      "open_date": "970102",
+      "address": "高雄市苓雅區成功一路261號3樓",
+      "phone": "07-2711434"
+    },
+    {
+      "broker_code": "104D",
+      "broker_name": "臺銀-金山",
+      "open_date": "970102",
+      "address": "台北市金山南路2段189號3樓",
+      "phone": "02-23418678"
+    },
+    {
+      "broker_code": "104T",
+      "broker_name": "臺銀-自營",
+      "open_date": "970102",
+      "address": "",
+      "phone": "02-23882188"
+    },
+    {
+      "broker_code": "1111",
+      "broker_name": "台灣企銀-台中",
+      "open_date": "650701",
+      "address": "台中市臺灣大道1段400號三樓",
+      "phone": "04-2270160"
+    },
+    {
+      "broker_code": "1112",
+      "broker_name": "台灣企銀-台南",
+      "open_date": "831101",
+      "address": "台南市中正路一八五號四樓",
+      "phone": "06-2238967"
+    },
+    {
+      "broker_code": "1113",
+      "broker_name": "台灣企銀-九如",
+      "open_date": "661001",
+      "address": "高雄市三民區九如二路255號3樓",
+      "phone": "07-3137171"
+    },
+    {
+      "broker_code": "1114",
+      "broker_name": "台灣企銀-嘉義",
+      "open_date": "650701",
+      "address": "嘉義市光華路132號",
+      "phone": "05-2278043"
+    },
+    {
+      "broker_code": "1115",
+      "broker_name": "台灣企銀-太平",
+      "open_date": "850703",
+      "address": "台中市太平區中興里二鄰中興東路二十七號",
+      "phone": "04-22757802"
+    },
+    {
+      "broker_code": "1116",
+      "broker_name": "台灣企銀-屏東",
+      "open_date": "650701",
+      "address": "屏東市漢口街七號",
+      "phone": "08-7327171"
+    },
+    {
+      "broker_code": "1117",
+      "broker_name": "台灣企銀-竹北",
+      "open_date": "850803",
+      "address": "新竹縣竹北市斗崙里縣政九路一二八號三樓",
+      "phone": "03-5527171"
+    },
+    {
+      "broker_code": "1118",
+      "broker_name": "台灣企銀-豐原",
+      "open_date": "850731",
+      "address": "台中市豐原區源豐路1號4樓",
+      "phone": "04-25253485"
+    },
+    {
+      "broker_code": "1119",
+      "broker_name": "台灣企銀-岡山",
+      "open_date": "850716",
+      "address": "高雄市岡山區岡山路412號4樓",
+      "phone": "07-6227171"
+    },
+    {
+      "broker_code": "111A",
+      "broker_name": "台灣企銀-民雄",
+      "open_date": "860807",
+      "address": "嘉義縣民雄鄉建國路三段八十三號三樓",
+      "phone": "05-2207171"
+    },
+    {
+      "broker_code": "111B",
+      "broker_name": "台灣企銀-建成",
+      "open_date": "871026",
+      "address": "台北市南京西路七十六號二樓",
+      "phone": "02-25506998"
+    },
+    {
+      "broker_code": "111E",
+      "broker_name": "臺灣企銀-桃園",
+      "open_date": "910822",
+      "address": "桃園市中華路99號3樓",
+      "phone": "03-3311007"
+    },
+    {
+      "broker_code": "111F",
+      "broker_name": "台灣企銀-北高雄",
+      "open_date": "910808",
+      "address": "高雄市復興一路九十號三樓",
+      "phone": "07-2360116"
+    },
+    {
+      "broker_code": "111G",
+      "broker_name": "臺灣企銀-埔墘",
+      "open_date": "970704",
+      "address": "新北市板橋區文化路1段51號2樓",
+      "phone": "02-89515671"
+    },
+    {
+      "broker_code": "1232",
+      "broker_name": "彰銀-七賢",
+      "open_date": "820717",
+      "address": "高雄市忠孝一路456號3樓",
+      "phone": "07-2355658"
+    },
+    {
+      "broker_code": "1233",
+      "broker_name": "彰銀-台中",
+      "open_date": "870423",
+      "address": "台中市南區復興路二段七十八號三樓",
+      "phone": "04-22660011"
+    },
+    {
+      "broker_code": "1261",
+      "broker_name": "宏遠-民生",
+      "open_date": "810408",
+      "address": "台北市松山區南京東路五段1號4樓",
+      "phone": "02-27657933"
+    },
+    {
+      "broker_code": "1262",
+      "broker_name": "宏遠-桃園",
+      "open_date": "841216",
+      "address": "桃園市桃園區大興西路二段35號1樓及地下室一層",
+      "phone": "03-3463456"
+    },
+    {
+      "broker_code": "126D",
+      "broker_name": "宏遠-台南",
+      "open_date": "860813",
+      "address": "台南市中西區忠義路2段69號3樓",
+      "phone": "06-2236677"
+    },
+    {
+      "broker_code": "126H",
+      "broker_name": "宏遠-中和",
+      "open_date": "870801",
+      "address": "新北市中和區民樂路23號1樓及地下1樓",
+      "phone": "02-32346738"
+    },
+    {
+      "broker_code": "126L",
+      "broker_name": "宏遠-台中",
+      "open_date": "871020",
+      "address": "台中市文心路1段521號7樓之6",
+      "phone": "04-2255-6687"
+    },
+    {
+      "broker_code": "126Q",
+      "broker_name": "宏遠-高雄",
+      "open_date": "990201",
+      "address": "高雄市中正二路175號4樓",
+      "phone": "07-2299788"
+    },
+    {
+      "broker_code": "126T",
+      "broker_name": "宏遠-自營",
+      "open_date": "790427",
+      "address": "北市開封街一段2號2F(部分)",
+      "phone": "02-3121122"
+    },
+    {
+      "broker_code": "126U",
+      "broker_name": "宏遠-館前",
+      "open_date": "890502",
+      "address": "臺北市中正區博愛路76號5樓",
+      "phone": "02-23121122"
+    },
+    {
+      "broker_code": "126X",
+      "broker_name": "宏遠-新化",
+      "open_date": "950724",
+      "address": "臺南市新化區中山路243號之1二樓及三樓",
+      "phone": "06-5801000"
+    },
+    {
+      "broker_code": "126i",
+      "broker_name": "宏遠-光隆",
+      "open_date": "1100217",
+      "address": "花蓮縣花蓮市公園路26號4-6樓",
+      "phone": "03-8352181"
+    },
+    {
+      "broker_code": "136T",
+      "broker_name": "香港商麥格里--自營",
+      "open_date": "1060525",
+      "address": "",
+      "phone": "02-27347500"
+    },
+    {
+      "broker_code": "147T",
+      "broker_name": "台灣摩根士丹利-自營",
+      "open_date": "951002",
+      "address": "",
+      "phone": "(02)27302888"
+    },
+    {
+      "broker_code": "165T",
+      "broker_name": "新加坡商瑞銀-自營",
+      "open_date": "950403",
+      "address": "",
+      "phone": "8722-7200"
+    },
+    {
+      "broker_code": "2181",
+      "broker_name": "亞東-板橋",
+      "open_date": "830523",
+      "address": "台北縣板橋市南雅南路二段一七０號一樓",
+      "phone": "02-89665558"
+    },
+    {
+      "broker_code": "2184",
+      "broker_name": "亞東-新竹",
+      "open_date": "870317",
+      "address": "新竹市東區中央路241號2樓",
+      "phone": "03-5641818"
+    },
+    {
+      "broker_code": "2185",
+      "broker_name": "亞東-台南",
+      "open_date": "871125",
+      "address": "免設營業廳",
+      "phone": "06-2358999"
+    },
+    {
+      "broker_code": "2186",
+      "broker_name": "亞東-高雄",
+      "open_date": "890609",
+      "address": "高雄市前鎮區三多三路217號9樓",
+      "phone": "07-5369888"
+    },
+    {
+      "broker_code": "2187",
+      "broker_name": "亞東-台中",
+      "open_date": "890330",
+      "address": "台中市自由路2段131號2~3樓",
+      "phone": "04-22218600"
+    },
+    {
+      "broker_code": "218A",
+      "broker_name": "亞東-國際證券",
+      "open_date": "1040602",
+      "address": "新北市板橋區新站路16號14樓(部分)",
+      "phone": "77531899"
+    },
+    {
+      "broker_code": "218T",
+      "broker_name": "亞東-自營",
+      "open_date": "680621",
+      "address": "台北市重慶南路一段八十六號四樓",
+      "phone": "02-3618600"
+    },
+    {
+      "broker_code": "220T",
+      "broker_name": "元大期貨-自營",
+      "open_date": "990702",
+      "address": "",
+      "phone": "02-27008989"
+    },
+    {
+      "broker_code": "221T",
+      "broker_name": "群益期貨-自營",
+      "open_date": "1040901",
+      "address": "",
+      "phone": "02-27002888"
+    },
+    {
+      "broker_code": "230T",
+      "broker_name": "國票期貨-自營",
+      "open_date": "1150206",
+      "address": "",
+      "phone": "02-27683998"
+    },
+    {
+      "broker_code": "5058",
+      "broker_name": "大展-台南",
+      "open_date": "1080716",
+      "address": "台南市西門路三段159號3樓(部份)",
+      "phone": "06-2208866"
+    },
+    {
+      "broker_code": "505T",
+      "broker_name": "大展-自營",
+      "open_date": "811202",
+      "address": "台北市館前路24-32號5樓",
+      "phone": "02-5551234"
+    },
+    {
+      "broker_code": "511T",
+      "broker_name": "富隆-自營",
+      "open_date": "770829",
+      "address": "台北市長安東路一段十八號三樓",
+      "phone": "02-25631168"
+    },
+    {
+      "broker_code": "5261",
+      "broker_name": "美好-蘆洲",
+      "open_date": "820927",
+      "address": "新北市蘆洲區中山一路161號地下一樓",
+      "phone": "02-22897766"
+    },
+    {
+      "broker_code": "5262",
+      "broker_name": "美好-楊梅",
+      "open_date": "841108",
+      "address": "桃園市楊梅區新成路208號1樓",
+      "phone": "03-4759977"
+    },
+    {
+      "broker_code": "5263",
+      "broker_name": "美好-泰山",
+      "open_date": "860212",
+      "address": "新北市泰山區明志路1段205號5樓之1,之2",
+      "phone": "02-22966688"
+    },
+    {
+      "broker_code": "5264",
+      "broker_name": "美好-高雄",
+      "open_date": "860417",
+      "address": "高雄市中華四路159號4樓之1",
+      "phone": "07-3312288"
+    },
+    {
+      "broker_code": "5265",
+      "broker_name": "美好-苗栗",
+      "open_date": "831003",
+      "address": "苗栗縣苗栗市建民街60號4樓",
+      "phone": "037-262888"
+    },
+    {
+      "broker_code": "5266",
+      "broker_name": "美好-中壢",
+      "open_date": "831003",
+      "address": "桃園市平鎮區環南路18號地下1層之1之3之4",
+      "phone": "03-4912588"
+    },
+    {
+      "broker_code": "5267",
+      "broker_name": "美好-基隆",
+      "open_date": "860523",
+      "address": "基隆市義一路18號5樓",
+      "phone": "02-24281122"
+    },
+    {
+      "broker_code": "5268",
+      "broker_name": "美好-台南",
+      "open_date": "861007",
+      "address": "臺南市成功路518號3樓之1、之2",
+      "phone": "06-2232233"
+    },
+    {
+      "broker_code": "526A",
+      "broker_name": "美好-中和",
+      "open_date": "880115",
+      "address": "新北市中和區景新街338號3樓",
+      "phone": "02-89411188"
+    },
+    {
+      "broker_code": "526K",
+      "broker_name": "美好-富順",
+      "open_date": "1001226",
+      "address": "新北市三重區自強路一段73號3樓",
+      "phone": "02-29818889"
+    },
+    {
+      "broker_code": "526M",
+      "broker_name": "美好-市政",
+      "open_date": "1120928",
+      "address": "臺中市西屯區市政北七路98號32樓之1、2",
+      "phone": "04-23745008"
+    },
+    {
+      "broker_code": "526T",
+      "broker_name": "美好-自營",
+      "open_date": "841116",
+      "address": "台北市民生東路二段176號12樓",
+      "phone": "02-5084888"
+    },
+    {
+      "broker_code": "5321",
+      "broker_name": "高橋-龍潭",
+      "open_date": "850425",
+      "address": "桃園市龍潭區龍華路130,132號1樓,桃園市龍潭區龍青路17巷14號1樓",
+      "phone": "03-4807889"
+    },
+    {
+      "broker_code": "5322",
+      "broker_name": "高橋-中壢",
+      "open_date": "861121",
+      "address": "桃園市中壢區中山路二二八巷十八號一至五樓，二十號一至四樓",
+      "phone": "03-4270889"
+    },
+    {
+      "broker_code": "5323",
+      "broker_name": "高橋-內壢",
+      "open_date": "870307",
+      "address": "桃園市中壢區忠孝路159,161號1,2樓163號2樓(營業廳于159,161號1F",
+      "phone": "03-4351010"
+    },
+    {
+      "broker_code": "5381",
+      "broker_name": "第一金-員林",
+      "open_date": "861208",
+      "address": "彰化縣員林市大同路1段338號7樓",
+      "phone": "04-8339000"
+    },
+    {
+      "broker_code": "5382",
+      "broker_name": "第一金-台中",
+      "open_date": "861220",
+      "address": "台中市向上路1段110號1樓",
+      "phone": "04-23103648"
+    },
+    {
+      "broker_code": "5383",
+      "broker_name": "第一金-高雄",
+      "open_date": "870303",
+      "address": "高雄市苓雅區中正一路120號2樓",
+      "phone": "07-7262378"
+    },
+    {
+      "broker_code": "5384",
+      "broker_name": "第一金-台南",
+      "open_date": "871209",
+      "address": "台南市大同路1段98號2樓(部份)",
+      "phone": "06-2148111"
+    },
+    {
+      "broker_code": "5385",
+      "broker_name": "第一金-桃園",
+      "open_date": "880316",
+      "address": "桃園市桃園區民族路55號3樓",
+      "phone": "03-3382881"
+    },
+    {
+      "broker_code": "5386",
+      "broker_name": "第一金-彰化",
+      "open_date": "910808",
+      "address": "彰化縣彰化市和平路48號3樓部份",
+      "phone": "04-7203198"
+    },
+    {
+      "broker_code": "5387",
+      "broker_name": "第一金-澎湖",
+      "open_date": "911227",
+      "address": "澎湖縣馬公市光復路88號3樓",
+      "phone": "06-9278666"
+    },
+    {
+      "broker_code": "5389",
+      "broker_name": "第一金-中山",
+      "open_date": "920722",
+      "address": "台北市中山區中山北路2段61號4樓部份",
+      "phone": "02-25671189"
+    },
+    {
+      "broker_code": "538A",
+      "broker_name": "第一金-新興",
+      "open_date": "921201",
+      "address": "高雄市中正四路17號3樓",
+      "phone": "07-2516101"
+    },
+    {
+      "broker_code": "538B",
+      "broker_name": "第一金-新竹",
+      "open_date": "921201",
+      "address": "新竹市英明街3號3樓",
+      "phone": "03-5235211"
+    },
+    {
+      "broker_code": "538C",
+      "broker_name": "第一金-光復",
+      "open_date": "921201",
+      "address": "台北市光復北路16號2樓",
+      "phone": "02-25795811"
+    },
+    {
+      "broker_code": "538D",
+      "broker_name": "第一金-忠孝",
+      "open_date": "921201",
+      "address": "台北市忠孝東路2段88號3樓",
+      "phone": "02-23214955"
+    },
+    {
+      "broker_code": "538E",
+      "broker_name": "第一金-自由",
+      "open_date": "921201",
+      "address": "台中市自由路1段144號7樓",
+      "phone": "04-22287111"
+    },
+    {
+      "broker_code": "538F",
+      "broker_name": "第一金-大稻埕",
+      "open_date": "921201",
+      "address": "台北市迪化街1段63號3樓部份",
+      "phone": "02-25582211"
+    },
+    {
+      "broker_code": "538I",
+      "broker_name": "第一金-頭份",
+      "open_date": "921201",
+      "address": "苗栗縣頭份市中正路67號2樓",
+      "phone": "037-596611"
+    },
+    {
+      "broker_code": "538M",
+      "broker_name": "第一金-嘉義",
+      "open_date": "930810",
+      "address": "嘉義市中山路307號3樓",
+      "phone": "05-2283636"
+    },
+    {
+      "broker_code": "538N",
+      "broker_name": "第一金-豐原",
+      "open_date": "921201",
+      "address": "台中市豐原區中山路423號3樓",
+      "phone": "04-25239911"
+    },
+    {
+      "broker_code": "538P",
+      "broker_name": "第一金-路竹",
+      "open_date": "921201",
+      "address": "高雄市路竹區中山路1187號2樓",
+      "phone": "07-6970111"
+    },
+    {
+      "broker_code": "538T",
+      "broker_name": "第一金 -自營",
+      "open_date": "860113",
+      "address": "台北市大安區安和路一段29號6樓部份",
+      "phone": "02-27748990"
+    },
+    {
+      "broker_code": "538W",
+      "broker_name": "第一金-華江",
+      "open_date": "981118",
+      "address": "新北市板橋區文化路1段329號2樓之1及2樓部分",
+      "phone": "02-2258-3311"
+    },
+    {
+      "broker_code": "538Y",
+      "broker_name": "第一金-中壢",
+      "open_date": "921201",
+      "address": "桃園市中壢區中央西路2段30號2樓",
+      "phone": "03-4922011"
+    },
+    {
+      "broker_code": "538a",
+      "broker_name": "第一金-國際證券",
+      "open_date": "1031111",
+      "address": "臺北市中山區長安東路一段22號4樓",
+      "phone": "02-2563-6262"
+    },
+    {
+      "broker_code": "538j",
+      "broker_name": "第一金-安和",
+      "open_date": "930517",
+      "address": "台北市安和路一段27號6樓部份",
+      "phone": "02-2741-3434"
+    },
+    {
+      "broker_code": "5602",
+      "broker_name": "永興-水湳",
+      "open_date": "840826",
+      "address": "台中市北屯區中清路二段578號一樓",
+      "phone": "04-22973456"
+    },
+    {
+      "broker_code": "5603",
+      "broker_name": "永興-台中",
+      "open_date": "820702",
+      "address": "台中市三民路3段265號之1 一、二樓及265號3樓之8",
+      "phone": "04-22371188"
+    },
+    {
+      "broker_code": "5604",
+      "broker_name": "永興-大墩",
+      "open_date": "860214",
+      "address": "台中市南屯區大墩路754、756號1、2樓",
+      "phone": "04-23105858"
+    },
+    {
+      "broker_code": "5851",
+      "broker_name": "統一-高雄",
+      "open_date": "800930",
+      "address": "高雄市中正三路55號5樓",
+      "phone": "07-2268999"
+    },
+    {
+      "broker_code": "5852",
+      "broker_name": "統一-敦南",
+      "open_date": "800930",
+      "address": "台北市大安區敦化南路2段65號17樓、71號17樓部分",
+      "phone": "02-27552288"
+    },
+    {
+      "broker_code": "5853",
+      "broker_name": "統一-中壢",
+      "open_date": "800930",
+      "address": "桃園市中壢區中美路51號1樓",
+      "phone": "03-4224888"
+    },
+    {
+      "broker_code": "5854",
+      "broker_name": "統一-城中",
+      "open_date": "800930",
+      "address": "台北市博愛路80號2樓、4樓之1",
+      "phone": "02-23115757"
+    },
+    {
+      "broker_code": "5855",
+      "broker_name": "統一-台南",
+      "open_date": "800930",
+      "address": "台南市中西區中山路88號3樓",
+      "phone": "06-2112288"
+    },
+    {
+      "broker_code": "5856",
+      "broker_name": "統一-台中",
+      "open_date": "800930",
+      "address": "台中市五權西路1段257號3樓",
+      "phone": "04-23723333"
+    },
+    {
+      "broker_code": "5857",
+      "broker_name": "統一-新竹",
+      "open_date": "800930",
+      "address": "新竹市光復路一段579號3樓及4樓",
+      "phone": "03-5225666"
+    },
+    {
+      "broker_code": "5858",
+      "broker_name": "統一-嘉義",
+      "open_date": "800930",
+      "address": "嘉義市東區垂楊路35號3樓",
+      "phone": "05-2252111"
+    },
+    {
+      "broker_code": "5859",
+      "broker_name": "統一-屏東",
+      "open_date": "800930",
+      "address": "屏東縣屏東市濟南街10-1號",
+      "phone": "08-7353888"
+    },
+    {
+      "broker_code": "585A",
+      "broker_name": "統一-基隆",
+      "open_date": "820826",
+      "address": "基隆市仁愛區仁三路11號2樓",
+      "phone": "02-24225288"
+    },
+    {
+      "broker_code": "585B",
+      "broker_name": "統一-永和",
+      "open_date": "831224",
+      "address": "新北市永和區福和路389號3樓",
+      "phone": "02-22319966"
+    },
+    {
+      "broker_code": "585D",
+      "broker_name": "統一-新台中",
+      "open_date": "840722",
+      "address": "台中市西屯區文心路2段201號8樓之1",
+      "phone": "04-22587222"
+    },
+    {
+      "broker_code": "585E",
+      "broker_name": "統一-新營",
+      "open_date": "841118",
+      "address": "台南市新營區中山路113號4樓",
+      "phone": "06-6356388"
+    },
+    {
+      "broker_code": "585F",
+      "broker_name": "統一-彰化",
+      "open_date": "820816",
+      "address": "彰化縣彰化市華山路37號6樓",
+      "phone": "04-7225161"
+    },
+    {
+      "broker_code": "585H",
+      "broker_name": "統一-桃園",
+      "open_date": "850625",
+      "address": "桃園市桃園區成功路1段32號10樓",
+      "phone": "03-3386677"
+    },
+    {
+      "broker_code": "585I",
+      "broker_name": "統一-員林",
+      "open_date": "900626",
+      "address": "彰化縣員林鎮靜修路12號2樓",
+      "phone": "04-8336288"
+    },
+    {
+      "broker_code": "585J",
+      "broker_name": "統一-三重",
+      "open_date": "850921",
+      "address": "新北市三重區重新路4段12號4樓",
+      "phone": "02-29779933"
+    },
+    {
+      "broker_code": "585M",
+      "broker_name": "統一-士林",
+      "open_date": "860118",
+      "address": "台北市士林區承德路4段83號3樓、3樓之1、3樓之2",
+      "phone": "02-28866677"
+    },
+    {
+      "broker_code": "585P",
+      "broker_name": "統一-板橋",
+      "open_date": "860301",
+      "address": "新北市板橋區府中路29之2號8樓",
+      "phone": "02-29692299"
+    },
+    {
+      "broker_code": "585Q",
+      "broker_name": "統一-三多",
+      "open_date": "860322",
+      "address": "高雄市苓雅區四維四路7號6樓",
+      "phone": "07-3368568"
+    },
+    {
+      "broker_code": "585R",
+      "broker_name": "統一-東湖",
+      "open_date": "860321",
+      "address": "台北市內湖區康寧路3段12號3樓、3樓之1、3樓之2、3樓之3",
+      "phone": "02-26935558"
+    },
+    {
+      "broker_code": "585S",
+      "broker_name": "統一-宜蘭",
+      "open_date": "901002",
+      "address": "宜蘭縣宜蘭市民族路338號3樓部分",
+      "phone": "03-9353660"
+    },
+    {
+      "broker_code": "585T",
+      "broker_name": "統一-自營",
+      "open_date": "780403",
+      "address": "台北市南京東路五段228巷14號5樓",
+      "phone": "02-27478266"
+    },
+    {
+      "broker_code": "585U",
+      "broker_name": "統一-南京",
+      "open_date": "860211",
+      "address": "台北市南京東路3段248號2樓",
+      "phone": "02-27317777"
+    },
+    {
+      "broker_code": "585W",
+      "broker_name": "統一-金門",
+      "open_date": "890911",
+      "address": "金門縣金城鎮民權路160號2樓",
+      "phone": "082-320811"
+    },
+    {
+      "broker_code": "585Y",
+      "broker_name": "統一-土城",
+      "open_date": "890819",
+      "address": "新北市土城區裕民路149號2樓、2樓之1",
+      "phone": "02-82602000"
+    },
+    {
+      "broker_code": "585Z",
+      "broker_name": "統一-松江",
+      "open_date": "921105",
+      "address": "台北市松江路127之1號5樓",
+      "phone": "0225165988"
+    },
+    {
+      "broker_code": "585b",
+      "broker_name": "統一-內湖",
+      "open_date": "930409",
+      "address": "臺北市內湖路1段575號3樓",
+      "phone": "(02)87525959"
+    },
+    {
+      "broker_code": "585c",
+      "broker_name": "統一-仁愛",
+      "open_date": "930722",
+      "address": "台北市安和路1段29號2樓",
+      "phone": "02-27726588"
+    },
+    {
+      "broker_code": "585g",
+      "broker_name": "統一-平鎮",
+      "open_date": "1041026",
+      "address": "桃園市中壢區中正路582號1樓、2樓",
+      "phone": "03-4910736"
+    },
+    {
+      "broker_code": "585m",
+      "broker_name": "統一-竹南",
+      "open_date": "1031013",
+      "address": "苗栗縣竹南鎮中正路217號2樓",
+      "phone": "037-480666"
+    },
+    {
+      "broker_code": "585s",
+      "broker_name": "統一-國際證券",
+      "open_date": "1030707",
+      "address": "台北市東興路8號1樓部份",
+      "phone": "27478266"
+    },
+    {
+      "broker_code": "5861",
+      "broker_name": "盈溢-籬子內",
+      "open_date": "830326",
+      "address": "高雄市前鎮區瑞北路44號1樓",
+      "phone": "07-7134001"
+    },
+    {
+      "broker_code": "5862",
+      "broker_name": "盈溢-楠梓",
+      "open_date": "860801",
+      "address": "高雄市楠梓區楠都東街181號地下室",
+      "phone": "07-3537737"
+    },
+    {
+      "broker_code": "5961",
+      "broker_name": "日茂-埔里",
+      "open_date": "801116",
+      "address": "南投縣埔里鎮西安路一段299號B1",
+      "phone": "049-2902266"
+    },
+    {
+      "broker_code": "5962",
+      "broker_name": "日茂-南投",
+      "open_date": "841230",
+      "address": "南投縣南投市三和二路11號4、5樓",
+      "phone": "049-2234188"
+    },
+    {
+      "broker_code": "6012",
+      "broker_name": "&#29319;亞-網路",
+      "open_date": "960419",
+      "address": "台北市松山區復興北路99號4樓之3",
+      "phone": "02-27188788"
+    },
+    {
+      "broker_code": "601T",
+      "broker_name": "&#29319;亞-自營",
+      "open_date": "830923",
+      "address": "台北市松山區復興北路99號3樓",
+      "phone": "2718-0101"
+    },
+    {
+      "broker_code": "601d",
+      "broker_name": "&#29319;亞-鑫豐",
+      "open_date": "1080102",
+      "address": "台北市松山區復興北路99號4樓之5",
+      "phone": "2553-8000"
+    },
+    {
+      "broker_code": "6114",
+      "broker_name": "台中銀-員林",
+      "open_date": "1020502",
+      "address": "彰化縣員林鎮中正路462號3樓",
+      "phone": "04-8329000"
+    },
+    {
+      "broker_code": "6115",
+      "broker_name": "台中銀-台北",
+      "open_date": "1020502",
+      "address": "台北市中正區忠孝東路一段85號6樓(部分)",
+      "phone": "02-27736955"
+    },
+    {
+      "broker_code": "6116",
+      "broker_name": "台中銀-高雄",
+      "open_date": "1020502",
+      "address": "高雄市左營區曾子路386號4樓部份",
+      "phone": "07-3486898"
+    },
+    {
+      "broker_code": "611A",
+      "broker_name": "台中銀-豐原",
+      "open_date": "1030721",
+      "address": "台中市豐原區中正路220號4樓",
+      "phone": "04-25274150"
+    },
+    {
+      "broker_code": "611T",
+      "broker_name": "台中商銀－自營",
+      "open_date": "1020502",
+      "address": "",
+      "phone": "04-22268588"
+    },
+    {
+      "broker_code": "6161",
+      "broker_name": "中國信託-三重",
+      "open_date": "841201",
+      "address": "新北市三重區重陽路一段66號2樓",
+      "phone": "02-89822558"
+    },
+    {
+      "broker_code": "6162",
+      "broker_name": "中國信託-忠孝",
+      "open_date": "860702",
+      "address": "台北市中正區忠孝西路一段6號4樓",
+      "phone": "02-23141122"
+    },
+    {
+      "broker_code": "6163",
+      "broker_name": "中國信託-永康",
+      "open_date": "880115",
+      "address": "台南市永康區中華路425號2樓部分",
+      "phone": "06-2338233"
+    },
+    {
+      "broker_code": "6164",
+      "broker_name": "中國信託-文心",
+      "open_date": "910701",
+      "address": "台中市北屯區文心路四段八七五號三樓部分",
+      "phone": "04-22468800"
+    },
+    {
+      "broker_code": "6165",
+      "broker_name": "中國信託-新竹",
+      "open_date": "920616",
+      "address": "不接受客戶當面委託免設營業廳",
+      "phone": "03-5153100"
+    },
+    {
+      "broker_code": "6167",
+      "broker_name": "中國信託-松江",
+      "open_date": "1011005",
+      "address": "台北市中山區松江路220號3樓之1",
+      "phone": "02-2581-5688"
+    },
+    {
+      "broker_code": "6168",
+      "broker_name": "中國信託-嘉義",
+      "open_date": "1020419",
+      "address": "嘉義市西區中山路386號6樓",
+      "phone": "05-2286699"
+    },
+    {
+      "broker_code": "616A",
+      "broker_name": "中國信託-中壢",
+      "open_date": "1040508",
+      "address": "桃園市中壢區中山路118號3樓",
+      "phone": "03-4229666"
+    },
+    {
+      "broker_code": "616K",
+      "broker_name": "中國信託-高雄",
+      "open_date": "860531",
+      "address": "高雄市前金區中正四路168號6樓之1",
+      "phone": "07-2151166"
+    },
+    {
+      "broker_code": "616T",
+      "broker_name": "中國信託-自營",
+      "open_date": "860531",
+      "address": "台北市松壽路3號6樓、10樓",
+      "phone": "02-66392000"
+    },
+    {
+      "broker_code": "616X",
+      "broker_name": "中國信託-國際證券",
+      "open_date": "1040317",
+      "address": "台北市南港區經貿二路168號3樓",
+      "phone": "02-87891075"
+    },
+    {
+      "broker_code": "6381",
+      "broker_name": "光和-溪湖",
+      "open_date": "800410",
+      "address": "彰化縣溪湖鎮文東街9號1樓",
+      "phone": "04-8855466"
+    },
+    {
+      "broker_code": "6382",
+      "broker_name": "光和-田中",
+      "open_date": "831108",
+      "address": "彰化縣田中鎮南北街80號3樓",
+      "phone": "04-8746588"
+    },
+    {
+      "broker_code": "6383",
+      "broker_name": "光和-和美",
+      "open_date": "860808",
+      "address": "彰化縣和美鎮彰美路五段二五六號三樓",
+      "phone": "04-7567789"
+    },
+    {
+      "broker_code": "6385",
+      "broker_name": "光和-花壇",
+      "open_date": "870930",
+      "address": "彰化縣花壇鄉花壇村花壇街273號5樓",
+      "phone": "04-7878288"
+    },
+    {
+      "broker_code": "638A",
+      "broker_name": "光和-嘉義",
+      "open_date": "1071001",
+      "address": "嘉義縣朴子市山通路37號3樓",
+      "phone": "05-3700988"
+    },
+    {
+      "broker_code": "638D",
+      "broker_name": "光和-高雄",
+      "open_date": "1090203",
+      "address": "高雄市新興區五福二路82號2樓部分",
+      "phone": "07-7253922"
+    },
+    {
+      "broker_code": "6451",
+      "broker_name": "永全-南崁",
+      "open_date": "840628",
+      "address": "桃園市蘆竹區光明路一段100號3樓",
+      "phone": "03-3529529"
+    },
+    {
+      "broker_code": "6452",
+      "broker_name": "永全-八德",
+      "open_date": "870819",
+      "address": "桃園市八德區介壽路一段655號3樓",
+      "phone": "03-3771155"
+    },
+    {
+      "broker_code": "6461",
+      "broker_name": "大昌-樹林",
+      "open_date": "851226",
+      "address": "新北市樹林區復興路11號、13號及15號1、2樓",
+      "phone": "02-26756088"
+    },
+    {
+      "broker_code": "6462",
+      "broker_name": "大昌-安康",
+      "open_date": "861208",
+      "address": "新北市新店區安和路一段25之5號及25之6號",
+      "phone": "02-86669988"
+    },
+    {
+      "broker_code": "6463",
+      "broker_name": "大昌-新竹",
+      "open_date": "880420",
+      "address": "新竹市關新路182號",
+      "phone": "03-5222868"
+    },
+    {
+      "broker_code": "6464",
+      "broker_name": "大昌-新店",
+      "open_date": "830801",
+      "address": "新北市新店區北新路2段108號3樓",
+      "phone": "02-29179111"
+    },
+    {
+      "broker_code": "6465",
+      "broker_name": "大昌-桃園",
+      "open_date": "900727",
+      "address": "桃園市桃園區經國路128號2樓",
+      "phone": "03-3263689"
+    },
+    {
+      "broker_code": "6489",
+      "broker_name": "福邦-新竹",
+      "open_date": "1070621",
+      "address": "新竹縣竹北市光明五街210號4樓",
+      "phone": "(03)657-2758"
+    },
+    {
+      "broker_code": "648T",
+      "broker_name": "福邦-自營",
+      "open_date": "790725",
+      "address": "台北市南京東路一段52號3樓",
+      "phone": "02-5237777"
+    },
+    {
+      "broker_code": "6912",
+      "broker_name": "德信-中正",
+      "open_date": "831207",
+      "address": "臺中市臺灣大道一段728號6樓",
+      "phone": "04-22026200"
+    },
+    {
+      "broker_code": "6913",
+      "broker_name": "德信-新營",
+      "open_date": "860718",
+      "address": "台南市新營區新進路2段109號3樓",
+      "phone": "06-6337258"
+    },
+    {
+      "broker_code": "6915",
+      "broker_name": "德信-和平",
+      "open_date": "890609",
+      "address": "臺北市大安區信義路四段303號6樓",
+      "phone": "02-27066168"
+    },
+    {
+      "broker_code": "691T",
+      "broker_name": "德信-自營",
+      "open_date": "880703",
+      "address": "台北市新生南路1段50號4樓",
+      "phone": "02-23939988"
+    },
+    {
+      "broker_code": "7001",
+      "broker_name": "兆豐-嘉義",
+      "open_date": "831122",
+      "address": "嘉義市文化路259號3樓及4樓部分",
+      "phone": "05-2230230"
+    },
+    {
+      "broker_code": "7003",
+      "broker_name": "兆豐-台中",
+      "open_date": "870525",
+      "address": "台中市五權西路一段257號7樓部份",
+      "phone": "04-23780568"
+    },
+    {
+      "broker_code": "7005",
+      "broker_name": "兆豐-台中港",
+      "open_date": "880112",
+      "address": "台中縣沙鹿鎮沙田路107號2樓",
+      "phone": "04-26651100"
+    },
+    {
+      "broker_code": "7006",
+      "broker_name": "兆豐-台南",
+      "open_date": "871229",
+      "address": "台南市忠義路2段14號4、5樓",
+      "phone": "06-2230398"
+    },
+    {
+      "broker_code": "7007",
+      "broker_name": "兆豐-竹北",
+      "open_date": "880731",
+      "address": "新竹縣竹北市三民路18、20、22、24號1樓及18、24號2樓",
+      "phone": "03-5543223"
+    },
+    {
+      "broker_code": "7008",
+      "broker_name": "兆豐-三重",
+      "open_date": "890107",
+      "address": "新北市三重區正義北路195號3樓",
+      "phone": "02-29817799"
+    },
+    {
+      "broker_code": "700B",
+      "broker_name": "兆豐-板橋",
+      "open_date": "890330",
+      "address": "台北縣板橋市文化路1段268號2樓之1",
+      "phone": "02-22538699"
+    },
+    {
+      "broker_code": "700C",
+      "broker_name": "兆豐-來福",
+      "open_date": "880125",
+      "address": "雲林縣斗六市民生路156號8樓",
+      "phone": "05-5338989"
+    },
+    {
+      "broker_code": "700D",
+      "broker_name": "兆豐-西螺",
+      "open_date": "880125",
+      "address": "雲林縣西螺鎮中山路127號3樓",
+      "phone": "05-5867999"
+    },
+    {
+      "broker_code": "700F",
+      "broker_name": "兆豐-虎尾",
+      "open_date": "880125",
+      "address": "雲林縣虎尾鎮公安路133號4樓",
+      "phone": "05-6313388"
+    },
+    {
+      "broker_code": "700G",
+      "broker_name": "兆豐-麻豆",
+      "open_date": "890623",
+      "address": "台南縣麻豆鎮興中路127號3樓",
+      "phone": "06-5728388"
+    },
+    {
+      "broker_code": "700H",
+      "broker_name": "兆豐-東門",
+      "open_date": "890707",
+      "address": "同上",
+      "phone": "02-23435488"
+    },
+    {
+      "broker_code": "700I",
+      "broker_name": "兆豐-北高雄",
+      "open_date": "890922",
+      "address": "高雄市中正四路235號2樓之1",
+      "phone": "07-2612345"
+    },
+    {
+      "broker_code": "700J",
+      "broker_name": "兆豐-公益",
+      "open_date": "891017",
+      "address": "台中市中區民權路216號6樓之1",
+      "phone": "04-22238866"
+    },
+    {
+      "broker_code": "700K",
+      "broker_name": "兆豐-新營",
+      "open_date": "870317",
+      "address": "台南市新營區中營里中山路116號",
+      "phone": "06-6357111"
+    },
+    {
+      "broker_code": "700L",
+      "broker_name": "兆豐-天母",
+      "open_date": "891009",
+      "address": "同上",
+      "phone": "02-28376006"
+    },
+    {
+      "broker_code": "700M",
+      "broker_name": "兆豐-桃園",
+      "open_date": "891118",
+      "address": "同上",
+      "phone": "033475188"
+    },
+    {
+      "broker_code": "700N",
+      "broker_name": "兆豐-埔墘",
+      "open_date": "900223",
+      "address": "同上",
+      "phone": "02-89538888"
+    },
+    {
+      "broker_code": "700P",
+      "broker_name": "兆豐-南京",
+      "open_date": "920130",
+      "address": "台北市南京東路3段65號3樓",
+      "phone": "02-25169888"
+    },
+    {
+      "broker_code": "700R",
+      "broker_name": "兆豐-小港",
+      "open_date": "920130",
+      "address": "高雄市小港區漢民路381號2樓",
+      "phone": "07-8063000"
+    },
+    {
+      "broker_code": "700S",
+      "broker_name": "兆豐-大同",
+      "open_date": "920131",
+      "address": "台北市大同區延平北路2段96號5樓",
+      "phone": "02-25506078"
+    },
+    {
+      "broker_code": "700T",
+      "broker_name": "兆豐-自營",
+      "open_date": "861231",
+      "address": "台北市忠孝東路四段563號三樓",
+      "phone": "02-23278988"
+    },
+    {
+      "broker_code": "700U",
+      "broker_name": "兆豐-桃鶯",
+      "open_date": "920130",
+      "address": "桃園市桃園區桃鶯路343號3樓",
+      "phone": "03-3776899"
+    },
+    {
+      "broker_code": "700V",
+      "broker_name": "兆豐-新竹",
+      "open_date": "920131",
+      "address": "新竹市中正路129號3樓",
+      "phone": "03-5256199"
+    },
+    {
+      "broker_code": "700W",
+      "broker_name": "兆豐-城中",
+      "open_date": "920329",
+      "address": "台北市重慶南路1段2號2樓〈部分〉",
+      "phone": "02-23315199"
+    },
+    {
+      "broker_code": "700X",
+      "broker_name": "兆豐-永和",
+      "open_date": "930517",
+      "address": "新北市永和區永和路2段121號3樓",
+      "phone": "02-2927-3799"
+    },
+    {
+      "broker_code": "700Z",
+      "broker_name": "兆豐-高雄",
+      "open_date": "920130",
+      "address": "高雄市新光路36號1樓",
+      "phone": "07-3315200"
+    },
+    {
+      "broker_code": "700a",
+      "broker_name": "兆豐-忠孝",
+      "open_date": "920131",
+      "address": "台北市忠孝東路4段563號3樓、565號4樓",
+      "phone": "02-27479966"
+    },
+    {
+      "broker_code": "700b",
+      "broker_name": "兆豐-中壢",
+      "open_date": "931103",
+      "address": "桃園市中壢區中山路142號8樓、146號8樓",
+      "phone": "03-2807759"
+    },
+    {
+      "broker_code": "700c",
+      "broker_name": "兆豐-民生",
+      "open_date": "930512",
+      "address": "台北市民生東路3段128號3樓之2",
+      "phone": "02-27169966"
+    },
+    {
+      "broker_code": "700d",
+      "broker_name": "兆豐-彰化",
+      "open_date": "930630",
+      "address": "彰化縣彰化市和平路57號6樓",
+      "phone": "04-7289966"
+    },
+    {
+      "broker_code": "700f",
+      "broker_name": "兆豐-鹿港",
+      "open_date": "920131",
+      "address": "彰化縣鹿港鎮彰鹿路8段59號",
+      "phone": "04-7772900"
+    },
+    {
+      "broker_code": "700g",
+      "broker_name": "兆豐-南門",
+      "open_date": "930309",
+      "address": "台北市羅斯福2段9號2樓(部分)",
+      "phone": "02-23959966"
+    },
+    {
+      "broker_code": "700h",
+      "broker_name": "兆豐-三民",
+      "open_date": "920130",
+      "address": "高雄市鼓山區文信路327號1樓",
+      "phone": "07-3958858"
+    },
+    {
+      "broker_code": "700i",
+      "broker_name": "兆豐-松德",
+      "open_date": "920131",
+      "address": "台北市信義區忠孝東路5段510號3樓、3樓之1、3樓之2、3樓之12及3樓之13",
+      "phone": "02-27275168"
+    },
+    {
+      "broker_code": "700j",
+      "broker_name": "兆豐-大安",
+      "open_date": "920704",
+      "address": "台北市信義路3段182號3樓、4樓",
+      "phone": "02-27003236"
+    },
+    {
+      "broker_code": "700k",
+      "broker_name": "兆豐-員林",
+      "open_date": "920130",
+      "address": "彰化縣員林鎮中山路1段753號3樓",
+      "phone": "04-8373898"
+    },
+    {
+      "broker_code": "700m",
+      "broker_name": "兆豐-國際證券",
+      "open_date": "1030725",
+      "address": "臺北市忠孝東路二段95號3樓",
+      "phone": "02-23278988"
+    },
+    {
+      "broker_code": "700p",
+      "broker_name": "兆豐-復興",
+      "open_date": "920130",
+      "address": "台北市復興北路99號8樓之1",
+      "phone": "02-25148588"
+    },
+    {
+      "broker_code": "700r",
+      "broker_name": "兆豐-寶成",
+      "open_date": "960810",
+      "address": "台中市西屯區臺灣大道4段600號3樓",
+      "phone": "(04)24651001"
+    },
+    {
+      "broker_code": "700s",
+      "broker_name": "兆豐-岡山",
+      "open_date": "910701",
+      "address": "高雄縣岡山鎮中山北路28號3樓(部分)",
+      "phone": "07-6235988"
+    },
+    {
+      "broker_code": "700w",
+      "broker_name": "兆豐-新莊",
+      "open_date": "930212",
+      "address": "新北市新莊區思源路427號2樓",
+      "phone": "02-89913777"
+    },
+    {
+      "broker_code": "7031",
+      "broker_name": "致和-台北",
+      "open_date": "840506",
+      "address": "台北市信義路4段96號2樓",
+      "phone": "02-27006666"
+    },
+    {
+      "broker_code": "7032",
+      "broker_name": "致和-佳里",
+      "open_date": "850624",
+      "address": "台南市佳里區延平路351號3樓",
+      "phone": "06-7226666"
+    },
+    {
+      "broker_code": "7033",
+      "broker_name": "致和-府前",
+      "open_date": "851207",
+      "address": "台南市府前路1段141號2樓",
+      "phone": "06-2135888"
+    },
+    {
+      "broker_code": "7034",
+      "broker_name": "致和-金華",
+      "open_date": "860301",
+      "address": "台南市金華路二段一七二號地下一樓",
+      "phone": "06-2619777"
+    },
+    {
+      "broker_code": "7035",
+      "broker_name": "致和-東門",
+      "open_date": "860715",
+      "address": "台北市信義路二段二一三號二樓",
+      "phone": "02-23516600"
+    },
+    {
+      "broker_code": "7036",
+      "broker_name": "致和-高雄",
+      "open_date": "861002",
+      "address": "高雄市光華一路148之83號1、2樓",
+      "phone": "07-2259255"
+    },
+    {
+      "broker_code": "7038",
+      "broker_name": "致和-南京",
+      "open_date": "870909",
+      "address": "台北市南京東路五段一八八號四樓",
+      "phone": "02-27485558"
+    },
+    {
+      "broker_code": "7039",
+      "broker_name": "致和-小北",
+      "open_date": "1150623",
+      "address": "台南市北區西門路四段271號10樓之二",
+      "phone": "062811666"
+    },
+    {
+      "broker_code": "703B",
+      "broker_name": "致和-崇德",
+      "open_date": "961112",
+      "address": "南市東區中華東路3段242號2樓",
+      "phone": "06-2899000"
+    },
+    {
+      "broker_code": "703T",
+      "broker_name": "致和-自營",
+      "open_date": "871207",
+      "address": "台北市南京東路五段188號4F",
+      "phone": "0227485556"
+    },
+    {
+      "broker_code": "7791",
+      "broker_name": "國票-台東",
+      "open_date": "810601",
+      "address": "台東縣台東市更生路560號2樓及3樓",
+      "phone": "089-321789"
+    },
+    {
+      "broker_code": "7792",
+      "broker_name": "國票-北投",
+      "open_date": "830216",
+      "address": "台北市北投區北投路2段13號2樓",
+      "phone": "02-28969268"
+    },
+    {
+      "broker_code": "7795",
+      "broker_name": "國票-南港",
+      "open_date": "861006",
+      "address": "台北市南港區興中路12巷25號地下1樓",
+      "phone": "02-26535757"
+    },
+    {
+      "broker_code": "7797",
+      "broker_name": "國票-中正",
+      "open_date": "861016",
+      "address": "高雄市前金區中正四路213號1樓",
+      "phone": "07-2166166"
+    },
+    {
+      "broker_code": "7798",
+      "broker_name": "國票-內壢",
+      "open_date": "870207",
+      "address": "桃園市中壢區興農路125號3樓",
+      "phone": "03-4618688"
+    },
+    {
+      "broker_code": "779D",
+      "broker_name": "國票-台南",
+      "open_date": "860816",
+      "address": "臺南市成功路114號5樓",
+      "phone": "06-2203979"
+    },
+    {
+      "broker_code": "779E",
+      "broker_name": "國票-南崁",
+      "open_date": "870526",
+      "address": "桃園市蘆竹區中正路二九五號三樓之一及三樓之二",
+      "phone": "03-3115688"
+    },
+    {
+      "broker_code": "779G",
+      "broker_name": "國票-新莊",
+      "open_date": "871014",
+      "address": "新北市新莊區中華路1段16號地下1層",
+      "phone": "02-29923888"
+    },
+    {
+      "broker_code": "779H",
+      "broker_name": "國票-嘉義",
+      "open_date": "870902",
+      "address": "嘉義市垂楊路508號3、4樓",
+      "phone": "05-2162888"
+    },
+    {
+      "broker_code": "779J",
+      "broker_name": "國票-北高雄",
+      "open_date": "871008",
+      "address": "高雄市左營區立文路77號2樓",
+      "phone": "07-5581777"
+    },
+    {
+      "broker_code": "779P",
+      "broker_name": "國票-九鼎",
+      "open_date": "871230",
+      "address": "台中市北屯路二四五號一樓、二四五之一號一、二樓",
+      "phone": "04-22321688"
+    },
+    {
+      "broker_code": "779T",
+      "broker_name": "國票-自營",
+      "open_date": "890911",
+      "address": "台北市中山區樂群三路126號4樓及132號4樓",
+      "phone": "02-25288988"
+    },
+    {
+      "broker_code": "779V",
+      "broker_name": "國票-天祥",
+      "open_date": "911021",
+      "address": "高雄市三民區天祥一路148號",
+      "phone": "07-3477111"
+    },
+    {
+      "broker_code": "779W",
+      "broker_name": "國票-彰化",
+      "open_date": "911021",
+      "address": "彰化縣彰化市華山路47號2樓",
+      "phone": "04-7638888"
+    },
+    {
+      "broker_code": "779X",
+      "broker_name": "國票-中和",
+      "open_date": "910415",
+      "address": "新北市中和區信義街43號3樓",
+      "phone": "02-29467777"
+    },
+    {
+      "broker_code": "779Z",
+      "broker_name": "國票-安和",
+      "open_date": "910415",
+      "address": "台北市大安區信義路四段382號3樓及4樓",
+      "phone": "02-27557999"
+    },
+    {
+      "broker_code": "779b",
+      "broker_name": "國票-國際證券",
+      "open_date": "1030915",
+      "address": "台北市中山區樂群三路126號4樓及132號4樓",
+      "phone": "(02)25288988"
+    },
+    {
+      "broker_code": "779c",
+      "broker_name": "國票-敦北法人",
+      "open_date": "911021",
+      "address": "臺北市松山區南京東路三段346號2樓",
+      "phone": "02-27760606"
+    },
+    {
+      "broker_code": "779e",
+      "broker_name": "國票-南科",
+      "open_date": "911021",
+      "address": "台南市新市區復興路1-1號2樓",
+      "phone": "06-5890128"
+    },
+    {
+      "broker_code": "779j",
+      "broker_name": "國票-和平",
+      "open_date": "911021",
+      "address": "高雄市苓雅區和平一路87號1樓",
+      "phone": "07-7711111"
+    },
+    {
+      "broker_code": "779m",
+      "broker_name": "國票-中港",
+      "open_date": "911021",
+      "address": "臺中市西區臺灣大道二段16號5樓",
+      "phone": "04-22069988"
+    },
+    {
+      "broker_code": "779n",
+      "broker_name": "國票-南京",
+      "open_date": "980406",
+      "address": "台北市松山區南京東路五段188號15樓部分",
+      "phone": "(02)25287799"
+    },
+    {
+      "broker_code": "779r",
+      "broker_name": "國票-桃園",
+      "open_date": "980406",
+      "address": "桃園市桃園區中正路133號5樓",
+      "phone": "(03)338-1123"
+    },
+    {
+      "broker_code": "779u",
+      "broker_name": "國票-長城",
+      "open_date": "980406",
+      "address": "台北市大安區仁愛路四段376號 4 樓",
+      "phone": "(02)27008999"
+    },
+    {
+      "broker_code": "779v",
+      "broker_name": "國票-台中",
+      "open_date": "980406",
+      "address": "臺中市西屯區市政北一路1號7樓",
+      "phone": "(04)22553232"
+    },
+    {
+      "broker_code": "779z",
+      "broker_name": "國票-博愛",
+      "open_date": "980406",
+      "address": "臺北市博愛路 38 號 2 樓",
+      "phone": "(02)23899988"
+    },
+    {
+      "broker_code": "8381",
+      "broker_name": "安泰-大發",
+      "open_date": "860726",
+      "address": "高雄市大寮區力行路105號",
+      "phone": "07-7819121"
+    },
+    {
+      "broker_code": "8382",
+      "broker_name": "安泰-楠梓",
+      "open_date": "860801",
+      "address": "高雄市楠梓區興楠路285號1樓",
+      "phone": "07-3528866"
+    },
+    {
+      "broker_code": "8451",
+      "broker_name": "康和-延平",
+      "open_date": "840829",
+      "address": "台北市南京西路406號5樓",
+      "phone": "02-25567222"
+    },
+    {
+      "broker_code": "8455",
+      "broker_name": "康和-台中",
+      "open_date": "811016",
+      "address": "台中市北區中清路一段100號8樓之1",
+      "phone": "04-22015988"
+    },
+    {
+      "broker_code": "8456",
+      "broker_name": "康和-新竹",
+      "open_date": "860517",
+      "address": "新竹市四維路130號2樓之1",
+      "phone": "03-5255678"
+    },
+    {
+      "broker_code": "8458",
+      "broker_name": "康和-台南",
+      "open_date": "850409",
+      "address": "臺南市永福路2段154號4樓(部分)",
+      "phone": "06-2203371"
+    },
+    {
+      "broker_code": "8459",
+      "broker_name": "康和-嘉義",
+      "open_date": "830502",
+      "address": "嘉義市興業西路123號2樓",
+      "phone": "05-2851100"
+    },
+    {
+      "broker_code": "845A",
+      "broker_name": "康和-內湖",
+      "open_date": "860702",
+      "address": "台北市內湖區成功路3段174巷8號2樓",
+      "phone": "02-27925858"
+    },
+    {
+      "broker_code": "845B",
+      "broker_name": "康和-永和",
+      "open_date": "860731",
+      "address": "新北市永和區中正路312號2樓、314號2樓",
+      "phone": "2-86685858"
+    },
+    {
+      "broker_code": "845D",
+      "broker_name": "康和-板橋",
+      "open_date": "870720",
+      "address": "新北市板橋區三民路1段210號3樓",
+      "phone": "02-89611788"
+    },
+    {
+      "broker_code": "845E",
+      "broker_name": "康和-澎湖",
+      "open_date": "891202",
+      "address": "澎湖縣馬公市大仁街9號2樓",
+      "phone": "06-9268858"
+    },
+    {
+      "broker_code": "845F",
+      "broker_name": "康和-仁愛",
+      "open_date": "891027",
+      "address": "台北市仁愛路4段85號5樓",
+      "phone": "02-27511212"
+    },
+    {
+      "broker_code": "845J",
+      "broker_name": "康和-高雄",
+      "open_date": "831101",
+      "address": "高雄市新興區中正三路55號17樓之1、2",
+      "phone": "07-2276688"
+    },
+    {
+      "broker_code": "845R",
+      "broker_name": "康和-石牌",
+      "open_date": "901002",
+      "address": "台北市北投區裕民六路121號1、2樓",
+      "phone": "02-28253188"
+    },
+    {
+      "broker_code": "845S",
+      "broker_name": "康和-南崁",
+      "open_date": "901002",
+      "address": "桃園市蘆竹區中正路90號3樓",
+      "phone": "03-3119388"
+    },
+    {
+      "broker_code": "845T",
+      "broker_name": "康和-自營",
+      "open_date": "791204",
+      "address": "台北市信義區基隆路1段176號9樓部分、14樓部分",
+      "phone": "02-87871888"
+    },
+    {
+      "broker_code": "845U",
+      "broker_name": "康和-台北",
+      "open_date": "900702",
+      "address": "台北市松山區復興北路143號3樓",
+      "phone": "02-27190123"
+    },
+    {
+      "broker_code": "845X",
+      "broker_name": "康和-屏東",
+      "open_date": "1010511",
+      "address": "屏東市中正路123號5樓部分",
+      "phone": "08-7349999"
+    },
+    {
+      "broker_code": "845Y",
+      "broker_name": "康和-國際證券",
+      "open_date": "1030612",
+      "address": "台北市基隆路一段176號B1",
+      "phone": "02-87871888"
+    },
+    {
+      "broker_code": "8492",
+      "broker_name": "京城-嘉義",
+      "open_date": "1110801",
+      "address": "嘉義市西區林森西路175號2樓",
+      "phone": "05-228-991"
+    },
+    {
+      "broker_code": "8561",
+      "broker_name": "新光-台中",
+      "open_date": "970714",
+      "address": "台中市西區民權路318號",
+      "phone": "04-23029828"
+    },
+    {
+      "broker_code": "8562",
+      "broker_name": "新光-高雄",
+      "open_date": "980708",
+      "address": "高雄市前金區中正四路151號及151號2樓部分",
+      "phone": "07-2692188"
+    },
+    {
+      "broker_code": "8563",
+      "broker_name": "新光-新竹",
+      "open_date": "981203",
+      "address": "新竹縣竹北市光明六路東1段238號、自強六街2號2樓之1",
+      "phone": "03-6673228"
+    },
+    {
+      "broker_code": "8564",
+      "broker_name": "新光-台南",
+      "open_date": "1000914",
+      "address": "台南市東區東門路2段262號",
+      "phone": "06-2901288"
+    },
+    {
+      "broker_code": "8565",
+      "broker_name": "新光-桃園",
+      "open_date": "1040211",
+      "address": "桃園市桃園區民生路105號1.2樓",
+      "phone": "03-3315888"
+    },
+    {
+      "broker_code": "856T",
+      "broker_name": "新光-自營",
+      "open_date": "961112",
+      "address": "",
+      "phone": "02-23118181"
+    },
+    {
+      "broker_code": "8581",
+      "broker_name": "聯邦-高雄",
+      "open_date": "1150504",
+      "address": "高雄市苓雅區光華一路206號3樓之1",
+      "phone": "07-2262118"
+    },
+    {
+      "broker_code": "8582",
+      "broker_name": "聯邦-嘉義",
+      "open_date": "1150504",
+      "address": "嘉義市東區中山路285之1號5樓1、5樓2",
+      "phone": "05-2232121"
+    },
+    {
+      "broker_code": "8583",
+      "broker_name": "聯邦-忠孝",
+      "open_date": "1150504",
+      "address": "台北市大安區忠孝東路四段205號7弄8號",
+      "phone": "02-27710999"
+    },
+    {
+      "broker_code": "8584",
+      "broker_name": "聯邦-雙和",
+      "open_date": "1150504",
+      "address": "新北市永和區中正路222號2樓",
+      "phone": "02-29483668"
+    },
+    {
+      "broker_code": "8585",
+      "broker_name": "聯邦-三重",
+      "open_date": "1150504",
+      "address": "新北市三重區重新路3段10號4樓",
+      "phone": "02-29792299"
+    },
+    {
+      "broker_code": "8586",
+      "broker_name": "聯邦-大業",
+      "open_date": "1150504",
+      "address": "桃園市桃園區大業路1段388號3樓",
+      "phone": "03-3579739"
+    },
+    {
+      "broker_code": "8587",
+      "broker_name": "聯邦-興中",
+      "open_date": "1150504",
+      "address": "臺中市南區復興路1段406號3樓",
+      "phone": "04-22613636"
+    },
+    {
+      "broker_code": "8588",
+      "broker_name": "聯邦-台南",
+      "open_date": "1150504",
+      "address": "臺南市北區西門路4段271號8樓之7",
+      "phone": "06-2603298"
+    },
+    {
+      "broker_code": "8711",
+      "broker_name": "陽信-石牌",
+      "open_date": "900608",
+      "address": "台北市北投區石牌路1段88號3樓部分",
+      "phone": "02-28288585"
+    },
+    {
+      "broker_code": "8713",
+      "broker_name": "陽信-高雄",
+      "open_date": "1110712",
+      "address": "高雄市三民區大順二路41號2樓",
+      "phone": "07-3929756"
+    },
+    {
+      "broker_code": "8714",
+      "broker_name": "陽信-台南",
+      "open_date": "1130520",
+      "address": "台南市安平區中華西路二段359號5樓",
+      "phone": "(06)2988669"
+    },
+    {
+      "broker_code": "8715",
+      "broker_name": "陽信-台中",
+      "open_date": "1140815",
+      "address": "台中市大里區國光路二段696、698、700號三樓",
+      "phone": "(04)24816688"
+    },
+    {
+      "broker_code": "8716",
+      "broker_name": "陽信-新竹",
+      "open_date": "1150803",
+      "address": "新竹市東區東門街36號六樓",
+      "phone": "(03)5278822"
+    },
+    {
+      "broker_code": "8841",
+      "broker_name": "玉山-雙和",
+      "open_date": "910808",
+      "address": "新北市永和區保生路1號16樓之1",
+      "phone": "02-8923-1313"
+    },
+    {
+      "broker_code": "8842",
+      "broker_name": "玉山-新莊",
+      "open_date": "911128",
+      "address": "新北市新莊區思源路332巷1號3樓",
+      "phone": "02-29981313"
+    },
+    {
+      "broker_code": "8843",
+      "broker_name": "玉山-高雄",
+      "open_date": "911230",
+      "address": "高雄市苓雅區四維四路22-2號6樓",
+      "phone": "07-397-1313"
+    },
+    {
+      "broker_code": "8846",
+      "broker_name": "玉山-板橋",
+      "open_date": "920923",
+      "address": "新北市板橋區中山路1段67號8樓",
+      "phone": "02-29519913"
+    },
+    {
+      "broker_code": "8847",
+      "broker_name": "玉山-台南",
+      "open_date": "940221",
+      "address": "臺南市東區崇學路108號3樓",
+      "phone": "06-2699913"
+    },
+    {
+      "broker_code": "8848",
+      "broker_name": "玉山-嘉義",
+      "open_date": "920630",
+      "address": "嘉義市中山路497號2、3樓",
+      "phone": "05-2169913"
+    },
+    {
+      "broker_code": "8849",
+      "broker_name": "玉山-景美",
+      "open_date": "920630",
+      "address": "臺北市文山區景中街1號2樓",
+      "phone": "02-83691313"
+    },
+    {
+      "broker_code": "884A",
+      "broker_name": "玉山-士林",
+      "open_date": "950309",
+      "address": "臺北市士林區中正路266、266之1、266之2號3樓",
+      "phone": "02-2833-1313"
+    },
+    {
+      "broker_code": "884B",
+      "broker_name": "玉山-台中",
+      "open_date": "940803",
+      "address": "臺中市西屯區市政路386號17樓之6、之7、之8",
+      "phone": "04-22589913"
+    },
+    {
+      "broker_code": "884C",
+      "broker_name": "玉山-信義",
+      "open_date": "970901",
+      "address": "台北市信義區基隆路二段51號三樓之9",
+      "phone": "02-27651313"
+    },
+    {
+      "broker_code": "884D",
+      "broker_name": "玉山-左營",
+      "open_date": "980818",
+      "address": "高雄市左營區明誠二路491號2樓",
+      "phone": "07-5586613"
+    },
+    {
+      "broker_code": "884E",
+      "broker_name": "玉山-城中",
+      "open_date": "920630",
+      "address": "台北市武昌街1段77號3樓",
+      "phone": "02-23821313"
+    },
+    {
+      "broker_code": "884F",
+      "broker_name": "玉山-桃園",
+      "open_date": "981223",
+      "address": "桃園市桃園區信光路125號3樓",
+      "phone": "03-3366813"
+    },
+    {
+      "broker_code": "884H",
+      "broker_name": "玉山-新竹",
+      "open_date": "991224",
+      "address": "新竹市光復路一段569號3樓",
+      "phone": "03-6669913"
+    },
+    {
+      "broker_code": "884J",
+      "broker_name": "玉山-大里",
+      "open_date": "1000829",
+      "address": "臺中市大里區國光路二段407號3樓",
+      "phone": "(04)24079813"
+    },
+    {
+      "broker_code": "884L",
+      "broker_name": "玉山-國際證券",
+      "open_date": "1031218",
+      "address": "臺北市松山區民生東路3段156號2樓",
+      "phone": "(02)55561313"
+    },
+    {
+      "broker_code": "884M",
+      "broker_name": "玉山-數位",
+      "open_date": "1100412",
+      "address": "台北市中正區武昌街一段77號4樓",
+      "phone": "02-23700013"
+    },
+    {
+      "broker_code": "884T",
+      "broker_name": "玉山-自營",
+      "open_date": "891120",
+      "address": "",
+      "phone": "02-55561313"
+    },
+    {
+      "broker_code": "8881",
+      "broker_name": "國泰-高雄",
+      "open_date": "950303",
+      "address": "高雄市新興區中正三路55號9樓之2",
+      "phone": "07-2285888"
+    },
+    {
+      "broker_code": "8882",
+      "broker_name": "國泰-台中",
+      "open_date": "960625",
+      "address": "台中市西區臺灣大道二段573號11樓部分",
+      "phone": "04-37013888"
+    },
+    {
+      "broker_code": "8883",
+      "broker_name": "國泰-松江",
+      "open_date": "991217",
+      "address": "無",
+      "phone": "02-2181-2888"
+    },
+    {
+      "broker_code": "8884",
+      "broker_name": "國泰-台南",
+      "open_date": "1010524",
+      "address": "臺南市民生路一段62號3樓部分",
+      "phone": "(06)2259666"
+    },
+    {
+      "broker_code": "8885",
+      "broker_name": "國泰-桃園",
+      "open_date": "1010604",
+      "address": "無設營業廳",
+      "phone": "(03)3567866"
+    },
+    {
+      "broker_code": "8886",
+      "broker_name": "國泰-新莊",
+      "open_date": "1010530",
+      "address": "無設營業廳",
+      "phone": "(02)22015666"
+    },
+    {
+      "broker_code": "8887",
+      "broker_name": "國泰-忠孝",
+      "open_date": "1010528",
+      "address": "無設營業廳",
+      "phone": "(02)77117888"
+    },
+    {
+      "broker_code": "8888",
+      "broker_name": "國泰-敦南",
+      "open_date": "1060703",
+      "address": "台北市敦化南路二段218號5樓之1",
+      "phone": "02-77326889"
+    },
+    {
+      "broker_code": "888A",
+      "broker_name": "國泰-館前",
+      "open_date": "930813",
+      "address": "台北市中正區重慶南路一段57號2樓",
+      "phone": "02-23310025"
+    },
+    {
+      "broker_code": "888B",
+      "broker_name": "國泰綜合證券股份有限公司",
+      "open_date": "1150715",
+      "address": "台北市信義區忠孝東路五段68號41樓部分",
+      "phone": "02-77050168"
+    },
+    {
+      "broker_code": "888C",
+      "broker_name": "國泰-永和簡易",
+      "open_date": "1150318",
+      "address": "新北市永和區福和路389號6樓之2",
+      "phone": "02-77050109"
+    },
+    {
+      "broker_code": "888D",
+      "broker_name": "國泰-左營簡易",
+      "open_date": "1150420",
+      "address": "無",
+      "phone": "07-9739700"
+    },
+    {
+      "broker_code": "888K",
+      "broker_name": "國泰-板橋",
+      "open_date": "930813",
+      "address": "新北市板橋區三民路1段216號4樓部分",
+      "phone": "02-89643888"
+    },
+    {
+      "broker_code": "888N",
+      "broker_name": "國泰-新竹",
+      "open_date": "1140325",
+      "address": "無",
+      "phone": "03-6223688"
+    },
+    {
+      "broker_code": "888Q",
+      "broker_name": "國泰-國際證券",
+      "open_date": "1030808",
+      "address": "無",
+      "phone": "02-77123892"
+    },
+    {
+      "broker_code": "888T",
+      "broker_name": "國泰-自營",
+      "open_date": "930813",
+      "address": "",
+      "phone": "23269888"
+    },
+    {
+      "broker_code": "896T",
+      "broker_name": "香港上海匯豐-自營",
+      "open_date": "951003",
+      "address": "",
+      "phone": "02-27228458"
+    },
+    {
+      "broker_code": "9101",
+      "broker_name": "群益金鼎-敦南",
+      "open_date": "1000503",
+      "address": "臺北市敦化南路2段97號地下之2",
+      "phone": "02-27052888"
+    },
+    {
+      "broker_code": "9103",
+      "broker_name": "群益金鼎-松山",
+      "open_date": "921110",
+      "address": "台北市南京東路4段130號11樓、11樓之1",
+      "phone": "02-25708889"
+    },
+    {
+      "broker_code": "9105",
+      "broker_name": "群益金鼎-高盛",
+      "open_date": "891226",
+      "address": "高雄市前鎮區一心二路252號3樓",
+      "phone": "07-3309966"
+    },
+    {
+      "broker_code": "9108",
+      "broker_name": "群益金鼎-海山",
+      "open_date": "891226",
+      "address": "新北市板橋區東門街30之2號3樓之1",
+      "phone": "02-29699977"
+    },
+    {
+      "broker_code": "910D",
+      "broker_name": "群益金鼎-市府",
+      "open_date": "940103",
+      "address": "台北市信義區忠孝東路五段293號3樓（部分）",
+      "phone": "(02)27512288"
+    },
+    {
+      "broker_code": "910T",
+      "broker_name": "群益金鼎-自營",
+      "open_date": "781012",
+      "address": "",
+      "phone": "02-87898888"
+    },
+    {
+      "broker_code": "9131",
+      "broker_name": "群益金鼎-民權",
+      "open_date": "1000503",
+      "address": "臺中市民權路91號4、5樓",
+      "phone": "04-22208822"
+    },
+    {
+      "broker_code": "9134",
+      "broker_name": "群益金鼎-開元",
+      "open_date": "1000503",
+      "address": "臺南市開元路280號3樓之1~2、4樓之1~2",
+      "phone": "06-2348899"
+    },
+    {
+      "broker_code": "9135",
+      "broker_name": "群益金鼎-東大",
+      "open_date": "1000503",
+      "address": "新竹市東大路1段118號3樓",
+      "phone": "03-5317777"
+    },
+    {
+      "broker_code": "9136",
+      "broker_name": "群益金鼎-西松",
+      "open_date": "1000503",
+      "address": "臺北市南京東路5段213號3樓",
+      "phone": "02-27683388"
+    },
+    {
+      "broker_code": "9137",
+      "broker_name": "群益金鼎-士林",
+      "open_date": "1000503",
+      "address": "臺北市中正路118-1號地下1樓、1樓",
+      "phone": "02-28380567"
+    },
+    {
+      "broker_code": "9138",
+      "broker_name": "群益金鼎-中港",
+      "open_date": "1000503",
+      "address": "臺中市梧棲區大仁路二段369號1、2樓",
+      "phone": "04-26577599"
+    },
+    {
+      "broker_code": "913D",
+      "broker_name": "群益金鼎-潭子",
+      "open_date": "1000503",
+      "address": "臺中市潭子區興華一路418號",
+      "phone": "04-25362345"
+    },
+    {
+      "broker_code": "913E",
+      "broker_name": "群益金鼎-基隆",
+      "open_date": "1000503",
+      "address": "基隆市仁二路255號8樓",
+      "phone": "02-24221212"
+    },
+    {
+      "broker_code": "913H",
+      "broker_name": "群益金鼎-屏東",
+      "open_date": "1000503",
+      "address": "屏東縣屏東市永福路9號3樓",
+      "phone": "08-7339602"
+    },
+    {
+      "broker_code": "913I",
+      "broker_name": "群益金鼎-萬華",
+      "open_date": "1000503",
+      "address": "臺北市萬華區桂林路31號2樓",
+      "phone": "02-23751399"
+    },
+    {
+      "broker_code": "913N",
+      "broker_name": "群益金鼎-土城",
+      "open_date": "1000503",
+      "address": "新北市土城區明德路2段47號1樓、2樓",
+      "phone": "02-22625988"
+    },
+    {
+      "broker_code": "913R",
+      "broker_name": "群益金鼎-北高雄",
+      "open_date": "1000503",
+      "address": "高雄市鼓山區明華路317號3樓",
+      "phone": "07-5559933"
+    },
+    {
+      "broker_code": "913U",
+      "broker_name": "群益金鼎-崇德",
+      "open_date": "1000503",
+      "address": "臺中市崇德路2段416號地下1樓-1",
+      "phone": "04-22468899"
+    },
+    {
+      "broker_code": "913Y",
+      "broker_name": "群益金鼎-館前",
+      "open_date": "1000503",
+      "address": "臺北市中正區重慶南路一段77號8樓",
+      "phone": "02-23615678"
+    },
+    {
+      "broker_code": "913g",
+      "broker_name": "群益金鼎-三重",
+      "open_date": "1000503",
+      "address": "新北市三重區正義南路91、93、95、97、99號1樓",
+      "phone": "02-29734388"
+    },
+    {
+      "broker_code": "9183",
+      "broker_name": "群益金鼎-高雄",
+      "open_date": "800605",
+      "address": "高雄市河東路165號1樓(部分)、2樓",
+      "phone": "07-2150077"
+    },
+    {
+      "broker_code": "9184",
+      "broker_name": "群益金鼎-台中",
+      "open_date": "811114",
+      "address": "台中市忠明南路40號1、2樓、42號地下1樓",
+      "phone": "04-23200088"
+    },
+    {
+      "broker_code": "9185",
+      "broker_name": "群益金鼎-台南",
+      "open_date": "830709",
+      "address": "台南市中西區民生路2段76號3樓(部份)及3樓之1",
+      "phone": "06-2252588"
+    },
+    {
+      "broker_code": "9186",
+      "broker_name": "群益金鼎-新竹",
+      "open_date": "840708",
+      "address": "新竹市北大路307號 8樓之1、8樓之2、8樓之3、8樓之4",
+      "phone": "03-5237777"
+    },
+    {
+      "broker_code": "9187",
+      "broker_name": "群益金鼎-彰化",
+      "open_date": "840706",
+      "address": "彰化縣彰化市民生路279號7樓",
+      "phone": "04-7250888"
+    },
+    {
+      "broker_code": "9188",
+      "broker_name": "群益金鼎-三民",
+      "open_date": "840715",
+      "address": "高雄市三民區大昌二路80號1樓(含夾層)、2樓及2樓之2",
+      "phone": "07-3952588"
+    },
+    {
+      "broker_code": "9189",
+      "broker_name": "群益金鼎-桃園",
+      "open_date": "841005",
+      "address": "桃園市桃園區成功路1段32號4樓(部分)",
+      "phone": "03-3377555"
+    },
+    {
+      "broker_code": "918A",
+      "broker_name": "群益金鼎-中壢",
+      "open_date": "841005",
+      "address": "桃園市中壢區中山路88號3樓",
+      "phone": "03-4278699"
+    },
+    {
+      "broker_code": "918B",
+      "broker_name": "群益金鼎-板橋",
+      "open_date": "850513",
+      "address": "新北市板橋區三民路1段216號3樓(部分)",
+      "phone": "02-89518089"
+    },
+    {
+      "broker_code": "918C",
+      "broker_name": "群益金鼎-古亭",
+      "open_date": "1000503",
+      "address": "臺北市中正區南昌路2段85號1、2樓",
+      "phone": "02-23279288"
+    },
+    {
+      "broker_code": "918D",
+      "broker_name": "群益金鼎-東門",
+      "open_date": "860324",
+      "address": "台南市北門路1段97號4樓",
+      "phone": "06-2290077"
+    },
+    {
+      "broker_code": "918E",
+      "broker_name": "群益金鼎-南京",
+      "open_date": "1000503",
+      "address": "臺北市南京東路2段71號9樓",
+      "phone": "02-25427088"
+    },
+    {
+      "broker_code": "918F",
+      "broker_name": "群益金鼎-新店",
+      "open_date": "860801",
+      "address": "新北巿新店區中正路190號8樓",
+      "phone": "02-29121818"
+    },
+    {
+      "broker_code": "918G",
+      "broker_name": "群益金鼎-新莊",
+      "open_date": "860802",
+      "address": "新北市新莊區中平路379號3樓",
+      "phone": "02-89918899"
+    },
+    {
+      "broker_code": "918H",
+      "broker_name": "群益金鼎-中山",
+      "open_date": "861018",
+      "address": "台北市中山區林森北路372號6樓",
+      "phone": "02-21002798"
+    },
+    {
+      "broker_code": "918J",
+      "broker_name": "群益金鼎-永和",
+      "open_date": "830301",
+      "address": "新北市永和區福和路353號2樓",
+      "phone": "02-29207777"
+    },
+    {
+      "broker_code": "918K",
+      "broker_name": "群益金鼎-東湖",
+      "open_date": "870707",
+      "address": "臺北市內湖區成功路5段460號8樓之1",
+      "phone": "02-26333988"
+    },
+    {
+      "broker_code": "918L",
+      "broker_name": "群益金鼎-建成",
+      "open_date": "870805",
+      "address": "台中市東區建成路735號3樓",
+      "phone": "04-22830099"
+    },
+    {
+      "broker_code": "918M",
+      "broker_name": "群益金鼎-嘉義",
+      "open_date": "860714",
+      "address": "嘉義市垂楊路87 號1樓",
+      "phone": "05-2258666"
+    },
+    {
+      "broker_code": "918P",
+      "broker_name": "群益金鼎-天母",
+      "open_date": "890515",
+      "address": "台北市中山北路7段18號3樓之1、之2",
+      "phone": "02-28767388"
+    },
+    {
+      "broker_code": "918W",
+      "broker_name": "群益金鼎-忠孝",
+      "open_date": "1000503",
+      "address": "台北市忠孝東路4段87號15樓",
+      "phone": "02-27771077"
+    },
+    {
+      "broker_code": "918X",
+      "broker_name": "群益金鼎-台北",
+      "open_date": "920519",
+      "address": "台北市重慶北路1段30號4樓",
+      "phone": "02-25561133"
+    },
+    {
+      "broker_code": "918c",
+      "broker_name": "群益金鼎-鳳山",
+      "open_date": "911111",
+      "address": "高雄市前鎮區永豐路8號1、2樓及10號1、2樓",
+      "phone": "07-7101288"
+    },
+    {
+      "broker_code": "918d",
+      "broker_name": "群益金鼎-內湖",
+      "open_date": "920317",
+      "address": "台北市內湖區成功路4段50號6樓",
+      "phone": "02-27911999"
+    },
+    {
+      "broker_code": "918e",
+      "broker_name": "群益金鼎-大安",
+      "open_date": "930216",
+      "address": "臺北市大安區忠孝東路4段169號2樓、2樓之1",
+      "phone": "02-27730899"
+    },
+    {
+      "broker_code": "918g",
+      "broker_name": "群益金鼎-大甲",
+      "open_date": "901231",
+      "address": "台中市大甲區蔣公路295號2樓",
+      "phone": "04-26882828"
+    },
+    {
+      "broker_code": "918i",
+      "broker_name": "群益金鼎-竹南",
+      "open_date": "891226",
+      "address": "苗栗縣竹南鎮民族街87號5樓",
+      "phone": "037-478345"
+    },
+    {
+      "broker_code": "918s",
+      "broker_name": "群益金鼎-丹鳳",
+      "open_date": "930929",
+      "address": "新北市新莊區富國路16號1樓、2樓",
+      "phone": "02-29082388"
+    },
+    {
+      "broker_code": "918u",
+      "broker_name": "群益金鼎-瑞豐",
+      "open_date": "911111",
+      "address": "高雄市苓雅區三多一路174號2樓",
+      "phone": "07-7211828"
+    },
+    {
+      "broker_code": "918x",
+      "broker_name": "群益金鼎-延平",
+      "open_date": "920901",
+      "address": "臺北市大同區延平北路2段96號4樓",
+      "phone": "02-25553888"
+    },
+    {
+      "broker_code": "918z",
+      "broker_name": "群益金鼎-宜蘭",
+      "open_date": "940103",
+      "address": "宜蘭縣宜蘭市舊城南路50號5樓",
+      "phone": "03-9331999"
+    },
+    {
+      "broker_code": "9199",
+      "broker_name": "群益金鼎-國際證券",
+      "open_date": "1030526",
+      "address": "台北市松山區民生東路3段156號11樓之6部分",
+      "phone": "02-87898888"
+    },
+    {
+      "broker_code": "9202",
+      "broker_name": "凱基-中港",
+      "open_date": "981221",
+      "address": "臺中市臺灣大道1段728號8樓",
+      "phone": "04-22019588"
+    },
+    {
+      "broker_code": "9204",
+      "broker_name": "凱基-台中",
+      "open_date": "981221",
+      "address": "台中市民族路50號5樓",
+      "phone": "04-22278011"
+    },
+    {
+      "broker_code": "9205",
+      "broker_name": "凱基-三重",
+      "open_date": "981221",
+      "address": "新北市三重區正義北路206號、208號3、4樓",
+      "phone": "02-29838833"
+    },
+    {
+      "broker_code": "9206",
+      "broker_name": "凱基-高雄",
+      "open_date": "981221",
+      "address": "高雄市中正二路74號5樓",
+      "phone": "(07)222-3211"
+    },
+    {
+      "broker_code": "9207",
+      "broker_name": "凱基-永和",
+      "open_date": "981221",
+      "address": "新北市永和區中正路63、65號6樓",
+      "phone": "(02)22324567"
+    },
+    {
+      "broker_code": "9208",
+      "broker_name": "凱基-桃園",
+      "open_date": "981221",
+      "address": "桃園市桃園區成功路1段32號14樓",
+      "phone": "(03)3336622"
+    },
+    {
+      "broker_code": "9209",
+      "broker_name": "凱基-岡山",
+      "open_date": "981221",
+      "address": "高雄市岡山區岡山路101號1、2樓",
+      "phone": "076233600"
+    },
+    {
+      "broker_code": "920A",
+      "broker_name": "凱基-板橋",
+      "open_date": "1020624",
+      "address": "新北市板橋區四川路1段107號2樓",
+      "phone": "02-89516688"
+    },
+    {
+      "broker_code": "920C",
+      "broker_name": "凱基-雙和",
+      "open_date": "1020624",
+      "address": "新北市中和區中和路232號3樓",
+      "phone": "02-22468666"
+    },
+    {
+      "broker_code": "920D",
+      "broker_name": "凱基-市府",
+      "open_date": "1020624",
+      "address": "台北市忠孝東路4段563號7樓",
+      "phone": "02-27456888"
+    },
+    {
+      "broker_code": "920F",
+      "broker_name": "凱基-站前",
+      "open_date": "1020624",
+      "address": "台北市許昌街17號3樓及3樓之1",
+      "phone": "02-23831111"
+    },
+    {
+      "broker_code": "920G",
+      "broker_name": "凱基-彰化",
+      "open_date": "1020624",
+      "address": "彰化市中山路2段353號1樓",
+      "phone": "04-7266565"
+    },
+    {
+      "broker_code": "920H",
+      "broker_name": "凱基-基隆",
+      "open_date": "981221",
+      "address": "基隆市仁一路259號3樓、4樓",
+      "phone": "24202111"
+    },
+    {
+      "broker_code": "920M",
+      "broker_name": "凱基-宜蘭",
+      "open_date": "981221",
+      "address": "宜蘭市光復路48號2、3樓",
+      "phone": "03-9334999"
+    },
+    {
+      "broker_code": "920N",
+      "broker_name": "凱基-湖口",
+      "open_date": "981221",
+      "address": "新竹縣湖口鄉成功路247號",
+      "phone": "03-5907766"
+    },
+    {
+      "broker_code": "920T",
+      "broker_name": "凱基-自營",
+      "open_date": "981221",
+      "address": "",
+      "phone": "02-21818808"
+    },
+    {
+      "broker_code": "920V",
+      "broker_name": "凱基-新店",
+      "open_date": "981221",
+      "address": "新北市新店區北新路3段106號1、2樓及106之1號",
+      "phone": "02-29155855"
+    },
+    {
+      "broker_code": "920W",
+      "broker_name": "凱基-大里",
+      "open_date": "981221",
+      "address": "台中市大里區中興路2段127號2、4樓",
+      "phone": "04-24866988"
+    },
+    {
+      "broker_code": "920Z",
+      "broker_name": "凱基-台東",
+      "open_date": "1020624",
+      "address": "台東縣台東市中山路248號1、2、3樓",
+      "phone": "089-353345"
+    },
+    {
+      "broker_code": "9211",
+      "broker_name": "凱基-台南",
+      "open_date": "981221",
+      "address": "台南市林森路1段395號3樓",
+      "phone": "06-2347622"
+    },
+    {
+      "broker_code": "9212",
+      "broker_name": "凱基-東港",
+      "open_date": "981221",
+      "address": "屏東縣東港鎮光復路1段186號3樓",
+      "phone": "(08)833-6565"
+    },
+    {
+      "broker_code": "9215",
+      "broker_name": "凱基-高美館",
+      "open_date": "981221",
+      "address": "高雄市鼓山區明誠四路156號3樓及3樓之1",
+      "phone": "(07)5544888"
+    },
+    {
+      "broker_code": "9216",
+      "broker_name": "凱基-信義",
+      "open_date": "981221",
+      "address": "台北市復興北路167號14樓之1、之2、之3",
+      "phone": "02-27195528"
+    },
+    {
+      "broker_code": "9217",
+      "broker_name": "凱基-松山",
+      "open_date": "981221",
+      "address": "台北市八德路4段678號3樓",
+      "phone": "02-27534567"
+    },
+    {
+      "broker_code": "9218",
+      "broker_name": "凱基-大直",
+      "open_date": "981221",
+      "address": "台北市明水路646號1樓、648號1樓、636號2樓之7及636號2樓之8。",
+      "phone": "(02)85098288"
+    },
+    {
+      "broker_code": "921C",
+      "broker_name": "凱基-民權",
+      "open_date": "1020624",
+      "address": "台北市復興北路420號4樓",
+      "phone": "02-25043388"
+    },
+    {
+      "broker_code": "921E",
+      "broker_name": "凱基-三峽",
+      "open_date": "1020624",
+      "address": "新北市三峽區文化路59號3樓之1",
+      "phone": "02-6729988"
+    },
+    {
+      "broker_code": "921G",
+      "broker_name": "凱基-五股",
+      "open_date": "1020624",
+      "address": "新北市五股區中興路4段40號1樓、2樓",
+      "phone": "02-82950066"
+    },
+    {
+      "broker_code": "921J",
+      "broker_name": "凱基-土城",
+      "open_date": "1020624",
+      "address": "新北市土城區金城路3段182號",
+      "phone": "02-82626998"
+    },
+    {
+      "broker_code": "921M",
+      "broker_name": "凱基-八德",
+      "open_date": "1020624",
+      "address": "桃園市八德區介壽路2段137號3樓",
+      "phone": "03-3779688"
+    },
+    {
+      "broker_code": "921S",
+      "broker_name": "凱基-新莊",
+      "open_date": "1020624",
+      "address": "新北市新莊區思源路555號2樓之2",
+      "phone": "02-89919999"
+    },
+    {
+      "broker_code": "921Y",
+      "broker_name": "凱基-東勢",
+      "open_date": "981221",
+      "address": "台中市東勢區豐勢路297號4樓",
+      "phone": "04-25877111"
+    },
+    {
+      "broker_code": "9223",
+      "broker_name": "凱基-豐中",
+      "open_date": "981221",
+      "address": "台中市豐原區三豐路1段43號7樓",
+      "phone": "04-25274180"
+    },
+    {
+      "broker_code": "9225",
+      "broker_name": "凱基-內埔",
+      "open_date": "981221",
+      "address": "屏東縣內埔鄉平昌街5號1樓",
+      "phone": "08-7690888"
+    },
+    {
+      "broker_code": "9226",
+      "broker_name": "凱基-汐止",
+      "open_date": "981221",
+      "address": "新北市汐止區新興路3號7樓",
+      "phone": "02-26485959"
+    },
+    {
+      "broker_code": "9227",
+      "broker_name": "凱基-城中",
+      "open_date": "981221",
+      "address": "台北市博愛路35號2樓、6樓",
+      "phone": "2361-6789"
+    },
+    {
+      "broker_code": "9229",
+      "broker_name": "凱基-中山",
+      "open_date": "981221",
+      "address": "台北市中山區中山北路2段68號7樓、8樓",
+      "phone": "02-77026678"
+    },
+    {
+      "broker_code": "922C",
+      "broker_name": "凱基-屏東",
+      "open_date": "981221",
+      "address": "屏東縣屏東市自由路188號3樓",
+      "phone": "08-7657000"
+    },
+    {
+      "broker_code": "9231",
+      "broker_name": "凱基-員林",
+      "open_date": "981221",
+      "address": "彰化縣員林鎮中山路2段100號6樓",
+      "phone": "04-8399988"
+    },
+    {
+      "broker_code": "9233",
+      "broker_name": "凱基-長庚",
+      "open_date": "981221",
+      "address": "桃園市龜山區復興一路227號地下1樓",
+      "phone": "03-3275000"
+    },
+    {
+      "broker_code": "9234",
+      "broker_name": "凱基-竹北",
+      "open_date": "981221",
+      "address": "新竹縣竹北市仁義路193號2、3樓",
+      "phone": "03-5552233"
+    },
+    {
+      "broker_code": "9235",
+      "broker_name": "凱基-永華",
+      "open_date": "981221",
+      "address": "台南市永華路1段32號3樓",
+      "phone": "06-2205570"
+    },
+    {
+      "broker_code": "9236",
+      "broker_name": "凱基-虎尾",
+      "open_date": "981221",
+      "address": "雲林縣虎尾鎮公安路160號2、3、4樓",
+      "phone": "(05)633-3581"
+    },
+    {
+      "broker_code": "9237",
+      "broker_name": "凱基-敦北",
+      "open_date": "981221",
+      "address": "台北市松山區敦化北路88號8樓之2",
+      "phone": "02-27401166"
+    },
+    {
+      "broker_code": "9238",
+      "broker_name": "凱基-士林",
+      "open_date": "981221",
+      "address": "台北市士林區文林路342號5樓",
+      "phone": "02-28823355"
+    },
+    {
+      "broker_code": "9239",
+      "broker_name": "凱基-市政",
+      "open_date": "981221",
+      "address": "臺中市西屯區市政路402號4樓之2、之3",
+      "phone": "04-2258-9669"
+    },
+    {
+      "broker_code": "9252",
+      "broker_name": "凱基-嘉義",
+      "open_date": "981221",
+      "address": "嘉義市垂楊路620號4樓",
+      "phone": "05-2276879"
+    },
+    {
+      "broker_code": "9254",
+      "broker_name": "凱基-科園",
+      "open_date": "981221",
+      "address": "新竹市光復路1段273號1樓",
+      "phone": "03-6686599"
+    },
+    {
+      "broker_code": "9255",
+      "broker_name": "凱基-和平",
+      "open_date": "981221",
+      "address": "台北市羅斯福路2段102號3樓、3樓之1",
+      "phone": "02-23697707"
+    },
+    {
+      "broker_code": "9256",
+      "broker_name": "凱基-南崁",
+      "open_date": "981221",
+      "address": "桃園市蘆竹區中正路308號1樓、2樓",
+      "phone": "03-3129933"
+    },
+    {
+      "broker_code": "9257",
+      "broker_name": "凱基-林口",
+      "open_date": "981221",
+      "address": "新北市林口區文化二路1段399號3樓",
+      "phone": "02-26025678"
+    },
+    {
+      "broker_code": "9258",
+      "broker_name": "凱基-羅東",
+      "open_date": "981221",
+      "address": "宜蘭縣羅東鎮中正北路48號1樓",
+      "phone": "03-9534888"
+    },
+    {
+      "broker_code": "9266",
+      "broker_name": "凱基-新豐",
+      "open_date": "981221",
+      "address": "新竹縣新豐鄉中興路206號",
+      "phone": "03-5575566"
+    },
+    {
+      "broker_code": "9268",
+      "broker_name": "凱基-台北",
+      "open_date": "981221",
+      "address": "台北市南京東路2段137號4樓及10樓",
+      "phone": "02-25166789"
+    },
+    {
+      "broker_code": "9272",
+      "broker_name": "凱基-竹科",
+      "open_date": "981221",
+      "address": "新竹市中正路158號3樓",
+      "phone": "03-5221177"
+    },
+    {
+      "broker_code": "9273",
+      "broker_name": "凱基-竹東",
+      "open_date": "981221",
+      "address": "新竹縣竹東鎮朝陽路9號2樓",
+      "phone": "03-5958588"
+    },
+    {
+      "broker_code": "9274",
+      "broker_name": "凱基-鳳山",
+      "open_date": "981221",
+      "address": "高雄市鳳山區維新路128號1、2樓",
+      "phone": "07-7198899"
+    },
+    {
+      "broker_code": "9275",
+      "broker_name": "凱基-三多",
+      "open_date": "981221",
+      "address": "高雄市苓雅區中華四路47號3樓",
+      "phone": "07-3383288"
+    },
+    {
+      "broker_code": "9276",
+      "broker_name": "凱基-苗栗",
+      "open_date": "981221",
+      "address": "苗栗市中正路458號2樓",
+      "phone": "037-321300"
+    },
+    {
+      "broker_code": "9278",
+      "broker_name": "凱基-永康",
+      "open_date": "981221",
+      "address": "台南市永康區中山南路1042號1、2樓",
+      "phone": "06-2038899"
+    },
+    {
+      "broker_code": "9281",
+      "broker_name": "凱基-斗六",
+      "open_date": "981221",
+      "address": "雲林縣斗六市永安路46號3樓",
+      "phone": "05-5376688"
+    },
+    {
+      "broker_code": "9283",
+      "broker_name": "凱基-北門",
+      "open_date": "981221",
+      "address": "台南市北門路1段101號4樓",
+      "phone": "06-2228777"
+    },
+    {
+      "broker_code": "9285",
+      "broker_name": "凱基-中壢",
+      "open_date": "981221",
+      "address": "桃園市中壢區環北路421號、423號1、2樓",
+      "phone": "03-4336989"
+    },
+    {
+      "broker_code": "9287",
+      "broker_name": "凱基-內湖",
+      "open_date": "981221",
+      "address": "台北市內湖路1段360巷15號8樓",
+      "phone": "02-27938388"
+    },
+    {
+      "broker_code": "9288",
+      "broker_name": "凱基-埔墘",
+      "open_date": "981221",
+      "address": "新北市板橋區三民路1段216號5樓",
+      "phone": "02-89517777"
+    },
+    {
+      "broker_code": "9289",
+      "broker_name": "凱基-興隆",
+      "open_date": "981221",
+      "address": "台北市興隆路3段69號2樓",
+      "phone": "02-29315000"
+    },
+    {
+      "broker_code": "9291",
+      "broker_name": "凱基-大安",
+      "open_date": "981221",
+      "address": "台北市安和路2段82號2樓",
+      "phone": "02-27080606"
+    },
+    {
+      "broker_code": "9296",
+      "broker_name": "凱基-頭份",
+      "open_date": "981221",
+      "address": "苗栗縣頭份鎮中華路916號4樓",
+      "phone": "037-591888"
+    },
+    {
+      "broker_code": "9297",
+      "broker_name": "凱基-文心",
+      "open_date": "981221",
+      "address": "台中市北屯區文心路4段875號2樓",
+      "phone": "04-22466168"
+    },
+    {
+      "broker_code": "9299",
+      "broker_name": "凱基-國際證券",
+      "open_date": "1030416",
+      "address": "免設",
+      "phone": "02-21818888"
+    },
+    {
+      "broker_code": "9302",
+      "broker_name": "華南永昌-台中",
+      "open_date": "840610",
+      "address": "台中市南屯區五權西路二段131號1樓",
+      "phone": "04-24719488"
+    },
+    {
+      "broker_code": "9303",
+      "broker_name": "華南永昌-高雄",
+      "open_date": "850214",
+      "address": "高雄市五福三路80、82號3樓",
+      "phone": "07-2728688"
+    },
+    {
+      "broker_code": "9305",
+      "broker_name": "華南永昌-新莊",
+      "open_date": "850925",
+      "address": "新北市新莊區中港路306號4樓及308號4樓",
+      "phone": "02-22795688"
+    },
+    {
+      "broker_code": "9306",
+      "broker_name": "華南永昌-台南",
+      "open_date": "851105",
+      "address": "台南市府前路2段612號1、2樓",
+      "phone": "06-2959988"
+    },
+    {
+      "broker_code": "9307",
+      "broker_name": "華南永昌-大安",
+      "open_date": "811222",
+      "address": "台北市復興南路1段368號4樓",
+      "phone": "02-27549696"
+    },
+    {
+      "broker_code": "9308",
+      "broker_name": "華南永昌-麻豆",
+      "open_date": "851021",
+      "address": "台南市麻豆區中山路36號4、5樓",
+      "phone": "06-5720168"
+    },
+    {
+      "broker_code": "9309",
+      "broker_name": "華南永昌-古亭",
+      "open_date": "851129",
+      "address": "台北市羅斯福路2段91號2樓(部份)",
+      "phone": "02-23699588"
+    },
+    {
+      "broker_code": "930T",
+      "broker_name": "華南永昌-自營",
+      "open_date": "790222",
+      "address": "台北市民生東路4段54號5F部分",
+      "phone": "02-25456888"
+    },
+    {
+      "broker_code": "9312",
+      "broker_name": "華南永昌-民權",
+      "open_date": "861108",
+      "address": "高雄市新興區六合一路78號4樓",
+      "phone": "07-3333133"
+    },
+    {
+      "broker_code": "9314",
+      "broker_name": "華南永昌-嘉義",
+      "open_date": "851224",
+      "address": "嘉義市蘭井街469號3樓",
+      "phone": "05-2226848"
+    },
+    {
+      "broker_code": "9315",
+      "broker_name": "華南永昌-大甲",
+      "open_date": "950901",
+      "address": "台中市大甲區順天路159號2樓",
+      "phone": "04-26880737"
+    },
+    {
+      "broker_code": "9316",
+      "broker_name": "華南永昌-淡水",
+      "open_date": "860410",
+      "address": "新北市淡水區中正路28號4樓",
+      "phone": "02-26255566"
+    },
+    {
+      "broker_code": "9317",
+      "broker_name": "華南永昌-林口",
+      "open_date": "860708",
+      "address": "新北市林口區林口路46號3樓",
+      "phone": "02-26018288"
+    },
+    {
+      "broker_code": "9319",
+      "broker_name": "華南永昌-鶯歌",
+      "open_date": "860801",
+      "address": "新北市鶯歌區國慶街101號3、4樓",
+      "phone": "02-26776000"
+    },
+    {
+      "broker_code": "9322",
+      "broker_name": "華南永昌-基隆",
+      "open_date": "910128",
+      "address": "基隆市仁愛區仁一路305號9-10樓",
+      "phone": "02-24201201"
+    },
+    {
+      "broker_code": "9323",
+      "broker_name": "華南永昌-小港",
+      "open_date": "860724",
+      "address": "高雄市小港區漢民路339號2樓",
+      "phone": "07-8068988"
+    },
+    {
+      "broker_code": "9324",
+      "broker_name": "華南永昌-岡山",
+      "open_date": "890209",
+      "address": "高雄市岡山區民族路88號1樓、地下室1樓",
+      "phone": "07-6255911"
+    },
+    {
+      "broker_code": "9325",
+      "broker_name": "華南永昌-忠孝",
+      "open_date": "910128",
+      "address": "台北市忠孝東路2段130號3樓之1",
+      "phone": "02-23587488"
+    },
+    {
+      "broker_code": "9326",
+      "broker_name": "華南永昌-南京",
+      "open_date": "810921",
+      "address": "台北市松山區南京東路3段248號6樓",
+      "phone": "02-27755688"
+    },
+    {
+      "broker_code": "9327",
+      "broker_name": "華南永昌-斗六",
+      "open_date": "861127",
+      "address": "雲林縣斗六市太平路7號4樓",
+      "phone": "05-5330777"
+    },
+    {
+      "broker_code": "9328",
+      "broker_name": "華南永昌-潮州",
+      "open_date": "860912",
+      "address": "屏東縣潮州鎮新生路71號4樓",
+      "phone": "08-7805888"
+    },
+    {
+      "broker_code": "9329",
+      "broker_name": "華南永昌-朴子",
+      "open_date": "861121",
+      "address": "嘉義縣朴子市文化北路2號2樓",
+      "phone": "05-3707688"
+    },
+    {
+      "broker_code": "9331",
+      "broker_name": "華南永昌-鳳山",
+      "open_date": "900326",
+      "address": "高雄市鳳山區中山路145號4樓",
+      "phone": "07-7477600"
+    },
+    {
+      "broker_code": "9332",
+      "broker_name": "華南永昌-楠梓",
+      "open_date": "900326",
+      "address": "高雄市楠梓區楠梓路201號地下一樓",
+      "phone": "07-3542030"
+    },
+    {
+      "broker_code": "9333",
+      "broker_name": "華南永昌-長虹",
+      "open_date": "900219",
+      "address": "宜蘭縣羅東鎮公正路155號2 樓",
+      "phone": "03-9574101"
+    },
+    {
+      "broker_code": "9334",
+      "broker_name": "華南永昌-世貿",
+      "open_date": "900219",
+      "address": "臺北市信義區基隆路2段91號2樓",
+      "phone": "02-27396266"
+    },
+    {
+      "broker_code": "9337",
+      "broker_name": "華南永昌-內壢",
+      "open_date": "900514",
+      "address": "桃園市中壢區環中東路262號2樓",
+      "phone": "03-4519888"
+    },
+    {
+      "broker_code": "9339",
+      "broker_name": "華南永昌-竹北",
+      "open_date": "930102",
+      "address": "新竹縣竹北市勝利一路89號",
+      "phone": "03-6580066"
+    },
+    {
+      "broker_code": "9343",
+      "broker_name": "華南永昌-頭份",
+      "open_date": "900305",
+      "address": "苗栗縣頭份市中華路916號3樓之2",
+      "phone": "037-667999"
+    },
+    {
+      "broker_code": "9347",
+      "broker_name": "華南永昌-敦南",
+      "open_date": "910128",
+      "address": "台北市忠孝東路4段107號8樓之2",
+      "phone": "02-27415858"
+    },
+    {
+      "broker_code": "9349",
+      "broker_name": "華南永昌-板橋",
+      "open_date": "900514",
+      "address": "新北市板橋區忠孝路102號2樓",
+      "phone": "02-29561688"
+    },
+    {
+      "broker_code": "9352",
+      "broker_name": "華南永昌-桃園",
+      "open_date": "860410",
+      "address": "桃園市桃園區南華街79號4樓",
+      "phone": "03-3478168"
+    },
+    {
+      "broker_code": "9358",
+      "broker_name": "華南永昌-東勢",
+      "open_date": "950207",
+      "address": "台中市東勢區三民街280號",
+      "phone": "04-25881811"
+    },
+    {
+      "broker_code": "9359",
+      "broker_name": "華南永昌-中正",
+      "open_date": "910722",
+      "address": "台北市重慶南路一段38號4樓",
+      "phone": "02-23821788"
+    },
+    {
+      "broker_code": "9362",
+      "broker_name": "華南永昌-苗栗",
+      "open_date": "950317",
+      "address": "苗栗縣苗栗市中正路686號2樓及3樓部分",
+      "phone": "037-376118"
+    },
+    {
+      "broker_code": "9363",
+      "broker_name": "華南永昌-彰化",
+      "open_date": "920623",
+      "address": "彰化縣彰化市陳稜路156號5樓",
+      "phone": "04-7223700"
+    },
+    {
+      "broker_code": "9366",
+      "broker_name": "華南永昌-豐原",
+      "open_date": "1120103",
+      "address": "台中市豐原區信義街95號5樓",
+      "phone": "04-25281000"
+    },
+    {
+      "broker_code": "9369",
+      "broker_name": "華南永昌-三重",
+      "open_date": "931213",
+      "address": "新北市三重區仁愛街731號地下一樓",
+      "phone": "02-28576789"
+    },
+    {
+      "broker_code": "9377",
+      "broker_name": "華南永昌-虎尾",
+      "open_date": "1041102",
+      "address": "雲林縣虎尾鎮林森路1段490號4樓",
+      "phone": "(05)6334888"
+    },
+    {
+      "broker_code": "9386",
+      "broker_name": "華南永昌-東昇",
+      "open_date": "900626",
+      "address": "台東市中華路1段347號2樓",
+      "phone": "089-332339"
+    },
+    {
+      "broker_code": "9399",
+      "broker_name": "華南永昌-國際證券",
+      "open_date": "1030710",
+      "address": "台北市民生東路4段54號5樓(部分)",
+      "phone": "25456888"
+    },
+    {
+      "broker_code": "9604",
+      "broker_name": "富邦-陽明",
+      "open_date": "890909",
+      "address": "台北市北投區裕民六路2號1樓",
+      "phone": "02-28230688"
+    },
+    {
+      "broker_code": "9608",
+      "broker_name": "富邦-台東",
+      "open_date": "890911",
+      "address": "台東市中華路1段366號2樓",
+      "phone": "089-341022"
+    },
+    {
+      "broker_code": "960S",
+      "broker_name": "富邦-國際證券",
+      "open_date": "1030506",
+      "address": "臺北市仁愛路四段169號4樓部分",
+      "phone": "(02)27716699"
+    },
+    {
+      "broker_code": "960T",
+      "broker_name": "富邦-自營",
+      "open_date": "781206",
+      "address": "台北市仁愛路4段169號15樓部分及台北市敦化南路1段111號9樓部分",
+      "phone": "02-87716888"
+    },
+    {
+      "broker_code": "9614",
+      "broker_name": "富邦-基隆",
+      "open_date": "981203",
+      "address": "基隆市信一路133號1樓",
+      "phone": "2421-3355"
+    },
+    {
+      "broker_code": "9616",
+      "broker_name": "富邦-岡山",
+      "open_date": "900608",
+      "address": "高雄市岡山區竹圍里22鄰中山北路178號2樓及3樓部分",
+      "phone": "07-6236123"
+    },
+    {
+      "broker_code": "961C",
+      "broker_name": "富邦-南京",
+      "open_date": "1120409",
+      "address": "北市南京東路2段111號3樓",
+      "phone": "02-25048888"
+    },
+    {
+      "broker_code": "961F",
+      "broker_name": "富邦-公益",
+      "open_date": "1120409",
+      "address": "台中市南屯區公益路2段51號3樓部分",
+      "phone": "04-23278989"
+    },
+    {
+      "broker_code": "961H",
+      "broker_name": "富邦-新板",
+      "open_date": "1120409",
+      "address": "新北市板橋區府中路29號4樓",
+      "phone": "02-29693333"
+    },
+    {
+      "broker_code": "961K",
+      "broker_name": "富邦-七賢",
+      "open_date": "1120409",
+      "address": "高雄市七賢二路267號2樓",
+      "phone": "07-2816888"
+    },
+    {
+      "broker_code": "961M",
+      "broker_name": "富邦-木柵",
+      "open_date": "1120409",
+      "address": "台北市木柵路3段96號4樓之1",
+      "phone": "02-22342616"
+    },
+    {
+      "broker_code": "961N",
+      "broker_name": "富邦-青埔",
+      "open_date": "1120409",
+      "address": "桃園市中壢區洽溪路59號2樓",
+      "phone": "03-4273888"
+    },
+    {
+      "broker_code": "961P",
+      "broker_name": "富邦-和美",
+      "open_date": "1120409",
+      "address": "彰化縣和美鎮彰美路6段86號2樓部分",
+      "phone": "04-7565988"
+    },
+    {
+      "broker_code": "961R",
+      "broker_name": "富邦-南員林",
+      "open_date": "1120409",
+      "address": "彰化縣員林鎮中山路1段753號4、5樓",
+      "phone": "04-8326118"
+    },
+    {
+      "broker_code": "961Y",
+      "broker_name": "富邦-屏東",
+      "open_date": "1120409",
+      "address": "屏東市中正路125號3樓之1及3樓之2",
+      "phone": "08-7663888"
+    },
+    {
+      "broker_code": "961Z",
+      "broker_name": "富邦-永康",
+      "open_date": "1120409",
+      "address": "台南市永康區大灣路856號部分",
+      "phone": "06-3113888"
+    },
+    {
+      "broker_code": "9621",
+      "broker_name": "富邦-花蓮",
+      "open_date": "890911",
+      "address": "花蓮縣花蓮市林森路256號2樓",
+      "phone": "038-350111"
+    },
+    {
+      "broker_code": "9623",
+      "broker_name": "富邦-台北",
+      "open_date": "890909",
+      "address": "台北市許昌街17號2樓",
+      "phone": "02-23113333"
+    },
+    {
+      "broker_code": "9624",
+      "broker_name": "富邦-竹北",
+      "open_date": "890911",
+      "address": "新竹縣竹北市光明六路263號3樓",
+      "phone": "03-5515588"
+    },
+    {
+      "broker_code": "9625",
+      "broker_name": "富邦-竹東",
+      "open_date": "890911",
+      "address": "新竹縣竹東鎮榮樂里14鄰惠昌街45號3、4、5樓",
+      "phone": "03-5818888"
+    },
+    {
+      "broker_code": "9627",
+      "broker_name": "富邦-內湖",
+      "open_date": "920728",
+      "address": "台北市內湖區內湖路1段318號4樓",
+      "phone": "02─87971188"
+    },
+    {
+      "broker_code": "962A",
+      "broker_name": "富邦-南港",
+      "open_date": "1120409",
+      "address": "台北市南港區三重路19之5號部分",
+      "phone": "02-27390369"
+    },
+    {
+      "broker_code": "962B",
+      "broker_name": "富邦-二林",
+      "open_date": "1120409",
+      "address": "彰化縣二林鎮中山路116號4、5樓",
+      "phone": "04-8951808"
+    },
+    {
+      "broker_code": "962C",
+      "broker_name": "富邦-竹科",
+      "open_date": "1120409",
+      "address": "新竹市東區埔頂二路75號3樓、77號3樓",
+      "phone": "03-5227868"
+    },
+    {
+      "broker_code": "962D",
+      "broker_name": "富邦-新莊",
+      "open_date": "1120409",
+      "address": "新北市新莊區中華路3段226號4樓",
+      "phone": "02-22019789"
+    },
+    {
+      "broker_code": "962E",
+      "broker_name": "富邦-樹林",
+      "open_date": "1120409",
+      "address": "新北市樹林區中山路1段100、102號4樓",
+      "phone": "02-26869968"
+    },
+    {
+      "broker_code": "962G",
+      "broker_name": "富邦-斗六",
+      "open_date": "1120409",
+      "address": "雲林縣斗六市中山路72號2樓",
+      "phone": "05-5351010"
+    },
+    {
+      "broker_code": "962J",
+      "broker_name": "富邦-三峽",
+      "open_date": "1120409",
+      "address": "新北市三峽區文化路59號4樓之1",
+      "phone": "02-26748988"
+    },
+    {
+      "broker_code": "962P",
+      "broker_name": "富邦-頭份",
+      "open_date": "1120409",
+      "address": "苗栗縣頭份鎮中華路926號2、4樓",
+      "phone": "037-663888"
+    },
+    {
+      "broker_code": "962Q",
+      "broker_name": "富邦-港都",
+      "open_date": "1120409",
+      "address": "高雄市苓雅區四維三路263號12樓部分、中山二路358號地下層部分",
+      "phone": "07-5501768"
+    },
+    {
+      "broker_code": "9634",
+      "broker_name": "富邦-羅東",
+      "open_date": "890909",
+      "address": "宜蘭縣羅東鎮信義里興東路286號2樓",
+      "phone": "03-9571166"
+    },
+    {
+      "broker_code": "9636",
+      "broker_name": "富邦-中壢",
+      "open_date": "890911",
+      "address": "桃園市中壢區慈惠3街162號1樓、環北路398號2樓之6及之8",
+      "phone": "03-4256767"
+    },
+    {
+      "broker_code": "963A",
+      "broker_name": "富邦-八德",
+      "open_date": "1120409",
+      "address": "桃園市八德區金和路10號一樓、地下一樓及金和路2號地下一樓(部分)",
+      "phone": "03-3622888"
+    },
+    {
+      "broker_code": "963L",
+      "broker_name": "富邦-豐原",
+      "open_date": "1120409",
+      "address": "台中市豐原區三民路95號4、5樓",
+      "phone": "04-25229688"
+    },
+    {
+      "broker_code": "9647",
+      "broker_name": "富邦-新竹",
+      "open_date": "890911",
+      "address": "新竹市北區中山路8號1~4樓及5樓部分",
+      "phone": "03-5228678"
+    },
+    {
+      "broker_code": "9654",
+      "broker_name": "富邦-永和",
+      "open_date": "840421",
+      "address": "新北市永和區保生路1號地下1樓部分",
+      "phone": "02-22323266"
+    },
+    {
+      "broker_code": "9655",
+      "broker_name": "富邦-板橋",
+      "open_date": "841120",
+      "address": "新北市板橋區文化路1段266號1樓之1",
+      "phone": "02-22546996"
+    },
+    {
+      "broker_code": "9657",
+      "broker_name": "富邦-苗栗",
+      "open_date": "851218",
+      "address": "苗栗縣苗栗市中正路386號3樓",
+      "phone": "037-327196"
+    },
+    {
+      "broker_code": "9658",
+      "broker_name": "富邦-建國",
+      "open_date": "860503",
+      "address": "台北市建國北路2段196號地下1樓",
+      "phone": "02-25095198"
+    },
+    {
+      "broker_code": "9659",
+      "broker_name": "富邦-高雄",
+      "open_date": "811102",
+      "address": "高雄市新興區民族二路95號地下1樓",
+      "phone": "07-2366901"
+    },
+    {
+      "broker_code": "965K",
+      "broker_name": "富邦-台中",
+      "open_date": "820726",
+      "address": "台中市西屯區漢口路2段138號1樓",
+      "phone": "04-23129999"
+    },
+    {
+      "broker_code": "965U",
+      "broker_name": "富邦-彰化",
+      "open_date": "850601",
+      "address": "彰化市中山路2段349號2樓",
+      "phone": "04-7259456"
+    },
+    {
+      "broker_code": "9661",
+      "broker_name": "富邦-新店",
+      "open_date": "890119",
+      "address": "新北市新店區北新路2段252號地下1樓之5",
+      "phone": "02-29178818"
+    },
+    {
+      "broker_code": "9663",
+      "broker_name": "富邦-敦南",
+      "open_date": "951213",
+      "address": "台北市敦化南路1段108號地下1樓",
+      "phone": "02-8771-5888"
+    },
+    {
+      "broker_code": "9665",
+      "broker_name": "富邦-桃園",
+      "open_date": "860625",
+      "address": "免設",
+      "phone": "03-3381668"
+    },
+    {
+      "broker_code": "9666",
+      "broker_name": "富邦-南屯",
+      "open_date": "861220",
+      "address": "台中市五權西路2段668號之1部份",
+      "phone": "04-23801168"
+    },
+    {
+      "broker_code": "9667",
+      "broker_name": "富邦-台南",
+      "open_date": "851226",
+      "address": "台南市民生路2段279號2樓之1",
+      "phone": "06-2265000"
+    },
+    {
+      "broker_code": "966F",
+      "broker_name": "富邦-左營",
+      "open_date": "900720",
+      "address": "高雄市左營區博愛二路418之1 號(1樓及2樓)",
+      "phone": "07-5570123"
+    },
+    {
+      "broker_code": "9672",
+      "broker_name": "富邦-員林",
+      "open_date": "890911",
+      "address": "彰化縣員林鎮莒光路五九八號",
+      "phone": "04-8343100"
+    },
+    {
+      "broker_code": "9676",
+      "broker_name": "富邦-仁愛",
+      "open_date": "881218",
+      "address": "台北市仁愛路4段376號3樓",
+      "phone": "02-27542866"
+    },
+    {
+      "broker_code": "9677",
+      "broker_name": "富邦-三重",
+      "open_date": "890222",
+      "address": "新北市三重區正義北路279號地下1層樓",
+      "phone": "02-89818189"
+    },
+    {
+      "broker_code": "9686",
+      "broker_name": "富邦-宜蘭",
+      "open_date": "890911",
+      "address": "宜蘭縣宜蘭市中山路三段152號2樓(部分)",
+      "phone": "03-9369300"
+    },
+    {
+      "broker_code": "9692",
+      "broker_name": "富邦-嘉義",
+      "open_date": "890911",
+      "address": "嘉義市林森西路320號",
+      "phone": "05-2236556"
+    },
+    {
+      "broker_code": "9693",
+      "broker_name": "富邦-新營",
+      "open_date": "890911",
+      "address": "台南縣新營市民治路301號3樓及1樓（部份）、2樓（部份）",
+      "phone": "06-6571000"
+    },
+    {
+      "broker_code": "9697",
+      "broker_name": "富邦-虎尾",
+      "open_date": "890911",
+      "address": "雲林縣虎尾鎮德興里1鄰公安路133號2樓",
+      "phone": "05-6336611"
+    },
+    {
+      "broker_code": "969C",
+      "broker_name": "富邦-北港",
+      "open_date": "890911",
+      "address": "雲林縣北港鎮西勢里文化路40號2樓(部分)",
+      "phone": "05-7831888"
+    },
+    {
+      "broker_code": "9801",
+      "broker_name": "元大-松江",
+      "open_date": "960926",
+      "address": "臺北市中山區松江路106號3樓",
+      "phone": "02-25010655"
+    },
+    {
+      "broker_code": "980C",
+      "broker_name": "元大- 斗六",
+      "open_date": "960926",
+      "address": "雲林縣斗六市中山路82號6樓",
+      "phone": "05-5353456"
+    },
+    {
+      "broker_code": "980D",
+      "broker_name": "元大-北府",
+      "open_date": "960926",
+      "address": "臺南市北區西門路3段157號2樓",
+      "phone": "06-2353366"
+    },
+    {
+      "broker_code": "980K",
+      "broker_name": "元大-竹科",
+      "open_date": "960926",
+      "address": "新竹市光復路1段267號3、4樓",
+      "phone": "03-5679988"
+    },
+    {
+      "broker_code": "980Q",
+      "broker_name": "元大-南崁",
+      "open_date": "990208",
+      "address": "桃園市蘆竹區中正路311號3樓",
+      "phone": "03-3527777"
+    },
+    {
+      "broker_code": "980R",
+      "broker_name": "元大-信義安和",
+      "open_date": "960926",
+      "address": "臺北市大安區安和路2段5號5樓、5樓之1、5樓之2",
+      "phone": "02-23975399"
+    },
+    {
+      "broker_code": "980T",
+      "broker_name": "元大-自營",
+      "open_date": "960926",
+      "address": "台北市南京東路3段225號14F部分",
+      "phone": "02-7177777"
+    },
+    {
+      "broker_code": "980a",
+      "broker_name": "元大-中山北路",
+      "open_date": "960926",
+      "address": "臺北市中山區中山北路2段129號2樓之1、2樓之2",
+      "phone": "02-25975888"
+    },
+    {
+      "broker_code": "980d",
+      "broker_name": "元大-沙鹿",
+      "open_date": "960926",
+      "address": "台中市沙鹿區沙田路131號5樓",
+      "phone": "04-26623311"
+    },
+    {
+      "broker_code": "980e",
+      "broker_name": "元大-清水",
+      "open_date": "960926",
+      "address": "臺中市清水區中山路170號5樓",
+      "phone": "04-26238585"
+    },
+    {
+      "broker_code": "980h",
+      "broker_name": "元大-台北",
+      "open_date": "960926",
+      "address": "台北市重慶南路1段86號6樓",
+      "phone": "02-23830968"
+    },
+    {
+      "broker_code": "980l",
+      "broker_name": "元大-虎尾",
+      "open_date": "960926",
+      "address": "雲林縣虎尾鎮和平路1號3樓",
+      "phone": "05-6313000"
+    },
+    {
+      "broker_code": "980u",
+      "broker_name": "元大-府城",
+      "open_date": "960926",
+      "address": "臺南市中西區民生路1段165號3樓",
+      "phone": "06-2206678"
+    },
+    {
+      "broker_code": "980w",
+      "broker_name": "元大-西屯",
+      "open_date": "960926",
+      "address": "台中市西屯區西屯路2段256巷6號3樓之1",
+      "phone": "04-27067171"
+    },
+    {
+      "broker_code": "9812",
+      "broker_name": "元大-台中",
+      "open_date": "960926",
+      "address": "台中市中區自由路2段8號3樓之1",
+      "phone": "04-22218777"
+    },
+    {
+      "broker_code": "9813",
+      "broker_name": "元大-中崙",
+      "open_date": "960926",
+      "address": "臺北市松山區敦化南路1段66號1樓",
+      "phone": "02-25786666"
+    },
+    {
+      "broker_code": "9814",
+      "broker_name": "元大-大益",
+      "open_date": "960926",
+      "address": "臺南市南區健康路2段176號2樓",
+      "phone": "06-2611151"
+    },
+    {
+      "broker_code": "9815",
+      "broker_name": "元大-大灣",
+      "open_date": "960926",
+      "address": "臺南市永康區永大路2段179之3號2樓",
+      "phone": "06-2717766"
+    },
+    {
+      "broker_code": "9816",
+      "broker_name": "元大-新竹",
+      "open_date": "960926",
+      "address": "新竹市民生路276號2樓",
+      "phone": "03-5456000"
+    },
+    {
+      "broker_code": "9817",
+      "broker_name": "元大-東泰",
+      "open_date": "960926",
+      "address": "高雄市三民區九如一路73號2樓",
+      "phone": "07-3903333"
+    },
+    {
+      "broker_code": "981A",
+      "broker_name": "元大-三峽",
+      "open_date": "960926",
+      "address": "新北市三峽區學勤路13號",
+      "phone": "02-26776611"
+    },
+    {
+      "broker_code": "981B",
+      "broker_name": "元大-竹北",
+      "open_date": "960926",
+      "address": "新竹縣竹北市光明六路85號3樓",
+      "phone": "03-5536000"
+    },
+    {
+      "broker_code": "981C",
+      "broker_name": "元大-路竹",
+      "open_date": "960926",
+      "address": "高雄市路竹區竹南里國昌路66號",
+      "phone": "07-6977456"
+    },
+    {
+      "broker_code": "981D",
+      "broker_name": "元大-南投",
+      "open_date": "960926",
+      "address": "南投縣南投市中山街202號4樓之2、之3、之5",
+      "phone": "049-2232111"
+    },
+    {
+      "broker_code": "981E",
+      "broker_name": "元大-發財",
+      "open_date": "960926",
+      "address": "新北市新莊區中華路2段5號4樓",
+      "phone": "02-29971166"
+    },
+    {
+      "broker_code": "981F",
+      "broker_name": "元大-福營",
+      "open_date": "960926",
+      "address": "新北市新莊區龍安路284號1樓",
+      "phone": "02-22010011"
+    },
+    {
+      "broker_code": "981G",
+      "broker_name": "元大-彰化",
+      "open_date": "960926",
+      "address": "彰化縣彰化市華山路37號3樓",
+      "phone": "04-7257001"
+    },
+    {
+      "broker_code": "981I",
+      "broker_name": "元大-天母",
+      "open_date": "960926",
+      "address": "臺北市士林區天母西路26之1號",
+      "phone": "02-28722345"
+    },
+    {
+      "broker_code": "981K",
+      "broker_name": "元大-林園",
+      "open_date": "960926",
+      "address": "高雄市林園區鳳林路1段1號2樓",
+      "phone": "07-6433001"
+    },
+    {
+      "broker_code": "981L",
+      "broker_name": "元大-莒光",
+      "open_date": "960926",
+      "address": "高雄市楠梓區新昌街51號1樓",
+      "phone": "07-3651356"
+    },
+    {
+      "broker_code": "981M",
+      "broker_name": "元大-苗栗",
+      "open_date": "960926",
+      "address": "苗栗縣苗栗市中正路462號4樓之1",
+      "phone": "037-333611"
+    },
+    {
+      "broker_code": "981N",
+      "broker_name": "元大-金門",
+      "open_date": "960926",
+      "address": "金門縣金城鎮民權路188號",
+      "phone": "082-372367"
+    },
+    {
+      "broker_code": "981Q",
+      "broker_name": "元大-太平",
+      "open_date": "960926",
+      "address": "臺中市太平區中興東路62號3、4樓",
+      "phone": "04-22768859"
+    },
+    {
+      "broker_code": "981R",
+      "broker_name": "元大-竹山",
+      "open_date": "960926",
+      "address": "南投縣竹山鎮集山路3段919號2樓",
+      "phone": "049-2652633"
+    },
+    {
+      "broker_code": "981S",
+      "broker_name": "元大-崇德",
+      "open_date": "960926",
+      "address": "臺中市北屯區崇德路2段46之2號",
+      "phone": "04-22333398"
+    },
+    {
+      "broker_code": "981U",
+      "broker_name": "元大-華山",
+      "open_date": "960926",
+      "address": "台北市忠孝東路1段85號3樓",
+      "phone": "02-23223388"
+    },
+    {
+      "broker_code": "981V",
+      "broker_name": "元大-民雄",
+      "open_date": "960926",
+      "address": "嘉義縣民雄鄉保生街212號",
+      "phone": "05-2268899"
+    },
+    {
+      "broker_code": "981X",
+      "broker_name": "元大-新生",
+      "open_date": "960926",
+      "address": "台北市中正區新生南路1段148號4、7樓",
+      "phone": "02-23959988"
+    },
+    {
+      "broker_code": "981Z",
+      "broker_name": "元大-潮州",
+      "open_date": "960926",
+      "address": "屏東縣潮州鎮延平路206號",
+      "phone": "08-7891678"
+    },
+    {
+      "broker_code": "981a",
+      "broker_name": "元大-歸仁",
+      "open_date": "960926",
+      "address": "台南市歸仁區中山路2段29號3樓",
+      "phone": "06-3305888"
+    },
+    {
+      "broker_code": "981e",
+      "broker_name": "元大-佳里",
+      "open_date": "960926",
+      "address": "臺南市佳里區中山路158號之一3樓",
+      "phone": "06-7232888"
+    },
+    {
+      "broker_code": "981g",
+      "broker_name": "元大-大里",
+      "open_date": "960926",
+      "address": "台中市大里區國光路2段259號2樓",
+      "phone": "04-24066598"
+    },
+    {
+      "broker_code": "981h",
+      "broker_name": "元大-屏東民生",
+      "open_date": "960926",
+      "address": "屏東縣屏東市民生路287號5樓",
+      "phone": "08-7323789"
+    },
+    {
+      "broker_code": "981i",
+      "broker_name": "元大-西螺",
+      "open_date": "960926",
+      "address": "雲林縣西螺鎮延平路190、192號1樓",
+      "phone": "05-5870123"
+    },
+    {
+      "broker_code": "981j",
+      "broker_name": "元大-士林",
+      "open_date": "960926",
+      "address": "台北市文林路342號2樓",
+      "phone": "02-28830202"
+    },
+    {
+      "broker_code": "981m",
+      "broker_name": "元大-高雄",
+      "open_date": "960926",
+      "address": "高雄市前金區中正四路143號4樓之1、4樓之2、5樓、8樓之1",
+      "phone": "07-2152888"
+    },
+    {
+      "broker_code": "981n",
+      "broker_name": "元大-旗山",
+      "open_date": "960926",
+      "address": "高雄市旗山區中山路102號2樓",
+      "phone": "07-6625578"
+    },
+    {
+      "broker_code": "981p",
+      "broker_name": "元大-松山",
+      "open_date": "960926",
+      "address": "台北市松山區南京東路5段92號2樓",
+      "phone": "02-27535888"
+    },
+    {
+      "broker_code": "981q",
+      "broker_name": "元大-萬華",
+      "open_date": "960926",
+      "address": "台北市萬華區西園路1段200號地下1樓",
+      "phone": "02-23363588"
+    },
+    {
+      "broker_code": "981r",
+      "broker_name": "元大-屏南",
+      "open_date": "960926",
+      "address": "屏東縣屏東市濟南街10號",
+      "phone": "08-7361777"
+    },
+    {
+      "broker_code": "981y",
+      "broker_name": "元大-善化",
+      "open_date": "960926",
+      "address": "台南市善化區大成路281號",
+      "phone": "06-5830888"
+    },
+    {
+      "broker_code": "981z",
+      "broker_name": "元大-大統",
+      "open_date": "960926",
+      "address": "新竹市林森路196號2樓之3",
+      "phone": "03-5226166"
+    },
+    {
+      "broker_code": "9822",
+      "broker_name": "元大-土城學府",
+      "open_date": "960926",
+      "address": "新北市土城區學府路1段25號1樓",
+      "phone": "02-22635000"
+    },
+    {
+      "broker_code": "9824",
+      "broker_name": "元大-向上",
+      "open_date": "960926",
+      "address": "臺中市西區美村路一段272號2樓",
+      "phone": "04-23028588"
+    },
+    {
+      "broker_code": "9825",
+      "broker_name": "元大-新營",
+      "open_date": "960926",
+      "address": "台南市新營區中山路117號2樓",
+      "phone": "06-6351600"
+    },
+    {
+      "broker_code": "9829",
+      "broker_name": "元大-永康",
+      "open_date": "960926",
+      "address": "臺南市永康區小東路511號3樓",
+      "phone": "06-2215888"
+    },
+    {
+      "broker_code": "982A",
+      "broker_name": "元大-羅東",
+      "open_date": "960926",
+      "address": "宜蘭縣羅東鎮中正北路32號",
+      "phone": "03-9532888"
+    },
+    {
+      "broker_code": "982B",
+      "broker_name": "元大-博愛",
+      "open_date": "960926",
+      "address": "高雄市左營區明誠二路359號3樓",
+      "phone": "07-5571133"
+    },
+    {
+      "broker_code": "982C",
+      "broker_name": "元大-六合",
+      "open_date": "960926",
+      "address": "高雄市新興區民族二路97號4樓",
+      "phone": "07-2364788"
+    },
+    {
+      "broker_code": "982F",
+      "broker_name": "元大-忠孝鼎富",
+      "open_date": "1011112",
+      "address": "台北市大安區忠孝東路4段300號7樓",
+      "phone": "02-87739666"
+    },
+    {
+      "broker_code": "9831",
+      "broker_name": "元大-四維",
+      "open_date": "960926",
+      "address": "高雄市前鎮區一心二路228號3樓",
+      "phone": "07-3306666"
+    },
+    {
+      "broker_code": "9833",
+      "broker_name": "元大-敦化",
+      "open_date": "960926",
+      "address": "台北市敦化南路2段71號12樓",
+      "phone": "02-27541566"
+    },
+    {
+      "broker_code": "9834",
+      "broker_name": "元大-中壢",
+      "open_date": "960926",
+      "address": "桃園市中壢區中央東路7號3、4樓",
+      "phone": "03-4227188"
+    },
+    {
+      "broker_code": "9835",
+      "broker_name": "元大-員林中山",
+      "open_date": "960926",
+      "address": "彰化縣員林市育英路61-6號",
+      "phone": "04-8358131"
+    },
+    {
+      "broker_code": "9837",
+      "broker_name": "元大-北港",
+      "open_date": "960926",
+      "address": "雲林縣北港鎮文化路40號4樓",
+      "phone": "05-7838222"
+    },
+    {
+      "broker_code": "9838",
+      "broker_name": "元大-豐原",
+      "open_date": "960926",
+      "address": "臺中市豐原區圓環西路23號地下1樓",
+      "phone": "04-25252511"
+    },
+    {
+      "broker_code": "983B",
+      "broker_name": "元大-林森",
+      "open_date": "960926",
+      "address": "台南市林森路2段90號地下1樓",
+      "phone": "06-2745088"
+    },
+    {
+      "broker_code": "983G",
+      "broker_name": "元大-上新莊",
+      "open_date": "960926",
+      "address": "新北市新莊區思源路173號2樓",
+      "phone": "02-89911188"
+    },
+    {
+      "broker_code": "983K",
+      "broker_name": "元大-學甲",
+      "open_date": "960926",
+      "address": "台南市學甲區華宗路295號",
+      "phone": "06-7838989"
+    },
+    {
+      "broker_code": "983M",
+      "broker_name": "元大-木柵",
+      "open_date": "960926",
+      "address": "台北市木柵路3段96號3樓之2",
+      "phone": "02-86619168"
+    },
+    {
+      "broker_code": "983N",
+      "broker_name": "元大-大安",
+      "open_date": "960926",
+      "address": "台北市和平東路2段347號3樓",
+      "phone": "02-27541866"
+    },
+    {
+      "broker_code": "983U",
+      "broker_name": "元大-頭份",
+      "open_date": "960926",
+      "address": "苗栗縣頭份市和平路79號2樓",
+      "phone": "037-683168"
+    },
+    {
+      "broker_code": "983V",
+      "broker_name": "元大-竹南",
+      "open_date": "960926",
+      "address": "苗栗縣竹南鎮博愛街29號4樓",
+      "phone": "03-7477890"
+    },
+    {
+      "broker_code": "983W",
+      "broker_name": "元大-大里德芳",
+      "open_date": "960926",
+      "address": "臺中市大里區德芳路一段63號2樓",
+      "phone": "04-24833000"
+    },
+    {
+      "broker_code": "983Z",
+      "broker_name": "元大-鳳山",
+      "open_date": "960926",
+      "address": "高雄市鳳山區五甲二路642號2樓",
+      "phone": "07-8133066"
+    },
+    {
+      "broker_code": "983f",
+      "broker_name": "元大-竹東",
+      "open_date": "960926",
+      "address": "新竹縣竹東鎮大林路121號",
+      "phone": "03-5952166"
+    },
+    {
+      "broker_code": "983i",
+      "broker_name": "元大-大雅",
+      "open_date": "960926",
+      "address": "台中市大雅區大雅里民興街39號3樓",
+      "phone": "04-25608888"
+    },
+    {
+      "broker_code": "983j",
+      "broker_name": "元大-仁愛",
+      "open_date": "960926",
+      "address": "臺北市大安區敦化南路1段225號2樓、2樓之2",
+      "phone": "02-27067777"
+    },
+    {
+      "broker_code": "9846",
+      "broker_name": "元大-大直",
+      "open_date": "1110901",
+      "address": "臺北市中山區樂群三路56號6樓之2",
+      "phone": "(02)25339955"
+    },
+    {
+      "broker_code": "984C",
+      "broker_name": "元大-新店中正",
+      "open_date": "960926",
+      "address": "新北市新店區中正路225號3樓",
+      "phone": "02-29155588"
+    },
+    {
+      "broker_code": "984E",
+      "broker_name": "元大-南勢角",
+      "open_date": "960926",
+      "address": "新北市中和區景新街347號6樓之1",
+      "phone": "02-86689955"
+    },
+    {
+      "broker_code": "984H",
+      "broker_name": "元大-景美",
+      "open_date": "960926",
+      "address": "台北市文山區景文街1號2樓之1",
+      "phone": "02-86638886"
+    },
+    {
+      "broker_code": "984K",
+      "broker_name": "元大-館前",
+      "open_date": "960926",
+      "address": "臺北市中正區開封街1段2號3樓",
+      "phone": "02-23113030"
+    },
+    {
+      "broker_code": "9852",
+      "broker_name": "元大-永春",
+      "open_date": "1010402",
+      "address": "台北市忠孝東路5段410號3樓、3樓之1、412號3樓之2",
+      "phone": "02-87805277"
+    },
+    {
+      "broker_code": "9853",
+      "broker_name": "元大-南屯",
+      "open_date": "1010402",
+      "address": "台中市南屯區向上路1段580號1、2樓",
+      "phone": "04-23269999"
+    },
+    {
+      "broker_code": "9854",
+      "broker_name": "元大-文心興安",
+      "open_date": "1010402",
+      "address": "台中市北屯區文心路4段934之1號2樓",
+      "phone": "04-22339983"
+    },
+    {
+      "broker_code": "9856",
+      "broker_name": "元大-花蓮",
+      "open_date": "1010402",
+      "address": "花蓮縣花蓮市國聯五路5之5號5樓",
+      "phone": "03-8357588"
+    },
+    {
+      "broker_code": "9857",
+      "broker_name": "元大-蘆洲",
+      "open_date": "1010402",
+      "address": "新北市蘆洲區中山一路10號2樓",
+      "phone": "02-22886699"
+    },
+    {
+      "broker_code": "9858",
+      "broker_name": "元大-龍潭",
+      "open_date": "1010402",
+      "address": "桃園市龍潭區神龍路39號",
+      "phone": "03-4808699"
+    },
+    {
+      "broker_code": "9859",
+      "broker_name": "元大-新竹經國",
+      "open_date": "1010402",
+      "address": "新竹市經國路2段100號3樓",
+      "phone": "03-5359888"
+    },
+    {
+      "broker_code": "985C",
+      "broker_name": "元大-鳳中",
+      "open_date": "1010402",
+      "address": "高雄市鳳山區自由路229號3樓",
+      "phone": "07-7199889"
+    },
+    {
+      "broker_code": "985F",
+      "broker_name": "元大-岡山",
+      "open_date": "1120920",
+      "address": "高雄市岡山區中山南路517號2樓",
+      "phone": "(07)622-9888"
+    },
+    {
+      "broker_code": "9862",
+      "broker_name": "元大-南京",
+      "open_date": "1010402",
+      "address": "台北市南京東路3段219號2樓",
+      "phone": "02-27188888"
+    },
+    {
+      "broker_code": "9863",
+      "broker_name": "元大-和平",
+      "open_date": "1010402",
+      "address": "台北市和平東路1段214號2樓、214號2樓之1、214號2樓之2、216號2樓、216號2樓之1及216號2樓之2",
+      "phone": "02-23687733"
+    },
+    {
+      "broker_code": "9867",
+      "broker_name": "元大-內湖民權",
+      "open_date": "1010402",
+      "address": "台北市民權東路6段160號2樓之1",
+      "phone": "02-27928288"
+    },
+    {
+      "broker_code": "9868",
+      "broker_name": "元大-文心",
+      "open_date": "1010402",
+      "address": "台中市西屯區文心路3段337號3樓",
+      "phone": "04-22932233"
+    },
+    {
+      "broker_code": "9869",
+      "broker_name": "元大-新盛",
+      "open_date": "1010402",
+      "address": "新北市新莊區公園一路141號",
+      "phone": "02-29969966"
+    },
+    {
+      "broker_code": "986K",
+      "broker_name": "元大-基隆孝二",
+      "open_date": "1010402",
+      "address": "基隆市仁愛區孝二路86之5號",
+      "phone": "02-24202626"
+    },
+    {
+      "broker_code": "9871",
+      "broker_name": "元大-忠孝",
+      "open_date": "1010402",
+      "address": "臺北市大安區忠孝東路4段300號3樓",
+      "phone": "02-27766288"
+    },
+    {
+      "broker_code": "9872",
+      "broker_name": "元大-復北",
+      "open_date": "1010402",
+      "address": "台北市復興北路420號3樓",
+      "phone": "02-25095998"
+    },
+    {
+      "broker_code": "9874",
+      "broker_name": "元大-雙和",
+      "open_date": "1010402",
+      "address": "新北市中和區中和路232號2樓",
+      "phone": "02-22483388"
+    },
+    {
+      "broker_code": "9875",
+      "broker_name": "元大-土城永寧",
+      "open_date": "1010402",
+      "address": "新北市土城區員福街8號1樓、8號2樓、10號1樓、10號2樓",
+      "phone": "02-22709191"
+    },
+    {
+      "broker_code": "9878",
+      "broker_name": "元大-金華",
+      "open_date": "1010402",
+      "address": "臺南市中西區金華路3段230號2樓之1",
+      "phone": "06-2207999"
+    },
+    {
+      "broker_code": "9879",
+      "broker_name": "元大-板橋三民",
+      "open_date": "1010402",
+      "address": "新北市板橋區三民路2段40號2樓",
+      "phone": "02-29588887"
+    },
+    {
+      "broker_code": "987A",
+      "broker_name": "元大-楊梅",
+      "open_date": "1010402",
+      "address": "桃園市楊梅區新成路125號2樓",
+      "phone": "03-4882688"
+    },
+    {
+      "broker_code": "9884",
+      "broker_name": "元大-斗信",
+      "open_date": "1010402",
+      "address": "雲林縣斗六市文化路29號3樓",
+      "phone": "05-5362088"
+    },
+    {
+      "broker_code": "9888",
+      "broker_name": "元大-鑫永和",
+      "open_date": "1010402",
+      "address": "新北市永和區永和路2段2號、8號2樓",
+      "phone": "02-82311333"
+    },
+    {
+      "broker_code": "9889",
+      "broker_name": "元大-員林",
+      "open_date": "1010402",
+      "address": "彰化縣員林鎮大同路2段283號2樓",
+      "phone": "04-8341188"
+    },
+    {
+      "broker_code": "988B",
+      "broker_name": "元大-桃園",
+      "open_date": "1010402",
+      "address": "桃園市桃園區中正路1223號2樓",
+      "phone": "03-3268777"
+    },
+    {
+      "broker_code": "988C",
+      "broker_name": "元大-三重",
+      "open_date": "1010402",
+      "address": "新北市三重區重新路3段111號2樓",
+      "phone": "02-89857788"
+    },
+    {
+      "broker_code": "988V",
+      "broker_name": "元大-長庚",
+      "open_date": "1080729",
+      "address": "桃園市龜山區文化二路38-6號2樓",
+      "phone": "(03)397-8787"
+    },
+    {
+      "broker_code": "9891",
+      "broker_name": "元大-永和",
+      "open_date": "960926",
+      "address": "新北市永和區福和路139號3樓",
+      "phone": "02-29201234"
+    },
+    {
+      "broker_code": "9892",
+      "broker_name": "元大-屏東",
+      "open_date": "960926",
+      "address": "屏東縣屏東市廣東路690號2樓之1、3樓",
+      "phone": "08-7385555"
+    },
+    {
+      "broker_code": "9893",
+      "broker_name": "元大-大天母",
+      "open_date": "960926",
+      "address": "台北市中山北路6段126號4樓",
+      "phone": "02-28312888"
+    },
+    {
+      "broker_code": "9894",
+      "broker_name": "元大-桃興",
+      "open_date": "960926",
+      "address": "桃園市桃園區復興路96號2樓",
+      "phone": "03-3327700"
+    },
+    {
+      "broker_code": "9896",
+      "broker_name": "元大-台南",
+      "open_date": "960926",
+      "address": "台南市長榮路1段203號5樓",
+      "phone": "06-2741866"
+    },
+    {
+      "broker_code": "9897",
+      "broker_name": "元大-土城",
+      "open_date": "960926",
+      "address": "新北市土城區中央路1段255號2樓",
+      "phone": "02-22708369"
+    },
+    {
+      "broker_code": "9898",
+      "broker_name": "元大-新莊",
+      "open_date": "960926",
+      "address": "新北市新莊區中原路558號3樓",
+      "phone": "02-29977123"
+    },
+    {
+      "broker_code": "9899",
+      "broker_name": "元大-淡水",
+      "open_date": "960926",
+      "address": "新北市淡水區中正路67號2、3樓",
+      "phone": "02-26251966"
+    },
+    {
+      "broker_code": "989A",
+      "broker_name": "元大-北投",
+      "open_date": "960926",
+      "address": "台北市北投區北投路2段13號3樓",
+      "phone": "02-28961212"
+    },
+    {
+      "broker_code": "989B",
+      "broker_name": "元大-台中中港",
+      "open_date": "960926",
+      "address": "臺中市西區臺灣大道2段489號10樓之2",
+      "phone": "04-23289000"
+    },
+    {
+      "broker_code": "989C",
+      "broker_name": "元大-板橋",
+      "open_date": "960926",
+      "address": "新北市板橋區中山路1段10號6樓",
+      "phone": "02-29638000"
+    },
+    {
+      "broker_code": "989D",
+      "broker_name": "元大-左營",
+      "open_date": "960926",
+      "address": "高雄市左營區左營大路158號3、4樓",
+      "phone": "07-5878899"
+    },
+    {
+      "broker_code": "989E",
+      "broker_name": "元大-草屯",
+      "open_date": "960926",
+      "address": "南投縣草屯鎮中興路88號2樓",
+      "phone": "049-2354506"
+    },
+    {
+      "broker_code": "989F",
+      "broker_name": "元大-三民",
+      "open_date": "960926",
+      "address": "高雄市三民區民族一路462號2樓",
+      "phone": "07-3855678"
+    },
+    {
+      "broker_code": "989G",
+      "broker_name": "元大-大同",
+      "open_date": "960926",
+      "address": "台北市大同區南京西路66號2樓",
+      "phone": "02-25598585"
+    },
+    {
+      "broker_code": "989I",
+      "broker_name": "元大-長榮",
+      "open_date": "960926",
+      "address": "新北市蘆洲區長榮路339號",
+      "phone": "02-22891199"
+    },
+    {
+      "broker_code": "989J",
+      "broker_name": "元大-彰化民生",
+      "open_date": "960926",
+      "address": "彰化縣彰化市中正路1段292號、296號",
+      "phone": "04-7261988"
+    },
+    {
+      "broker_code": "989L",
+      "broker_name": "元大-成功",
+      "open_date": "960926",
+      "address": "桃園市成功路1段32號9樓",
+      "phone": "03-3353399"
+    },
+    {
+      "broker_code": "989N",
+      "broker_name": "元大-內湖",
+      "open_date": "960926",
+      "address": "台北市內湖區成功路4段166號地下1樓部分及168號3樓",
+      "phone": "02-27933636"
+    },
+    {
+      "broker_code": "989P",
+      "broker_name": "元大-敦南",
+      "open_date": "960926",
+      "address": "臺北市大安區仁愛路3段157號3樓",
+      "phone": "02-27752121"
+    },
+    {
+      "broker_code": "989Q",
+      "broker_name": "元大-汐止",
+      "open_date": "960926",
+      "address": "新北市汐止區新台五路1段159號4樓",
+      "phone": "02-26482277"
+    },
+    {
+      "broker_code": "989S",
+      "broker_name": "元大-鹿港",
+      "open_date": "960926",
+      "address": "彰化縣鹿港鎮公園一路88號",
+      "phone": "04-7751211"
+    },
+    {
+      "broker_code": "989U",
+      "broker_name": "元大-大甲",
+      "open_date": "960926",
+      "address": "臺中市大甲區中山路1段833之1號",
+      "phone": "04-26883399"
+    },
+    {
+      "broker_code": "989V",
+      "broker_name": "元大-北三重",
+      "open_date": "960926",
+      "address": "新北市三重區正義北路195號2樓",
+      "phone": "02-29713311"
+    },
+    {
+      "broker_code": "989W",
+      "broker_name": "元大-豐原站前",
+      "open_date": "960926",
+      "address": "臺中市豐原區三豐路1段43號3樓",
+      "phone": "04-25204888"
+    },
+    {
+      "broker_code": "989X",
+      "broker_name": "元大-民生三民",
+      "open_date": "960926",
+      "address": "台北市松山區民生東路5段165地下之4號",
+      "phone": "02-87872118"
+    },
+    {
+      "broker_code": "989Y",
+      "broker_name": "元大-基隆",
+      "open_date": "960926",
+      "address": "基隆市中正區義一路130號2樓",
+      "phone": "02-24246688"
+    },
+    {
+      "broker_code": "989Z",
+      "broker_name": "元大-小港",
+      "open_date": "960926",
+      "address": "高雄市小港區漢民路381號8樓",
+      "phone": "07-8020068"
+    },
+    {
+      "broker_code": "989a",
+      "broker_name": "元大-苑裡",
+      "open_date": "960926",
+      "address": "苗栗縣苑裡鎮客庄里新興路31之8號及31之9號",
+      "phone": "037869779"
+    },
+    {
+      "broker_code": "989d",
+      "broker_name": "元大-北屯",
+      "open_date": "960926",
+      "address": "臺中市北屯區崇德路3段115號2樓",
+      "phone": "04-22389555"
+    },
+    {
+      "broker_code": "989e",
+      "broker_name": "元大-中和",
+      "open_date": "960926",
+      "address": "新北市中和區中和路102號5樓",
+      "phone": "02-22452299"
+    },
+    {
+      "broker_code": "989f",
+      "broker_name": "元大-東港",
+      "open_date": "960926",
+      "address": "屏東縣東港鎮中正路227號2樓",
+      "phone": "08-8338558"
+    },
+    {
+      "broker_code": "989g",
+      "broker_name": "元大-嘉義",
+      "open_date": "960926",
+      "address": "嘉義市西區林森西路173號3樓",
+      "phone": "05-2237666"
+    },
+    {
+      "broker_code": "989j",
+      "broker_name": "元大-樹林",
+      "open_date": "960926",
+      "address": "新北市樹林區中山路1段99號3樓",
+      "phone": "02-26759585"
+    },
+    {
+      "broker_code": "989k",
+      "broker_name": "元大-古亭",
+      "open_date": "960926",
+      "address": "台北市羅斯福路3段37號2樓",
+      "phone": "02-23698877"
+    },
+    {
+      "broker_code": "989m",
+      "broker_name": "元大-信義",
+      "open_date": "960926",
+      "address": "台北市忠孝東路5段293號2樓部分",
+      "phone": "02-87878732"
+    },
+    {
+      "broker_code": "989z",
+      "broker_name": "元大-國際證券",
+      "open_date": "1030418",
+      "address": "臺北市中山區南京東路2段77號7樓部分",
+      "phone": "02-2718-1234"
+    },
+    {
+      "broker_code": "9A0T",
+      "broker_name": "永豐金-自營",
+      "open_date": "800914",
+      "address": "",
+      "phone": "02-23823425"
+    },
+    {
+      "broker_code": "9A61",
+      "broker_name": "永豐金-鳳山",
+      "open_date": "840325",
+      "address": "高雄市鳳山區保泰路310號",
+      "phone": "07-726-3000"
+    },
+    {
+      "broker_code": "9A69",
+      "broker_name": "永豐金-屏東",
+      "open_date": "870721",
+      "address": "屏東市中正路125號4樓",
+      "phone": "08-765-5457"
+    },
+    {
+      "broker_code": "9A79",
+      "broker_name": "永豐金-埔里",
+      "open_date": "1050926",
+      "address": "南投縣埔里鎮中正路479號",
+      "phone": "049-298-9988"
+    },
+    {
+      "broker_code": "9A81",
+      "broker_name": "永豐金-匯立",
+      "open_date": "1141020",
+      "address": "臺北市敦化南路二段95號27樓",
+      "phone": "02-23268188"
+    },
+    {
+      "broker_code": "9A82",
+      "broker_name": "永豐金-林口簡易",
+      "open_date": "1150615",
+      "address": "新北市林口區文化二路一段397號3樓",
+      "phone": "02-26000860"
+    },
+    {
+      "broker_code": "9A88",
+      "broker_name": "永豐金-國際證券",
+      "open_date": "1030514",
+      "address": "台北市重慶南路1段2號7樓、18樓及20樓",
+      "phone": "23114345"
+    },
+    {
+      "broker_code": "9A89",
+      "broker_name": "永豐金-敦北",
+      "open_date": "1050328",
+      "address": "台北市敦化北路88號9樓之1、10樓之1、10樓之2",
+      "phone": "02-81615000"
+    },
+    {
+      "broker_code": "9A8F",
+      "broker_name": "永豐金-敦南",
+      "open_date": "910722",
+      "address": "台北市大安區敦化南路2段319號7樓",
+      "phone": "02-2377-8355"
+    },
+    {
+      "broker_code": "9A91",
+      "broker_name": "永豐金-松山",
+      "open_date": "870103",
+      "address": "台北市松山路130號2樓",
+      "phone": "02-2766-3315"
+    },
+    {
+      "broker_code": "9A92",
+      "broker_name": "永豐金-萬盛",
+      "open_date": "890828",
+      "address": "台北市松江路129號2樓、2樓之1及3樓",
+      "phone": "02-2501-1451"
+    },
+    {
+      "broker_code": "9A97",
+      "broker_name": "永豐金-新竹",
+      "open_date": "850501",
+      "address": "新竹市中正路129號4樓",
+      "phone": "03-526-8198"
+    },
+    {
+      "broker_code": "9A98",
+      "broker_name": "永豐金-大園",
+      "open_date": "890828",
+      "address": "桃園市大園區大園村中山北路102號2樓、100巷1號3樓及102號3樓",
+      "phone": "03-385-3998"
+    },
+    {
+      "broker_code": "9A99",
+      "broker_name": "永豐金-中壢",
+      "open_date": "890828",
+      "address": "桃園市中壢區延平路370號3樓、372號3樓",
+      "phone": "03-422-4800"
+    },
+    {
+      "broker_code": "9A9A",
+      "broker_name": "永豐金-羅東",
+      "open_date": "890509",
+      "address": "宜蘭縣羅東鎮公正路87號",
+      "phone": "03-956-7181"
+    },
+    {
+      "broker_code": "9A9B",
+      "broker_name": "永豐金-中和",
+      "open_date": "890726",
+      "address": "新北市中和區中和路370號",
+      "phone": "02-2231-3453"
+    },
+    {
+      "broker_code": "9A9C",
+      "broker_name": "永豐金-員林",
+      "open_date": "840408",
+      "address": "彰化縣員林市大同路1段338號5樓",
+      "phone": "04-836-7338"
+    },
+    {
+      "broker_code": "9A9D",
+      "broker_name": "永豐金-忠孝",
+      "open_date": "890828",
+      "address": "台北市忠孝東路4段280號2樓",
+      "phone": "02-2771-6588"
+    },
+    {
+      "broker_code": "9A9G",
+      "broker_name": "永豐金-天母",
+      "open_date": "891106",
+      "address": "台北市忠誠路1段60號2樓及62號2樓",
+      "phone": "02-8866-1992"
+    },
+    {
+      "broker_code": "9A9H",
+      "broker_name": "永豐金-新莊",
+      "open_date": "871116",
+      "address": "新北市新莊區中央路235號3樓",
+      "phone": "02-8992-2118"
+    },
+    {
+      "broker_code": "9A9J",
+      "broker_name": "永豐金-板新",
+      "open_date": "910722",
+      "address": "新北市板橋區文化路二段246號",
+      "phone": "02-2253-3458"
+    },
+    {
+      "broker_code": "9A9K",
+      "broker_name": "永豐金-三重",
+      "open_date": "890828",
+      "address": "新北市三重區中正北路110號",
+      "phone": "02-2981-0112"
+    },
+    {
+      "broker_code": "9A9L",
+      "broker_name": "永豐金-台中",
+      "open_date": "811216",
+      "address": "台中市西區臺灣大道一段728號七樓",
+      "phone": "04-2202-2940"
+    },
+    {
+      "broker_code": "9A9M",
+      "broker_name": "永豐金-南投",
+      "open_date": "861104",
+      "address": "南投縣南投市文昌街45號1樓",
+      "phone": "049-220-1932"
+    },
+    {
+      "broker_code": "9A9N",
+      "broker_name": "永豐金-桃盛",
+      "open_date": "890828",
+      "address": "桃園市南平路370號3樓",
+      "phone": "03-357-5585"
+    },
+    {
+      "broker_code": "9A9P",
+      "broker_name": "永豐金-竹北",
+      "open_date": "890828",
+      "address": "新竹縣竹北市縣政九路145號2樓之1、145號2樓之2、147號2樓及145號4樓之1",
+      "phone": "03-553-8388"
+    },
+    {
+      "broker_code": "9A9Q",
+      "broker_name": "永豐金-豐原",
+      "open_date": "841129",
+      "address": "台中市豐原區信義街67巷15號2樓",
+      "phone": "04-2528-2188"
+    },
+    {
+      "broker_code": "9A9R",
+      "broker_name": "永豐金-信義",
+      "open_date": "890828",
+      "address": "台北市信義路4段189號2樓、2樓之1",
+      "phone": "02-2705-6588"
+    },
+    {
+      "broker_code": "9A9S",
+      "broker_name": "永豐金-南京",
+      "open_date": "910722",
+      "address": "台北市南京東路3段36號2樓",
+      "phone": "02-2508-2335"
+    },
+    {
+      "broker_code": "9A9U",
+      "broker_name": "永豐金-中正",
+      "open_date": "910722",
+      "address": "台北市中山區長安東路1段23號3樓之1(部份)、3樓之3及3樓之5",
+      "phone": "02-2531-3135"
+    },
+    {
+      "broker_code": "9A9W",
+      "broker_name": "永豐金-市政",
+      "open_date": "910722",
+      "address": "台中市西屯區市政路402號4樓之5、4樓之6、5樓之2、5樓之3及17樓之5",
+      "phone": "04-2254-8935"
+    },
+    {
+      "broker_code": "9A9X",
+      "broker_name": "永豐金-竹科",
+      "open_date": "910722",
+      "address": "新竹市東區光復路2段289號4樓",
+      "phone": "03-575-2000"
+    },
+    {
+      "broker_code": "9A9Y",
+      "broker_name": "永豐金-板盛",
+      "open_date": "890828",
+      "address": "新北市板橋區中山路一段180號2樓及182號2樓",
+      "phone": "02-2958-6918"
+    },
+    {
+      "broker_code": "9A9Z",
+      "broker_name": "永豐金-復興",
+      "open_date": "891106",
+      "address": "台北市敦化北路205號4樓(部分)",
+      "phone": "02-2502-8588"
+    },
+    {
+      "broker_code": "9A9a",
+      "broker_name": "永豐金-亞灣",
+      "open_date": "910722",
+      "address": "高雄市前鎮區中山二路260號20樓之1",
+      "phone": "07-537-5800"
+    },
+    {
+      "broker_code": "9A9b",
+      "broker_name": "永豐金-虎尾",
+      "open_date": "960810",
+      "address": "雲林縣虎尾鎮新生路136號3樓",
+      "phone": "05-636-5288"
+    },
+    {
+      "broker_code": "9A9c",
+      "broker_name": "永豐金-永康",
+      "open_date": "870128",
+      "address": "台南市永康區中華路423號2樓",
+      "phone": "06-302-5982"
+    },
+    {
+      "broker_code": "9A9d",
+      "broker_name": "永豐金-古亭",
+      "open_date": "930329",
+      "address": "臺北市南昌路1段110號3樓",
+      "phone": "02-2321-8345"
+    },
+    {
+      "broker_code": "9A9e",
+      "broker_name": "永豐金-高雄",
+      "open_date": "820106",
+      "address": "高雄市中正一路284號2樓",
+      "phone": "07-723-2800"
+    },
+    {
+      "broker_code": "9A9g",
+      "broker_name": "永豐金-內湖",
+      "open_date": "910827",
+      "address": "台北市內湖路1段49號1樓",
+      "phone": "02-2657-1998"
+    },
+    {
+      "broker_code": "9A9h",
+      "broker_name": "永豐金-台南",
+      "open_date": "840318",
+      "address": "台南市西門路1段655號4樓",
+      "phone": "06-224-9998"
+    },
+    {
+      "broker_code": "9A9i",
+      "broker_name": "永豐金-新店",
+      "open_date": "911009",
+      "address": "新北市新店區北新路2段252號2樓、2樓之1、2樓之2、2樓之3",
+      "phone": "02-2911-6395"
+    },
+    {
+      "broker_code": "9A9j",
+      "broker_name": "永豐金-嘉義",
+      "open_date": "860919",
+      "address": "嘉義市中山路386號3樓",
+      "phone": "05-229-1345"
+    },
+    {
+      "broker_code": "9A9q",
+      "broker_name": "永豐金-潮州",
+      "open_date": "820106",
+      "address": "屏東縣潮州鎮中正路38之1號",
+      "phone": "08-789-0122"
+    },
+    {
+      "broker_code": "9A9r",
+      "broker_name": "永豐金-北高雄",
+      "open_date": "840401",
+      "address": "高雄市鼓山區龍德路473號3樓",
+      "phone": "07-555-0455"
+    },
+    {
+      "broker_code": "9A9s",
+      "broker_name": "永豐金-彰化",
+      "open_date": "850501",
+      "address": "彰化市民族路532號6樓",
+      "phone": "04-722-4976"
+    },
+    {
+      "broker_code": "9A9x",
+      "broker_name": "永豐金-桃園",
+      "open_date": "841201",
+      "address": "桃園市桃園區春日路525號12樓、527號12樓",
+      "phone": "03-335-2581"
+    },
+    {
+      "broker_code": "9B0T",
+      "broker_name": "台新-自營",
+      "open_date": "981217",
+      "address": "",
+      "phone": "02-2326-8898"
+    },
+    {
+      "broker_code": "9B11",
+      "broker_name": "台新-新營",
+      "open_date": "1060828",
+      "address": "台南市新營區中山路115號4樓之1",
+      "phone": "06-6356100"
+    },
+    {
+      "broker_code": "9B12",
+      "broker_name": "台新-國際證券",
+      "open_date": "1071119",
+      "address": "免設",
+      "phone": "02-23268898"
+    },
+    {
+      "broker_code": "9B13",
+      "broker_name": "台新-三民",
+      "open_date": "1060828",
+      "address": "高雄市三民區九如一路502號6樓之2",
+      "phone": "07-3871166"
+    },
+    {
+      "broker_code": "9B15",
+      "broker_name": "台新-松江",
+      "open_date": "1060828",
+      "address": "台北市中山區松江路122號3樓",
+      "phone": "02-25371188"
+    },
+    {
+      "broker_code": "9B16",
+      "broker_name": "台新-台南",
+      "open_date": "1060828",
+      "address": "台南市西門路2段389號3樓",
+      "phone": "06-2218988"
+    },
+    {
+      "broker_code": "9B18",
+      "broker_name": "台新-建北",
+      "open_date": "1060828",
+      "address": "台北市中山區建國北路2段17號3樓",
+      "phone": "02-25160222"
+    },
+    {
+      "broker_code": "9B19",
+      "broker_name": "台新-新莊",
+      "open_date": "1060828",
+      "address": "新北市新莊區頭前路172號2樓",
+      "phone": "02-22062828"
+    },
+    {
+      "broker_code": "9B1d",
+      "broker_name": "台新-左楠",
+      "open_date": "1060828",
+      "address": "高雄市楠梓區軍校路800號3F",
+      "phone": "07-3643767"
+    },
+    {
+      "broker_code": "9B1g",
+      "broker_name": "台新-高雄",
+      "open_date": "990510",
+      "address": "高雄市中山二路260號三樓之一",
+      "phone": "(07)537-5589"
+    },
+    {
+      "broker_code": "9B1h",
+      "broker_name": "台新-台中",
+      "open_date": "991129",
+      "address": "台中市東興路二段187號3樓",
+      "phone": "(04)24755000"
+    },
+    {
+      "broker_code": "9B1n",
+      "broker_name": "台新-屏東",
+      "open_date": "1060828",
+      "address": "屏東縣屏東市廣東路107號2~4樓",
+      "phone": "08-722-3377"
+    },
+    {
+      "broker_code": "9B1y",
+      "broker_name": "台新-中壢",
+      "open_date": "1060828",
+      "address": "桃園市中壢區延平路368號3樓",
+      "phone": "03-2805759"
+    },
+    {
+      "broker_code": "9B20",
+      "broker_name": "台新-台北",
+      "open_date": "1150406",
+      "address": "臺北市大安區復興南路1段209號1、2、3樓",
+      "phone": "02-27313888"
+    },
+    {
+      "broker_code": "9B21",
+      "broker_name": "台新-九如",
+      "open_date": "1150406",
+      "address": "高雄市九如二路548號2樓",
+      "phone": "07-3122822"
+    },
+    {
+      "broker_code": "9B22",
+      "broker_name": "台新-新店",
+      "open_date": "1150406",
+      "address": "新北市新店區中興路3段134號地下一樓",
+      "phone": "02-29177888"
+    },
+    {
+      "broker_code": "9B23",
+      "broker_name": "台新-三重",
+      "open_date": "1150406",
+      "address": "新北市三重區重新路2段21號3樓",
+      "phone": "02-29885568"
+    },
+    {
+      "broker_code": "9B25",
+      "broker_name": "台新-五權西",
+      "open_date": "1150406",
+      "address": "台中市五權西路一段二三七號二樓",
+      "phone": "04-23759979"
+    },
+    {
+      "broker_code": "9B27",
+      "broker_name": "台新-林園",
+      "open_date": "1150406",
+      "address": "高雄市林園區沿海路3段2號2樓及5樓(部分)",
+      "phone": "07-6433779"
+    },
+    {
+      "broker_code": "9B28",
+      "broker_name": "台新-北新莊",
+      "open_date": "1150406",
+      "address": "新北市新莊區新泰路368號1、2樓",
+      "phone": "02-29962299"
+    },
+    {
+      "broker_code": "9B29",
+      "broker_name": "台新-府城",
+      "open_date": "1150406",
+      "address": "台南市忠義路2段47號3.4.5(營業廳設於3F)",
+      "phone": "06-2219089"
+    },
+    {
+      "broker_code": "9B2A",
+      "broker_name": "台新-緯城",
+      "open_date": "1150406",
+      "address": "高雄市博愛一路391號8樓",
+      "phone": "07-3131123"
+    },
+    {
+      "broker_code": "9B2B",
+      "broker_name": "台新-永和",
+      "open_date": "1150406",
+      "address": "新北市永和區民有街1號2樓",
+      "phone": "02-29491888"
+    },
+    {
+      "broker_code": "9B2C",
+      "broker_name": "台新-潮州",
+      "open_date": "1150406",
+      "address": "屏東縣潮州鎮新生路8號1,2樓(營業廳設於1樓) 86.08.04.遷移",
+      "phone": "08-7884930"
+    },
+    {
+      "broker_code": "9B2D",
+      "broker_name": "台新-大昌",
+      "open_date": "1150406",
+      "address": "高雄市三民區九如一路502號地下一層",
+      "phone": "07-3851168"
+    },
+    {
+      "broker_code": "9B2E",
+      "broker_name": "台新-城中",
+      "open_date": "1150406",
+      "address": "台北市承德路一段十七號地下一樓",
+      "phone": "02-25563636"
+    },
+    {
+      "broker_code": "9B2G",
+      "broker_name": "台新-新竹",
+      "open_date": "1150406",
+      "address": "新竹市信義街68號7樓之1、7樓之2",
+      "phone": "03-5258282"
+    },
+    {
+      "broker_code": "9B2H",
+      "broker_name": "台新-信義",
+      "open_date": "1150406",
+      "address": "台北市信義路2段101號2樓",
+      "phone": "02-23587778"
+    },
+    {
+      "broker_code": "9B2I",
+      "broker_name": "台新-嘉義",
+      "open_date": "1150406",
+      "address": "嘉義市垂楊路316號3樓之1、2；4樓之1、2",
+      "phone": "05-2257789"
+    },
+    {
+      "broker_code": "9B2L",
+      "broker_name": "台新-北中壢",
+      "open_date": "1150406",
+      "address": "桃園縣中壢市元化路226號3樓",
+      "phone": "03-4263888"
+    },
+    {
+      "broker_code": "9B2M",
+      "broker_name": "台新-彰化",
+      "open_date": "1150406",
+      "address": "彰化市彰美路1段186號6F",
+      "phone": "04-7283456"
+    },
+    {
+      "broker_code": "9B2N",
+      "broker_name": "台新-虎尾",
+      "open_date": "1150406",
+      "address": "雲林縣虎尾鎮中正路15號三.四樓",
+      "phone": "05-6360389"
+    },
+    {
+      "broker_code": "9B2P",
+      "broker_name": "台新-同大",
+      "open_date": "1150406",
+      "address": "高雄市岡山區岡山路339號3、4樓",
+      "phone": "07-6225788"
+    },
+    {
+      "broker_code": "9B2Q",
+      "broker_name": "台新-敦南",
+      "open_date": "1150406",
+      "address": "台北市忠孝東路4段212號3樓、3樓之1",
+      "phone": "02-87723988"
+    },
+    {
+      "broker_code": "9B2S",
+      "broker_name": "台新-基隆",
+      "open_date": "1150406",
+      "address": "基隆市愛四路60號4樓",
+      "phone": "02-24288899"
+    },
+    {
+      "broker_code": "9B2U",
+      "broker_name": "台新-宜蘭",
+      "open_date": "1150406",
+      "address": "宜蘭縣宜蘭市舊城北路23號",
+      "phone": "03-9369688"
+    },
+    {
+      "broker_code": "9B2W",
+      "broker_name": "台新-吉利",
+      "open_date": "1150406",
+      "address": "台北市承德路7段348號1樓、地下1樓",
+      "phone": "02-28229090"
+    },
+    {
+      "broker_code": "9B2X",
+      "broker_name": "台新-草屯",
+      "open_date": "1150406",
+      "address": "南投縣草屯鎮和興街92號92之1號1、2樓、94號3樓之1、之2、之3、之4",
+      "phone": "049-2355888"
+    },
+    {
+      "broker_code": "9B2Y",
+      "broker_name": "台新-埔里",
+      "open_date": "1150406",
+      "address": "南投縣埔里鎮南昌街231號2樓",
+      "phone": "049-2900999"
+    },
+    {
+      "broker_code": "9B2Z",
+      "broker_name": "台新-安南",
+      "open_date": "1150406",
+      "address": "台南市安中路二段三００號八樓",
+      "phone": "06-2453088"
+    },
+    {
+      "broker_code": "9B2a",
+      "broker_name": "台新-松德",
+      "open_date": "1150406",
+      "address": "台北市松德路16號地下1樓",
+      "phone": "02-27202828"
+    },
+    {
+      "broker_code": "9B2b",
+      "broker_name": "台新-板橋",
+      "open_date": "1150406",
+      "address": "新北市板橋區中山路一段141號5樓部分",
+      "phone": "02-89536888"
+    },
+    {
+      "broker_code": "9B2c",
+      "broker_name": "台新-烏日",
+      "open_date": "1150406",
+      "address": "台中縣烏日鄉三民街179號4樓",
+      "phone": "04-23362288"
+    },
+    {
+      "broker_code": "9B2g",
+      "broker_name": "台新-中原",
+      "open_date": "1150406",
+      "address": "台中市潭子區中山路2段281號3樓",
+      "phone": "04-25326677"
+    },
+    {
+      "broker_code": "9B2i",
+      "broker_name": "台新-中港",
+      "open_date": "1150406",
+      "address": "台中市清水區中山路196號5樓",
+      "phone": "04-26222299"
+    },
+    {
+      "broker_code": "9B2l",
+      "broker_name": "台新-大裕",
+      "open_date": "1150406",
+      "address": "台中市台中路504號",
+      "phone": "04-22862688"
+    },
+    {
+      "broker_code": "9B2m",
+      "broker_name": "台新-成功",
+      "open_date": "1150406",
+      "address": "台南市成功路四五七號三樓、四樓",
+      "phone": "06-2232323"
+    },
+    {
+      "broker_code": "9B2n",
+      "broker_name": "台新-西松",
+      "open_date": "1150406",
+      "address": "台北市南京東路5段108號3樓",
+      "phone": "02-27562288"
+    },
+    {
+      "broker_code": "9B2o",
+      "broker_name": "台新-新興",
+      "open_date": "1150406",
+      "address": "高雄市新興區七賢一路251號2樓",
+      "phone": "07-238-5678"
+    },
+    {
+      "broker_code": "9B2q",
+      "broker_name": "台新-屏新",
+      "open_date": "1150406",
+      "address": "屏東市中正路一二三號二樓",
+      "phone": "08-7339522"
+    },
+    {
+      "broker_code": "9B2r",
+      "broker_name": "台新-城東",
+      "open_date": "1150406",
+      "address": "台北市中山區南京東路2段167號4樓、4樓之1",
+      "phone": "02-2509-9928"
+    },
+    {
+      "broker_code": "9B2u",
+      "broker_name": "台新-世貿",
+      "open_date": "1150406",
+      "address": "台北市信義區信義路五段8號2樓",
+      "phone": "02-8780-1800"
+    },
+    {
+      "broker_code": "9B2v",
+      "broker_name": "台新-桃園",
+      "open_date": "1150406",
+      "address": "桃園縣桃園市成功路2段1號2樓",
+      "phone": "03-3366000"
+    },
+    {
+      "broker_code": "9B2w",
+      "broker_name": "台新-佳里",
+      "open_date": "1150406",
+      "address": "台南市佳里區和平街83號4樓、5樓",
+      "phone": "06-7232323"
+    },
+    {
+      "broker_code": "9B2y",
+      "broker_name": "台新-花蓮",
+      "open_date": "1150406",
+      "address": "花蓮市民國路167號",
+      "phone": "038-360988"
+    },
+    {
+      "broker_code": "9B2z",
+      "broker_name": "台新-文心",
+      "open_date": "1150406",
+      "address": "台中市西屯區文心路2段645號2樓",
+      "phone": "04-2252-1010"
+    }
+  ]
+}
