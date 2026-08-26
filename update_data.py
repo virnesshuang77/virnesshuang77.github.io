@@ -17,6 +17,11 @@ TWSE_PRICE_URL = (
     "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX"
 )
 
+# 證券商分公司基本資料
+TWSE_BROKER_MASTER_URL = (
+    "https://openapi.twse.com.tw/v1/opendata/OpenData_BRK02"
+)
+
 
 HEADERS = {
     "User-Agent": (
@@ -298,17 +303,299 @@ def get_price_data(date):
 
 
 # ============================================================
+# 取得券商分公司主檔
+# ============================================================
+
+def get_broker_master():
+
+    print()
+    print("=" * 70)
+    print("正在取得 TWSE 券商分公司主檔")
+    print("=" * 70)
+
+    response = requests.get(
+        TWSE_BROKER_MASTER_URL,
+        headers=HEADERS,
+        timeout=30
+    )
+
+    print(
+        "HTTP Status：",
+        response.status_code
+    )
+
+    response.raise_for_status()
+
+    data = response.json()
+
+    # --------------------------------------------------------
+    # TWSE OpenAPI 正常情況通常直接回傳 list
+    # --------------------------------------------------------
+
+    if isinstance(data, list):
+
+        rows = data
+
+    elif isinstance(data, dict):
+
+        # 保留一些容錯處理
+        if isinstance(data.get("data"), list):
+
+            rows = data["data"]
+
+        elif isinstance(data.get("result"), list):
+
+            rows = data["result"]
+
+        else:
+
+            raise Exception(
+                "TWSE 券商分公司 API 回傳格式無法辨識。"
+            )
+
+    else:
+
+        raise Exception(
+            "TWSE 券商分公司 API 回傳資料格式錯誤。"
+        )
+
+    if not rows:
+
+        raise Exception(
+            "TWSE 券商分公司主檔回傳資料為空。"
+        )
+
+    print(
+        "API 回傳資料筆數：",
+        len(rows)
+    )
+
+    # --------------------------------------------------------
+    # 將 API 資料轉成 DataFrame
+    # --------------------------------------------------------
+
+    broker_df = pd.DataFrame(rows)
+
+    print()
+    print("API 欄位：")
+    print(
+        list(broker_df.columns)
+    )
+
+    # --------------------------------------------------------
+    # 自動尋找欄位
+    # --------------------------------------------------------
+
+    def find_column(possible_names):
+
+        for name in possible_names:
+
+            if name in broker_df.columns:
+
+                return name
+
+        return None
+
+    code_column = find_column(
+        [
+            "證券商代號",
+            "券商代號",
+            "broker_code"
+        ]
+    )
+
+    name_column = find_column(
+        [
+            "證券商名稱",
+            "券商名稱",
+            "broker_name"
+        ]
+    )
+
+    open_date_column = find_column(
+        [
+            "開業日",
+            "開業日期",
+            "open_date"
+        ]
+    )
+
+    address_column = find_column(
+        [
+            "地址",
+            "營業地址",
+            "營業處所",
+            "address"
+        ]
+    )
+
+    phone_column = find_column(
+        [
+            "電話",
+            "電話號碼",
+            "phone"
+        ]
+    )
+
+    if code_column is None:
+
+        raise Exception(
+            "找不到「證券商代號」欄位。"
+        )
+
+    if name_column is None:
+
+        raise Exception(
+            "找不到「證券商名稱」欄位。"
+        )
+
+    # --------------------------------------------------------
+    # 建立我們網站統一使用的格式
+    # --------------------------------------------------------
+
+    result = []
+
+    for _, row in broker_df.iterrows():
+
+        code = str(
+            row.get(code_column, "")
+        ).strip()
+
+        name = str(
+            row.get(name_column, "")
+        ).strip()
+
+        open_date = ""
+
+        if open_date_column is not None:
+
+            open_date = str(
+                row.get(
+                    open_date_column,
+                    ""
+                )
+            ).strip()
+
+        address = ""
+
+        if address_column is not None:
+
+            address = str(
+                row.get(
+                    address_column,
+                    ""
+                )
+            ).strip()
+
+        phone = ""
+
+        if phone_column is not None:
+
+            phone = str(
+                row.get(
+                    phone_column,
+                    ""
+                )
+            ).strip()
+
+        # 跳過完全沒有代號的資料
+        if not code:
+
+            continue
+
+        result.append(
+            {
+                "broker_code": code,
+                "broker_name": name,
+                "open_date": open_date,
+                "address": address,
+                "phone": phone
+            }
+        )
+
+    if not result:
+
+        raise Exception(
+            "清理後沒有任何券商分公司資料。"
+        )
+
+    print()
+    print(
+        "清理後分公司數量：",
+        len(result)
+    )
+
+    return result
+
+
+# ============================================================
+# 建立 broker_master.json
+# ============================================================
+
+def save_broker_master_json(
+    broker_list,
+    data_date
+):
+
+    result = {
+
+        "data_date": data_date,
+
+        "source": "TWSE OpenAPI",
+
+        "description":
+            "證券商分公司基本資料",
+
+        "total": len(
+            broker_list
+        ),
+
+        "brokers": broker_list
+    }
+
+    with open(
+        "broker_master.json",
+        "w",
+        encoding="utf-8"
+    ) as f:
+
+        json.dump(
+            result,
+            f,
+            ensure_ascii=False,
+            indent=2
+        )
+
+    print()
+    print(
+        "✅ broker_master.json 已建立"
+    )
+
+    print(
+        "分公司數量：",
+        len(broker_list)
+    )
+
+
+# ============================================================
 # 建立 data.json
 # ============================================================
 
-def save_data_json(df, data_date):
+def save_data_json(
+    df,
+    data_date
+):
 
     result = {
+
         "data_date": data_date,
+
         "source": "TWSE",
-        "data": df.to_dict(
-            orient="records"
-        )
+
+        "data":
+            df.to_dict(
+                orient="records"
+            )
     }
 
     with open(
@@ -325,7 +612,9 @@ def save_data_json(df, data_date):
         )
 
     print()
-    print("✅ data.json 已建立")
+    print(
+        "✅ data.json 已建立"
+    )
 
 
 # ============================================================
@@ -414,7 +703,9 @@ def create_money_rank(
                 column,
                 ascending=False
             )
-            .reset_index(drop=True)
+            .reset_index(
+                drop=True
+            )
         )
 
         result["rank"] = (
@@ -476,7 +767,6 @@ def create_money_rank(
             total.to_dict(
                 orient="records"
             )
-
     }
 
     with open(
@@ -505,7 +795,7 @@ def main():
 
     print()
     print("=" * 70)
-    print("TWSE 每日法人資料自動更新")
+    print("TWSE 每日資料自動更新")
     print("=" * 70)
 
     today = get_today()
@@ -523,7 +813,62 @@ def main():
     )
 
     # ========================================================
-    # 等待 TWSE 資料
+    # 取得券商分公司主檔
+    # ========================================================
+
+    broker_list = None
+
+    max_broker_retry = 3
+
+    for attempt in range(
+        1,
+        max_broker_retry + 1
+    ):
+
+        print()
+        print(
+            f"券商分公司主檔取得 "
+            f"{attempt}/{max_broker_retry}"
+        )
+
+        try:
+
+            broker_list = get_broker_master()
+
+        except Exception as error:
+
+            print(
+                "取得券商分公司主檔發生錯誤：",
+                error
+            )
+
+            broker_list = None
+
+        if broker_list is not None:
+
+            break
+
+        if attempt < max_broker_retry:
+
+            print(
+                "30 秒後重新嘗試..."
+            )
+
+            time.sleep(30)
+
+    if broker_list is None:
+
+        raise Exception(
+            "今天未能取得 TWSE 券商分公司主檔。"
+        )
+
+    save_broker_master_json(
+        broker_list,
+        data_date
+    )
+
+    # ========================================================
+    # 等待 TWSE 三大法人資料
     #
     # GitHub Actions 16:00 開始
     # 每 10 分鐘重新嘗試
@@ -719,6 +1064,10 @@ def main():
 
     print(
         "  money_rank.json"
+    )
+
+    print(
+        "  broker_master.json"
     )
 
     print("=" * 70)
