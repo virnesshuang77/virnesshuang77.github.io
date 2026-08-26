@@ -1213,9 +1213,9 @@ function renderTable() {
                 </td>
 
                 <td class="${moneyClass}">
-                    ${formatMoney(netMoney)}
-                    元
-                </td>
+    ${(netMoney / 100000000).toFixed(2)}
+    億
+</td>
 
             `;
 
