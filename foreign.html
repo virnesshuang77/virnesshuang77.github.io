@@ -10,8 +10,7 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>法人買賣超排行榜</title>
-
+<title>法人買賣超</title>
 
 <style>
 
@@ -22,7 +21,6 @@
 * {
     box-sizing: border-box;
 }
-
 
 body {
 
@@ -39,17 +37,16 @@ body {
 }
 
 
-/* =========================================================
-   主容器
-========================================================= */
-
 .wrap {
 
     max-width: 1200px;
 
     margin: 0 auto;
 
-    padding: 24px 20px 50px;
+    padding:
+        24px
+        20px
+        50px;
 }
 
 
@@ -61,7 +58,8 @@ body {
 
     display: flex;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
     align-items: center;
 
@@ -99,7 +97,10 @@ body {
 
     text-decoration: none;
 
-    border: 1px solid #d5dee8;
+    border:
+        1px
+        solid
+        #d5dee8;
 
     background: #fff;
 
@@ -107,7 +108,9 @@ body {
 
     border-radius: 9px;
 
-    padding: 9px 13px;
+    padding:
+        9px
+        13px;
 
     font-weight: 800;
 
@@ -122,7 +125,6 @@ body {
 .nav-btn:hover {
 
     background: #f3f6f9;
-
 }
 
 
@@ -133,7 +135,6 @@ body {
     color: #fff;
 
     border-color: #222;
-
 }
 
 
@@ -143,7 +144,10 @@ body {
 
 h1 {
 
-    margin: 0 0 5px;
+    margin:
+        0
+        0
+        5px;
 
     font-size: 32px;
 }
@@ -167,7 +171,8 @@ h1 {
 
     display: flex;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
     align-items: center;
 
@@ -179,21 +184,67 @@ h1 {
 }
 
 
-.summary {
+.tabs {
 
-    color: #555;
+    display: flex;
 
-    font-size: 16px;
+    gap: 8px;
 
-    font-weight: 600;
+    flex-wrap: wrap;
 }
 
 
-select {
+.tab {
 
-    padding: 10px 14px;
+    border:
+        1px
+        solid
+        #ddd;
 
-    border: 1px solid #ddd;
+    background: white;
+
+    padding:
+        10px
+        18px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: 0.15s;
+}
+
+
+.tab:hover {
+
+    background: #f3f6f9;
+}
+
+
+.tab.active {
+
+    background: #222;
+
+    color: white;
+
+    border-color: #222;
+}
+
+
+#topSelect {
+
+    padding:
+        10px
+        14px;
+
+    border:
+        1px
+        solid
+        #ddd;
 
     border-radius: 8px;
 
@@ -205,12 +256,21 @@ select {
 }
 
 
-select:focus {
+#topSelect:focus {
 
     outline: none;
 
     border-color: #222;
+}
 
+
+.summary {
+
+    color: #555;
+
+    font-size: 16px;
+
+    font-weight: 600;
 }
 
 
@@ -227,7 +287,10 @@ select:focus {
     overflow-x: auto;
 
     box-shadow:
-        0 4px 14px rgba(0,0,0,0.05);
+        0
+        4px
+        14px
+        rgba(0,0,0,0.05);
 }
 
 
@@ -237,7 +300,7 @@ table {
 
     border-collapse: collapse;
 
-    min-width: 750px;
+    min-width: 800px;
 }
 
 
@@ -245,7 +308,9 @@ thead th {
 
     background: #f0f2f5;
 
-    padding: 15px 14px;
+    padding:
+        15px
+        14px;
 
     text-align: right;
 
@@ -265,9 +330,13 @@ thead th:nth-child(3) {
 
 tbody td {
 
-    padding: 14px;
+    padding:
+        14px;
 
-    border-top: 1px solid #eee;
+    border-top:
+        1px
+        solid
+        #eee;
 
     text-align: right;
 }
@@ -283,7 +352,9 @@ tbody td:nth-child(3) {
 
 tbody tr {
 
-    transition: background 0.12s;
+    transition:
+        background
+        0.12s;
 }
 
 
@@ -344,14 +415,28 @@ tbody tr:hover {
 
 
 /* =========================================================
+   零
+========================================================= */
+
+.money-zero {
+
+    color: #777;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
    載入
 ========================================================= */
 
 .loading {
 
-    padding: 55px !important;
+    padding:
+        55px !important;
 
-    text-align: center !important;
+    text-align:
+        center !important;
 
     color: #777;
 }
@@ -390,7 +475,8 @@ tbody tr:hover {
 
     .top {
 
-        align-items: flex-start;
+        align-items:
+            flex-start;
 
         margin-bottom: 22px;
     }
@@ -424,9 +510,27 @@ tbody tr:hover {
 
     .controls {
 
-        align-items: flex-start;
+        align-items:
+            flex-start;
 
-        flex-direction: column;
+        flex-direction:
+            column;
+    }
+
+
+    .tabs {
+
+        width: 100%;
+    }
+
+
+    .tab {
+
+        flex: 1;
+
+        min-width: 90px;
+
+        text-align: center;
     }
 
 
@@ -448,13 +552,18 @@ tbody tr:hover {
 <div class="wrap">
 
 
-<!-- =======================================================
+<!-- =====================================================
      Header
-======================================================= -->
+===================================================== -->
 
 <header class="top">
 
 
+    <div class="brand">
+
+        📈 投資績效名片
+
+    </div>
 
 
     <div class="actions">
@@ -496,13 +605,13 @@ tbody tr:hover {
 </header>
 
 
-<!-- =======================================================
+<!-- =====================================================
      標題
-======================================================= -->
+===================================================== -->
 
 <h1>
 
-    法人買賣超排行榜
+    🏦 法人買賣超排行榜
 
 </h1>
 
@@ -517,11 +626,47 @@ tbody tr:hover {
 </div>
 
 
-<!-- =======================================================
+<!-- =====================================================
      控制區
-======================================================= -->
+===================================================== -->
 
 <div class="controls">
+
+
+    <div class="tabs">
+
+
+        <button
+            class="tab active"
+            data-type="buy"
+        >
+
+            🔴 買超
+
+        </button>
+
+
+        <button
+            class="tab"
+            data-type="sell"
+        >
+
+            🟢 賣超
+
+        </button>
+
+
+        <button
+            class="tab"
+            data-type="net"
+        >
+
+            ⚖️ 淨買賣
+
+        </button>
+
+
+    </div>
 
 
     <div
@@ -534,22 +679,35 @@ tbody tr:hover {
     </div>
 
 
-    <select id="topSelect">
+    <select
+        id="topSelect"
+    >
 
         <option value="10">
+
             TOP 10
+
         </option>
+
 
         <option value="20">
+
             TOP 20
+
         </option>
+
 
         <option value="50">
+
             TOP 50
+
         </option>
 
+
         <option value="100">
+
             TOP 100
+
         </option>
 
     </select>
@@ -558,9 +716,9 @@ tbody tr:hover {
 </div>
 
 
-<!-- =======================================================
+<!-- =====================================================
      表格
-======================================================= -->
+===================================================== -->
 
 <div class="table-wrapper">
 
@@ -570,37 +728,58 @@ tbody tr:hover {
 
 <thead>
 
+
 <tr>
 
+
     <th>
+
         Rank
+
     </th>
 
+
     <th>
+
         股票代號
+
     </th>
 
+
     <th>
+
         股票名稱
+
     </th>
 
+
     <th>
+
         收盤價
+
     </th>
 
+
     <th>
-        法人買賣超金額
+
+        法人淨買賣
+
     </th>
+
 
 </tr>
+
 
 </thead>
 
 
-<tbody id="tableBody">
+<tbody
+    id="tableBody"
+>
 
 
 <tr>
+
 
     <td
         colspan="5"
@@ -610,6 +789,7 @@ tbody tr:hover {
         正在載入資料...
 
     </td>
+
 
 </tr>
 
@@ -634,6 +814,8 @@ tbody tr:hover {
 ========================================================= */
 
 let foreignData = [];
+
+let currentType = "buy";
 
 let topN = 10;
 
@@ -751,6 +933,144 @@ function formatPrice(value) {
 
 
 /* =========================================================
+   取得法人金額
+========================================================= */
+
+function getMoney(item) {
+
+
+    const value =
+        Number(
+            item.foreign_money || 0
+        );
+
+
+    return Number.isFinite(value)
+        ? value
+        : 0;
+
+}
+
+
+/* =========================================================
+   排序
+========================================================= */
+
+function getSortedData() {
+
+
+    const rows =
+        [
+            ...foreignData
+        ];
+
+
+    /*
+     * 買超
+     *
+     * 最大正數 → 最小
+     */
+
+    if (
+        currentType === "buy"
+    ) {
+
+
+        return rows
+            .filter(
+                item =>
+                    getMoney(item) > 0
+            )
+            .sort(
+                (a, b) =>
+                    getMoney(b)
+                    -
+                    getMoney(a)
+            );
+
+    }
+
+
+    /*
+     * 賣超
+     *
+     * 最小負數 → 最大
+     */
+
+    if (
+        currentType === "sell"
+    ) {
+
+
+        return rows
+            .filter(
+                item =>
+                    getMoney(item) < 0
+            )
+            .sort(
+                (a, b) =>
+                    getMoney(a)
+                    -
+                    getMoney(b)
+            );
+
+    }
+
+
+    /*
+     * 淨買賣
+     *
+     * 所有資料
+     *
+     * 正數買超
+     * 負數賣超
+     *
+     * 依實際淨值由大到小
+     */
+
+    return rows.sort(
+
+        (a, b) =>
+            getMoney(b)
+            -
+            getMoney(a)
+
+    );
+
+}
+
+
+/* =========================================================
+   取得模式名稱
+========================================================= */
+
+function getModeName() {
+
+
+    if (
+        currentType === "buy"
+    ) {
+
+        return "法人買超";
+
+    }
+
+
+    if (
+        currentType === "sell"
+    ) {
+
+        return "法人賣超";
+
+    }
+
+
+    return "法人淨買賣";
+
+}
+
+
+/* =========================================================
    建立表格
 ========================================================= */
 
@@ -773,18 +1093,30 @@ function renderTable() {
 
 
     /*
-     * 取 TOP N
+     * 排序
+     */
+
+    const sorted =
+        getSortedData();
+
+
+    /*
+     * TOP N
      */
 
     const rows =
-        foreignData.slice(
+        sorted.slice(
             0,
             topN
         );
 
 
+    /*
+     * Summary
+     */
+
     summary.textContent =
-        `法人買賣超排名 TOP ${rows.length}`;
+        `${getModeName()} TOP ${rows.length}`;
 
 
     /*
@@ -795,6 +1127,7 @@ function renderTable() {
         rows.length === 0
     ) {
 
+
         tableBody.innerHTML = `
 
             <tr>
@@ -804,13 +1137,14 @@ function renderTable() {
                     class="loading"
                 >
 
-                    沒有法人資料
+                    目前沒有符合條件的法人資料。
 
                 </td>
 
             </tr>
 
         `;
+
 
         return;
 
@@ -823,21 +1157,25 @@ function renderTable() {
 
     rows.forEach(
 
-        (item, index) => {
+        (
+            item,
+            index
+        ) => {
 
 
             const money =
-                Number(
-                    item.foreign_money || 0
+                getMoney(
+                    item
                 );
 
 
-            let moneyClass = "";
-
-
             /*
-             * 買超
+             * 顏色
              */
+
+            let moneyClass =
+                "money-zero";
+
 
             if (
                 money > 0
@@ -849,10 +1187,6 @@ function renderTable() {
             }
 
 
-            /*
-             * 賣超
-             */
-
             else if (
                 money < 0
             ) {
@@ -862,6 +1196,55 @@ function renderTable() {
 
             }
 
+
+            /*
+             * 正負號
+             */
+
+            let displayMoney = "";
+
+
+            if (
+                money > 0
+            ) {
+
+                displayMoney =
+                    "+"
+                    +
+                    formatMoney(
+                        money
+                    );
+
+            }
+
+
+            else if (
+                money < 0
+            ) {
+
+                /*
+                 * formatMoney 本身會保留負號
+                 */
+
+                displayMoney =
+                    formatMoney(
+                        money
+                    );
+
+            }
+
+
+            else {
+
+                displayMoney =
+                    "0";
+
+            }
+
+
+            /*
+             * 建立 row
+             */
 
             const row =
                 document.createElement(
@@ -874,8 +1257,6 @@ function renderTable() {
                 <td class="rank">
 
                     ${
-                        item.rank
-                        ??
                         index + 1
                     }
 
@@ -920,9 +1301,7 @@ function renderTable() {
                 >
 
                     ${
-                        formatMoney(
-                            money
-                        )
+                        displayMoney
                     }
 
                 </td>
@@ -958,7 +1337,7 @@ async function loadData() {
 
 
         /*
-         * 顯示載入中
+         * 載入畫面
          */
 
         tableBody.innerHTML = `
@@ -982,8 +1361,8 @@ async function loadData() {
         /*
          * 加 timestamp
          *
-         * 避免 GitHub Pages / 瀏覽器
-         * 使用舊 JSON 快取
+         * 避免 GitHub Pages
+         * /瀏覽器使用舊快取
          */
 
         const url =
@@ -1032,7 +1411,7 @@ async function loadData() {
 
 
         /*
-         * 解析 JSON
+         * JSON
          */
 
         const data =
@@ -1045,13 +1424,15 @@ async function loadData() {
         );
 
 
-        /* =====================================================
-           日期
-        ====================================================== */
+        /*
+         * 日期
+         */
 
-        document.getElementById(
-            "dataDate"
-        ).textContent =
+        document
+            .getElementById(
+                "dataDate"
+            )
+            .textContent =
 
             `資料日期：${
                 data.data_date
@@ -1060,9 +1441,9 @@ async function loadData() {
             }`;
 
 
-        /* =====================================================
-           確認 foreign
-        ====================================================== */
+        /*
+         * 確認 foreign
+         */
 
         if (
             !Array.isArray(
@@ -1078,7 +1459,7 @@ async function loadData() {
 
 
         /*
-         * 儲存資料
+         * 儲存
          */
 
         foreignData =
@@ -1091,9 +1472,11 @@ async function loadData() {
         );
 
 
-        /* =====================================================
-           排序
-        ====================================================== */
+        /*
+         * 預設排序
+         *
+         * 買超
+         */
 
         foreignData.sort(
 
@@ -1101,15 +1484,9 @@ async function loadData() {
 
                 return (
 
-                    Number(
-                        b.foreign_money || 0
-                    )
-
+                    getMoney(b)
                     -
-
-                    Number(
-                        a.foreign_money || 0
-                    )
+                    getMoney(a)
 
                 );
 
@@ -1137,15 +1514,19 @@ async function loadData() {
         );
 
 
-        document.getElementById(
-            "dataDate"
-        ).textContent =
+        document
+            .getElementById(
+                "dataDate"
+            )
+            .textContent =
             "資料載入失敗";
 
 
-        document.getElementById(
-            "summary"
-        ).textContent =
+        document
+            .getElementById(
+                "summary"
+            )
+            .textContent =
             "無法取得法人資料";
 
 
@@ -1197,6 +1578,80 @@ async function loadData() {
 
 
 /* =========================================================
+   買超 / 賣超 / 淨買賣
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".tab"
+    )
+    .forEach(
+
+        button => {
+
+
+            button.addEventListener(
+
+                "click",
+
+                function() {
+
+
+                    /*
+                     * 移除其他 active
+                     */
+
+                    document
+                        .querySelectorAll(
+                            ".tab"
+                        )
+                        .forEach(
+
+                            btn => {
+
+                                btn.classList
+                                    .remove(
+                                        "active"
+                                    );
+
+                            }
+
+                        );
+
+
+                    /*
+                     * 啟用目前按鈕
+                     */
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    /*
+                     * 更新模式
+                     */
+
+                    currentType =
+                        this.dataset.type;
+
+
+                    /*
+                     * 重新顯示
+                     */
+
+                    renderTable();
+
+                }
+
+            );
+
+        }
+
+    );
+
+
+/* =========================================================
    TOP 選單
 ========================================================= */
 
@@ -1208,7 +1663,7 @@ document
 
         "change",
 
-        function () {
+        function() {
 
 
             topN =
@@ -1229,7 +1684,6 @@ document
 ========================================================= */
 
 loadData();
-
 
 </script>
 
