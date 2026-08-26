@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>外資買賣超排行榜</title>
+
+
+<style>
+
+/* ============================================================
+   基本設定
+============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        "Microsoft JhengHei",
+        sans-serif;
+
+    background: #f5f7fa;
+
+    color: #222;
+}
+
+
+.container {
+
+    max-width: 1100px;
+
+    margin: 35px auto;
+
+    padding: 0 20px;
+}
+
+
+/* ============================================================
+   標題
+============================================================ */
+
+h1 {
+
+    margin: 0 0 8px 0;
+
+    font-size: 32px;
+}
+
+
+.date {
+
+    color: #777;
+
+    margin-bottom: 25px;
+
+    font-size: 16px;
+}
+
+
+/* ============================================================
+   回首頁
+============================================================ */
+
+.back-home {
+
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #222;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+
+.back-home:hover {
+
+    background: #eee;
+}
+
+
+/* ============================================================
+   控制列
+============================================================ */
+
+.controls {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+.summary {
+
+    color: #555;
+
+    font-size: 16px;
+}
+
+
+select {
+
+    padding: 10px 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    background: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   表格外框
+============================================================ */
+
+.table-wrapper {
+
+    background: white;
+
+    border-radius: 12px;
+
+    overflow-x: auto;
+
+    box-shadow:
+        0 2px 10px
+        rgba(0, 0, 0, 0.05);
+}
+
+
+/* ============================================================
+   表格
+============================================================ */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 750px;
+}
+
+
+thead th {
+
+    background: #f0f2f5;
+
+    padding: 15px 14px;
+
+    text-align: right;
+
+    white-space: nowrap;
+
+    font-weight: bold;
+}
+
+
+thead th:first-child,
+thead th:nth-child(2),
+thead th:nth-child(3) {
+
+    text-align: left;
+}
+
+
+tbody td {
+
+    padding: 14px;
+
+    border-top: 1px solid #eee;
+
+    text-align: right;
+}
+
+
+tbody td:first-child,
+tbody td:nth-child(2),
+tbody td:nth-child(3) {
+
+    text-align: left;
+}
+
+
+tbody tr:hover {
+
+    background: #fafafa;
+}
+
+
+/* ============================================================
+   Rank
+============================================================ */
+
+.rank {
+
+    width: 70px;
+
+    font-weight: bold;
+}
+
+
+/* ============================================================
+   股票代號
+============================================================ */
+
+.stock-id {
+
+    color: #555;
+
+    font-family: monospace;
+
+    font-size: 15px;
+}
+
+
+/* ============================================================
+   買超
+============================================================ */
+
+.money-positive {
+
+    color: #e53935;
+
+    font-weight: bold;
+}
+
+
+/* ============================================================
+   賣超
+============================================================ */
+
+.money-negative {
+
+    color: #16803c;
+
+    font-weight: bold;
+}
+
+
+/* ============================================================
+   載入中
+============================================================ */
+
+.loading {
+
+    padding: 55px !important;
+
+    text-align: center !important;
+
+    color: #777;
+}
+
+
+/* ============================================================
+   錯誤
+============================================================ */
+
+.error {
+
+    padding: 40px;
+
+    text-align: center;
+
+    color: #c62828;
+
+    line-height: 1.8;
+}
+
+
+/* ============================================================
+   手機
+============================================================ */
+
+@media (max-width: 700px) {
+
+    .container {
+
+        margin-top: 20px;
+
+        padding: 0 10px;
+    }
+
+
+    h1 {
+
+        font-size: 26px;
+    }
+
+
+    .controls {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- =====================================================
+         回首頁
+    ====================================================== -->
+
+    <a
+        class="back-home"
+        href="index.html"
+    >
+        ← 回首頁
+    </a>
+
+
+    <!-- =====================================================
+         標題
+    ====================================================== -->
+
+    <h1>
+        外資買賣超排行榜
+    </h1>
+
+
+    <div
+        class="date"
+        id="dataDate"
+    >
+        資料載入中...
+    </div>
+
+
+    <!-- =====================================================
+         控制區
+    ====================================================== -->
+
+    <div class="controls">
+
+
+        <div
+            class="summary"
+            id="summary"
+        >
+            正在載入外資資料...
+        </div>
+
+
+        <select id="topSelect">
+
+            <option value="10">
+                TOP 10
+            </option>
+
+            <option value="20">
+                TOP 20
+            </option>
+
+            <option value="50">
+                TOP 50
+            </option>
+
+            <option value="100">
+                TOP 100
+            </option>
+
+        </select>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         表格
+    ====================================================== -->
+
+    <div class="table-wrapper">
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Rank
+                    </th>
+
+                    <th>
+                        股票代號
+                    </th>
+
+                    <th>
+                        股票名稱
+                    </th>
+
+                    <th>
+                        收盤價
+                    </th>
+
+                    <th>
+                        外資買賣超金額
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody
+                id="tableBody"
+            >
+
+                <tr>
+
+                    <td
+                        colspan="5"
+                        class="loading"
+                    >
+                        正在載入資料...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* ============================================================
+   全域資料
+============================================================ */
+
+let foreignData = [];
+
+let topN = 10;
+
+
+/* ============================================================
+   金額格式化
+============================================================ */
+
+function formatMoney(value) {
+
+
+    const number =
+        Number(value);
+
+
+    if (
+        !Number.isFinite(number)
+    ) {
+
+        return "-";
+
+    }
+
+
+    const abs =
+        Math.abs(number);
+
+
+    /*
+     * 1 億以上
+     */
+
+    if (
+        abs >= 100000000
+    ) {
+
+        return (
+
+            (number / 100000000)
+                .toFixed(2)
+
+            + " 億"
+
+        );
+
+    }
+
+
+    /*
+     * 1 萬以上
+     */
+
+    if (
+        abs >= 10000
+    ) {
+
+        return (
+
+            (number / 10000)
+                .toFixed(0)
+
+            + " 萬"
+
+        );
+
+    }
+
+
+    /*
+     * 小於 1 萬
+     */
+
+    return number.toLocaleString(
+        "zh-TW"
+    );
+
+}
+
+
+/* ============================================================
+   收盤價格式化
+============================================================ */
+
+function formatPrice(value) {
+
+
+    const number =
+        Number(value);
+
+
+    if (
+        !Number.isFinite(number)
+    ) {
+
+        return "-";
+
+    }
+
+
+    return number.toLocaleString(
+
+        "zh-TW",
+
+        {
+
+            minimumFractionDigits: 2,
+
+            maximumFractionDigits: 2
+
+        }
+
+    );
+
+}
+
+
+/* ============================================================
+   建立表格
+============================================================ */
+
+function renderTable() {
+
+
+    const tableBody =
+        document.getElementById(
+            "tableBody"
+        );
+
+
+    const summary =
+        document.getElementById(
+            "summary"
+        );
+
+
+    tableBody.innerHTML = "";
+
+
+    /*
+     * 取 TOP N
+     */
+
+    const rows =
+        foreignData.slice(
+            0,
+            topN
+        );
+
+
+    summary.textContent =
+        `外資買賣超排名 TOP ${rows.length}`;
+
+
+    /*
+     * 沒有資料
+     */
+
+    if (
+        rows.length === 0
+    ) {
+
+        tableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="loading"
+                >
+
+                    沒有外資資料
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+     * 建立每一列
+     */
+
+    rows.forEach(
+
+        (item, index) => {
+
+
+            const money =
+                Number(
+                    item.foreign_money || 0
+                );
+
+
+            let moneyClass = "";
+
+
+            /*
+             * 買超
+             */
+
+            if (
+                money > 0
+            ) {
+
+                moneyClass =
+                    "money-positive";
+
+            }
+
+
+            /*
+             * 賣超
+             */
+
+            else if (
+                money < 0
+            ) {
+
+                moneyClass =
+                    "money-negative";
+
+            }
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td class="rank">
+
+                    ${
+                        item.rank
+                        ??
+                        index + 1
+                    }
+
+                </td>
+
+
+                <td class="stock-id">
+
+                    ${
+                        item.stock_id
+                        ??
+                        "-"
+                    }
+
+                </td>
+
+
+                <td>
+
+                    ${
+                        item.stock_name
+                        ??
+                        "-"
+                    }
+
+                </td>
+
+
+                <td>
+
+                    ${
+                        formatPrice(
+                            item.close_price
+                        )
+                    }
+
+                </td>
+
+
+                <td
+                    class="${moneyClass}"
+                >
+
+                    ${
+                        formatMoney(
+                            money
+                        )
+                    }
+
+                </td>
+
+            `;
+
+
+            tableBody.appendChild(
+                row
+            );
+
+        }
+
+    );
+
+}
+
+
+/* ============================================================
+   讀取 money_rank.json
+============================================================ */
+
+async function loadData() {
+
+
+    const tableBody =
+        document.getElementById(
+            "tableBody"
+        );
+
+
+    try {
+
+
+        /*
+         * 顯示載入中
+         */
+
+        tableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="loading"
+                >
+
+                    正在載入外資資料...
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        /*
+         * 加 timestamp
+         *
+         * 避免 GitHub Pages / 瀏覽器
+         * 使用舊 JSON 快取
+         */
+
+        const url =
+            "./money_rank.json?ts="
+            +
+            Date.now();
+
+
+        console.log(
+            "讀取：",
+            url
+        );
+
+
+        /*
+         * Fetch
+         */
+
+        const response =
+            await fetch(
+                url
+            );
+
+
+        console.log(
+            "HTTP Status：",
+            response.status
+        );
+
+
+        /*
+         * HTTP 錯誤
+         */
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+
+                `HTTP ${response.status}`
+
+            );
+
+        }
+
+
+        /*
+         * 解析 JSON
+         */
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "money_rank.json：",
+            data
+        );
+
+
+        /* =====================================================
+           日期
+        ====================================================== */
+
+        document.getElementById(
+            "dataDate"
+        ).textContent =
+
+            `資料日期：${
+                data.data_date
+                ??
+                "-"
+            }`;
+
+
+        /* =====================================================
+           確認 foreign
+        ====================================================== */
+
+        if (
+            !Array.isArray(
+                data.foreign
+            )
+        ) {
+
+            throw new Error(
+                "money_rank.json 中找不到 foreign 陣列"
+            );
+
+        }
+
+
+        /*
+         * 儲存資料
+         */
+
+        foreignData =
+            data.foreign;
+
+
+        console.log(
+            "外資資料筆數：",
+            foreignData.length
+        );
+
+
+        /* =====================================================
+           排序
+        ====================================================== */
+
+        foreignData.sort(
+
+            (a, b) => {
+
+                return (
+                    Number(b.foreign_money || 0)
+                    -
+                    Number(a.foreign_money || 0)
+                );
+
+            }
+
+        );
+
+
+        /*
+         * 顯示
+         */
+
+        renderTable();
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "載入外資資料失敗：",
+            error
+        );
+
+
+        document.getElementById(
+            "dataDate"
+        ).textContent =
+            "資料載入失敗";
+
+
+        document.getElementById(
+            "summary"
+        ).textContent =
+            "無法取得外資資料";
+
+
+        tableBody.innerHTML = `
+
+            <tr>
+
+                <td colspan="5">
+
+                    <div class="error">
+
+                        <strong>
+                            無法載入外資資料
+                        </strong>
+
+                        <br><br>
+
+                        ${
+                            error.message
+                        }
+
+                        <br><br>
+
+                        請確認
+                        <strong>
+                            money_rank.json
+                        </strong>
+                        是否存在於網站根目錄。
+
+                        <br><br>
+
+                        開發者資訊已寫入瀏覽器 Console。
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+/* ============================================================
+   TOP 選單
+============================================================ */
+
+document
+    .getElementById(
+        "topSelect"
+    )
+    .addEventListener(
+
+        "change",
+
+        function () {
+
+
+            topN =
+                Number(
+                    this.value
+                );
+
+
+            renderTable();
+
+        }
+
+    );
+
+
+/* ============================================================
+   啟動
+============================================================ */
+
+loadData();
+
+
+</script>
+
+
+</body>
+
+</html>
