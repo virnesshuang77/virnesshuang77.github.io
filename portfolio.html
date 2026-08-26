@@ -23,8 +23,52 @@
 </head>
 <body>
 <div class="wrap">
-<header class="top"><div class="brand">📈 投資績效名片</div><div class="actions"><a class="btn" href="index.html">📊 融資融券維持率</a><a class="navlink" href="foreign.html">🏦 三大法人買賣超</a><button class="btn" onclick="showEditor()">⚙ 編輯持股</button><button class="btn primary" onclick="sharePage()">🔗 分享</button></div></header>
+<header class="top">
 
+    <div class="brand">
+        📈 投資績效名片
+    </div>
+
+    <div class="actions">
+
+        <a
+            class="btn"
+            href="index.html"
+        >
+            📊 融資融券維持率
+        </a>
+
+        <a
+            class="btn"
+            href="foreign.html"
+        >
+            🏦 法人買賣超
+        </a>
+
+        <a
+            class="btn"
+            href="broker.html"
+        >
+            🏢 券商分點
+        </a>
+
+        <button
+            class="btn"
+            onclick="showEditor()"
+        >
+            ⚙ 編輯持股
+        </button>
+
+        <button
+            class="btn primary"
+            onclick="sharePage()"
+        >
+            🔗 分享
+        </button>
+
+    </div>
+
+</header>
 <section id="editor" class="card">
 <h2 class="title">建立／編輯投資組合</h2>
 <div class="grid"><div><label>公開暱稱</label><input id="nickname" maxlength="30" placeholder="例如：台股長線王"></div><div><label>一句話介紹（選填）</label><input id="bio" maxlength="80" placeholder="例如：慢慢買、慢慢累積"></div></div>
