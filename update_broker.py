@@ -1,6 +1,8 @@
-import pandas as pd
-import json
 import os
+import zipfile
+import json
+import glob
+import pandas as pd
 from datetime import datetime
 
 
@@ -8,79 +10,205 @@ from datetime import datetime
 # 設定
 # ============================================================
 
-INPUT_FILE = "broker_daily.csv"
+TOP_N = 30
 
 OUTPUT_FILE = "broker_data.json"
 
-TOP_N = 30
+# 可以放 ZIP / CSV / TXT
+INPUT_PATTERNS = [
+    "*.zip",
+    "*.csv",
+    "*.txt"
+]
 
 
 # ============================================================
-# 開始
+# 工具：找檔案
 # ============================================================
 
-print("=" * 70)
-print("券商分點 TOP 30 資料處理")
-print("=" * 70)
+def find_input_file():
+
+    files = []
+
+    for pattern in INPUT_PATTERNS:
+
+        files.extend(
+            glob.glob(pattern)
+        )
+
+    # 排除輸出檔
+    files = [
+        f
+        for f in files
+        if os.path.basename(f)
+        != OUTPUT_FILE
+    ]
+
+    if not files:
+        return None
+
+    # 優先 ZIP
+    zip_files = [
+        f
+        for f in files
+        if f.lower().endswith(".zip")
+    ]
+
+    if zip_files:
+        return zip_files[0]
+
+    return files[0]
 
 
 # ============================================================
-# 1. 確認輸入檔案
+# 讀取 ZIP
 # ============================================================
 
-if not os.path.exists(INPUT_FILE):
+def read_zip_file(path):
 
     print()
-    print("❌ 找不到：")
-    print(INPUT_FILE)
-
-    print()
-    print("目前這個程式需要真正的券商分點交易資料。")
-
-    print()
-    print("預期 CSV 欄位：")
+    print("=" * 70)
+    print("讀取 ZIP")
+    print("=" * 70)
 
     print(
-        "日期 / 股票代號 / 股票名稱 / "
-        "券商代號 / 券商名稱 / 買進股數 / 賣出股數"
+        "檔案：",
+        path
     )
 
-    raise SystemExit(1)
+    with zipfile.ZipFile(
+        path,
+        "r"
+    ) as z:
+
+        names = z.namelist()
+
+        print()
+        print("ZIP 內容：")
+
+        for name in names:
+
+            print(
+                " ",
+                name
+            )
+
+        # 找第一個 CSV / TXT
+        target = None
+
+        for name in names:
+
+            lower = name.lower()
+
+            if (
+                lower.endswith(".csv")
+                or
+                lower.endswith(".txt")
+            ):
+
+                target = name
+
+                break
+
+        if target is None:
+
+            raise Exception(
+                "ZIP 裡找不到 CSV 或 TXT"
+            )
+
+        print()
+        print(
+            "使用檔案：",
+            target
+        )
+
+        raw = z.read(target)
+
+        # 嘗試常見編碼
+        for encoding in [
+            "utf-8-sig",
+            "big5",
+            "cp950",
+            "utf-8"
+        ]:
+
+            try:
+
+                text = raw.decode(
+                    encoding
+                )
+
+                print(
+                    "編碼：",
+                    encoding
+                )
+
+                from io import StringIO
+
+                return pd.read_csv(
+                    StringIO(text)
+                )
+
+            except Exception:
+                continue
+
+    raise Exception(
+        "無法解析 ZIP 裡的資料"
+    )
 
 
 # ============================================================
-# 2. 讀取 CSV
+# 讀取一般檔案
 # ============================================================
 
-print()
-print("正在讀取券商分點資料...")
+def read_normal_file(path):
 
-df = pd.read_csv(
-    INPUT_FILE,
-    encoding="utf-8-sig"
-)
+    print()
+    print("=" * 70)
+    print("讀取資料檔")
+    print("=" * 70)
 
+    print(
+        "檔案：",
+        path
+    )
 
-print(
-    f"資料筆數：{len(df):,}"
-)
+    for encoding in [
+        "utf-8-sig",
+        "big5",
+        "cp950",
+        "utf-8"
+    ]:
 
+        try:
 
-print()
-print("原始欄位：")
+            df = pd.read_csv(
+                path,
+                encoding=encoding
+            )
 
-print(
-    df.columns.tolist()
-)
+            print(
+                "編碼：",
+                encoding
+            )
+
+            return df
+
+        except Exception:
+            continue
+
+    raise Exception(
+        "無法讀取資料檔案"
+    )
 
 
 # ============================================================
-# 3. 欄位名稱自動辨識
+# 找欄位
 # ============================================================
 
 def find_column(
-    candidates,
-    columns
+    columns,
+    candidates
 ):
 
     for candidate in candidates:
@@ -92,137 +220,197 @@ def find_column(
     return None
 
 
-date_column = find_column(
+# ============================================================
+# 開始
+# ============================================================
 
-    [
-        "日期",
-        "date",
-        "交易日期"
-    ],
+print("=" * 70)
 
-    df.columns
-
+print(
+    "券商分點每日 TOP 30 產生器"
 )
 
+print("=" * 70)
+
+
+# ============================================================
+# 找輸入檔
+# ============================================================
+
+input_file = find_input_file()
+
+
+if input_file is None:
+
+    print()
+
+    print(
+        "❌ 找不到每日券商分點原始資料"
+    )
+
+    print()
+
+    print(
+        "請將官方 ZIP / CSV / TXT "
+        "放在這個 Python 同一個資料夾。"
+    )
+
+    print()
+
+    print(
+        "程式不會自行產生假資料。"
+    )
+
+    raise SystemExit(1)
+
+
+# ============================================================
+# 讀取
+# ============================================================
+
+if input_file.lower().endswith(".zip"):
+
+    df = read_zip_file(
+        input_file
+    )
+
+else:
+
+    df = read_normal_file(
+        input_file
+    )
+
+
+# ============================================================
+# 顯示欄位
+# ============================================================
+
+print()
+print("=" * 70)
+
+print(
+    "原始資料欄位"
+)
+
+print("=" * 70)
+
+print(
+    df.columns.tolist()
+)
+
+
+# ============================================================
+# 自動尋找欄位
+# ============================================================
 
 stock_id_column = find_column(
 
+    df.columns,
+
     [
-        "股票代號",
         "證券代號",
-        "stock_id",
-        "stock"
-    ],
-
-    df.columns
+        "股票代號",
+        "stock_id"
+    ]
 
 )
 
 
-stock_name_column = find_column(
+broker_column = find_column(
+
+    df.columns,
 
     [
-        "股票名稱",
-        "證券名稱",
-        "stock_name"
-    ],
-
-    df.columns
-
-)
-
-
-broker_id_column = find_column(
-
-    [
-        "券商代號",
-        "證券商代號",
-        "broker_id",
-        "securities_trader_id"
-    ],
-
-    df.columns
-
-)
-
-
-broker_name_column = find_column(
-
-    [
-        "券商名稱",
         "證券商",
-        "broker_name",
-        "securities_trader"
-    ],
+        "券商名稱",
+        "證券商名稱",
+        "broker_name"
+    ]
 
-    df.columns
+)
+
+
+price_column = find_column(
+
+    df.columns,
+
+    [
+        "成交單價",
+        "成交價",
+        "price"
+    ]
 
 )
 
 
 buy_column = find_column(
 
+    df.columns,
+
     [
         "買進股數",
         "買進",
-        "buy",
-        "buy_volume"
-    ],
-
-    df.columns
+        "buy"
+    ]
 
 )
 
 
 sell_column = find_column(
 
+    df.columns,
+
     [
         "賣出股數",
         "賣出",
-        "sell",
-        "sell_volume"
-    ],
-
-    df.columns
+        "sell"
+    ]
 
 )
 
 
 # ============================================================
-# 4. 檢查欄位
+# 檢查
 # ============================================================
 
 required = {
 
-    "日期": date_column,
+    "證券代號":
+        stock_id_column,
 
-    "股票代號": stock_id_column,
+    "證券商":
+        broker_column,
 
-    "券商代號": broker_id_column,
+    "成交單價":
+        price_column,
 
-    "券商名稱": broker_name_column,
+    "買進股數":
+        buy_column,
 
-    "買進": buy_column,
-
-    "賣出": sell_column
+    "賣出股數":
+        sell_column
 
 }
 
 
 print()
 print("=" * 70)
-print("欄位辨識")
+
+print(
+    "欄位辨識結果"
+)
+
 print("=" * 70)
 
 
 for name, column in required.items():
 
     print(
-        f"{name:<10}",
-        "→",
-        column
-        if column
-        else "❌ 找不到"
+
+        f"{name:<10}"
+        f" → "
+        f"{column if column else '❌ 找不到'}"
+
     )
 
 
@@ -243,31 +431,30 @@ if missing:
     print()
 
     print(
-        "❌ 缺少必要欄位：",
+        "❌ 缺少必要欄位："
+    )
+
+    print(
         ", ".join(missing)
+    )
+
+    print()
+
+    print(
+        "請把原始資料欄位名稱貼給我，"
+        "我可以再對應。"
     )
 
     raise SystemExit(1)
 
 
 # ============================================================
-# 5. 標準化
+# 清理
 # ============================================================
-
-df["broker_id"] = (
-
-    df[broker_id_column]
-
-    .astype(str)
-
-    .str.strip()
-
-)
-
 
 df["broker_name"] = (
 
-    df[broker_name_column]
+    df[broker_column]
 
     .astype(str)
 
@@ -287,24 +474,16 @@ df["stock_id"] = (
 )
 
 
-if stock_name_column:
+df["price"] = pd.to_numeric(
 
-    df["stock_name"] = (
+    df[price_column],
 
-        df[stock_name_column]
+    errors="coerce"
 
-        .astype(str)
-
-        .str.strip()
-
-    )
-
-else:
-
-    df["stock_name"] = ""
+).fillna(0)
 
 
-df["buy"] = pd.to_numeric(
+df["buy_shares"] = pd.to_numeric(
 
     df[buy_column],
 
@@ -313,7 +492,7 @@ df["buy"] = pd.to_numeric(
 ).fillna(0)
 
 
-df["sell"] = pd.to_numeric(
+df["sell_shares"] = pd.to_numeric(
 
     df[sell_column],
 
@@ -323,38 +502,57 @@ df["sell"] = pd.to_numeric(
 
 
 # ============================================================
-# 6. 日期
+# 刪除無效資料
 # ============================================================
 
-if date_column:
-
-    df["date"] = (
-
-        df[date_column]
-
-        .astype(str)
-
-        .str.strip()
-
-    )
-
-else:
-
-    df["date"] = datetime.now().strftime(
-        "%Y-%m-%d"
-    )
+df = df[
+    df["broker_name"].notna()
+]
 
 
-data_date = df["date"].iloc[0]
+df = df[
+    df["broker_name"]
+    != ""
+]
 
 
 # ============================================================
-# 7. 股票買賣資料 → 券商據點
+# 計算交易金額
+# ============================================================
+
+df["buy_value"] = (
+
+    df["price"]
+
+    *
+
+    df["buy_shares"]
+
+)
+
+
+df["sell_value"] = (
+
+    df["price"]
+
+    *
+
+    df["sell_shares"]
+
+)
+
+
+# ============================================================
+# 券商據點彙總
 # ============================================================
 
 print()
 print("=" * 70)
-print("正在計算券商分點買賣超")
+
+print(
+    "正在計算券商據點..."
+)
+
 print("=" * 70)
 
 
@@ -363,25 +561,29 @@ broker_summary = (
     df
 
     .groupby(
-
-        [
-            "broker_id",
-            "broker_name"
-        ],
-
+        "broker_name",
         as_index=False
-
     )
 
     .agg(
 
         buy_shares=(
-            "buy",
+            "buy_shares",
             "sum"
         ),
 
         sell_shares=(
-            "sell",
+            "sell_shares",
+            "sum"
+        ),
+
+        buy_value=(
+            "buy_value",
+            "sum"
+        ),
+
+        sell_value=(
+            "sell_value",
             "sum"
         )
 
@@ -391,7 +593,7 @@ broker_summary = (
 
 
 # ============================================================
-# 8. 計算淨買超
+# 淨買賣
 # ============================================================
 
 broker_summary["net_shares"] = (
@@ -405,8 +607,19 @@ broker_summary["net_shares"] = (
 )
 
 
+broker_summary["net_value"] = (
+
+    broker_summary["buy_value"]
+
+    -
+
+    broker_summary["sell_value"]
+
+)
+
+
 # ============================================================
-# 9. 買超 TOP 30
+# 買超 TOP 30
 # ============================================================
 
 buy_top = (
@@ -414,11 +627,8 @@ buy_top = (
     broker_summary
 
     .sort_values(
-
         "net_shares",
-
         ascending=False
-
     )
 
     .head(TOP_N)
@@ -429,12 +639,18 @@ buy_top = (
 
 
 buy_top["rank"] = (
-    buy_top.index + 1
+
+    buy_top.index
+
+    +
+
+    1
+
 )
 
 
 # ============================================================
-# 10. 賣超 TOP 30
+# 賣超 TOP 30
 # ============================================================
 
 sell_top = (
@@ -442,11 +658,8 @@ sell_top = (
     broker_summary
 
     .sort_values(
-
         "net_shares",
-
         ascending=True
-
     )
 
     .head(TOP_N)
@@ -457,18 +670,23 @@ sell_top = (
 
 
 sell_top["rank"] = (
-    sell_top.index + 1
+
+    sell_top.index
+
+    +
+
+    1
+
 )
 
 
 # ============================================================
-# 11. 轉成 JSON
+# 轉 JSON
 # ============================================================
 
-def make_records(data):
+def convert_records(data):
 
     records = []
-
 
     for _, row in data.iterrows():
 
@@ -477,42 +695,69 @@ def make_records(data):
             "rank":
                 int(row["rank"]),
 
-            "broker_id":
-                row["broker_id"],
-
             "broker_name":
                 row["broker_name"],
 
             "buy_shares":
-                int(row["buy_shares"]),
+                int(
+                    row["buy_shares"]
+                ),
 
             "sell_shares":
-                int(row["sell_shares"]),
+                int(
+                    row["sell_shares"]
+                ),
 
             "net_shares":
-                int(row["net_shares"])
+                int(
+                    row["net_shares"]
+                ),
+
+            "buy_value":
+                float(
+                    row["buy_value"]
+                ),
+
+            "sell_value":
+                float(
+                    row["sell_value"]
+                ),
+
+            "net_value":
+                float(
+                    row["net_value"]
+                )
 
         })
-
 
     return records
 
 
-buy_records = make_records(
+buy_records = convert_records(
     buy_top
 )
 
 
-sell_records = make_records(
+sell_records = convert_records(
     sell_top
 )
 
 
 # ============================================================
-# 12. 建立 JSON
+# 日期
 # ============================================================
 
-output = {
+data_date = (
+    datetime.now()
+    .strftime("%Y-%m-%d")
+)
+
+
+# ============================================================
+# 建立 JSON
+# ============================================================
+
+result = {
 
     "data_date":
         data_date,
@@ -520,8 +765,11 @@ output = {
     "unit":
         "張",
 
+    "source":
+        "TWSE broker transaction data",
+
     "description":
-        "券商分點每日買賣超 TOP 30",
+        "每日券商分點淨買賣超 TOP 30",
 
     "top_n":
         TOP_N,
@@ -536,7 +784,7 @@ output = {
 
 
 # ============================================================
-# 13. 寫入
+# 寫入
 # ============================================================
 
 with open(
@@ -551,7 +799,7 @@ with open(
 
     json.dump(
 
-        output,
+        result,
 
         f,
 
@@ -563,7 +811,7 @@ with open(
 
 
 # ============================================================
-# 14. 顯示
+# 顯示結果
 # ============================================================
 
 print()
@@ -576,7 +824,7 @@ print(
 print("=" * 70)
 
 
-for row in buy_records[:10]:
+for row in buy_records:
 
     print(
 
@@ -599,7 +847,7 @@ print(
 print("=" * 70)
 
 
-for row in sell_records[:10]:
+for row in sell_records:
 
     print(
 
@@ -616,20 +864,17 @@ print()
 print("=" * 70)
 
 print(
-    "✅ broker_data.json 建立完成"
+    "✅ broker_data.json 已建立"
 )
 
 print("=" * 70)
 
 print()
+
 print(
-    f"資料日期：{data_date}"
+    f"買超：{len(buy_records)} 個據點"
 )
 
 print(
-    f"買超排行：{len(buy_records)} 個據點"
-)
-
-print(
-    f"賣超排行：{len(sell_records)} 個據點"
+    f"賣超：{len(sell_records)} 個據點"
 )
