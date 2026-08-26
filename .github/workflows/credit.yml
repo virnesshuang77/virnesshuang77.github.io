@@ -1,0 +1,65 @@
+name: Update Credit Data
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # 台灣時間每個交易日下午 4:30 執行
+    # GitHub Actions 使用 UTC，所以台灣 16:30 = UTC 08:30
+    - cron: "30 8 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  update-credit:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1. 取得 Repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. 安裝 Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 3. 安裝 requests
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      # 4. 執行 credit.py
+      - name: Run credit.py
+        run: |
+          python credit.py
+
+      # 5. 確認 JSON 是否產生
+      - name: Check credit_rank.json
+        run: |
+          if [ ! -f credit_rank.json ]; then
+            echo "❌ credit_rank.json 沒有產生"
+            exit 1
+          fi
+
+          echo "✅ credit_rank.json 已產生"
+          ls -lh credit_rank.json
+
+      # 6. 將 JSON 寫回 GitHub
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add credit_rank.json
+
+          if git diff --cached --quiet; then
+            echo "ℹ️ credit_rank.json 沒有變化，不需要 commit"
+          else
+            git commit -m "Update credit rank data"
+            git push
+          fi
