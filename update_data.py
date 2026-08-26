@@ -687,10 +687,13 @@ def create_money_rank(
     # --------------------------------------------------------
     # 排名函數
     # --------------------------------------------------------
+def make_rank(column):
 
-    def make_rank(column):
+        # ====================================================
+        # 買超 TOP 100
+        # ====================================================
 
-        result = (
+        buy_result = (
             df[
                 [
                     "stock_id",
@@ -699,6 +702,9 @@ def create_money_rank(
                     column
                 ]
             ]
+            .loc[
+                lambda x: x[column] > 0
+            ]
             .sort_values(
                 column,
                 ascending=False
@@ -706,13 +712,70 @@ def create_money_rank(
             .reset_index(
                 drop=True
             )
+            .head(100)
         )
 
-        result["rank"] = (
-            result.index + 1
+        buy_result["rank"] = (
+            buy_result.index + 1
         )
 
-        return result.head(100)
+
+        # ====================================================
+        # 賣超 TOP 100
+        #
+        # 負數越小代表賣超越大
+        #
+        # 例如：
+        # -100億
+        # -80億
+        # -50億
+        # ====================================================
+
+        sell_result = (
+            df[
+                [
+                    "stock_id",
+                    "stock_name",
+                    "close_price",
+                    column
+                ]
+            ]
+            .loc[
+                lambda x: x[column] < 0
+            ]
+            .sort_values(
+                column,
+                ascending=True
+            )
+            .reset_index(
+                drop=True
+            )
+            .head(100)
+        )
+
+        sell_result["rank"] = (
+            sell_result.index + 1
+        )
+
+
+        # ====================================================
+        # 合併
+        #
+        # 前 100 筆 = 買超
+        # 後 100 筆 = 賣超
+        # ====================================================
+
+        result = pd.concat(
+            [
+                buy_result,
+                sell_result
+            ],
+            ignore_index=True
+        )
+
+
+        return result
+
 
     # --------------------------------------------------------
     # 四種排行
