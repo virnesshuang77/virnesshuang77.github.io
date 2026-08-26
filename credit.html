@@ -362,7 +362,6 @@ tbody tr:hover {
 <div class="wrap">
 
 <header class="top">
-    <div class="brand">📈 投資績效名片</div>
 
     <div class="actions">
         <a class="nav-btn" href="index.html">📊 融資融券維持率</a>
@@ -380,7 +379,7 @@ tbody tr:hover {
 <div class="summary-grid">
 
     <div class="summary-card">
-        <div class="summary-label">融資增減</div>
+        <div class="summary-label">融資增加金額</div>
         <div class="summary-value summary-neutral" id="marginTotal">
             載入中...
         </div>
@@ -421,7 +420,7 @@ tbody tr:hover {
                     <th>股票代號</th>
                     <th>股票名稱</th>
                     <th>收盤價</th>
-                    <th>融資增減金額</th>
+                    <th>融資增加金額</th>
                 </tr>
             </thead>
 
@@ -728,7 +727,7 @@ function renderMarginRows(rows) {
                 </td>
 
                 <td class="${getChangeClass(change)}">
-                    ${formatAmount(change)}
+                    ${formatMarginYi(change)}
                 </td>
             `;
 
