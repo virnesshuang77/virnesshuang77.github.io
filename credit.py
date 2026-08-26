@@ -2,30 +2,50 @@
 # -*- coding: utf-8 -*-
 
 """
-每天抓取 TWSE 上市融資融券資料
---------------------------------
-輸出：
-    credit_rank.json
+每日抓取 TWSE 融資融券資料
+輸出：credit_rank.json
 
 資料來源：
     TWSE MI_MARGN
-    TWSE STOCK_DAY_ALL
+    TWSE MI_INDEX / STOCK_DAY_ALL
 
-主要功能：
-    1. 取得上市股票融資融券餘額
-    2. 取得上市股票收盤價
-    3. 計算個股融資增減金額
-    4. 計算個股融券增減張數
-    5. 計算全市場融資增減金額
-    6. 計算全市場融券增減張數
-    7. 輸出給 credit.html 使用
+核心規則：
+    個股融資增減張數 =
+        今日融資餘額 - 前日融資餘額
+
+    個股融資增減金額 =
+        融資增減張數 × 收盤價 × 1000
+
+    個股融券增減張數 =
+        今日融券餘額 - 前日融券餘額
+
+    全市場融資增減金額 =
+        TWSE 官方「融資金額(仟元)」
+        今日餘額 - 前日餘額，再 × 1000
+
+    全市場融券增減張數 =
+        TWSE 官方「融券(交易單位)」
+        今日餘額 - 前日餘額
 
 重要：
-    - 不再假設 MI_MARGN 一定有 creditList。
-    - 優先處理 TWSE 新式 tables / fields / data 結構。
-    - 同時相容舊式 creditList 結構。
-    - 如果解析不到任何股票，直接讓程式失敗。
-      不會再把 credit_rank.json 寫成空資料。
+    MI_MARGN 有「信用交易統計」與「融資融券彙總(全部)」兩張表。
+    個股資料一定要從第二張「融資融券彙總」表取得。
+
+    個股表欄位：
+        代號
+        名稱
+        買進
+        賣出
+        現金償還
+        前日餘額       <- 融資
+        今日餘額       <- 融資
+        次一營業日限額
+        買進
+        賣出
+        現券償還
+        前日餘額       <- 融券
+        今日餘額       <- 融券
+        ...
 """
 
 import json
@@ -40,31 +60,26 @@ import requests
 # 基本設定
 # ============================================================
 
-TWSE_BASE = "https://www.twse.com.tw"
-
-# 新式官方 OpenAPI
-OPENAPI_BASE = "https://openapi.twse.com.tw/v1"
+OUTPUT_FILE = Path("credit_rank.json")
 
 MARGIN_URLS = [
-    OPENAPI_BASE + "/exchangeReport/MI_MARGN",
-    TWSE_BASE + "/exchangeReport/MI_MARGN",
-    TWSE_BASE + "/rwd/zh/marginTrading/MI_MARGN",
+    "https://www.twse.com.tw/exchangeReport/MI_MARGN",
+    "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN",
+    "https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN",
 ]
 
 PRICE_URLS = [
-    OPENAPI_BASE + "/exchangeReport/STOCK_DAY_ALL",
-    TWSE_BASE + "/exchangeReport/STOCK_DAY_ALL",
-    TWSE_BASE + "/rwd/zh/afterTrading/STOCK_DAY_ALL",
+    "https://www.twse.com.tw/exchangeReport/MI_INDEX",
+    "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX",
+    "https://www.twse.com.tw/exchangeReport/STOCK_DAY_ALL",
+    "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY_ALL",
+    "https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL",
 ]
-
-OUTPUT_FILE = Path("credit_rank.json")
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 "
-        "(Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 "
-        "(KHTML, like Gecko) "
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/151.0 Safari/537.36"
     ),
     "Accept": "application/json,text/plain,*/*",
@@ -82,16 +97,85 @@ def get_json(url, params=None, timeout=30):
         headers=HEADERS,
         timeout=timeout,
     )
-
     response.raise_for_status()
 
+    # TWSE 偶爾會回傳空白/HTML；這裡直接讓錯誤浮出來
     return response.json()
 
 
-def get_first_working_json(urls, params=None):
+# ============================================================
+# 數字處理
+# ============================================================
+
+def to_number(value):
+    if value is None:
+        return 0.0
+
+    text = str(value).strip()
+
+    if text in ("", "--", "---", "—", "－"):
+        return 0.0
+
+    text = (
+        text
+        .replace(",", "")
+        .replace(" ", "")
+        .replace("％", "")
+        .replace("%", "")
+    )
+
+    try:
+        return float(text)
+    except Exception:
+        return 0.0
+
+
+def clean_stock_id(value):
+    text = str(value or "").strip()
+
+    if not text.isdigit():
+        return ""
+
+    # TWSE 上市股票/ETF 代號通常 4~6 碼
+    if not (4 <= len(text) <= 6):
+        return ""
+
+    return text
+
+
+# ============================================================
+# 找最近交易日
+# ============================================================
+
+def get_candidate_dates():
+    today = datetime.now()
+    result = []
+
+    for i in range(10):
+        d = today - timedelta(days=i)
+
+        if d.weekday() >= 5:
+            continue
+
+        result.append(d.strftime("%Y%m%d"))
+
+    return result
+
+
+# ============================================================
+# MI_MARGN
+# ============================================================
+
+def fetch_margin(date):
+    params = {
+        "date": date,
+        "selectType": "ALL",
+        "response": "json",
+    }
+
     last_error = None
 
-    for url in urls:
+    for url in MARGIN_URLS:
         try:
             print(f"[INFO] 嘗試 API：{url}")
 
@@ -101,18 +185,593 @@ def get_first_working_json(urls, params=None):
                 timeout=30,
             )
 
-            if data is not None:
+            if isinstance(data, dict) and data.get("stat") == "OK":
                 print(f"[OK] API 回應成功：{url}")
                 return data
 
-        except Exception as e:
-            last_error = e
-            print(
-                f"[WARN] API 失敗：{url} -> {e}"
+            last_error = RuntimeError(
+                f"API stat 非 OK："
+                f"{data.get('stat') if isinstance(data, dict) else type(data)}"
             )
 
+        except Exception as e:
+            last_error = e
+            print(f"[WARN] API 失敗：{url} -> {e}")
+
     raise RuntimeError(
-        f"所有 API 都無法取得資料：{last_error}"
+        f"所有 MI_MARGN API 都失敗：{last_error}"
+    )
+
+
+# ============================================================
+# 將 TWSE tables / creditList 正規化
+# ============================================================
+
+def get_table_objects(data):
+    """
+    回傳：
+        [
+            {
+                "title": ...,
+                "fields": [...],
+                "data": [...]
+            },
+            ...
+        ]
+
+    支援：
+        1. 新版 tables 結構
+        2. 舊版 creditList 結構
+    """
+
+    result = []
+
+    # --------------------------------------------------------
+    # 新版 tables
+    # --------------------------------------------------------
+    tables = data.get("tables", [])
+
+    if isinstance(tables, list):
+        for table in tables:
+            if not isinstance(table, dict):
+                continue
+
+            fields = table.get("fields", [])
+            rows = table.get("data", [])
+
+            if not isinstance(fields, list):
+                continue
+
+            if not isinstance(rows, list):
+                rows = []
+
+            result.append(
+                {
+                    "title": str(table.get("title", "")),
+                    "fields": [
+                        str(x).strip()
+                        for x in fields
+                    ],
+                    "data": rows,
+                }
+            )
+
+    if result:
+        return result
+
+    # --------------------------------------------------------
+    # 舊版 creditList
+    # --------------------------------------------------------
+    credit_list = data.get("creditList", [])
+
+    if isinstance(credit_list, list):
+        for block in credit_list:
+            if not isinstance(block, list):
+                continue
+
+            if len(block) < 2:
+                continue
+
+            # 可能是：
+            # [header, row1, row2, ...]
+            header = block[0]
+
+            if not isinstance(header, list):
+                continue
+
+            fields = [
+                str(x).strip()
+                for x in header
+            ]
+
+            result.append(
+                {
+                    "title": "",
+                    "fields": fields,
+                    "data": block[1:],
+                }
+            )
+
+    return result
+
+
+# ============================================================
+# 找欄位
+# ============================================================
+
+def find_indices(fields, name):
+    return [
+        i
+        for i, value in enumerate(fields)
+        if str(value).strip() == name
+    ]
+
+
+# ============================================================
+# 解析官方市場總表
+# ============================================================
+
+def parse_market_summary(data):
+    """
+    第一張表：
+
+        項目
+        買進
+        賣出
+        現金(券)償還
+        前日餘額
+        今日餘額
+
+    找：
+        融資(交易單位)
+        融券(交易單位)
+        融資金額(仟元)
+    """
+
+    tables = get_table_objects(data)
+
+    target = None
+
+    for table in tables:
+        fields = table["fields"]
+
+        if "項目" in fields and "前日餘額" in fields:
+            target = table
+            break
+
+    if target is None:
+        raise RuntimeError(
+            "找不到 MI_MARGN「信用交易統計」市場總表"
+        )
+
+    fields = target["fields"]
+    rows = target["data"]
+
+    item_idx = fields.index("項目")
+    previous_idx = find_indices(fields, "前日餘額")
+    today_idx = find_indices(fields, "今日餘額")
+
+    if not previous_idx or not today_idx:
+        raise RuntimeError(
+            "市場總表缺少前日餘額/今日餘額"
+        )
+
+    previous_idx = previous_idx[0]
+    today_idx = today_idx[0]
+
+    margin_row = None
+    short_row = None
+    margin_amount_row = None
+
+    for row in rows:
+        if not isinstance(row, list):
+            continue
+
+        if max(item_idx, previous_idx, today_idx) >= len(row):
+            continue
+
+        title = str(row[item_idx]).strip()
+
+        if title == "融資(交易單位)":
+            margin_row = row
+
+        elif title == "融券(交易單位)":
+            short_row = row
+
+        elif title == "融資金額(仟元)":
+            margin_amount_row = row
+
+    if margin_row is None:
+        raise RuntimeError("找不到市場「融資(交易單位)」")
+
+    if short_row is None:
+        raise RuntimeError("找不到市場「融券(交易單位)」")
+
+    if margin_amount_row is None:
+        raise RuntimeError("找不到市場「融資金額(仟元)」")
+
+    margin_previous_shares = to_number(
+        margin_row[previous_idx]
+    )
+    margin_today_shares = to_number(
+        margin_row[today_idx]
+    )
+
+    short_previous = to_number(
+        short_row[previous_idx]
+    )
+    short_today = to_number(
+        short_row[today_idx]
+    )
+
+    margin_previous_amount_k = to_number(
+        margin_amount_row[previous_idx]
+    )
+    margin_today_amount_k = to_number(
+        margin_amount_row[today_idx]
+    )
+
+    margin_change_amount = (
+        margin_today_amount_k
+        - margin_previous_amount_k
+    ) * 1000
+
+    short_change = (
+        short_today
+        - short_previous
+    )
+
+    print(
+        "[OK] 官方市場融資金額："
+        f"{margin_previous_amount_k:,.0f} 仟元"
+        f" -> {margin_today_amount_k:,.0f} 仟元"
+        f" -> 增減 {margin_change_amount:,.0f} 元"
+    )
+
+    print(
+        "[OK] 官方市場融券："
+        f"{short_previous:,.0f} 張"
+        f" -> {short_today:,.0f} 張"
+        f" -> 增減 {short_change:,.0f} 張"
+    )
+
+    return {
+        "margin_change_amount": margin_change_amount,
+        "short_change": short_change,
+    }
+
+
+# ============================================================
+# 找個股融資融券表
+# ============================================================
+
+def find_stock_table(data):
+    tables = get_table_objects(data)
+
+    for table in tables:
+        fields = table["fields"]
+
+        # 個股表一定同時有：
+        # 代號、名稱
+        # 而且「前日餘額」「今日餘額」各出現兩次
+        if (
+            "代號" in fields
+            and "名稱" in fields
+            and len(find_indices(fields, "前日餘額")) >= 2
+            and len(find_indices(fields, "今日餘額")) >= 2
+        ):
+            return table
+
+    return None
+
+
+# ============================================================
+# 解析個股
+# ============================================================
+
+def parse_stock_rows(data):
+    table = find_stock_table(data)
+
+    if table is None:
+        raise RuntimeError(
+            "MI_MARGN 找不到「融資融券彙總 (全部)」個股表"
+        )
+
+    fields = table["fields"]
+    rows = table["data"]
+
+    stock_id_idx = fields.index("代號")
+    stock_name_idx = fields.index("名稱")
+
+    previous_indices = find_indices(
+        fields,
+        "前日餘額",
+    )
+
+    today_indices = find_indices(
+        fields,
+        "今日餘額",
+    )
+
+    # 第一組 = 融資
+    # 第二組 = 融券
+    margin_previous_idx = previous_indices[0]
+    margin_today_idx = today_indices[0]
+
+    short_previous_idx = previous_indices[1]
+    short_today_idx = today_indices[1]
+
+    print(
+        "[OK] 個股欄位位置："
+        f"代號={stock_id_idx}, "
+        f"名稱={stock_name_idx}, "
+        f"融資前日餘額={margin_previous_idx}, "
+        f"融資今日餘額={margin_today_idx}, "
+        f"融券前日餘額={short_previous_idx}, "
+        f"融券今日餘額={short_today_idx}"
+    )
+
+    result = []
+
+    for row in rows:
+        if not isinstance(row, list):
+            continue
+
+        required = [
+            stock_id_idx,
+            stock_name_idx,
+            margin_previous_idx,
+            margin_today_idx,
+            short_previous_idx,
+            short_today_idx,
+        ]
+
+        if max(required) >= len(row):
+            continue
+
+        stock_id = clean_stock_id(
+            row[stock_id_idx]
+        )
+
+        if not stock_id:
+            continue
+
+        stock_name = str(
+            row[stock_name_idx]
+        ).strip()
+
+        margin_previous = to_number(
+            row[margin_previous_idx]
+        )
+
+        margin_today = to_number(
+            row[margin_today_idx]
+        )
+
+        short_previous = to_number(
+            row[short_previous_idx]
+        )
+
+        short_today = to_number(
+            row[short_today_idx]
+        )
+
+        result.append(
+            {
+                "stock_id": stock_id,
+                "stock_name": stock_name,
+                "margin_previous": margin_previous,
+                "margin_today": margin_today,
+                "short_previous": short_previous,
+                "short_today": short_today,
+            }
+        )
+
+    print(
+        f"[OK] 成功解析 {len(result)} 筆融資融券股票"
+    )
+
+    # --------------------------------------------------------
+    # 特別檢查 2330
+    # --------------------------------------------------------
+    for item in result:
+        if item["stock_id"] == "2330":
+            print(
+                "[DEBUG] 2330 台積電："
+                f"融資前日={item['margin_previous']:,.0f}，"
+                f"融資今日={item['margin_today']:,.0f}，"
+                f"融資張數增減="
+                f"{item['margin_today'] - item['margin_previous']:,.0f}，"
+                f"融券前日={item['short_previous']:,.0f}，"
+                f"融券今日={item['short_today']:,.0f}，"
+                f"融券張數增減="
+                f"{item['short_today'] - item['short_previous']:,.0f}"
+            )
+            break
+
+    return result
+
+
+# ============================================================
+# 收盤價
+# ============================================================
+
+def parse_price_table(data):
+    """
+    支援：
+        STOCK_DAY_ALL：
+            Code / ClosingPrice
+
+        MI_INDEX：
+            證券代號 / 證券名稱 / 收盤價
+    """
+
+    prices = {}
+
+    # --------------------------------------------------------
+    # STOCK_DAY_ALL / OpenAPI 類型：list[dict]
+    # --------------------------------------------------------
+    if isinstance(data, list):
+        for row in data:
+            if not isinstance(row, dict):
+                continue
+
+            stock_id = clean_stock_id(
+                row.get("Code")
+                or row.get("證券代號")
+            )
+
+            if not stock_id:
+                continue
+
+            price = (
+                row.get("ClosingPrice")
+                or row.get("收盤價")
+            )
+
+            if price in (None, ""):
+                continue
+
+            value = to_number(price)
+
+            if value > 0:
+                prices[stock_id] = value
+
+        return prices
+
+    if not isinstance(data, dict):
+        return prices
+
+    # --------------------------------------------------------
+    # MI_INDEX / tables
+    # --------------------------------------------------------
+    tables = data.get("tables", [])
+
+    if isinstance(tables, list):
+        for table in tables:
+            if not isinstance(table, dict):
+                continue
+
+            fields = table.get("fields", [])
+            rows = table.get("data", [])
+
+            if not isinstance(fields, list):
+                continue
+
+            if not isinstance(rows, list):
+                continue
+
+            fields = [
+                str(x).strip()
+                for x in fields
+            ]
+
+            code_candidates = [
+                "證券代號",
+                "代號",
+                "Code",
+            ]
+
+            price_candidates = [
+                "收盤價",
+                "成交價",
+                "ClosingPrice",
+            ]
+
+            code_idx = None
+            price_idx = None
+
+            for name in code_candidates:
+                if name in fields:
+                    code_idx = fields.index(name)
+                    break
+
+            for name in price_candidates:
+                if name in fields:
+                    price_idx = fields.index(name)
+                    break
+
+            if code_idx is None or price_idx is None:
+                continue
+
+            for row in rows:
+                if not isinstance(row, list):
+                    continue
+
+                if max(code_idx, price_idx) >= len(row):
+                    continue
+
+                stock_id = clean_stock_id(
+                    row[code_idx]
+                )
+
+                if not stock_id:
+                    continue
+
+                value = to_number(
+                    row[price_idx]
+                )
+
+                if value > 0:
+                    prices[stock_id] = value
+
+    return prices
+
+
+def fetch_prices(date):
+    print(f"[INFO] 取得收盤價：{date}")
+
+    params = {
+        "date": date,
+        "response": "json",
+    }
+
+    # MI_INDEX 需要 type=ALLBUT0999 的版本有時候才完整
+    extra_params = [
+        params,
+        {
+            "date": date,
+            "response": "json",
+            "type": "ALLBUT0999",
+        },
+    ]
+
+    last_error = None
+
+    for url in PRICE_URLS:
+        for current_params in extra_params:
+            try:
+                print(
+                    f"[INFO] 嘗試收盤價 API：{url}"
+                )
+
+                data = get_json(
+                    url,
+                    params=current_params,
+                    timeout=30,
+                )
+
+                prices = parse_price_table(data)
+
+                if prices:
+                    print(
+                        f"[OK] 成功解析 {len(prices)} 筆收盤價：{url}"
+                    )
+                    return prices
+
+                last_error = RuntimeError(
+                    "API 成功但沒有解析到收盤價"
+                )
+
+            except Exception as e:
+                last_error = e
+                print(
+                    f"[WARN] 收盤價 API 失敗："
+                    f"{url} -> {e}"
+                )
+
+    raise RuntimeError(
+        f"完全取得不到收盤價：{last_error}"
     )
 
 
@@ -120,637 +779,27 @@ def get_first_working_json(urls, params=None):
 # 找最近交易日
 # ============================================================
 
-def get_candidate_dates():
-    today = datetime.now()
-
-    dates = []
-
-    for i in range(0, 10):
-        d = today - timedelta(days=i)
-
-        if d.weekday() >= 5:
-            continue
-
-        dates.append(
-            d.strftime("%Y%m%d")
-        )
-
-    return dates
-
-
-# ============================================================
-# 取得融資融券資料
-# ============================================================
-
-def fetch_margin(date):
-
-    params_list = [
-        {
-            "date": date,
-            "selectType": "ALL",
-            "response": "json",
-        },
-        {
-            "date": date,
-            "selectType": "STOCK",
-            "response": "json",
-        },
-    ]
-
-    last_error = None
-
-    for params in params_list:
-
-        try:
-            data = get_first_working_json(
-                MARGIN_URLS,
-                params=params,
-            )
-
-            if is_valid_margin_response(data):
-                return data
-
-            print(
-                f"[WARN] {date} API 有回應，但沒有可解析的融資融券資料"
-            )
-
-        except Exception as e:
-            last_error = e
-            print(
-                f"[WARN] {date} 融資融券取得失敗：{e}"
-            )
-
-    if last_error:
-        raise RuntimeError(
-            f"{date} 融資融券 API 失敗：{last_error}"
-        )
-
-    return None
-
-
-# ============================================================
-# 數字轉換
-# ============================================================
-
-def to_number(value):
-
-    if value is None:
-        return 0.0
-
-    text = str(value).strip()
-
-    if text == "":
-        return 0.0
-
-    text = (
-        text
-        .replace(",", "")
-        .replace("--", "0")
-        .replace(" ", "")
-    )
-
-    # TWSE 有時會使用括號表示負數
-    if text.startswith("(") and text.endswith(")"):
-        text = "-" + text[1:-1]
-
-    try:
-        return float(text)
-    except Exception:
-        return 0.0
-
-
-# ============================================================
-# 清理欄位名稱
-# ============================================================
-
-def normalize_header(value):
-
-    if value is None:
-        return ""
-
-    return (
-        str(value)
-        .strip()
-        .replace("\n", "")
-        .replace("\r", "")
-        .replace(" ", "")
-        .replace("　", "")
-    )
-
-
-# ============================================================
-# 欄位搜尋
-# ============================================================
-
-def find_field_index(fields, aliases):
-
-    normalized = [
-        normalize_header(x)
-        for x in fields
-    ]
-
-    # 先完全相等
-    for alias in aliases:
-        alias_n = normalize_header(alias)
-
-        for i, field in enumerate(normalized):
-            if field == alias_n:
-                return i
-
-    # 再做包含判斷
-    for alias in aliases:
-        alias_n = normalize_header(alias)
-
-        for i, field in enumerate(normalized):
-            if alias_n and alias_n in field:
-                return i
-
-    return None
-
-
-# ============================================================
-# 判斷是否像股票資料
-# ============================================================
-
-def looks_like_stock_id(value):
-
-    text = str(value).strip()
-
-    if not text:
-        return False
-
-    # 上市股票通常是 4~6 碼數字
-    return (
-        text.isdigit()
-        and 3 <= len(text) <= 6
-    )
-
-
-# ============================================================
-# 從 fields + data 解析
-# ============================================================
-
-def parse_table_object(table):
-
-    if not isinstance(table, dict):
-        return []
-
-    fields = (
-        table.get("fields")
-        or table.get("columns")
-        or table.get("header")
-        or []
-    )
-
-    rows = (
-        table.get("data")
-        or table.get("rows")
-        or []
-    )
-
-    if not isinstance(fields, list):
-        return []
-
-    if not isinstance(rows, list):
-        return []
-
-    if not fields or not rows:
-        return []
-
-    # --------------------------------------------------------
-    # 找股票代號、名稱
-    # --------------------------------------------------------
-
-    stock_id_idx = find_field_index(
-        fields,
-        [
-            "證券代號",
-            "股票代號",
-            "代號",
-            "有價證券代號",
-            "Code",
-            "code",
-        ],
-    )
-
-    stock_name_idx = find_field_index(
-        fields,
-        [
-            "證券名稱",
-            "股票名稱",
-            "名稱",
-            "有價證券名稱",
-            "Name",
-            "name",
-        ],
-    )
-
-    if stock_id_idx is None:
-        return []
-
-    # --------------------------------------------------------
-    # 融資欄位
-    # --------------------------------------------------------
-
-    margin_previous_idx = find_field_index(
-        fields,
-        [
-            "融資前日餘額",
-            "融資前日餘額(張)",
-            "融資前日餘額(交易單位)",
-            "融資前日餘額(交易單位數)",
-        ],
-    )
-
-    margin_today_idx = find_field_index(
-        fields,
-        [
-            "融資今日餘額",
-            "融資今日餘額(張)",
-            "融資今日餘額(交易單位)",
-            "融資今日餘額(交易單位數)",
-        ],
-    )
-
-    # --------------------------------------------------------
-    # 融券欄位
-    # --------------------------------------------------------
-
-    short_previous_idx = find_field_index(
-        fields,
-        [
-            "融券前日餘額",
-            "融券前日餘額(張)",
-            "融券前日餘額(交易單位)",
-            "融券前日餘額(交易單位數)",
-        ],
-    )
-
-    short_today_idx = find_field_index(
-        fields,
-        [
-            "融券今日餘額",
-            "融券今日餘額(張)",
-            "融券今日餘額(交易單位)",
-            "融券今日餘額(交易單位數)",
-        ],
-    )
-
-    # --------------------------------------------------------
-    # 如果沒有「前日 / 今日」欄位，
-    # 嘗試用常見欄位位置。
-    #
-    # 標準 MI_MARGN：
-    # 0 代號
-    # 1 名稱
-    # 2 融資前日餘額
-    # 3 融資買進
-    # 4 融資賣出
-    # 5 現金償還
-    # 6 融資今日餘額
-    # 7 融資限額
-    # 8 融券前日餘額
-    # 9 融券賣出
-    # 10 融券買進
-    # 11 現券償還
-    # 12 融券今日餘額
-    # --------------------------------------------------------
-
-    if (
-        margin_previous_idx is None
-        and len(fields) >= 13
-    ):
-        margin_previous_idx = 2
-
-    if (
-        margin_today_idx is None
-        and len(fields) >= 13
-    ):
-        margin_today_idx = 6
-
-    if (
-        short_previous_idx is None
-        and len(fields) >= 13
-    ):
-        short_previous_idx = 8
-
-    if (
-        short_today_idx is None
-        and len(fields) >= 13
-    ):
-        short_today_idx = 12
-
-    if (
-        margin_previous_idx is None
-        or margin_today_idx is None
-        or short_previous_idx is None
-        or short_today_idx is None
-    ):
-        print(
-            "[WARN] 找不到完整融資融券欄位"
-        )
-        print(
-            "[DEBUG] fields =",
-            fields
-        )
-        return []
-
-    result = []
-
-    for row in rows:
-
-        if not isinstance(row, list):
-            continue
-
-        max_idx = max(
-            stock_id_idx,
-            margin_previous_idx,
-            margin_today_idx,
-            short_previous_idx,
-            short_today_idx,
-        )
-
-        if len(row) <= max_idx:
-            continue
-
-        stock_id = str(
-            row[stock_id_idx]
-        ).strip()
-
-        if not looks_like_stock_id(stock_id):
-            continue
-
-        if (
-            stock_name_idx is not None
-            and stock_name_idx < len(row)
-        ):
-            stock_name = str(
-                row[stock_name_idx]
-            ).strip()
-        else:
-            stock_name = ""
-
-        result.append(
-            {
-                "stock_id": stock_id,
-                "stock_name": stock_name,
-                "margin_previous": to_number(
-                    row[margin_previous_idx]
-                ),
-                "margin_today": to_number(
-                    row[margin_today_idx]
-                ),
-                "short_previous": to_number(
-                    row[short_previous_idx]
-                ),
-                "short_today": to_number(
-                    row[short_today_idx]
-                ),
-            }
-        )
-
-    return result
-
-
-# ============================================================
-# 舊式 creditList 解析
-# ============================================================
-
-def parse_credit_list(credit_list):
-
-    if not isinstance(credit_list, list):
-        return []
-
-    result = []
-
-    for block in credit_list:
-
-        if not isinstance(block, list):
-            continue
-
-        if len(block) < 2:
-            continue
-
-        header = block[0]
-        rows = block[1:]
-
-        if not isinstance(header, list):
-            continue
-
-        table = {
-            "fields": header,
-            "data": rows,
-        }
-
-        parsed = parse_table_object(
-            table
-        )
-
-        result.extend(parsed)
-
-    return result
-
-
-# ============================================================
-# 遞迴搜尋 tables
-# ============================================================
-
-def extract_tables_from_object(obj):
-
-    tables = []
-
-    if isinstance(obj, dict):
-
-        if (
-            isinstance(obj.get("fields"), list)
-            and isinstance(obj.get("data"), list)
-        ):
-            tables.append(obj)
-
-        for key in (
-            "tables",
-            "data",
-            "result",
-            "results",
-        ):
-
-            value = obj.get(key)
-
-            if isinstance(value, list):
-                for item in value:
-                    tables.extend(
-                        extract_tables_from_object(
-                            item
-                        )
-                    )
-
-            elif isinstance(value, dict):
-                tables.extend(
-                    extract_tables_from_object(
-                        value
-                    )
-                )
-
-    elif isinstance(obj, list):
-
-        for item in obj:
-            tables.extend(
-                extract_tables_from_object(
-                    item
-                )
-            )
-
-    return tables
-
-
-# ============================================================
-# 解析融資融券
-# ============================================================
-
-def parse_margin(data):
-
-    if not isinstance(data, (dict, list)):
-        return []
-
-    # --------------------------------------------------------
-    # 1. 舊式 creditList
-    # --------------------------------------------------------
-
-    if isinstance(data, dict):
-
-        credit_list = data.get(
-            "creditList"
-        )
-
-        if credit_list:
-            parsed = parse_credit_list(
-                credit_list
-            )
-
-            if parsed:
-                return deduplicate_stocks(
-                    parsed
-                )
-
-    # --------------------------------------------------------
-    # 2. 新式 tables / fields / data
-    # --------------------------------------------------------
-
-    tables = extract_tables_from_object(
-        data
-    )
-
-    all_rows = []
-
-    for table in tables:
-
-        parsed = parse_table_object(
-            table
-        )
-
-        if parsed:
-            all_rows.extend(
-                parsed
-            )
-
-    if all_rows:
-        return deduplicate_stocks(
-            all_rows
-        )
-
-    return []
-
-
-# ============================================================
-# 去除重複股票
-# ============================================================
-
-def deduplicate_stocks(rows):
-
-    result = {}
-    order = []
-
-    for row in rows:
-
-        stock_id = row["stock_id"]
-
-        if stock_id not in result:
-            order.append(stock_id)
-
-        result[stock_id] = row
-
-    return [
-        result[stock_id]
-        for stock_id in order
-    ]
-
-
-# ============================================================
-# 判斷 API 是否真的有融資融券資料
-# ============================================================
-
-def is_valid_margin_response(data):
-
-    rows = parse_margin(data)
-
-    if rows:
-        print(
-            f"[OK] 成功解析 {len(rows)} 筆融資融券股票"
-        )
-        return True
-
-    return False
-
-
-# ============================================================
-# 找最新交易日
-# ============================================================
-
 def find_latest_data():
-
     for date in get_candidate_dates():
-
         try:
+            data = fetch_margin(date)
 
-            print()
+            api_date = str(
+                data.get("date", "")
+            ).strip()
+
+            if api_date.isdigit() and len(api_date) == 8:
+                actual_date = api_date
+            else:
+                actual_date = date
+
             print(
-                "======================================"
-            )
-            print(
-                f"[INFO] 測試日期：{date}"
-            )
-            print(
-                "======================================"
+                f"[OK] 找到交易日：{actual_date}"
             )
 
-            data = fetch_margin(
-                date
-            )
-
-            if data:
-
-                rows = parse_margin(
-                    data
-                )
-
-                if rows:
-
-                    print(
-                        f"[OK] 找到交易日：{date}"
-                    )
-
-                    return (
-                        date,
-                        data,
-                        rows,
-                    )
-
-                print(
-                    f"[WARN] {date} API 有資料，但解析後為 0 筆"
-                )
+            return actual_date, data
 
         except Exception as e:
-
             print(
                 f"[WARN] {date} 無資料：{e}"
             )
@@ -758,487 +807,175 @@ def find_latest_data():
         time.sleep(0.5)
 
     raise RuntimeError(
-        "找不到最近的有效融資融券資料"
+        "找不到最近的融資融券資料"
     )
 
 
 # ============================================================
-# 取得上市股票收盤價
-# ============================================================
-
-def fetch_prices(date):
-
-    params = {
-        "date": date,
-        "response": "json",
-    }
-
-    last_error = None
-
-    for url in PRICE_URLS:
-
-        try:
-
-            print(
-                f"[INFO] 取得收盤價：{date}"
-            )
-
-            data = get_json(
-                url,
-                params=params,
-                timeout=30,
-            )
-
-            # ------------------------------------------------
-            # 新式 / 舊式可能是：
-            # 1. list[dict]
-            # 2. {"data": [...], "fields": [...]}
-            # 3. {"tables": [...]}
-            # ------------------------------------------------
-
-            prices = parse_price_response(
-                data
-            )
-
-            if prices:
-
-                print(
-                    f"[OK] 收盤價：{len(prices)} 筆"
-                )
-
-                return prices
-
-            print(
-                f"[WARN] 收盤價 API 回應但沒有解析到價格：{url}"
-            )
-
-        except Exception as e:
-
-            last_error = e
-
-            print(
-                f"[WARN] 收盤價 API 失敗：{url} -> {e}"
-            )
-
-    print(
-        f"[WARN] 所有收盤價 API 都失敗：{last_error}"
-    )
-
-    return {}
-
-
-# ============================================================
-# 解析收盤價
-# ============================================================
-
-def parse_price_response(data):
-
-    prices = {}
-
-    # --------------------------------------------------------
-    # list[dict]
-    # --------------------------------------------------------
-
-    if isinstance(data, list):
-
-        for row in data:
-
-            if not isinstance(row, dict):
-                continue
-
-            stock_id = str(
-                row.get("Code")
-                or row.get("證券代號")
-                or row.get("股票代號")
-                or ""
-            ).strip()
-
-            close_price = (
-                row.get("ClosingPrice")
-                if "ClosingPrice" in row
-                else row.get("收盤價")
-            )
-
-            if not stock_id:
-                continue
-
-            price = to_number(
-                close_price
-            )
-
-            if price > 0:
-                prices[stock_id] = price
-
-        return prices
-
-    # --------------------------------------------------------
-    # fields + data
-    # --------------------------------------------------------
-
-    if isinstance(data, dict):
-
-        fields = (
-            data.get("fields")
-            or data.get("columns")
-            or []
-        )
-
-        rows = (
-            data.get("data")
-            or []
-        )
-
-        if isinstance(fields, list) and isinstance(rows, list):
-
-            code_idx = find_field_index(
-                fields,
-                [
-                    "Code",
-                    "證券代號",
-                    "股票代號",
-                ],
-            )
-
-            price_idx = find_field_index(
-                fields,
-                [
-                    "ClosingPrice",
-                    "收盤價",
-                ],
-            )
-
-            if (
-                code_idx is not None
-                and price_idx is not None
-            ):
-
-                for row in rows:
-
-                    if not isinstance(row, list):
-                        continue
-
-                    if (
-                        len(row) <= max(
-                            code_idx,
-                            price_idx,
-                        )
-                    ):
-                        continue
-
-                    stock_id = str(
-                        row[code_idx]
-                    ).strip()
-
-                    price = to_number(
-                        row[price_idx]
-                    )
-
-                    if (
-                        stock_id
-                        and price > 0
-                    ):
-                        prices[stock_id] = price
-
-        if prices:
-            return prices
-
-    # --------------------------------------------------------
-    # tables
-    # --------------------------------------------------------
-
-    tables = extract_tables_from_object(
-        data
-    )
-
-    for table in tables:
-
-        fields = table.get(
-            "fields",
-            []
-        )
-
-        rows = table.get(
-            "data",
-            []
-        )
-
-        code_idx = find_field_index(
-            fields,
-            [
-                "Code",
-                "證券代號",
-                "股票代號",
-            ],
-        )
-
-        price_idx = find_field_index(
-            fields,
-            [
-                "ClosingPrice",
-                "收盤價",
-            ],
-        )
-
-        if (
-            code_idx is None
-            or price_idx is None
-        ):
-            continue
-
-        for row in rows:
-
-            if not isinstance(row, list):
-                continue
-
-            if (
-                len(row)
-                <= max(
-                    code_idx,
-                    price_idx,
-                )
-            ):
-                continue
-
-            stock_id = str(
-                row[code_idx]
-            ).strip()
-
-            price = to_number(
-                row[price_idx]
-            )
-
-            if (
-                stock_id
-                and price > 0
-            ):
-                prices[stock_id] = price
-
-    return prices
-
-
-# ============================================================
-# 日期
-# ============================================================
-
-def format_date(date):
-
-    return (
-        f"{date[:4]}/"
-        f"{date[4:6]}/"
-        f"{date[6:8]}"
-    )
-
-
-# ============================================================
-# 建立 credit_rank.json
+# 建立 JSON
 # ============================================================
 
 def build_json():
+    print()
+    print("======================================")
+    print("       TWSE CREDIT DATA")
+    print("======================================")
 
-    date, margin_data, margin_rows = (
-        find_latest_data()
+    date, margin_data = find_latest_data()
+
+    # --------------------------------------------------------
+    # 市場總表
+    # --------------------------------------------------------
+    market = parse_market_summary(
+        margin_data
+    )
+
+    # --------------------------------------------------------
+    # 個股
+    # --------------------------------------------------------
+    stock_rows = parse_stock_rows(
+        margin_data
     )
 
     print(
-        f"[INFO] 融資融券資料："
-        f"{len(margin_rows)} 筆"
+        f"[INFO] 融資融券個股資料："
+        f"{len(stock_rows)} 筆"
     )
-
-    # --------------------------------------------------------
-    # 強制保護
-    # --------------------------------------------------------
-
-    if len(margin_rows) == 0:
-        raise RuntimeError(
-            "融資融券解析結果為 0 筆，"
-            "為避免覆蓋正常資料，本次停止輸出。"
-        )
 
     # --------------------------------------------------------
     # 收盤價
     # --------------------------------------------------------
-
-    prices = fetch_prices(
-        date
-    )
-
-    if not prices:
-        raise RuntimeError(
-            "完全取得不到收盤價，"
-            "為避免產生錯誤的融資金額，本次停止輸出。"
-        )
+    prices = fetch_prices(date)
 
     # --------------------------------------------------------
-    # 建立個股資料
+    # 建立個股 JSON
     # --------------------------------------------------------
-
     stocks = []
 
-    margin_total = 0.0
-    short_total = 0.0
+    margin_increase_count = 0
+    margin_decrease_count = 0
+    short_increase_count = 0
+    short_decrease_count = 0
 
-    skipped_price = 0
+    matched_prices = 0
+    missing_prices = 0
 
-    for item in margin_rows:
-
-        stock_id = item[
-            "stock_id"
-        ]
-
-        stock_name = item[
-            "stock_name"
-        ]
+    for item in stock_rows:
+        stock_id = item["stock_id"]
+        stock_name = item["stock_name"]
 
         close_price = prices.get(
             stock_id,
             0
         )
 
-        if close_price <= 0:
-            skipped_price += 1
-            continue
-
-        margin_previous = item[
-            "margin_previous"
-        ]
-
-        margin_today = item[
-            "margin_today"
-        ]
-
-        short_previous = item[
-            "short_previous"
-        ]
-
-        short_today = item[
-            "short_today"
-        ]
-
-        # ----------------------------------------------------
-        # 融資張數變化
-        # ----------------------------------------------------
-
         margin_change_shares = (
-            margin_today
-            -
-            margin_previous
+            item["margin_today"]
+            - item["margin_previous"]
         )
-
-        # ----------------------------------------------------
-        # 融資金額變化
-        #
-        # 1 張 = 1000 股
-        # ----------------------------------------------------
-
-        margin_change_amount = (
-            margin_change_shares
-            *
-            close_price
-            *
-            1000
-        )
-
-        # ----------------------------------------------------
-        # 融券張數變化
-        # ----------------------------------------------------
 
         short_change = (
-            short_today
-            -
-            short_previous
+            item["short_today"]
+            - item["short_previous"]
         )
 
-        margin_total += (
-            margin_change_amount
-        )
+        # ----------------------------------------------------
+        # 沒有收盤價仍保留資料，但 margin_change 金額設 0
+        # 避免錯誤估算
+        # ----------------------------------------------------
+        if close_price > 0:
+            matched_prices += 1
 
-        short_total += (
-            short_change
-        )
+            margin_change_amount = (
+                margin_change_shares
+                * close_price
+                * 1000
+            )
+        else:
+            missing_prices += 1
+            margin_change_amount = 0
+
+        if margin_change_shares > 0:
+            margin_increase_count += 1
+        elif margin_change_shares < 0:
+            margin_decrease_count += 1
+
+        if short_change > 0:
+            short_increase_count += 1
+        elif short_change < 0:
+            short_decrease_count += 1
 
         stocks.append(
             {
-                "stock_id":
-                    stock_id,
-
-                "stock_name":
-                    stock_name,
-
-                "close_price":
-                    close_price,
-
-                "margin_change":
-                    round(
-                        margin_change_amount,
-                        2,
-                    ),
-
-                "short_change":
-                    int(
-                        short_change
-                    ),
+                "stock_id": stock_id,
+                "stock_name": stock_name,
+                "close_price": close_price,
+                "margin_change": round(
+                    margin_change_amount,
+                    2,
+                ),
+                "short_change": int(
+                    short_change
+                ),
             }
         )
 
     # --------------------------------------------------------
-    # 再次保護
+    # 特別印出 2330 最終結果
     # --------------------------------------------------------
-
-    if len(stocks) == 0:
-        raise RuntimeError(
-            "融資融券有資料，但沒有任何股票能對應到收盤價，"
-            "本次停止輸出。"
-        )
+    for item in stocks:
+        if item["stock_id"] == "2330":
+            print()
+            print(
+                "[DEBUG] 最終 JSON 2330 台積電："
+            )
+            print(
+                f"  收盤價：{item['close_price']}"
+            )
+            print(
+                f"  融資增減金額："
+                f"{item['margin_change']:,.0f}"
+            )
+            print(
+                f"  融券增減張數："
+                f"{item['short_change']:,}"
+            )
+            break
 
     # --------------------------------------------------------
     # 更新時間
     # --------------------------------------------------------
-
-    update_time = (
-        datetime.now()
-        .strftime("%H:%M:%S")
+    update_time = datetime.now().strftime(
+        "%H:%M:%S"
     )
 
     output = {
+        "data_date": (
+            f"{date[:4]}/{date[4:6]}/{date[6:8]}"
+        ),
+        "update_time": update_time,
 
-        "data_date":
-            format_date(date),
+        # 官方市場總表
+        "margin_total": round(
+            market["margin_change_amount"],
+            2,
+        ),
+        "short_total": int(
+            market["short_change"]
+        ),
 
-        "update_time":
-            update_time,
-
-        "margin_total":
-            round(
-                margin_total,
-                2,
-            ),
-
-        "short_total":
-            int(
-                short_total
-            ),
-
-        "credit":
-            stocks,
+        # 個股
+        "credit": stocks,
     }
 
     # --------------------------------------------------------
-    # 先寫暫存檔
-    #
-    # 成功後再取代正式 JSON，
-    # 避免寫到一半造成損壞。
+    # 寫 JSON
     # --------------------------------------------------------
-
-    temp_file = OUTPUT_FILE.with_suffix(
-        ".tmp"
-    )
-
     with open(
-        temp_file,
+        OUTPUT_FILE,
         "w",
         encoding="utf-8",
     ) as f:
-
         json.dump(
             output,
             f,
@@ -1246,63 +983,75 @@ def build_json():
             indent=2,
         )
 
-        f.write("\n")
-
-    temp_file.replace(
-        OUTPUT_FILE
-    )
-
     # --------------------------------------------------------
-    # 完成
+    # 最終報告
     # --------------------------------------------------------
-
     print()
+    print("======================================")
+    print(" credit_rank.json 建立完成")
+    print("======================================")
+
     print(
-        "======================================"
+        f"資料日期：{output['data_date']}"
     )
 
     print(
-        " credit_rank.json 建立完成"
+        f"更新時間：{output['update_time']}"
     )
 
     print(
-        "======================================"
+        "官方融資增減金額："
+        f"{output['margin_total']:,.0f} 元"
     )
 
     print(
-        "資料日期：",
-        output["data_date"]
+        "官方融券增減張數："
+        f"{output['short_total']:,} 張"
     )
 
     print(
-        "更新時間：",
-        output["update_time"]
+        f"融資增加個股："
+        f"{margin_increase_count} 檔"
     )
 
     print(
-        "融資增減金額：",
-        output["margin_total"]
+        f"融資減少個股："
+        f"{margin_decrease_count} 檔"
     )
 
     print(
-        "融券增減張數：",
-        output["short_total"]
+        f"融券增加個股："
+        f"{short_increase_count} 檔"
     )
 
     print(
-        "股票數量：",
-        len(stocks)
+        f"融券減少個股："
+        f"{short_decrease_count} 檔"
     )
 
     print(
-        "沒有股價而略過：",
-        skipped_price
+        f"成功對應收盤價："
+        f"{matched_prices}"
     )
 
     print(
-        "輸出檔案：",
-        OUTPUT_FILE
+        f"沒有對應收盤價："
+        f"{missing_prices}"
     )
+
+    print(
+        f"輸出檔案：{OUTPUT_FILE}"
+    )
+
+    # 如果真的完全沒有負的融資個股，直接警告
+    if margin_decrease_count == 0:
+        print()
+        print(
+            "[WARN] 融資減少個股 = 0。"
+        )
+        print(
+            "[WARN] 請檢查 TWSE 個股表欄位是否異常。"
+        )
 
 
 # ============================================================
@@ -1310,20 +1059,11 @@ def build_json():
 # ============================================================
 
 if __name__ == "__main__":
-
     try:
-
         build_json()
 
     except Exception as e:
-
         print()
-        print(
-            "❌ credit.py 執行失敗"
-        )
-
-        print(
-            str(e)
-        )
-
+        print("❌ credit.py 執行失敗")
+        print(str(e))
         raise
