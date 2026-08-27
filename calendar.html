@@ -999,6 +999,54 @@ function createEventHTML(event) {
 
     if (event.type === "earnings") {
 
+        const formatMoney = (value) => {
+
+            if (value === null || value === undefined) {
+                return "尚未公布";
+            }
+
+            return "$" + Number(value).toFixed(2) + "B";
+
+        };
+
+
+        const formatEPS = (value) => {
+
+            if (value === null || value === undefined) {
+                return "尚未公布";
+            }
+
+            return Number(value).toFixed(2);
+
+        };
+
+
+        const revenueResult =
+            event.actual_revenue !== null &&
+            event.actual_revenue !== undefined
+            ?
+            (
+                Number(event.actual_revenue) >= Number(event.forecast_revenue)
+                ? "🟢 Beat"
+                : "🔴 Miss"
+            )
+            :
+            "";
+
+
+        const epsResult =
+            event.actual_eps !== null &&
+            event.actual_eps !== undefined
+            ?
+            (
+                Number(event.actual_eps) >= Number(event.forecast_eps)
+                ? "🟢 Beat"
+                : "🔴 Miss"
+            )
+            :
+            "";
+
+
         return `
 
             <div class="event ${event.importance}">
@@ -1010,6 +1058,87 @@ function createEventHTML(event) {
                 <div class="event-time">
                     🕒 ${event.time}
                 </div>
+
+
+                <div class="data-table">
+
+                    <div class="data-box">
+                        <div class="data-label">
+                            營收預期
+                        </div>
+
+                        <div class="data-value">
+                            ${formatMoney(event.forecast_revenue)}
+                        </div>
+                    </div>
+
+
+                    <div class="data-box">
+                        <div class="data-label">
+                            營收公布
+                        </div>
+
+                        <div class="data-value actual ${
+                            event.actual_revenue === null ||
+                            event.actual_revenue === undefined
+                            ? "not-released"
+                            : ""
+                        }">
+                            ${formatMoney(event.actual_revenue)}
+                        </div>
+                    </div>
+
+
+                    <div class="data-box">
+                        <div class="data-label">
+                            結果
+                        </div>
+
+                        <div class="data-value">
+                            ${revenueResult}
+                        </div>
+                    </div>
+
+
+                    <div class="data-box">
+                        <div class="data-label">
+                            EPS 預期
+                        </div>
+
+                        <div class="data-value">
+                            ${formatEPS(event.forecast_eps)}
+                        </div>
+                    </div>
+
+
+                    <div class="data-box">
+                        <div class="data-label">
+                            EPS 公布
+                        </div>
+
+                        <div class="data-value actual ${
+                            event.actual_eps === null ||
+                            event.actual_eps === undefined
+                            ? "not-released"
+                            : ""
+                        }">
+                            ${formatEPS(event.actual_eps)}
+                        </div>
+                    </div>
+
+
+                    <div class="data-box">
+                        <div class="data-label">
+                            結果
+                        </div>
+
+                        <div class="data-value">
+                            ${epsResult}
+                        </div>
+                    </div>
+
+                </div>
+
 
                 <div class="event-description">
                     ${event.description}
@@ -1420,6 +1549,7 @@ function renderEarningsSchedule() {
 
     const earnings =
         earningsEvents
+            .filter(event => event.date === getDateKey(selectedDate))
             .slice()
             .sort((a, b) => a.date.localeCompare(b.date));
 
