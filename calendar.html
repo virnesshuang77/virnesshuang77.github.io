@@ -1613,44 +1613,85 @@ function renderEvents() {
 
         const parts = [];
 
+        // 營收：加入千分位
         if (event.revenue !== null && event.revenue !== undefined && event.revenue !== "") {
             const revenueNumber = Number(event.revenue);
 
             if (Number.isFinite(revenueNumber)) {
-                parts.push(
-                    `營收：${revenueNumber.toLocaleString("zh-TW")}`
-                );
-            } else {
-                parts.push(`營收：${event.revenue}`);
+                parts.push(`營收：${revenueNumber.toLocaleString("zh-TW")}`);
             }
         }
 
+        // 月增：固定最多 2 位小數
         if (event.mom !== null && event.mom !== undefined && event.mom !== "") {
             const momNumber = Number(event.mom);
 
             if (Number.isFinite(momNumber)) {
-                parts.push(
-                    `月增：${momNumber.toFixed(2)}%`
-                );
-            } else {
-                parts.push(`月增：${event.mom}%`);
+                parts.push(`月增：${momNumber.toFixed(2)}%`);
             }
         }
 
+        // 年增：固定最多 2 位小數
         if (event.yoy !== null && event.yoy !== undefined && event.yoy !== "") {
             const yoyNumber = Number(event.yoy);
 
             if (Number.isFinite(yoyNumber)) {
-                parts.push(
-                    `年增：${yoyNumber.toFixed(2)}%`
-                );
-            } else {
-                parts.push(`年增：${event.yoy}%`);
+                parts.push(`年增：${yoyNumber.toFixed(2)}%`);
             }
         }
 
+        // 如果 JSON 沒有 mom / yoy，才使用 description。
+        // 同時把 description 裡的長小數百分比強制縮成 2 位。
+        if (parts.length === 1 && event.description) {
+            let description = String(event.description);
+
+            description = description.replace(
+                /(月增：\s*)([-+]?\d+(?:\.\d+)?)(%)/g,
+                function(match, label, number, percent) {
+                    const n = Number(number);
+                    return Number.isFinite(n)
+                        ? `${label}${n.toFixed(2)}${percent}`
+                        : match;
+                }
+            );
+
+            description = description.replace(
+                /(年增：\s*)([-+]?\d+(?:\.\d+)?)(%)/g,
+                function(match, label, number, percent) {
+                    const n = Number(number);
+                    return Number.isFinite(n)
+                        ? `${label}${n.toFixed(2)}${percent}`
+                        : match;
+                }
+            );
+
+            parts.push(description);
+        }
+
         if (parts.length === 0 && event.description) {
-            return event.description;
+            let description = String(event.description);
+
+            description = description.replace(
+                /(月增：\s*)([-+]?\d+(?:\.\d+)?)(%)/g,
+                function(match, label, number, percent) {
+                    const n = Number(number);
+                    return Number.isFinite(n)
+                        ? `${label}${n.toFixed(2)}${percent}`
+                        : match;
+                }
+            );
+
+            description = description.replace(
+                /(年增：\s*)([-+]?\d+(?:\.\d+)?)(%)/g,
+                function(match, label, number, percent) {
+                    const n = Number(number);
+                    return Number.isFinite(n)
+                        ? `${label}${n.toFixed(2)}${percent}`
+                        : match;
+                }
+            );
+
+            return description;
         }
 
         return parts.join("　");
