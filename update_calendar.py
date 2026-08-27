@@ -155,10 +155,10 @@ def earnings_schedule():
             "importance":"high",
 
             "forecast_revenue":46.5,
-            "actual_revenue":None,
-
+            "actual_revenue":47.2,
+        
             "forecast_eps":1.01,
-            "actual_eps":None,
+            "actual_eps":1.05,
 
             "guidance_revenue":None,
             "guidance_forecast_revenue":None,
