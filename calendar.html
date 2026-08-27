@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="zh-TW">
 
@@ -1485,9 +1484,6 @@ function createEventHTML(event) {
    顯示資料
 ===================================================== */
 
-let revenueEvents = [];
-
-
 function renderEvents() {
 
 
@@ -1606,12 +1602,65 @@ function renderEvents() {
 
     /* =================================================
        今日重要營收
-       營收資料獨立由 calendar-data.json 管理
     ================================================= */
 
+    /* =================================================
+       營收資料顯示格式
+       JSON 保留完整數值，但網頁只顯示小數點 2 位
+    ================================================= */
+
+    function formatRevenueDescription(event) {
+
+        const parts = [];
+
+        if (event.revenue !== null && event.revenue !== undefined && event.revenue !== "") {
+            const revenueNumber = Number(event.revenue);
+
+            if (Number.isFinite(revenueNumber)) {
+                parts.push(
+                    `營收：${revenueNumber.toLocaleString("zh-TW")}`
+                );
+            } else {
+                parts.push(`營收：${event.revenue}`);
+            }
+        }
+
+        if (event.mom !== null && event.mom !== undefined && event.mom !== "") {
+            const momNumber = Number(event.mom);
+
+            if (Number.isFinite(momNumber)) {
+                parts.push(
+                    `月增：${momNumber.toFixed(2)}%`
+                );
+            } else {
+                parts.push(`月增：${event.mom}%`);
+            }
+        }
+
+        if (event.yoy !== null && event.yoy !== undefined && event.yoy !== "") {
+            const yoyNumber = Number(event.yoy);
+
+            if (Number.isFinite(yoyNumber)) {
+                parts.push(
+                    `年增：${yoyNumber.toFixed(2)}%`
+                );
+            } else {
+                parts.push(`年增：${event.yoy}%`);
+            }
+        }
+
+        if (parts.length === 0 && event.description) {
+            return event.description;
+        }
+
+        return parts.join("　");
+    }
+
+
     const revenues =
-        revenueEvents.filter(event =>
-            event.date === dateKey
+        events.filter(event =>
+            event.date === dateKey &&
+            event.type === "revenue"
         );
 
 
@@ -1634,15 +1683,15 @@ function renderEvents() {
                 <div class="revenue-item">
 
                     <div class="revenue-title">
-                        ${event.title || "公司營收"}
+                        ${event.title}
                     </div>
 
                     <div class="revenue-time">
-                        🕒 ${event.time || "依公告"}
+                        🕒 ${event.time}
                     </div>
 
                     <div class="revenue-description">
-                        ${event.description || ""}
+                        ${formatRevenueDescription(event)}
                     </div>
 
                 </div>
@@ -2023,33 +2072,13 @@ async function loadCalendarData() {
 
     try {
 
-        const jsonURL = new URL(
-            "calendar-data.json",
-            document.baseURI
-        );
-
-        jsonURL.searchParams.set(
-            "t",
-            Date.now()
-        );
-
-        console.log(
-            "📂 載入營收資料：",
-            jsonURL.href
-        );
-
         const response = await fetch(
-            jsonURL.href,
-            {
-                method: "GET",
-                cache: "no-store"
-            }
+            "calendar-data.json?t=" + Date.now()
         );
 
         if (!response.ok) {
             throw new Error(
-                "calendar-data.json HTTP " +
-                response.status
+                "HTTP " + response.status
             );
         }
 
@@ -2060,49 +2089,30 @@ async function loadCalendarData() {
             data
         );
 
-        if (
-            !data ||
-            !Array.isArray(data.revenue_events)
-        ) {
-            throw new Error(
-                "JSON 裡沒有 revenue_events 陣列"
+        if (Array.isArray(data.revenue_events)) {
+
+            // 移除舊的手動營收事件
+            events = events.filter(
+                event => event.type !== "revenue"
             );
+
+            // 加入 Python 最新產生的營收事件
+            events.push(
+                ...data.revenue_events
+            );
+
         }
-
-        revenueEvents = data.revenue_events
-            .filter(event => event && event.date)
-            .map(event => ({
-                date: String(event.date).substring(0, 10),
-                time: event.time || "依公告",
-                country: event.country || "TW",
-                type: "revenue",
-                stock_id: event.stock_id || "",
-                title: event.title || "",
-                importance: event.importance || "high",
-                month: event.month || "",
-                revenue: event.revenue ?? null,
-                mom: event.mom ?? null,
-                yoy: event.yoy ?? null,
-                description: event.description || ""
-            }));
-
-        console.log(
-            "📊 營收事件：",
-            revenueEvents.length,
-            revenueEvents
-        );
 
     } catch (error) {
 
-        revenueEvents = [];
-
-        console.error(
-            "❌ calendar-data.json 載入失敗：",
+        console.warn(
+            "⚠️ calendar-data.json 載入失敗，將使用網頁內建資料：",
             error
         );
 
     }
 
+    // 不管 JSON 成功或失敗，都把畫面畫出來
     renderEvents();
 
 }
@@ -2121,4 +2131,3 @@ loadCalendarData();
 </body>
 
 </html>
-
