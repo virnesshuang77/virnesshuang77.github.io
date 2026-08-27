@@ -1,0 +1,2124 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>每日重要行事曆</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                "Microsoft JhengHei",
+                sans-serif;
+
+            background: #f5f7fa;
+
+            color: #222;
+        }
+
+
+        .container {
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            padding: 20px;
+        }
+
+
+        /* =========================
+           Header
+        ========================= */
+
+        .header {
+
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 24px;
+
+            text-align: center;
+
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.06);
+
+            margin-bottom: 20px;
+        }
+
+
+        .header h1 {
+
+            margin: 0 0 12px;
+
+            font-size: 28px;
+        }
+
+
+        .date {
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            margin-bottom: 18px;
+        }
+
+
+        .date-nav {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 10px;
+        }
+
+
+        .date-nav button {
+
+            border: none;
+
+            background: #eef1f5;
+
+            padding: 10px 18px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+
+        .date-nav button:hover {
+
+            background: #dfe4ea;
+        }
+
+
+        /* =========================
+           Section
+        ========================= */
+
+        .section {
+
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 20px;
+
+            margin-bottom: 16px;
+
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.05);
+        }
+
+
+        .section-title {
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================
+           Event
+        ========================= */
+
+        .event {
+
+            border-left: 5px solid #ddd;
+
+            background: #f8f9fb;
+
+            border-radius: 8px;
+
+            padding: 16px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .event:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        .event.high {
+
+            border-left-color: #e53935;
+        }
+
+
+        .event.medium {
+
+            border-left-color: #f39c12;
+        }
+
+
+        .event.low {
+
+            border-left-color: #3498db;
+        }
+
+
+        .event-title {
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            margin-bottom: 5px;
+        }
+
+
+        .event-time {
+
+            color: #666;
+
+            font-size: 14px;
+
+            margin-bottom: 14px;
+        }
+
+
+        /* =========================
+           Data
+        ========================= */
+
+        .data-table {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr
+                1fr;
+
+            gap: 8px;
+
+            margin-top: 10px;
+        }
+
+
+        .data-box {
+
+            background: white;
+
+            border-radius: 8px;
+
+            padding: 12px;
+
+            text-align: center;
+
+            border: 1px solid #e5e7eb;
+        }
+
+
+        .data-label {
+
+            font-size: 13px;
+
+            color: #777;
+
+            margin-bottom: 6px;
+        }
+
+
+        .data-value {
+
+            font-size: 17px;
+
+            font-weight: bold;
+        }
+
+
+        .actual {
+
+            color: #1976d2;
+        }
+
+
+        .actual.not-released {
+
+            color: #999;
+        }
+
+
+        /* =========================
+           Description
+        ========================= */
+
+        .event-description {
+
+            margin-top: 12px;
+
+            font-size: 14px;
+
+            color: #666;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           Empty
+        ========================= */
+
+        .empty {
+
+            text-align: center;
+
+            padding: 20px 10px;
+
+            color: #777;
+
+            background: #f8f9fb;
+
+            border-radius: 8px;
+        }
+
+
+        /* =========================
+           Market
+        ========================= */
+
+        .market {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid #eee;
+        }
+
+
+        .market:last-child {
+
+            border-bottom: none;
+        }
+
+
+        .open {
+
+            color: #16803c;
+
+            font-weight: bold;
+        }
+
+
+        .closed {
+
+            color: #d32f2f;
+
+            font-weight: bold;
+        }
+
+
+        .market-holiday {
+
+            margin-top: -6px;
+
+            padding:
+                0 0 10px 0;
+
+            font-size: 13px;
+
+            color: #d32f2f;
+
+            border-bottom:
+                1px solid #eee;
+        }
+
+
+        /* =========================
+           Mobile
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .container {
+
+                padding: 12px;
+            }
+
+
+            .header {
+
+                padding: 18px;
+            }
+
+
+            .header h1 {
+
+                font-size: 23px;
+            }
+
+
+            .date {
+
+                font-size: 18px;
+            }
+
+
+            .section {
+
+                padding: 16px;
+            }
+
+
+            .section-title {
+
+                font-size: 18px;
+            }
+
+
+            .date-nav button {
+
+                flex: 1;
+
+                padding: 10px 8px;
+            }
+
+
+            .event-title {
+
+                font-size: 16px;
+            }
+
+
+            .market-holiday {
+
+                font-size: 12px;
+
+            }
+
+
+            .data-box {
+
+                padding: 10px 5px;
+            }
+
+
+            .data-value {
+
+                font-size: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- =========================
+         Header
+    ========================= -->
+
+    <div class="header">
+
+        <h1>
+            📅 每日重要行事曆
+        </h1>
+
+
+        <div
+            class="date"
+            id="currentDate">
+        </div>
+
+
+        <div class="date-nav">
+
+            <button
+                onclick="changeDate(-1)">
+                ← 前一天
+            </button>
+
+
+            <button
+                onclick="goToday()">
+                今天
+            </button>
+
+
+            <button
+                onclick="changeDate(1)">
+                後一天 →
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         今日重要事件
+         央行也會放在這裡
+    ========================= -->
+
+    <div class="section">
+
+        <div class="section-title">
+            🔴 今日重要事件
+        </div>
+
+
+        <div id="importantEvents"></div>
+
+    </div>
+
+
+
+    <!-- =========================
+         今日重點財報
+    ========================= -->
+
+    <div class="section">
+
+        <div class="section-title">
+            💰 今日重點財報
+        </div>
+
+
+        <div id="earnings"></div>
+
+    </div>
+
+
+
+    <!-- =========================
+         今日重要營收
+    ========================= -->
+
+    <div class="section">
+
+        <div class="section-title">
+            📊 今日重要營收
+        </div>
+
+        <div id="revenue"></div>
+
+    </div>
+
+
+    <!-- =========================
+         重點財報日期
+    ========================= -->
+
+    <div class="section">
+
+        <div class="section-title">
+            📅 重點財報日期
+        </div>
+
+        <div id="earningsSchedule"></div>
+
+    </div>
+
+
+    <!-- =========================
+         今日市場
+    ========================= -->
+
+    <div class="section">
+
+        <div class="section-title">
+            🌏 今日市場
+        </div>
+
+
+        <div id="markets"></div>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   目前選擇日期
+===================================================== */
+
+let selectedDate = new Date();
+
+
+
+/* =====================================================
+   事件資料
+=====================================================
+
+   type:
+   important = 重要事件
+   earnings  = 財報
+   central   = 央行
+
+   央行雖然 type = central，
+   但會與 important 一起顯示在
+   「今日重要事件」。
+
+===================================================== */
+
+
+let events = [
+
+
+    // =================================================
+    // 🇰🇷 韓國央行 BOK
+    // =================================================
+
+    {
+        date: "2026-08-27",
+
+        time: "09:00",
+
+        country: "KR",
+
+        type: "central",
+
+        title:
+            "🇰🇷 韓國央行 BOK 利率決策",
+
+        previous:
+            "2.75%",
+
+        forecast:
+            "3.00%",
+
+        actual:
+            "3.00%",
+
+        importance:
+            "high",
+
+        description:
+            "韓國銀行決定升息 0.25 個百分點，基準利率由 2.75% 升至 3.00%。"
+    },
+
+
+    {
+        date: "2026-10-22",
+
+        time: "09:00",
+
+        country: "KR",
+
+        type: "central",
+
+        title:
+            "🇰🇷 韓國央行 BOK 利率決策",
+
+        previous:
+            "3.00%",
+
+        forecast:
+            "—",
+
+        actual:
+            null,
+
+        importance:
+            "high",
+
+        description:
+            "韓國銀行公布基準利率決策。"
+    },
+
+
+    {
+        date: "2026-11-26",
+
+        time: "09:00",
+
+        country: "KR",
+
+        type: "central",
+
+        title:
+            "🇰🇷 韓國央行 BOK 利率決策",
+
+        previous:
+            "3.00%",
+
+        forecast:
+            "—",
+
+        actual:
+            null,
+
+        importance:
+            "high",
+
+        description:
+            "韓國銀行公布基準利率決策。"
+    },
+
+
+
+    // =================================================
+    // 🇺🇸 美國 FED
+    // =================================================
+
+    {
+        date: "2026-09-17",
+
+        time: "02:00",
+
+        country: "US",
+
+        type: "central",
+
+        title:
+            "🇺🇸 美國 FED 利率決策",
+
+        previous:
+            "3.50–3.75%",
+
+        forecast:
+            "—",
+
+        actual:
+            null,
+
+        importance:
+            "high",
+
+        description:
+            "聯準會公布聯邦基金利率目標區間。"
+    },
+
+
+    {
+        date: "2026-10-29",
+
+        time: "02:00",
+
+        country: "US",
+
+        type: "central",
+
+        title:
+            "🇺🇸 美國 FED 利率決策",
+
+        previous:
+            "3.50–3.75%",
+
+        forecast:
+            "—",
+
+        actual:
+            null,
+
+        importance:
+            "high",
+
+        description:
+            "聯準會公布聯邦基金利率目標區間。"
+    },
+
+
+    {
+        date: "2026-12-09",
+
+        time: "03:00",
+
+        country: "US",
+
+        type: "central",
+
+        title:
+            "🇺🇸 美國 FED 利率決策",
+
+        previous:
+            "3.50–3.75%",
+
+        forecast:
+            "—",
+
+        actual:
+            null,
+
+        importance:
+            "high",
+
+        description:
+            "聯準會公布聯邦基金利率目標區間。"
+    },
+
+
+
+    // =================================================
+    // 🇯🇵 日本央行 BOJ
+    // =================================================
+
+    {
+        date: "2026-09-18",
+
+        time: "未定",
+
+        country: "JP",
+
+        type: "central",
+
+        title:
+            "🇯🇵 日本央行 BOJ 利率決策",
+
+        previous:
+            "0.75%",
+
+        forecast:
+            "—",
+
+        actual:
+            null,
+
+        importance:
+            "high",
+
+        description:
+            "日本銀行貨幣政策會議後公布利率決策。"
+    },
+
+
+    {
+        date: "2026-10-30",
+
+        time: "未定",
+
+        country: "JP",
+
+        type: "central",
+
+        title:
+            "🇯🇵 日本央行 BOJ 利率決策",
+
+        previous:
+            "0.75%",
+
+        forecast:
+            "—",
+
+        actual:
+            null,
+
+        importance:
+            "high",
+
+        description:
+            "日本銀行貨幣政策會議後公布利率決策。"
+    },
+
+
+    {
+        date: "2026-12-18",
+
+        time: "未定",
+
+        country: "JP",
+
+        type: "central",
+
+        title:
+            "🇯🇵 日本央行 BOJ 利率決策",
+
+        previous:
+            "0.75%",
+
+        forecast:
+            "—",
+
+        actual:
+            null,
+
+        importance:
+            "high",
+
+        description:
+            "日本銀行貨幣政策會議後公布利率決策。"
+    },
+
+
+
+    // =================================================
+    // 🇹🇼 台灣央行 CBC
+    // =================================================
+
+    {
+        date: "2026-09-17",
+
+        time: "下午",
+
+        country: "TW",
+
+        type: "central",
+
+        title:
+            "🇹🇼 台灣央行 利率決策",
+
+        previous:
+            "2.00%",
+
+        forecast:
+            "—",
+
+        actual:
+            null,
+
+        importance:
+            "high",
+
+        description:
+            "中央銀行理監事聯席會議公布貨幣政策決策。"
+    },
+
+
+    {
+        date: "2026-12-17",
+
+        time: "下午",
+
+        country: "TW",
+
+        type: "central",
+
+        title:
+            "🇹🇼 台灣央行 利率決策",
+
+        previous:
+            "2.00%",
+
+        forecast:
+            "—",
+
+        actual:
+            null,
+
+        importance:
+            "high",
+
+        description:
+            "中央銀行理監事聯席會議公布貨幣政策決策。"
+    },
+
+
+
+    // =================================================
+    // 🇺🇸 美國非農
+    // =================================================
+
+    {
+    date: "2026-09-04",
+
+    time: "20:30",
+
+    country: "US",
+
+    type: "important",
+
+    title:
+        "🇺🇸 美國非農就業人數",
+
+    previous:
+        "-2.3萬",
+
+    forecast:
+        "+1.2萬",
+
+    actual:
+        null,
+
+    importance:
+        "high",
+
+    description:
+        "美國8月非農就業人數。"
+    },
+
+
+    // =================================================
+    // 💰 重點公司財報
+    // =================================================
+
+    {
+        date: "2026-09-30",
+        time: "盤後",
+        country: "US",
+        type: "earnings",
+
+        title:
+            "🇺🇸 美光 Micron 財報",
+
+        importance:
+            "high",
+
+        description:
+            "Micron Q4 FY2026 財報。日期已由公司公布。"
+    },
+
+
+    // 🇹🇼 南亞科
+    {
+        date: "2026-10-14",
+        time: "待公布",
+        country: "TW",
+        type: "earnings",
+
+        title:
+            "🇹🇼 南亞科 財報",
+
+        importance:
+            "high",
+
+        description:
+            "南亞科 2026 年第三季財報。"
+    },
+
+
+    // 🇹🇼 力積電
+    {
+        date: "2026-10-15",
+        time: "待公布",
+        country: "TW",
+        type: "earnings",
+
+        title:
+            "🇹🇼 力積電 財報",
+
+        importance:
+            "high",
+
+        description:
+            "力積電 2026 年第三季財報。日期目前為市場預估。"
+    },
+
+
+    // 🇹🇼 台積電
+    {
+        date: "2026-10-15",
+        time: "待公布",
+        country: "TW",
+        type: "earnings",
+
+        title:
+            "🇹🇼 台積電 財報",
+
+        importance:
+            "high",
+
+        description:
+            "台積電 2026 年第三季財報。日期目前列為預估日期。"
+    },
+
+
+    // 🇰🇷 SK 海力士
+    {
+        date: "2026-10-27",
+        time: "盤後",
+        country: "KR",
+        type: "earnings",
+
+        title:
+            "🇰🇷 SK 海力士 財報",
+
+        importance:
+            "high",
+
+        description:
+            "SK 海力士 2026 年第三季財報。"
+    },
+
+
+    // 🇺🇸 Tesla
+    {
+        date: "2026-10-21",
+        time: "盤後",
+        country: "US",
+        type: "earnings",
+
+        title:
+            "🇺🇸 Tesla 特斯拉 財報",
+
+        importance:
+            "high",
+
+        description:
+            "Tesla 2026 年第三季財報。"
+    },
+
+
+    // 🇹🇼 日月光
+    {
+        date: "2026-10-22",
+        time: "待公布",
+        country: "TW",
+        type: "earnings",
+
+        title:
+            "🇹🇼 日月光投控 財報",
+
+        importance:
+            "high",
+
+        description:
+            "日月光投控 2026 年第三季財報。"
+    },
+
+
+    // 🇰🇷 Samsung
+    {
+        date: "2026-10-29",
+        time: "盤前",
+        country: "KR",
+        type: "earnings",
+
+        title:
+            "🇰🇷 三星電子 財報",
+
+        importance:
+            "high",
+
+        description:
+            "三星電子 2026 年第三季財報。"
+    },
+
+
+    // 🇹🇼 華邦電
+    {
+        date: "2026-10-29",
+        time: "待公布",
+        country: "TW",
+        type: "earnings",
+
+        title:
+            "🇹🇼 華邦電 財報",
+
+        importance:
+            "high",
+
+        description:
+            "華邦電 2026 年第三季財報。日期目前為預估日期。"
+    },
+
+
+    // 🇺🇸 Microsoft
+    {
+        date: "2026-10-28",
+        time: "盤後",
+        country: "US",
+        type: "earnings",
+
+        title:
+            "🇺🇸 Microsoft 微軟 財報",
+
+        importance:
+            "high",
+
+        description:
+            "Microsoft Q1 FY2027 財報。"
+    },
+
+
+    // 🇺🇸 Meta
+    {
+        date: "2026-10-28",
+        time: "盤後",
+        country: "US",
+        type: "earnings",
+
+        title:
+            "🇺🇸 Meta 財報",
+
+        importance:
+            "high",
+
+        description:
+            "Meta 2026 年第三季財報。"
+    },
+
+
+    // 🇺🇸 Apple
+    {
+        date: "2026-10-29",
+        time: "盤後",
+        country: "US",
+        type: "earnings",
+
+        title:
+            "🇺🇸 Apple 蘋果 財報",
+
+        importance:
+            "high",
+
+        description:
+            "Apple Q4 FY2026 財報。"
+    },
+
+
+    // 🇺🇸 Amazon
+    {
+        date: "2026-10-29",
+        time: "盤後",
+        country: "US",
+        type: "earnings",
+
+        title:
+            "🇺🇸 Amazon 亞馬遜 財報",
+
+        importance:
+            "high",
+
+        description:
+            "Amazon 2026 年第三季財報。"
+    },
+
+
+    // 🇹🇼 聯發科
+    // 目前官方只公布到每月營收，第三季財報日期尚未確認
+    // 暫時不要亂填
+
+
+    // 🇺🇸 AMD
+    {
+        date: "2026-11-03",
+        time: "盤後",
+        country: "US",
+        type: "earnings",
+
+        title:
+            "🇺🇸 AMD 超微 財報",
+
+        importance:
+            "high",
+
+        description:
+            "AMD 2026 年第三季財報。"
+    },
+
+
+    // 🇺🇸 SanDisk
+    {
+        date: "2026-11-04",
+        time: "待公布",
+        country: "US",
+        type: "earnings",
+
+        title:
+            "🇺🇸 SanDisk 閃迪 財報",
+
+        importance:
+            "high",
+
+        description:
+            "SanDisk Q1 FY2027 財報。日期目前為市場預估。"
+    },
+
+
+// =================================================
+// 🇺🇸 美國失業率
+// =================================================
+
+{
+    date: "2026-09-04",
+
+    time: "20:30",
+
+    country: "US",
+
+    type: "important",
+
+    title:
+        "🇺🇸 美國失業率",
+
+    previous:
+        "4.1%",
+
+    forecast:
+        "4.2%",
+
+    actual:
+        null,
+
+    importance:
+        "high",
+
+    description:
+        "美國8月失業率。"
+}
+
+];
+
+
+
+/* =====================================================
+   日期格式
+===================================================== */
+
+function formatDate(date) {
+
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
+
+
+    const weekdays = [
+
+        "星期日",
+        "星期一",
+        "星期二",
+        "星期三",
+        "星期四",
+        "星期五",
+        "星期六"
+
+    ];
+
+
+    return `${year}/${month}/${day}
+            ${weekdays[date.getDay()]}`;
+
+}
+
+
+
+/* =====================================================
+   日期 KEY
+===================================================== */
+
+function getDateKey(date) {
+
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+
+/* =====================================================
+   產生事件 HTML
+===================================================== */
+
+function createEventHTML(event) {
+
+    // =================================================
+    // 財報使用不同版型
+    // =================================================
+
+    if (event.type === "earnings") {
+
+        return `
+
+            <div class="event ${event.importance}">
+
+                <div class="event-title">
+                    ${event.title}
+                </div>
+
+                <div class="event-time">
+                    🕒 ${event.time}
+                </div>
+
+                <div class="event-description">
+                    ${event.description}
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    // =================================================
+    // 一般重要事件 / 央行 / 非農
+    // =================================================
+
+    const actualValue =
+        event.actual === null
+            ? "—"
+            : event.actual;
+
+
+    const actualClass =
+        event.actual === null
+            ? "actual not-released"
+            : "actual";
+
+
+    return `
+
+        <div class="event ${event.importance}">
+
+            <div class="event-title">
+                ${event.title}
+            </div>
+
+
+            <div class="event-time">
+                🕒 ${event.time}
+            </div>
+
+
+            <div class="data-table">
+
+                <div class="data-box">
+
+                    <div class="data-label">
+                        前值
+                    </div>
+
+                    <div class="data-value">
+                        ${event.previous}
+                    </div>
+
+                </div>
+
+
+                <div class="data-box">
+
+                    <div class="data-label">
+                        預期
+                    </div>
+
+                    <div class="data-value">
+                        ${event.forecast}
+                    </div>
+
+                </div>
+
+
+                <div class="data-box">
+
+                    <div class="data-label">
+                        公布
+                    </div>
+
+                    <div class="data-value ${actualClass}">
+                        ${actualValue}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="event-description">
+                ${event.description}
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   顯示資料
+===================================================== */
+
+let revenueEvents = [];
+
+
+function renderEvents() {
+
+
+    const dateKey =
+        getDateKey(selectedDate);
+
+
+    document.getElementById(
+        "currentDate"
+    ).textContent =
+        formatDate(selectedDate);
+
+
+
+    /* =================================================
+       今日重要事件
+       
+       注意：
+       central 也會在這裡顯示
+    ================================================= */
+
+    const importantEvents =
+
+        events.filter(event =>
+
+            event.date === dateKey &&
+
+            (
+                event.type === "important" ||
+                event.type === "central"
+            )
+
+        );
+
+
+    const importantContainer =
+
+        document.getElementById(
+            "importantEvents"
+        );
+
+
+    if (
+        importantEvents.length === 0
+    ) {
+
+        importantContainer.innerHTML =
+
+            `<div class="empty">
+                今日無重大事件
+             </div>`;
+
+    }
+
+    else {
+
+        importantContainer.innerHTML =
+
+            importantEvents
+
+                .map(createEventHTML)
+
+                .join("");
+
+    }
+
+
+
+    /* =================================================
+       今日重點財報
+    ================================================= */
+
+    const earnings =
+
+        events.filter(event =>
+
+            event.date === dateKey &&
+
+            event.type === "earnings"
+
+        );
+
+
+    const earningsContainer =
+
+        document.getElementById(
+            "earnings"
+        );
+
+
+    if (
+        earnings.length === 0
+    ) {
+
+        earningsContainer.innerHTML =
+
+            `<div class="empty">
+                今日無追蹤公司財報
+             </div>`;
+
+    }
+
+    else {
+
+        earningsContainer.innerHTML =
+
+            earnings
+
+                .map(createEventHTML)
+
+                .join("");
+
+    }
+
+
+
+    /* =================================================
+       今日重要營收
+       營收資料獨立由 calendar-data.json 管理
+    ================================================= */
+
+    const revenues =
+        revenueEvents.filter(event =>
+            event.date === dateKey
+        );
+
+
+    const revenueContainer =
+        document.getElementById("revenue");
+
+
+    if (revenues.length === 0) {
+
+        revenueContainer.innerHTML =
+            `<div class="empty">
+                今日無追蹤公司營收
+             </div>`;
+
+    } else {
+
+        revenueContainer.innerHTML =
+            revenues.map(event => `
+
+                <div class="revenue-item">
+
+                    <div class="revenue-title">
+                        ${event.title || "公司營收"}
+                    </div>
+
+                    <div class="revenue-time">
+                        🕒 ${event.time || "依公告"}
+                    </div>
+
+                    <div class="revenue-description">
+                        ${event.description || ""}
+                    </div>
+
+                </div>
+
+            `).join("");
+
+    }
+
+
+    /* =================================================
+       重點財報日期
+
+       只有今天有財報時才顯示。
+    ================================================= */
+
+    const earningsSchedule =
+        document.getElementById(
+            "earningsSchedule"
+        );
+
+    if (earningsSchedule) {
+
+        const earningsSection =
+            earningsSchedule.closest(
+                ".section"
+            );
+
+        if (earnings.length > 0) {
+
+            earningsSection.style.display = "block";
+
+            renderEarningsSchedule();
+
+        } else {
+
+            earningsSection.style.display = "none";
+
+        }
+
+    }
+
+
+    /* =================================================
+       今日市場
+    ================================================= */
+
+    renderMarkets();
+
+}
+
+
+
+/* =====================================================
+   市場狀態
+===================================================== */
+
+function renderEarningsSchedule() {
+
+    const container =
+        document.getElementById("earningsSchedule");
+
+    const earnings =
+        events
+            .filter(event => event.type === "earnings")
+            .sort((a, b) => a.date.localeCompare(b.date));
+
+    const grouped = {};
+
+    earnings.forEach(event => {
+        if (!grouped[event.date]) {
+            grouped[event.date] = [];
+        }
+        grouped[event.date].push(event);
+    });
+
+    const dates = Object.keys(grouped).sort();
+
+    if (dates.length === 0) {
+        container.innerHTML =
+            `<div class="empty">目前沒有財報資料</div>`;
+        return;
+    }
+
+    container.innerHTML = dates.map(date => {
+
+        const dateObject = new Date(date + "T00:00:00");
+        const month = String(dateObject.getMonth() + 1).padStart(2, "0");
+        const day = String(dateObject.getDate()).padStart(2, "0");
+
+        const companies = grouped[date]
+            .map(company => company.title)
+            .join("、");
+
+        return `
+            <div class="earnings-date">
+                <div class="earnings-date-value">
+                    ${month}/${day}
+                </div>
+                <div class="earnings-companies">
+                    ${companies}
+                </div>
+            </div>
+        `;
+
+    }).join("");
+
+}
+
+
+const marketHolidays = {
+
+    // 🇹🇼 台灣證券交易所 TWSE
+    TW: {
+        "2026-01-01": "元旦",
+        "2026-02-12": "春節休市",
+        "2026-02-13": "春節休市",
+        "2026-02-15": "春節",
+        "2026-02-16": "春節",
+        "2026-02-17": "春節",
+        "2026-02-18": "春節",
+        "2026-02-19": "春節",
+        "2026-02-20": "春節補假",
+        "2026-02-27": "和平紀念日補假",
+        "2026-02-28": "和平紀念日",
+        "2026-04-03": "兒童節／清明節補假",
+        "2026-04-04": "兒童節",
+        "2026-04-05": "清明節",
+        "2026-04-06": "清明節補假",
+        "2026-05-01": "勞動節",
+        "2026-06-19": "端午節",
+        "2026-09-25": "中秋節",
+        "2026-09-28": "孔子誕辰紀念日／教師節",
+        "2026-10-09": "國慶日補假",
+        "2026-10-10": "國慶日",
+        "2026-10-25": "臺灣光復暨金門古寧頭大捷紀念日",
+        "2026-10-26": "臺灣光復暨金門古寧頭大捷紀念日補假",
+        "2026-12-25": "行憲紀念日"
+    },
+
+    // 🇯🇵 日本交易所 JPX
+    JP: {
+        "2026-01-01": "元旦",
+        "2026-01-02": "市場休市",
+        "2026-01-12": "成人之日",
+        "2026-02-11": "建國紀念日",
+        "2026-02-23": "天皇誕生日",
+        "2026-03-20": "春分之日",
+        "2026-04-29": "昭和之日",
+        "2026-05-04": "綠之日",
+        "2026-05-05": "兒童之日",
+        "2026-05-06": "憲法紀念日補假",
+        "2026-07-20": "海之日",
+        "2026-08-11": "山之日",
+        "2026-09-21": "敬老之日",
+        "2026-09-22": "休日",
+        "2026-09-23": "秋分之日",
+        "2026-10-12": "體育之日",
+        "2026-11-03": "文化之日",
+        "2026-11-23": "勤勞感謝之日",
+        "2026-12-31": "年末休市"
+    },
+
+    // 🇰🇷 韓國交易所 KRX
+    KR: {
+        "2026-01-01": "元旦",
+        "2026-02-16": "農曆新年",
+        "2026-02-17": "農曆新年",
+        "2026-02-18": "農曆新年",
+        "2026-03-02": "三一節補假",
+        "2026-05-01": "勞動節",
+        "2026-05-05": "兒童節",
+        "2026-05-25": "佛誕補假",
+        "2026-06-03": "地方選舉日",
+        "2026-07-17": "制憲節",
+        "2026-08-17": "光復節補假",
+        "2026-09-24": "秋夕",
+        "2026-09-25": "秋夕",
+        "2026-09-28": "秋夕補假",
+        "2026-10-05": "開天節補假",
+        "2026-10-09": "韓文日",
+        "2026-12-25": "聖誕節",
+        "2026-12-31": "年末休市"
+    },
+
+    // 🇺🇸 美國 NYSE / Nasdaq
+    US: {
+        "2026-01-01": "元旦",
+        "2026-01-19": "馬丁路德金恩紀念日",
+        "2026-02-16": "總統日",
+        "2026-04-03": "Good Friday",
+        "2026-05-25": "陣亡將士紀念日",
+        "2026-06-19": "Juneteenth",
+        "2026-07-03": "獨立日補假",
+        "2026-09-07": "勞動節",
+        "2026-11-26": "感恩節",
+        "2026-12-25": "聖誕節"
+    }
+
+};
+
+
+function getMarketStatus(country, dateKey) {
+
+    const date =
+        new Date(dateKey + "T00:00:00");
+
+    const day =
+        date.getDay();
+
+
+    // 星期六、星期日
+    if (day === 0 || day === 6) {
+
+        return {
+            open: false,
+            reason: "週末休市"
+        };
+
+    }
+
+
+    // 各交易所正式休市日
+    if (
+        marketHolidays[country] &&
+        marketHolidays[country][dateKey]
+    ) {
+
+        return {
+            open: false,
+            reason:
+                marketHolidays[country][dateKey]
+        };
+
+    }
+
+
+    return {
+        open: true,
+        reason: ""
+    };
+
+}
+
+
+function renderMarkets() {
+
+    const markets = [
+
+        {
+            country: "TW",
+            name: "🇹🇼 台股"
+        },
+
+        {
+            country: "JP",
+            name: "🇯🇵 日股"
+        },
+
+        {
+            country: "KR",
+            name: "🇰🇷 韓股"
+        },
+
+        {
+            country: "US",
+            name: "🇺🇸 美股"
+        }
+
+    ];
+
+
+    const dateKey =
+        getDateKey(selectedDate);
+
+
+    const container =
+        document.getElementById(
+            "markets"
+        );
+
+
+    container.innerHTML =
+
+        markets.map(market => {
+
+            const status =
+                getMarketStatus(
+                    market.country,
+                    dateKey
+                );
+
+
+            return `
+
+                <div class="market">
+
+                    <span>
+                        ${market.name}
+                    </span>
+
+
+                    <span class="${
+                        status.open
+                            ? "open"
+                            : "closed"
+                    }">
+
+                        ${
+                            status.open
+                                ? "🟢 開市"
+                                : "🔴 休市"
+                        }
+
+                    </span>
+
+                </div>
+
+                ${
+                    status.open
+                        ? ""
+                        : `
+                            <div class="market-holiday">
+                                ${status.reason}
+                            </div>
+                          `
+                }
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =====================================================
+   日期切換
+===================================================== */
+
+function changeDate(days) {
+
+
+    selectedDate.setDate(
+
+        selectedDate.getDate()
+        + days
+
+    );
+
+
+    renderEvents();
+
+}
+
+
+
+/* =====================================================
+   回到今天
+===================================================== */
+
+function goToday() {
+
+
+    selectedDate =
+        new Date();
+
+
+    renderEvents();
+
+}
+
+
+
+/* =====================================================
+   載入 Python 產生的 calendar-data.json
+===================================================== */
+
+async function loadCalendarData() {
+
+    try {
+
+        const jsonURL = new URL(
+            "calendar-data.json",
+            document.baseURI
+        );
+
+        jsonURL.searchParams.set(
+            "t",
+            Date.now()
+        );
+
+        console.log(
+            "📂 載入營收資料：",
+            jsonURL.href
+        );
+
+        const response = await fetch(
+            jsonURL.href,
+            {
+                method: "GET",
+                cache: "no-store"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                "calendar-data.json HTTP " +
+                response.status
+            );
+        }
+
+        const data = await response.json();
+
+        console.log(
+            "✅ calendar-data.json 載入成功",
+            data
+        );
+
+        if (
+            !data ||
+            !Array.isArray(data.revenue_events)
+        ) {
+            throw new Error(
+                "JSON 裡沒有 revenue_events 陣列"
+            );
+        }
+
+        revenueEvents = data.revenue_events
+            .filter(event => event && event.date)
+            .map(event => ({
+                date: String(event.date).substring(0, 10),
+                time: event.time || "依公告",
+                country: event.country || "TW",
+                type: "revenue",
+                stock_id: event.stock_id || "",
+                title: event.title || "",
+                importance: event.importance || "high",
+                month: event.month || "",
+                revenue: event.revenue ?? null,
+                mom: event.mom ?? null,
+                yoy: event.yoy ?? null,
+                description: event.description || ""
+            }));
+
+        console.log(
+            "📊 營收事件：",
+            revenueEvents.length,
+            revenueEvents
+        );
+
+    } catch (error) {
+
+        revenueEvents = [];
+
+        console.error(
+            "❌ calendar-data.json 載入失敗：",
+            error
+        );
+
+    }
+
+    renderEvents();
+
+}
+
+
+/* =====================================================
+   初始載入
+===================================================== */
+
+loadCalendarData();
+
+
+</script>
+
+
+</body>
+
+</html>
+
