@@ -332,96 +332,6 @@
 
 
         /* =========================
-           Earnings Result
-        ========================= */
-
-        .earnings-metrics {
-
-            display: grid;
-
-            grid-template-columns:
-                1fr
-                1fr;
-
-            gap: 8px;
-
-            margin-top: 10px;
-        }
-
-
-        .earnings-metric {
-
-            background: white;
-
-            border-radius: 8px;
-
-            padding: 12px;
-
-            border: 1px solid #e5e7eb;
-        }
-
-
-        .earnings-metric-title {
-
-            font-size: 13px;
-
-            color: #777;
-
-            margin-bottom: 8px;
-        }
-
-
-        .earnings-metric-line {
-
-            font-size: 14px;
-
-            line-height: 1.7;
-        }
-
-
-        .earnings-beat {
-
-            color: #16803c;
-
-            font-weight: bold;
-        }
-
-
-        .earnings-miss {
-
-            color: #d32f2f;
-
-            font-weight: bold;
-        }
-
-
-        .earnings-inline {
-
-            color: #777;
-
-            font-weight: bold;
-        }
-
-
-        .earnings-guidance {
-
-            margin-top: 10px;
-
-            padding: 10px 12px;
-
-            background: white;
-
-            border-radius: 8px;
-
-            border: 1px solid #e5e7eb;
-
-            font-size: 14px;
-
-            line-height: 1.7;
-        }
-
-
-        /* =========================
            Description
         ========================= */
 
@@ -578,13 +488,6 @@
                 padding: 9px 6px;
 
                 font-size: 14px;
-
-            }
-
-
-            .earnings-metrics {
-
-                grid-template-columns: 1fr;
 
             }
 
@@ -1091,239 +994,10 @@ function getDateKey(date) {
 function createEventHTML(event) {
 
     // =================================================
-    // 財報：顯示市場預期 vs 實際公布
+    // 財報使用不同版型
     // =================================================
 
     if (event.type === "earnings") {
-
-        const hasRevenue =
-            event.forecast_revenue !== null &&
-            event.actual_revenue !== null &&
-            event.forecast_revenue !== undefined &&
-            event.actual_revenue !== undefined;
-
-        const hasEPS =
-            event.forecast_eps !== null &&
-            event.actual_eps !== null &&
-            event.forecast_eps !== undefined &&
-            event.actual_eps !== undefined;
-
-
-        const formatB =
-            value =>
-                Number(value).toFixed(2) + "B";
-
-
-        const formatEPS =
-            value =>
-                "$" + Number(value).toFixed(2);
-
-
-        function statusText(status, difference, unit) {
-
-            if (status === "beat") {
-
-                return `
-                    <span class="earnings-beat">
-                        🟢 Beat +${unit === "B"
-                            ? Number(difference).toFixed(2) + "B"
-                            : "$" + Number(difference).toFixed(2)}
-                    </span>
-                `;
-
-            }
-
-            if (status === "miss") {
-
-                return `
-                    <span class="earnings-miss">
-                        🔴 Miss ${unit === "B"
-                            ? Number(difference).toFixed(2) + "B"
-                            : "$" + Number(difference).toFixed(2)}
-                    </span>
-                `;
-
-            }
-
-            if (status === "inline") {
-
-                return `
-                    <span class="earnings-inline">
-                        ⚪ 符合預期
-                    </span>
-                `;
-
-            }
-
-            return "";
-
-        }
-
-
-        let metricsHTML = "";
-
-
-        if (hasRevenue) {
-
-            metricsHTML += `
-
-                <div class="earnings-metric">
-
-                    <div class="earnings-metric-title">
-                        營收
-                    </div>
-
-                    <div class="earnings-metric-line">
-                        市場預期：
-                        <strong>
-                            $${formatB(
-                                event.forecast_revenue
-                            )}
-                        </strong>
-                    </div>
-
-                    <div class="earnings-metric-line">
-                        公布：
-                        <strong>
-                            $${formatB(
-                                event.actual_revenue
-                            )}
-                        </strong>
-                    </div>
-
-                    <div class="earnings-metric-line">
-                        ${statusText(
-                            event.revenue_status,
-                            event.revenue_difference,
-                            "B"
-                        )}
-                    </div>
-
-                </div>
-
-            `;
-
-        }
-
-
-        if (hasEPS) {
-
-            metricsHTML += `
-
-                <div class="earnings-metric">
-
-                    <div class="earnings-metric-title">
-                        Non-GAAP EPS
-                    </div>
-
-                    <div class="earnings-metric-line">
-                        市場預期：
-                        <strong>
-                            ${formatEPS(
-                                event.forecast_eps
-                            )}
-                        </strong>
-                    </div>
-
-                    <div class="earnings-metric-line">
-                        公布：
-                        <strong>
-                            ${formatEPS(
-                                event.actual_eps
-                            )}
-                        </strong>
-                    </div>
-
-                    <div class="earnings-metric-line">
-                        ${statusText(
-                            event.eps_status,
-                            event.eps_difference,
-                            "EPS"
-                        )}
-                    </div>
-
-                </div>
-
-            `;
-
-        }
-
-
-        let guidanceHTML = "";
-
-
-        if (
-            event.guidance_revenue !== null &&
-            event.guidance_revenue !== undefined
-        ) {
-
-            guidanceHTML = `
-
-                <div class="earnings-guidance">
-
-                    📈 <strong>下一季營收指引</strong><br>
-
-                    公司指引：
-                    <strong>
-                        $${formatB(
-                            event.guidance_revenue
-                        )}
-                    </strong>
-
-                    ${
-                        event.guidance_forecast_revenue !== null &&
-                        event.guidance_forecast_revenue !== undefined
-                            ? `
-                                <br>
-                                市場預期：
-                                <strong>
-                                    $${formatB(
-                                        event.guidance_forecast_revenue
-                                    )}
-                                </strong>
-
-                                ${
-                                    Number(
-                                        event.guidance_revenue
-                                    ) >
-                                    Number(
-                                        event.guidance_forecast_revenue
-                                    )
-                                        ? `
-                                            <br>
-                                            <span class="earnings-beat">
-                                                🟢 高於市場預期
-                                            </span>
-                                          `
-                                        : Number(
-                                            event.guidance_revenue
-                                          ) <
-                                          Number(
-                                            event.guidance_forecast_revenue
-                                          )
-                                            ? `
-                                                <br>
-                                                <span class="earnings-miss">
-                                                    🔴 低於市場預期
-                                                </span>
-                                              `
-                                            : `
-                                                <br>
-                                                <span class="earnings-inline">
-                                                    ⚪ 符合市場預期
-                                                </span>
-                                              `
-                                }
-                            `
-                            : ""
-                    }
-
-                </div>
-
-            `;
-
-        }
-
 
         return `
 
@@ -1336,18 +1010,6 @@ function createEventHTML(event) {
                 <div class="event-time">
                     🕒 ${event.time}
                 </div>
-
-                ${
-                    metricsHTML
-                        ? `
-                            <div class="earnings-metrics">
-                                ${metricsHTML}
-                            </div>
-                          `
-                        : ""
-                }
-
-                ${guidanceHTML}
 
                 <div class="event-description">
                     ${event.description}
@@ -1527,10 +1189,7 @@ function renderEvents() {
 
             event.date === dateKey
 
-        ).map(event => ({
-            ...event,
-            type: "earnings"
-        }));
+        );
 
 
     const earningsContainer =
@@ -1725,9 +1384,17 @@ function renderEvents() {
                 ".section"
             );
 
-        earningsSection.style.display = "block";
+        if (earnings.length > 0) {
 
-        renderEarningsSchedule();
+            earningsSection.style.display = "block";
+
+            renderEarningsSchedule();
+
+        } else {
+
+            earningsSection.style.display = "none";
+
+        }
 
     }
 
@@ -2119,16 +1786,12 @@ async function loadCalendarData() {
 
         if (Array.isArray(data.earnings_events)) {
 
-            earningsEvents = data.earnings_events.map(event => ({
-                ...event,
-                type: "earnings"
-            }));
+            earningsEvents = data.earnings_events;
 
             console.log(
                 "💰 財報事件：",
                 earningsEvents.length,
-                "筆",
-                earningsEvents
+                "筆"
             );
 
         } else {
