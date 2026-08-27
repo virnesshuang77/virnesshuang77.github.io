@@ -1,24 +1,16 @@
 {
-    "updated_at": "2026-08-27 05:05:09",
+    "updated_at": "2026-08-27 05:31:15",
     "source": "TWSE OpenAPI + Earnings Schedule",
-    "tracked_companies": [
-        "2330",
-        "2408",
-        "6770",
-        "2344",
-        "2454",
-        "3711"
-    ],
     "companies": {
         "2330": {
             "stock_id": "2330",
             "name": "台積電",
             "flag": "🇹🇼",
-            "data_date": "2026-08-17",
-            "month": "2026-07",
+            "data_date": "",
+            "month": "11507",
             "revenue": 467580548,
             "previous_revenue": 442679969,
-            "last_year_revenue": 323165707,
+            "last_year_revenue": 0,
             "mom": 5.624961765550318,
             "yoy": 44.68755126916978
         },
@@ -26,11 +18,11 @@
             "stock_id": "2344",
             "name": "華邦電",
             "flag": "🇹🇼",
-            "data_date": "2026-08-17",
-            "month": "2026-07",
+            "data_date": "",
+            "month": "11507",
             "revenue": 26773179,
             "previous_revenue": 20596799,
-            "last_year_revenue": 6837785,
+            "last_year_revenue": 0,
             "mom": 29.987086828395032,
             "yoy": 291.54754061439485
         },
@@ -38,11 +30,11 @@
             "stock_id": "2408",
             "name": "南亞科",
             "flag": "🇹🇼",
-            "data_date": "2026-08-17",
-            "month": "2026-07",
+            "data_date": "",
+            "month": "11507",
             "revenue": 43867609,
             "previous_revenue": 29388309,
-            "last_year_revenue": 5352227,
+            "last_year_revenue": 0,
             "mom": 49.268911661436526,
             "yoy": 719.6141344528174
         },
@@ -50,11 +42,11 @@
             "stock_id": "2454",
             "name": "聯發科",
             "flag": "🇹🇼",
-            "data_date": "2026-08-17",
-            "month": "2026-07",
+            "data_date": "",
+            "month": "11507",
             "revenue": 48474930,
             "previous_revenue": 58011756,
-            "last_year_revenue": 43220164,
+            "last_year_revenue": 0,
             "mom": -16.43947133749925,
             "yoy": 12.158135262975865
         },
@@ -62,11 +54,11 @@
             "stock_id": "3711",
             "name": "日月光投控",
             "flag": "🇹🇼",
-            "data_date": "2026-08-17",
-            "month": "2026-07",
+            "data_date": "",
+            "month": "11507",
             "revenue": 73783701,
             "previous_revenue": 65783102,
-            "last_year_revenue": 51542033,
+            "last_year_revenue": 0,
             "mom": 12.162088373394129,
             "yoy": 43.15248488549142
         },
@@ -74,99 +66,99 @@
             "stock_id": "6770",
             "name": "力積電",
             "flag": "🇹🇼",
-            "data_date": "2026-08-17",
-            "month": "2026-07",
+            "data_date": "",
+            "month": "11507",
             "revenue": 6668883,
             "previous_revenue": 6473929,
-            "last_year_revenue": 3910411,
+            "last_year_revenue": 0,
             "mom": 3.0113706838613767,
             "yoy": 70.54174100880957
         }
     },
     "revenue_events": [
         {
-            "date": "2026-08-17",
+            "date": "",
             "time": "依公告",
             "country": "TW",
             "type": "revenue",
             "stock_id": "2330",
-            "title": "🇹🇼 台積電 7月營收",
+            "title": "🇹🇼 台積電 07月營收",
             "importance": "high",
-            "month": "2026-07",
+            "month": "11507",
             "revenue": 467580548,
             "mom": 5.624961765550318,
             "yoy": 44.68755126916978,
-            "description": "營收：467580548　月增：5.624961765550318%　年增：44.68755126916978%"
+            "description": "營收：467580548 月增：5.624961765550318% 年增：44.68755126916978%"
         },
         {
-            "date": "2026-08-17",
+            "date": "",
             "time": "依公告",
             "country": "TW",
             "type": "revenue",
             "stock_id": "2344",
-            "title": "🇹🇼 華邦電 7月營收",
+            "title": "🇹🇼 華邦電 07月營收",
             "importance": "high",
-            "month": "2026-07",
+            "month": "11507",
             "revenue": 26773179,
             "mom": 29.987086828395032,
             "yoy": 291.54754061439485,
-            "description": "營收：26773179　月增：29.987086828395032%　年增：291.54754061439485%"
+            "description": "營收：26773179 月增：29.987086828395032% 年增：291.54754061439485%"
         },
         {
-            "date": "2026-08-17",
+            "date": "",
             "time": "依公告",
             "country": "TW",
             "type": "revenue",
             "stock_id": "2408",
-            "title": "🇹🇼 南亞科 7月營收",
+            "title": "🇹🇼 南亞科 07月營收",
             "importance": "high",
-            "month": "2026-07",
+            "month": "11507",
             "revenue": 43867609,
             "mom": 49.268911661436526,
             "yoy": 719.6141344528174,
-            "description": "營收：43867609　月增：49.268911661436526%　年增：719.6141344528174%"
+            "description": "營收：43867609 月增：49.268911661436526% 年增：719.6141344528174%"
         },
         {
-            "date": "2026-08-17",
+            "date": "",
             "time": "依公告",
             "country": "TW",
             "type": "revenue",
             "stock_id": "2454",
-            "title": "🇹🇼 聯發科 7月營收",
+            "title": "🇹🇼 聯發科 07月營收",
             "importance": "high",
-            "month": "2026-07",
+            "month": "11507",
             "revenue": 48474930,
             "mom": -16.43947133749925,
             "yoy": 12.158135262975865,
-            "description": "營收：48474930　月增：-16.43947133749925%　年增：12.158135262975865%"
+            "description": "營收：48474930 月增：-16.43947133749925% 年增：12.158135262975865%"
         },
         {
-            "date": "2026-08-17",
+            "date": "",
             "time": "依公告",
             "country": "TW",
             "type": "revenue",
             "stock_id": "3711",
-            "title": "🇹🇼 日月光投控 7月營收",
+            "title": "🇹🇼 日月光投控 07月營收",
             "importance": "high",
-            "month": "2026-07",
+            "month": "11507",
             "revenue": 73783701,
             "mom": 12.162088373394129,
             "yoy": 43.15248488549142,
-            "description": "營收：73783701　月增：12.162088373394129%　年增：43.15248488549142%"
+            "description": "營收：73783701 月增：12.162088373394129% 年增：43.15248488549142%"
         },
         {
-            "date": "2026-08-17",
+            "date": "",
             "time": "依公告",
             "country": "TW",
             "type": "revenue",
             "stock_id": "6770",
-            "title": "🇹🇼 力積電 7月營收",
+            "title": "🇹🇼 力積電 07月營收",
             "importance": "high",
-            "month": "2026-07",
+            "month": "11507",
             "revenue": 6668883,
             "mom": 3.0113706838613767,
             "yoy": 70.54174100880957,
-            "description": "營收：6668883　月增：3.0113706838613767%　年增：70.54174100880957%"
+            "description": "營收：6668883 月增：3.0113706838613767% 年增：70.54174100880957%"
         }
     ],
     "earnings_events": [
@@ -178,6 +170,12 @@
             "symbol": "NVDA",
             "title": "🇺🇸 NVIDIA 輝達 財報",
             "importance": "high",
+            "forecast_revenue": 46.5,
+            "actual_revenue": null,
+            "forecast_eps": 1.01,
+            "actual_eps": null,
+            "guidance_revenue": null,
+            "guidance_forecast_revenue": null,
             "description": "NVIDIA 輝達 財報公布"
         },
         {
@@ -188,17 +186,11 @@
             "symbol": "MU",
             "title": "🇺🇸 Micron 美光 財報",
             "importance": "high",
+            "forecast_revenue": null,
+            "actual_revenue": null,
+            "forecast_eps": null,
+            "actual_eps": null,
             "description": "Micron 美光 財報公布"
-        },
-        {
-            "date": "2026-10-14",
-            "time": "依公司公告",
-            "country": "TW",
-            "type": "earnings",
-            "symbol": "2408",
-            "title": "🇹🇼 南亞科 財報",
-            "importance": "high",
-            "description": "南亞科 財報公布"
         },
         {
             "date": "2026-10-15",
@@ -208,107 +200,11 @@
             "symbol": "2330",
             "title": "🇹🇼 台積電 財報",
             "importance": "high",
+            "forecast_revenue": null,
+            "actual_revenue": null,
+            "forecast_eps": null,
+            "actual_eps": null,
             "description": "台積電 財報公布"
-        },
-        {
-            "date": "2026-10-15",
-            "time": "依公司公告",
-            "country": "TW",
-            "type": "earnings",
-            "symbol": "6770",
-            "title": "🇹🇼 力積電 財報",
-            "importance": "high",
-            "description": "力積電 財報公布"
-        },
-        {
-            "date": "2026-10-21",
-            "time": "美股盤後",
-            "country": "US",
-            "type": "earnings",
-            "symbol": "TSLA",
-            "title": "🇺🇸 Tesla 特斯拉 財報",
-            "importance": "high",
-            "description": "Tesla 特斯拉 財報公布"
-        },
-        {
-            "date": "2026-10-22",
-            "time": "依公司公告",
-            "country": "TW",
-            "type": "earnings",
-            "symbol": "3711",
-            "title": "🇹🇼 日月光投控 財報",
-            "importance": "high",
-            "description": "日月光投控 財報公布"
-        },
-        {
-            "date": "2026-10-27",
-            "time": "依公司公告",
-            "country": "KR",
-            "type": "earnings",
-            "symbol": "000660",
-            "title": "🇰🇷 SK 海力士 財報",
-            "importance": "high",
-            "description": "SK 海力士 財報公布"
-        },
-        {
-            "date": "2026-10-28",
-            "time": "美股盤後",
-            "country": "US",
-            "type": "earnings",
-            "symbol": "META",
-            "title": "🇺🇸 Meta 財報",
-            "importance": "high",
-            "description": "Meta 財報公布"
-        },
-        {
-            "date": "2026-10-28",
-            "time": "美股盤後",
-            "country": "US",
-            "type": "earnings",
-            "symbol": "MSFT",
-            "title": "🇺🇸 Microsoft 微軟 財報",
-            "importance": "high",
-            "description": "Microsoft 微軟 財報公布"
-        },
-        {
-            "date": "2026-10-29",
-            "time": "依公司公告",
-            "country": "KR",
-            "type": "earnings",
-            "symbol": "005930",
-            "title": "🇰🇷 三星電子 財報",
-            "importance": "high",
-            "description": "三星電子 財報公布"
-        },
-        {
-            "date": "2026-10-29",
-            "time": "依公司公告",
-            "country": "TW",
-            "type": "earnings",
-            "symbol": "2344",
-            "title": "🇹🇼 華邦電 財報",
-            "importance": "high",
-            "description": "華邦電 財報公布"
-        },
-        {
-            "date": "2026-10-29",
-            "time": "美股盤後",
-            "country": "US",
-            "type": "earnings",
-            "symbol": "AAPL",
-            "title": "🇺🇸 Apple 蘋果 財報",
-            "importance": "high",
-            "description": "Apple 蘋果 財報公布"
-        },
-        {
-            "date": "2026-10-29",
-            "time": "美股盤後",
-            "country": "US",
-            "type": "earnings",
-            "symbol": "AMZN",
-            "title": "🇺🇸 Amazon 亞馬遜 財報",
-            "importance": "high",
-            "description": "Amazon 亞馬遜 財報公布"
         },
         {
             "date": "2026-11-03",
@@ -318,17 +214,11 @@
             "symbol": "AMD",
             "title": "🇺🇸 AMD 超微 財報",
             "importance": "high",
+            "forecast_revenue": null,
+            "actual_revenue": null,
+            "forecast_eps": null,
+            "actual_eps": null,
             "description": "AMD 超微 財報公布"
-        },
-        {
-            "date": "2026-11-04",
-            "time": "美股盤後",
-            "country": "US",
-            "type": "earnings",
-            "symbol": "SNDK",
-            "title": "🇺🇸 SanDisk 閃迪 財報",
-            "importance": "high",
-            "description": "SanDisk 閃迪 財報公布"
         }
     ]
 }
