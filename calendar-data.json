@@ -1,6 +1,6 @@
 {
-    "updated_at": "2026-08-27 12:32:45",
-    "source": "TWSE OpenAPI / t187ap05_L",
+    "updated_at": "2026-08-27 05:05:09",
+    "source": "TWSE OpenAPI + Earnings Schedule",
     "tracked_companies": [
         "2330",
         "2408",
@@ -167,6 +167,168 @@
             "mom": 3.0113706838613767,
             "yoy": 70.54174100880957,
             "description": "營收：6668883　月增：3.0113706838613767%　年增：70.54174100880957%"
+        }
+    ],
+    "earnings_events": [
+        {
+            "date": "2026-08-27",
+            "time": "美股盤後",
+            "country": "US",
+            "type": "earnings",
+            "symbol": "NVDA",
+            "title": "🇺🇸 NVIDIA 輝達 財報",
+            "importance": "high",
+            "description": "NVIDIA 輝達 財報公布"
+        },
+        {
+            "date": "2026-09-30",
+            "time": "美股盤後",
+            "country": "US",
+            "type": "earnings",
+            "symbol": "MU",
+            "title": "🇺🇸 Micron 美光 財報",
+            "importance": "high",
+            "description": "Micron 美光 財報公布"
+        },
+        {
+            "date": "2026-10-14",
+            "time": "依公司公告",
+            "country": "TW",
+            "type": "earnings",
+            "symbol": "2408",
+            "title": "🇹🇼 南亞科 財報",
+            "importance": "high",
+            "description": "南亞科 財報公布"
+        },
+        {
+            "date": "2026-10-15",
+            "time": "依公司公告",
+            "country": "TW",
+            "type": "earnings",
+            "symbol": "2330",
+            "title": "🇹🇼 台積電 財報",
+            "importance": "high",
+            "description": "台積電 財報公布"
+        },
+        {
+            "date": "2026-10-15",
+            "time": "依公司公告",
+            "country": "TW",
+            "type": "earnings",
+            "symbol": "6770",
+            "title": "🇹🇼 力積電 財報",
+            "importance": "high",
+            "description": "力積電 財報公布"
+        },
+        {
+            "date": "2026-10-21",
+            "time": "美股盤後",
+            "country": "US",
+            "type": "earnings",
+            "symbol": "TSLA",
+            "title": "🇺🇸 Tesla 特斯拉 財報",
+            "importance": "high",
+            "description": "Tesla 特斯拉 財報公布"
+        },
+        {
+            "date": "2026-10-22",
+            "time": "依公司公告",
+            "country": "TW",
+            "type": "earnings",
+            "symbol": "3711",
+            "title": "🇹🇼 日月光投控 財報",
+            "importance": "high",
+            "description": "日月光投控 財報公布"
+        },
+        {
+            "date": "2026-10-27",
+            "time": "依公司公告",
+            "country": "KR",
+            "type": "earnings",
+            "symbol": "000660",
+            "title": "🇰🇷 SK 海力士 財報",
+            "importance": "high",
+            "description": "SK 海力士 財報公布"
+        },
+        {
+            "date": "2026-10-28",
+            "time": "美股盤後",
+            "country": "US",
+            "type": "earnings",
+            "symbol": "META",
+            "title": "🇺🇸 Meta 財報",
+            "importance": "high",
+            "description": "Meta 財報公布"
+        },
+        {
+            "date": "2026-10-28",
+            "time": "美股盤後",
+            "country": "US",
+            "type": "earnings",
+            "symbol": "MSFT",
+            "title": "🇺🇸 Microsoft 微軟 財報",
+            "importance": "high",
+            "description": "Microsoft 微軟 財報公布"
+        },
+        {
+            "date": "2026-10-29",
+            "time": "依公司公告",
+            "country": "KR",
+            "type": "earnings",
+            "symbol": "005930",
+            "title": "🇰🇷 三星電子 財報",
+            "importance": "high",
+            "description": "三星電子 財報公布"
+        },
+        {
+            "date": "2026-10-29",
+            "time": "依公司公告",
+            "country": "TW",
+            "type": "earnings",
+            "symbol": "2344",
+            "title": "🇹🇼 華邦電 財報",
+            "importance": "high",
+            "description": "華邦電 財報公布"
+        },
+        {
+            "date": "2026-10-29",
+            "time": "美股盤後",
+            "country": "US",
+            "type": "earnings",
+            "symbol": "AAPL",
+            "title": "🇺🇸 Apple 蘋果 財報",
+            "importance": "high",
+            "description": "Apple 蘋果 財報公布"
+        },
+        {
+            "date": "2026-10-29",
+            "time": "美股盤後",
+            "country": "US",
+            "type": "earnings",
+            "symbol": "AMZN",
+            "title": "🇺🇸 Amazon 亞馬遜 財報",
+            "importance": "high",
+            "description": "Amazon 亞馬遜 財報公布"
+        },
+        {
+            "date": "2026-11-03",
+            "time": "美股盤後",
+            "country": "US",
+            "type": "earnings",
+            "symbol": "AMD",
+            "title": "🇺🇸 AMD 超微 財報",
+            "importance": "high",
+            "description": "AMD 超微 財報公布"
+        },
+        {
+            "date": "2026-11-04",
+            "time": "美股盤後",
+            "country": "US",
+            "type": "earnings",
+            "symbol": "SNDK",
+            "title": "🇺🇸 SanDisk 閃迪 財報",
+            "importance": "high",
+            "description": "SanDisk 閃迪 財報公布"
         }
     ]
 }
