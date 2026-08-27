@@ -1,5 +1,5 @@
 {
-    "updated_at": "2026-08-27 05:31:15",
+    "updated_at": "2026-08-27 05:37:17",
     "source": "TWSE OpenAPI + Earnings Schedule",
     "companies": {
         "2330": {
@@ -171,9 +171,9 @@
             "title": "🇺🇸 NVIDIA 輝達 財報",
             "importance": "high",
             "forecast_revenue": 46.5,
-            "actual_revenue": null,
+            "actual_revenue": 47.2,
             "forecast_eps": 1.01,
-            "actual_eps": null,
+            "actual_eps": 1.05,
             "guidance_revenue": null,
             "guidance_forecast_revenue": null,
             "description": "NVIDIA 輝達 財報公布"
