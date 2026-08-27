@@ -1523,12 +1523,14 @@ function renderEvents() {
 
     const earnings =
 
-        events.filter(event =>
+        earningsEvents.filter(event =>
 
-            event.date === dateKey &&
-            event.type === "earnings"
+            event.date === dateKey
 
-        );
+        ).map(event => ({
+            ...event,
+            type: "earnings"
+        }));
 
 
     const earningsContainer =
@@ -1723,17 +1725,9 @@ function renderEvents() {
                 ".section"
             );
 
-        if (earnings.length > 0) {
+        earningsSection.style.display = "block";
 
-            earningsSection.style.display = "block";
-
-            renderEarningsSchedule();
-
-        } else {
-
-            earningsSection.style.display = "none";
-
-        }
+        renderEarningsSchedule();
 
     }
 
@@ -2102,14 +2096,6 @@ async function loadCalendarData() {
 
             revenueEvents = data.revenue_events;
 
-            events = events.filter(
-                event => event.type !== "revenue"
-            );
-
-            events.push(
-                ...revenueEvents
-            );
-
             console.log(
                 "📊 營收事件：",
                 revenueEvents.length,
@@ -2127,47 +2113,22 @@ async function loadCalendarData() {
         }
 
 
-        if (Array.isArray(data.earnings_events)) {
-
-            earningsEvents = data.earnings_events;
-
-            events = events.filter(
-                event => event.type !== "earnings"
-            );
-
-            events.push(
-                ...earningsEvents
-            );
-
-            console.log(
-                "💰 財報事件：",
-                earningsEvents.length,
-                "筆"
-            );
-
-        } else {
-
-            earningsEvents = [];
-
-            console.warn(
-                "⚠️ JSON 沒有 earnings_events"
-            );
-
-        }
-
-
         /* =================================================
            公司財報
         ================================================= */
 
         if (Array.isArray(data.earnings_events)) {
 
-            earningsEvents = data.earnings_events;
+            earningsEvents = data.earnings_events.map(event => ({
+                ...event,
+                type: "earnings"
+            }));
 
             console.log(
                 "💰 財報事件：",
                 earningsEvents.length,
-                "筆"
+                "筆",
+                earningsEvents
             );
 
         } else {
