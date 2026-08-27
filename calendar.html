@@ -712,6 +712,14 @@
 
 let selectedDate = new Date();
 
+/* =====================================================
+   Python / JSON 動態資料
+===================================================== */
+
+let revenueEvents = [];
+let earningsEvents = [];
+
+
 
 
 /* =====================================================
@@ -732,692 +740,180 @@ let selectedDate = new Date();
 
 let events = [
 
-
     // =================================================
-    // 🇰🇷 韓國央行 BOK
+    // 固定的重要事件／央行／非農
     // =================================================
 
     {
         date: "2026-08-27",
-
         time: "09:00",
-
         country: "KR",
-
         type: "central",
-
-        title:
-            "🇰🇷 韓國央行 BOK 利率決策",
-
-        previous:
-            "2.75%",
-
-        forecast:
-            "3.00%",
-
-        actual:
-            "3.00%",
-
-        importance:
-            "high",
-
-        description:
-            "韓國銀行決定升息 0.25 個百分點，基準利率由 2.75% 升至 3.00%。"
+        title: "🇰🇷 韓國央行 BOK 利率決策",
+        previous: "2.75%",
+        forecast: "3.00%",
+        actual: "3.00%",
+        importance: "high",
+        description: "韓國銀行決定升息 0.25 個百分點，基準利率由 2.75% 升至 3.00%。"
     },
-
 
     {
         date: "2026-10-22",
-
         time: "09:00",
-
         country: "KR",
-
         type: "central",
-
-        title:
-            "🇰🇷 韓國央行 BOK 利率決策",
-
-        previous:
-            "3.00%",
-
-        forecast:
-            "—",
-
-        actual:
-            null,
-
-        importance:
-            "high",
-
-        description:
-            "韓國銀行公布基準利率決策。"
+        title: "🇰🇷 韓國央行 BOK 利率決策",
+        previous: "3.00%",
+        forecast: "—",
+        actual: null,
+        importance: "high",
+        description: "韓國銀行公布基準利率決策。"
     },
-
 
     {
         date: "2026-11-26",
-
         time: "09:00",
-
         country: "KR",
-
         type: "central",
-
-        title:
-            "🇰🇷 韓國央行 BOK 利率決策",
-
-        previous:
-            "3.00%",
-
-        forecast:
-            "—",
-
-        actual:
-            null,
-
-        importance:
-            "high",
-
-        description:
-            "韓國銀行公布基準利率決策。"
+        title: "🇰🇷 韓國央行 BOK 利率決策",
+        previous: "3.00%",
+        forecast: "—",
+        actual: null,
+        importance: "high",
+        description: "韓國銀行公布基準利率決策。"
     },
-
-
-
-    // =================================================
-    // 🇺🇸 美國 FED
-    // =================================================
 
     {
         date: "2026-09-17",
-
         time: "02:00",
-
         country: "US",
-
         type: "central",
-
-        title:
-            "🇺🇸 美國 FED 利率決策",
-
-        previous:
-            "3.50–3.75%",
-
-        forecast:
-            "—",
-
-        actual:
-            null,
-
-        importance:
-            "high",
-
-        description:
-            "聯準會公布聯邦基金利率目標區間。"
+        title: "🇺🇸 美國 FED 利率決策",
+        previous: "3.50–3.75%",
+        forecast: "—",
+        actual: null,
+        importance: "high",
+        description: "聯準會公布聯邦基金利率目標區間。"
     },
-
 
     {
         date: "2026-10-29",
-
         time: "02:00",
-
         country: "US",
-
         type: "central",
-
-        title:
-            "🇺🇸 美國 FED 利率決策",
-
-        previous:
-            "3.50–3.75%",
-
-        forecast:
-            "—",
-
-        actual:
-            null,
-
-        importance:
-            "high",
-
-        description:
-            "聯準會公布聯邦基金利率目標區間。"
+        title: "🇺🇸 美國 FED 利率決策",
+        previous: "3.50–3.75%",
+        forecast: "—",
+        actual: null,
+        importance: "high",
+        description: "聯準會公布聯邦基金利率目標區間。"
     },
-
 
     {
         date: "2026-12-09",
-
         time: "03:00",
-
         country: "US",
-
         type: "central",
-
-        title:
-            "🇺🇸 美國 FED 利率決策",
-
-        previous:
-            "3.50–3.75%",
-
-        forecast:
-            "—",
-
-        actual:
-            null,
-
-        importance:
-            "high",
-
-        description:
-            "聯準會公布聯邦基金利率目標區間。"
+        title: "🇺🇸 美國 FED 利率決策",
+        previous: "3.50–3.75%",
+        forecast: "—",
+        actual: null,
+        importance: "high",
+        description: "聯準會公布聯邦基金利率目標區間。"
     },
-
-
-
-    // =================================================
-    // 🇯🇵 日本央行 BOJ
-    // =================================================
 
     {
         date: "2026-09-18",
-
         time: "未定",
-
         country: "JP",
-
         type: "central",
-
-        title:
-            "🇯🇵 日本央行 BOJ 利率決策",
-
-        previous:
-            "0.75%",
-
-        forecast:
-            "—",
-
-        actual:
-            null,
-
-        importance:
-            "high",
-
-        description:
-            "日本銀行貨幣政策會議後公布利率決策。"
+        title: "🇯🇵 日本央行 BOJ 利率決策",
+        previous: "0.75%",
+        forecast: "—",
+        actual: null,
+        importance: "high",
+        description: "日本銀行貨幣政策會議後公布利率決策。"
     },
-
 
     {
         date: "2026-10-30",
-
         time: "未定",
-
         country: "JP",
-
         type: "central",
-
-        title:
-            "🇯🇵 日本央行 BOJ 利率決策",
-
-        previous:
-            "0.75%",
-
-        forecast:
-            "—",
-
-        actual:
-            null,
-
-        importance:
-            "high",
-
-        description:
-            "日本銀行貨幣政策會議後公布利率決策。"
+        title: "🇯🇵 日本央行 BOJ 利率決策",
+        previous: "0.75%",
+        forecast: "—",
+        actual: null,
+        importance: "high",
+        description: "日本銀行貨幣政策會議後公布利率決策。"
     },
-
 
     {
         date: "2026-12-18",
-
         time: "未定",
-
         country: "JP",
-
         type: "central",
-
-        title:
-            "🇯🇵 日本央行 BOJ 利率決策",
-
-        previous:
-            "0.75%",
-
-        forecast:
-            "—",
-
-        actual:
-            null,
-
-        importance:
-            "high",
-
-        description:
-            "日本銀行貨幣政策會議後公布利率決策。"
+        title: "🇯🇵 日本央行 BOJ 利率決策",
+        previous: "0.75%",
+        forecast: "—",
+        actual: null,
+        importance: "high",
+        description: "日本銀行貨幣政策會議後公布利率決策。"
     },
-
-
-
-    // =================================================
-    // 🇹🇼 台灣央行 CBC
-    // =================================================
 
     {
         date: "2026-09-17",
-
         time: "下午",
-
         country: "TW",
-
         type: "central",
-
-        title:
-            "🇹🇼 台灣央行 利率決策",
-
-        previous:
-            "2.00%",
-
-        forecast:
-            "—",
-
-        actual:
-            null,
-
-        importance:
-            "high",
-
-        description:
-            "中央銀行理監事聯席會議公布貨幣政策決策。"
+        title: "🇹🇼 台灣央行 利率決策",
+        previous: "2.00%",
+        forecast: "—",
+        actual: null,
+        importance: "high",
+        description: "中央銀行理監事聯席會議公布貨幣政策決策。"
     },
-
 
     {
         date: "2026-12-17",
-
         time: "下午",
-
         country: "TW",
-
         type: "central",
-
-        title:
-            "🇹🇼 台灣央行 利率決策",
-
-        previous:
-            "2.00%",
-
-        forecast:
-            "—",
-
-        actual:
-            null,
-
-        importance:
-            "high",
-
-        description:
-            "中央銀行理監事聯席會議公布貨幣政策決策。"
+        title: "🇹🇼 台灣央行 利率決策",
+        previous: "2.00%",
+        forecast: "—",
+        actual: null,
+        importance: "high",
+        description: "中央銀行理監事聯席會議公布貨幣政策決策。"
     },
 
-
-
-    // =================================================
-    // 🇺🇸 美國非農
-    // =================================================
-
     {
-    date: "2026-09-04",
-
-    time: "20:30",
-
-    country: "US",
-
-    type: "important",
-
-    title:
-        "🇺🇸 美國非農就業人數",
-
-    previous:
-        "-2.3萬",
-
-    forecast:
-        "+1.2萬",
-
-    actual:
-        null,
-
-    importance:
-        "high",
-
-    description:
-        "美國8月非農就業人數。"
-    },
-
-
-    // =================================================
-    // 💰 重點公司財報
-    // =================================================
-
-    {
-        date: "2026-09-30",
-        time: "盤後",
+        date: "2026-09-04",
+        time: "20:30",
         country: "US",
-        type: "earnings",
-
-        title:
-            "🇺🇸 美光 Micron 財報",
-
-        importance:
-            "high",
-
-        description:
-            "Micron Q4 FY2026 財報。日期已由公司公布。"
+        type: "important",
+        title: "🇺🇸 美國非農就業人數",
+        previous: "-2.3萬",
+        forecast: "+1.2萬",
+        actual: null,
+        importance: "high",
+        description: "美國8月非農就業人數。"
     },
 
-
-    // 🇹🇼 南亞科
     {
-        date: "2026-10-14",
-        time: "待公布",
-        country: "TW",
-        type: "earnings",
-
-        title:
-            "🇹🇼 南亞科 財報",
-
-        importance:
-            "high",
-
-        description:
-            "南亞科 2026 年第三季財報。"
-    },
-
-
-    // 🇹🇼 力積電
-    {
-        date: "2026-10-15",
-        time: "待公布",
-        country: "TW",
-        type: "earnings",
-
-        title:
-            "🇹🇼 力積電 財報",
-
-        importance:
-            "high",
-
-        description:
-            "力積電 2026 年第三季財報。日期目前為市場預估。"
-    },
-
-
-    // 🇹🇼 台積電
-    {
-        date: "2026-10-15",
-        time: "待公布",
-        country: "TW",
-        type: "earnings",
-
-        title:
-            "🇹🇼 台積電 財報",
-
-        importance:
-            "high",
-
-        description:
-            "台積電 2026 年第三季財報。日期目前列為預估日期。"
-    },
-
-
-    // 🇰🇷 SK 海力士
-    {
-        date: "2026-10-27",
-        time: "盤後",
-        country: "KR",
-        type: "earnings",
-
-        title:
-            "🇰🇷 SK 海力士 財報",
-
-        importance:
-            "high",
-
-        description:
-            "SK 海力士 2026 年第三季財報。"
-    },
-
-
-    // 🇺🇸 Tesla
-    {
-        date: "2026-10-21",
-        time: "盤後",
+        date: "2026-09-04",
+        time: "20:30",
         country: "US",
-        type: "earnings",
-
-        title:
-            "🇺🇸 Tesla 特斯拉 財報",
-
-        importance:
-            "high",
-
-        description:
-            "Tesla 2026 年第三季財報。"
-    },
-
-
-    // 🇹🇼 日月光
-    {
-        date: "2026-10-22",
-        time: "待公布",
-        country: "TW",
-        type: "earnings",
-
-        title:
-            "🇹🇼 日月光投控 財報",
-
-        importance:
-            "high",
-
-        description:
-            "日月光投控 2026 年第三季財報。"
-    },
-
-
-    // 🇰🇷 Samsung
-    {
-        date: "2026-10-29",
-        time: "盤前",
-        country: "KR",
-        type: "earnings",
-
-        title:
-            "🇰🇷 三星電子 財報",
-
-        importance:
-            "high",
-
-        description:
-            "三星電子 2026 年第三季財報。"
-    },
-
-
-    // 🇹🇼 華邦電
-    {
-        date: "2026-10-29",
-        time: "待公布",
-        country: "TW",
-        type: "earnings",
-
-        title:
-            "🇹🇼 華邦電 財報",
-
-        importance:
-            "high",
-
-        description:
-            "華邦電 2026 年第三季財報。日期目前為預估日期。"
-    },
-
-
-    // 🇺🇸 Microsoft
-    {
-        date: "2026-10-28",
-        time: "盤後",
-        country: "US",
-        type: "earnings",
-
-        title:
-            "🇺🇸 Microsoft 微軟 財報",
-
-        importance:
-            "high",
-
-        description:
-            "Microsoft Q1 FY2027 財報。"
-    },
-
-
-    // 🇺🇸 Meta
-    {
-        date: "2026-10-28",
-        time: "盤後",
-        country: "US",
-        type: "earnings",
-
-        title:
-            "🇺🇸 Meta 財報",
-
-        importance:
-            "high",
-
-        description:
-            "Meta 2026 年第三季財報。"
-    },
-
-
-    // 🇺🇸 Apple
-    {
-        date: "2026-10-29",
-        time: "盤後",
-        country: "US",
-        type: "earnings",
-
-        title:
-            "🇺🇸 Apple 蘋果 財報",
-
-        importance:
-            "high",
-
-        description:
-            "Apple Q4 FY2026 財報。"
-    },
-
-
-    // 🇺🇸 Amazon
-    {
-        date: "2026-10-29",
-        time: "盤後",
-        country: "US",
-        type: "earnings",
-
-        title:
-            "🇺🇸 Amazon 亞馬遜 財報",
-
-        importance:
-            "high",
-
-        description:
-            "Amazon 2026 年第三季財報。"
-    },
-
-
-    // 🇹🇼 聯發科
-    // 目前官方只公布到每月營收，第三季財報日期尚未確認
-    // 暫時不要亂填
-
-
-    // 🇺🇸 AMD
-    {
-        date: "2026-11-03",
-        time: "盤後",
-        country: "US",
-        type: "earnings",
-
-        title:
-            "🇺🇸 AMD 超微 財報",
-
-        importance:
-            "high",
-
-        description:
-            "AMD 2026 年第三季財報。"
-    },
-
-
-    // 🇺🇸 SanDisk
-    {
-        date: "2026-11-04",
-        time: "待公布",
-        country: "US",
-        type: "earnings",
-
-        title:
-            "🇺🇸 SanDisk 閃迪 財報",
-
-        importance:
-            "high",
-
-        description:
-            "SanDisk Q1 FY2027 財報。日期目前為市場預估。"
-    },
-
-
-// =================================================
-// 🇺🇸 美國失業率
-// =================================================
-
-{
-    date: "2026-09-04",
-
-    time: "20:30",
-
-    country: "US",
-
-    type: "important",
-
-    title:
-        "🇺🇸 美國失業率",
-
-    previous:
-        "4.1%",
-
-    forecast:
-        "4.2%",
-
-    actual:
-        null,
-
-    importance:
-        "high",
-
-    description:
-        "美國8月失業率。"
-}
+        type: "important",
+        title: "🇺🇸 美國失業率",
+        previous: "4.1%",
+        forecast: "4.2%",
+        actual: null,
+        importance: "high",
+        description: "美國8月失業率。"
+    }
 
 ];
-
-
 
 /* =====================================================
    日期格式
@@ -1689,11 +1185,9 @@ function renderEvents() {
 
     const earnings =
 
-        events.filter(event =>
+        earningsEvents.filter(event =>
 
-            event.date === dateKey &&
-
-            event.type === "earnings"
+            event.date === dateKey
 
         );
 
@@ -1830,9 +1324,8 @@ function renderEvents() {
 
 
     const revenues =
-        events.filter(event =>
-            event.date === dateKey &&
-            event.type === "revenue"
+        revenueEvents.filter(event =>
+            event.date === dateKey
         );
 
 
@@ -1926,8 +1419,8 @@ function renderEarningsSchedule() {
         document.getElementById("earningsSchedule");
 
     const earnings =
-        events
-            .filter(event => event.type === "earnings")
+        earningsEvents
+            .slice()
             .sort((a, b) => a.date.localeCompare(b.date));
 
     const grouped = {};
@@ -2261,28 +1754,69 @@ async function loadCalendarData() {
             data
         );
 
+
+        /* =================================================
+           台灣月營收
+        ================================================= */
+
         if (Array.isArray(data.revenue_events)) {
 
-            // 移除舊的手動營收事件
-            events = events.filter(
-                event => event.type !== "revenue"
+            revenueEvents = data.revenue_events;
+
+            console.log(
+                "📊 營收事件：",
+                revenueEvents.length,
+                "筆"
             );
 
-            // 加入 Python 最新產生的營收事件
-            events.push(
-                ...data.revenue_events
+        } else {
+
+            revenueEvents = [];
+
+            console.warn(
+                "⚠️ JSON 沒有 revenue_events"
             );
 
         }
 
+
+        /* =================================================
+           公司財報
+        ================================================= */
+
+        if (Array.isArray(data.earnings_events)) {
+
+            earningsEvents = data.earnings_events;
+
+            console.log(
+                "💰 財報事件：",
+                earningsEvents.length,
+                "筆"
+            );
+
+        } else {
+
+            earningsEvents = [];
+
+            console.warn(
+                "⚠️ JSON 沒有 earnings_events"
+            );
+
+        }
+
+
     } catch (error) {
 
         console.warn(
-            "⚠️ calendar-data.json 載入失敗，將使用網頁內建資料：",
+            "⚠️ calendar-data.json 載入失敗：",
             error
         );
 
+        revenueEvents = [];
+        earningsEvents = [];
+
     }
+
 
     // 不管 JSON 成功或失敗，都把畫面畫出來
     renderEvents();
@@ -2292,6 +1826,9 @@ async function loadCalendarData() {
 
 /* =====================================================
    初始載入
+===================================================== */
+
+
 ===================================================== */
 
 loadCalendarData();
