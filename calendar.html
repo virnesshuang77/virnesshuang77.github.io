@@ -116,6 +116,68 @@
 
 
         /* =========================
+           Main Navigation
+        ========================= */
+
+        .main-nav {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 12px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.05);
+        }
+
+
+        .navlink {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            color: #222;
+
+            background: #eef1f5;
+
+            padding: 10px 14px;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            transition: 0.2s;
+        }
+
+
+        .navlink:hover {
+
+            background: #dfe4ea;
+        }
+
+
+        .navlink.active {
+
+            background: #222;
+
+            color: white;
+
+        }
+
+
+        /* =========================
            Section
         ========================= */
 
@@ -408,6 +470,28 @@
             }
 
 
+            .main-nav {
+
+                gap: 6px;
+
+                padding: 10px;
+
+            }
+
+
+            .navlink {
+
+                flex: 1 1 45%;
+
+                text-align: center;
+
+                padding: 9px 6px;
+
+                font-size: 14px;
+
+            }
+
+
             .event-title {
 
                 font-size: 16px;
@@ -485,6 +569,53 @@
 
     </div>
 
+
+    <!-- =========================
+         主選單
+    ========================= -->
+
+    <nav class="main-nav">
+
+        <a
+            class="navlink"
+            href="index.html"
+        >
+            📊 融資融券維持率
+        </a>
+
+
+        <a
+            class="navlink active"
+            href="calendar.html"
+        >
+            📅 每日行事曆
+        </a>
+
+
+        <a
+            class="navlink"
+            href="portfolio.html"
+        >
+            📊 投資績效名片
+        </a>
+
+
+        <a
+            class="navlink"
+            href="foreign.html"
+        >
+            🏦 外資買賣超
+        </a>
+
+
+        <a
+            class="navlink"
+            href="broker.html"
+        >
+            🏦 投信買賣超
+        </a>
+
+    </nav>
 
 
     <!-- =========================
