@@ -1523,9 +1523,10 @@ function renderEvents() {
 
     const earnings =
 
-        earningsEvents.filter(event =>
+        events.filter(event =>
 
-            event.date === dateKey
+            event.date === dateKey &&
+            event.type === "earnings"
 
         );
 
@@ -2101,6 +2102,14 @@ async function loadCalendarData() {
 
             revenueEvents = data.revenue_events;
 
+            events = events.filter(
+                event => event.type !== "revenue"
+            );
+
+            events.push(
+                ...revenueEvents
+            );
+
             console.log(
                 "📊 營收事件：",
                 revenueEvents.length,
@@ -2113,6 +2122,35 @@ async function loadCalendarData() {
 
             console.warn(
                 "⚠️ JSON 沒有 revenue_events"
+            );
+
+        }
+
+
+        if (Array.isArray(data.earnings_events)) {
+
+            earningsEvents = data.earnings_events;
+
+            events = events.filter(
+                event => event.type !== "earnings"
+            );
+
+            events.push(
+                ...earningsEvents
+            );
+
+            console.log(
+                "💰 財報事件：",
+                earningsEvents.length,
+                "筆"
+            );
+
+        } else {
+
+            earningsEvents = [];
+
+            console.warn(
+                "⚠️ JSON 沒有 earnings_events"
             );
 
         }
