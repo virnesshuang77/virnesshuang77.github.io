@@ -2,9 +2,12 @@ name: Update Three Institutions Data
 
 on:
   schedule:
-    # GitHub Actions 使用 UTC；台灣 15:01 = UTC 07:01
-    # 週一～週五執行，台灣無日光節約時間。
+    # 台灣時間 15:01 執行
+    # GitHub Actions 使用 UTC，所以台灣 15:01 = UTC 07:01
+    # 週一～週五
     - cron: "1 7 * * 1-5"
+
+  # 可以在 GitHub Actions 手動執行
   workflow_dispatch:
 
 permissions:
@@ -15,26 +18,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. 下載 Repository
       - name: Checkout
         uses: actions/checkout@v4
 
+      # 2. 安裝 Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
+      # 3. 執行 cash.py，產生 cash.json
       - name: Fetch TWSE three institutions data
-        run: python cash.py
+        run: |
+          python cash.py
 
+      # 4. 確認 cash.json 確實存在
+      - name: Verify cash.json
+        run: |
+          echo "===== cash.json 檔案確認 ====="
+
+          if [ ! -f cash.json ]; then
+            echo "ERROR: cash.json 不存在！"
+            exit 1
+          fi
+
+          ls -lh cash.json
+
+          echo ""
+          echo "===== cash.json 前 500 字元 ====="
+          head -c 500 cash.json
+          echo ""
+
+      # 5. Commit 更新後的 cash.json
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          if git diff --quiet; then
-            echo "No data change. Nothing to commit."
-            exit 0
-          fi
 
           git add cash.json
 
@@ -42,6 +62,6 @@ jobs:
             echo "No data change. Nothing to commit."
             exit 0
           fi
-          
+
           git commit -m "Update cash"
           git push
