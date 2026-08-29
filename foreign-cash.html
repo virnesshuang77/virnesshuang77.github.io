@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三大法人買賣超</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;background:#f5f6f8;color:#222;
+  font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif
+}
+.header{
+  height:62px;background:#fff;border-bottom:1px solid #e5e5e5;
+  display:flex;align-items:center;padding:0 28px
+}
+.logo{font-size:19px;font-weight:700;color:#238fc4}
+.wrap{max-width:1150px;margin:42px auto;padding:0 22px}
+.title{font-size:28px;font-weight:500;margin:0}
+.subtitle{margin-top:8px;color:#777;font-size:14px}
+.date{
+  margin-top:28px;background:#fff;border:1px solid #e2e2e2;
+  padding:18px 20px;border-radius:5px;
+  display:flex;justify-content:space-between;align-items:center
+}
+.date strong{font-size:20px;font-weight:500}
+.unit{color:#777;font-size:13px}
+.cards{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;margin-top:18px
+}
+.card{
+  background:#fff;border:1px solid #e2e2e2;border-radius:5px;
+  padding:18px 20px
+}
+.card .label{font-size:14px;color:#666}
+.card .value{font-size:25px;margin-top:10px;font-weight:600}
+.positive{color:#e53935;font-weight:600}
+.negative{color:#1687bf;font-weight:600}
+.table-wrap{
+  margin-top:18px;background:#fff;border:1px solid #ddd;
+  border-radius:5px;overflow:hidden
+}
+table{width:100%;border-collapse:collapse}
+thead{background:#268fc5;color:#fff}
+th,td{padding:17px 22px;text-align:right}
+th:first-child,td:first-child{text-align:left}
+th{font-size:14px;font-weight:500}
+td{font-size:15px;border-bottom:1px solid #eee}
+tbody tr:nth-child(even){background:#f2f7fb}
+tbody tr:last-child td{border-bottom:0}
+.name{font-weight:500}
+
+/* ===== 10 個交易日走勢圖 ===== */
+.chart-box{
+  margin-top:22px;background:#fff;border:1px solid #ddd;
+  border-radius:5px;padding:24px 24px 20px
+}
+.chart-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:18px
+}
+.chart-title{font-size:19px;font-weight:500}
+.chart-desc{font-size:12px;color:#888;margin-top:5px}
+.legend{display:flex;gap:20px;font-size:12px;color:#666}
+.legend span{display:flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.foreign{background:#e53935}
+.dot.trust{background:#1687bf}
+.dot.dealer{background:#f39c12}
+.chart-scroll{overflow-x:auto}
+svg{display:block;width:100%;min-width:850px;height:390px}
+.gridline{stroke:#e6e9ec;stroke-width:1;stroke-dasharray:4 4}
+.zero-line{stroke:#999;stroke-width:1.5}
+.vline{stroke:#f0f1f2;stroke-width:1}
+.axis{stroke:#aaa;stroke-width:1}
+.axis-text{font-size:11px;fill:#777}
+.trend-line{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.trend-point{stroke:#fff;stroke-width:2}
+
+.tooltip{
+  position:fixed;display:none;background:rgba(30,30,30,.94);color:#fff;
+  padding:10px 13px;border-radius:5px;font-size:12px;
+  pointer-events:none;z-index:50;line-height:1.7;white-space:nowrap
+}
+.note{margin-top:16px;color:#777;font-size:12px;line-height:1.8}
+.source{margin-top:25px;font-size:13px;color:#777}
+.source a{color:#1687bf;text-decoration:none}
+@media(max-width:700px){
+  .wrap{margin-top:25px;padding:0 12px}
+  .title{font-size:23px}
+  .cards{grid-template-columns:1fr}
+  .date{align-items:flex-start;gap:10px;flex-direction:column}
+  .table-wrap{overflow-x:auto}
+  table{min-width:500px}
+  th,td{padding:13px 10px;font-size:13px}
+  .chart-box{padding:18px 12px}
+  .chart-head{align-items:flex-start;flex-direction:column;gap:12px}
+  .legend{gap:12px}
+}
+
+.page-title{
+    text-align:center;
+    margin-top:8px;
+}
+.navbar{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:28px;
+}
+.navlink{
+    display:inline-block;
+    text-decoration:none;
+    border:1px solid #d9e1e9;
+    background:#fff;
+    color:#344454;
+    border-radius:9px;
+    padding:9px 13px;
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+}
+.navlink:hover{
+    border-color:#1677ff;
+    color:#1677ff;
+}
+@media(max-width:700px){
+    .navbar{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:8px;
+        width:100%;
+        margin-bottom:22px;
+    }
+    .navlink{
+        width:100%;
+        text-align:center;
+        padding:11px 7px;
+        font-size:13px;
+    }
+    .page-title{
+        text-align:center;
+    }
+}
+
+</style>
+</head>
+<body>
+
+
+
+<main class="wrap">
+<nav class="navbar" aria-label="工具導覽">
+    <a class="navlink" href="index.html">📊 融資融券維持率</a>
+    <a class="navlink" href="calendar.html">📊 每日行事曆</a>
+    <a class="navlink" href="portfolio.html">📊 投資績效名片</a>
+    <a class="navlink" href="foreign.html">🏦 外資買賣超</a>
+    <a class="navlink" href="broker.html">🏦 投信買賣超</a>
+    <a class="navlink" href="credit.html">🏦 融資融券變化</a>
+</nav>
+
+  <h1 class="title page-title">三大法人買賣超</h1>
+  <div class="subtitle">每日整理外資、投信與自營商淨買賣金額</div>
+
+  <section class="date">
+    <strong>2026年08月28日（五）</strong>
+    <span class="unit">單位：億元</span>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <div class="label">外資</div>
+      <div class="value positive">+417.54 億元</div>
+    </div>
+    <div class="card">
+      <div class="label">投信</div>
+      <div class="value negative">-1.97 億元</div>
+    </div>
+    <div class="card">
+      <div class="label">自營商</div>
+      <div class="value positive">+42.71 億元</div>
+    </div>
+  </section>
+
+  <section class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>法人</th>
+          <th>本日淨買賣金額（億元）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">外資</td>
+          <td class="positive">+417.54</td>
+        </tr>
+        <tr>
+          <td class="name">投信</td>
+          <td class="negative">-1.97</td>
+        </tr>
+        <tr>
+          <td class="name">自營商</td>
+          <td class="positive">+42.71</td>
+        </tr>
+        <tr>
+          <td class="name"><strong>三大法人合計</strong></td>
+          <td class="positive"><strong>+458.28</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chart-box">
+    <div class="chart-head">
+      <div>
+        <div class="chart-title">三大法人近 10 個交易日走勢</div>
+        <div class="chart-desc">過去 9 個交易日＋本日｜單位：億元</div>
+      </div>
+      <div class="legend">
+        <span><i class="dot foreign"></i>外資</span>
+        <span><i class="dot trust"></i>投信</span>
+        <span><i class="dot dealer"></i>自營商</span>
+      </div>
+    </div>
+    <div class="chart-scroll">
+      <svg id="trendChart" viewBox="0 0 1050 390" preserveAspectRatio="none" aria-label="三大法人近10個交易日走勢圖"><rect x="0" y="0" width="1050" height="390" fill="#fff"/><line class="gridline" x1="72" y1="315.4" x2="1022" y2="315.4"/><text class="axis-text" x="62" y="319.4" text-anchor="end">-200</text><line class="gridline" x1="72" y1="270.3" x2="1022" y2="270.3"/><text class="axis-text" x="62" y="274.3" text-anchor="end">-100</text><line class="zero-line" x1="72" y1="225.1" x2="1022" y2="225.1"/><text class="axis-text" x="62" y="229.1" text-anchor="end">0</text><line class="gridline" x1="72" y1="180.0" x2="1022" y2="180.0"/><text class="axis-text" x="62" y="184.0" text-anchor="end">100</text><line class="gridline" x1="72" y1="134.9" x2="1022" y2="134.9"/><text class="axis-text" x="62" y="138.9" text-anchor="end">200</text><line class="gridline" x1="72" y1="89.7" x2="1022" y2="89.7"/><text class="axis-text" x="62" y="93.7" text-anchor="end">300</text><line class="gridline" x1="72" y1="44.6" x2="1022" y2="44.6"/><text class="axis-text" x="62" y="48.6" text-anchor="end">400</text><line class="vline" x1="72.0" y1="22" x2="72.0" y2="338"/><text class="axis-text" x="72.0" y="368" text-anchor="middle">08/17</text><line class="vline" x1="177.6" y1="22" x2="177.6" y2="338"/><text class="axis-text" x="177.6" y="368" text-anchor="middle">08/18</text><line class="vline" x1="283.1" y1="22" x2="283.1" y2="338"/><text class="axis-text" x="283.1" y="368" text-anchor="middle">08/19</text><line class="vline" x1="388.7" y1="22" x2="388.7" y2="338"/><text class="axis-text" x="388.7" y="368" text-anchor="middle">08/20</text><line class="vline" x1="494.2" y1="22" x2="494.2" y2="338"/><text class="axis-text" x="494.2" y="368" text-anchor="middle">08/21</text><line class="vline" x1="599.8" y1="22" x2="599.8" y2="338"/><text class="axis-text" x="599.8" y="368" text-anchor="middle">08/24</text><line class="vline" x1="705.3" y1="22" x2="705.3" y2="338"/><text class="axis-text" x="705.3" y="368" text-anchor="middle">08/25</text><line class="vline" x1="810.9" y1="22" x2="810.9" y2="338"/><text class="axis-text" x="810.9" y="368" text-anchor="middle">08/26</text><line class="vline" x1="916.4" y1="22" x2="916.4" y2="338"/><text class="axis-text" x="916.4" y="368" text-anchor="middle">08/27</text><line class="vline" x1="1022.0" y1="22" x2="1022.0" y2="338"/><text class="axis-text" x="1022.0" y="368" text-anchor="middle">08/28</text><line class="axis" x1="72" y1="22" x2="72" y2="338"/><line class="axis" x1="72" y1="338" x2="1022" y2="338"/><polyline class="trend-line" points="72.0,141.0 177.6,266.8 283.1,118.8 388.7,198.8 494.2,291.3 599.8,84.1 705.3,190.7 810.9,322.5 916.4,95.7 1022.0,36.7" stroke="#e53935"/><circle class="trend-point" cx="72.0" cy="141.0" r="5" fill="#e53935"><title>08/17｜外資：+186.42 億元</title></circle><circle class="trend-point" cx="177.6" cy="266.8" r="5" fill="#e53935"><title>08/18｜外資：-92.18 億元</title></circle><circle class="trend-point" cx="283.1" cy="118.8" r="5" fill="#e53935"><title>08/19｜外資：+235.67 億元</title></circle><circle class="trend-point" cx="388.7" cy="198.8" r="5" fill="#e53935"><title>08/20｜外資：+58.31 億元</title></circle><circle class="trend-point" cx="494.2" cy="291.3" r="5" fill="#e53935"><title>08/21｜外資：-146.55 億元</title></circle><circle class="trend-point" cx="599.8" cy="84.1" r="5" fill="#e53935"><title>08/24｜外資：+312.48 億元</title></circle><circle class="trend-point" cx="705.3" cy="190.7" r="5" fill="#e53935"><title>08/25｜外資：+76.19 億元</title></circle><circle class="trend-point" cx="810.9" cy="322.5" r="5" fill="#e53935"><title>08/26｜外資：-215.63 億元</title></circle><circle class="trend-point" cx="916.4" cy="95.7" r="5" fill="#e53935"><title>08/27｜外資：+286.72 億元</title></circle><circle class="trend-point" cx="1022.0" cy="36.7" r="5" fill="#e53935"><title>08/28｜外資：+417.54 億元</title></circle><polyline class="trend-line" points="72.0,219.6 177.6,212.2 283.1,232.0 388.7,221.6 494.2,226.9 599.8,215.4 705.3,223.3 810.9,228.9 916.4,217.5 1022.0,226.0" stroke="#1687bf"/><circle class="trend-point" cx="72.0" cy="219.6" r="5" fill="#1687bf"><title>08/17｜投信：+12.35 億元</title></circle><circle class="trend-point" cx="177.6" cy="212.2" r="5" fill="#1687bf"><title>08/18｜投信：+28.74 億元</title></circle><circle class="trend-point" cx="283.1" cy="232.0" r="5" fill="#1687bf"><title>08/19｜投信：-15.28 億元</title></circle><circle class="trend-point" cx="388.7" cy="221.6" r="5" fill="#1687bf"><title>08/20｜投信：+7.92 億元</title></circle><circle class="trend-point" cx="494.2" cy="226.9" r="5" fill="#1687bf"><title>08/21｜投信：-3.84 億元</title></circle><circle class="trend-point" cx="599.8" cy="215.4" r="5" fill="#1687bf"><title>08/24｜投信：+21.56 億元</title></circle><circle class="trend-point" cx="705.3" cy="223.3" r="5" fill="#1687bf"><title>08/25｜投信：+4.17 億元</title></circle><circle class="trend-point" cx="810.9" cy="228.9" r="5" fill="#1687bf"><title>08/26｜投信：-8.31 億元</title></circle><circle class="trend-point" cx="916.4" cy="217.5" r="5" fill="#1687bf"><title>08/27｜投信：+16.88 億元</title></circle><circle class="trend-point" cx="1022.0" cy="226.0" r="5" fill="#1687bf"><title>08/28｜投信：-1.97 億元</title></circle><polyline class="trend-line" points="72.0,216.7 177.6,228.0 283.1,220.9 388.7,215.1 494.2,233.6 599.8,211.1 705.3,226.4 810.9,218.2 916.4,212.7 1022.0,205.9" stroke="#f39c12"/><circle class="trend-point" cx="72.0" cy="216.7" r="5" fill="#f39c12"><title>08/17｜自營商：+18.62 億元</title></circle><circle class="trend-point" cx="177.6" cy="228.0" r="5" fill="#f39c12"><title>08/18｜自營商：-6.31 億元</title></circle><circle class="trend-point" cx="283.1" cy="220.9" r="5" fill="#f39c12"><title>08/19｜自營商：+9.47 億元</title></circle><circle class="trend-point" cx="388.7" cy="215.1" r="5" fill="#f39c12"><title>08/20｜自營商：+22.16 億元</title></circle><circle class="trend-point" cx="494.2" cy="233.6" r="5" fill="#f39c12"><title>08/21｜自營商：-18.72 億元</title></circle><circle class="trend-point" cx="599.8" cy="211.1" r="5" fill="#f39c12"><title>08/24｜自營商：+31.05 億元</title></circle><circle class="trend-point" cx="705.3" cy="226.4" r="5" fill="#f39c12"><title>08/25｜自營商：-2.84 億元</title></circle><circle class="trend-point" cx="810.9" cy="218.2" r="5" fill="#f39c12"><title>08/26｜自營商：+15.42 億元</title></circle><circle class="trend-point" cx="916.4" cy="212.7" r="5" fill="#f39c12"><title>08/27｜自營商：+27.64 億元</title></circle><circle class="trend-point" cx="1022.0" cy="205.9" r="5" fill="#f39c12"><title>08/28｜自營商：+42.71 億元</title></circle></svg>
+    </div>
+  </section>
+
+  <div id="tooltip" class="tooltip"></div>
+
+  <div class="note">
+    ※ 所有金額統一以「億元」表示。<br>
+    ※ 圖表目前使用 10 個交易日的模擬資料（9 個歷史交易日＋本日）；本日數值採用 2026 年 08 月 28 日示範資料。<br>
+    ※ 正值代表淨買超，負值代表淨賣超。
+  </div>
+
+  <div class="source">
+    資料來源：
+    <a href="https://www.twse.com.tw/zh/trading/foreign/bfi82u.html" target="_blank">
+      臺灣證券交易所－三大法人買賣金額統計表
+    </a>
+  </div>
+</main>
+
+<script>
+const trendData = [
+  {date:"08/17", foreign: 186.42, trust:  12.35, dealer:  18.62},
+  {date:"08/18", foreign:-92.18,  trust:  28.74, dealer: -6.31},
+  {date:"08/19", foreign: 235.67, trust: -15.28, dealer:  9.47},
+  {date:"08/20", foreign: 58.31,  trust:  7.92,  dealer: 22.16},
+  {date:"08/21", foreign:-146.55, trust: -3.84, dealer:-18.72},
+  {date:"08/24", foreign: 312.48, trust:  21.56, dealer: 31.05},
+  {date:"08/25", foreign: 76.19,  trust:  4.17, dealer: -2.84},
+  {date:"08/26", foreign:-215.63, trust:  -8.31, dealer: 15.42},
+  {date:"08/27", foreign: 286.72, trust:  16.88, dealer: 27.64},
+  {date:"08/28", foreign: 417.54, trust:  -1.97, dealer: 42.71}
+];
+
+// 走勢圖採用 SVG 靜態繪製，直接開啟 index.html 即可看到。
+</script>
+</body>
+</html>
