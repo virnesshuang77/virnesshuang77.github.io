@@ -373,9 +373,9 @@ async function loadThreeInstitutionsData(){
   }catch(error){
     console.error("無法讀取三大法人資料：",error);
 
-    svg.innerHTML=
-      '<text x="525" y="175" text-anchor="middle" fill="#888" font-size="14">無法讀取資料</text>'+
-      '<text x="525" y="202" text-anchor="middle" fill="#aaa" font-size="12">請確認 data/three-institutions.json 已存在</text>';
+   svg.innerHTML=
+  '<text x="525" y="175" text-anchor="middle" fill="#888" font-size="14">無法讀取資料</text>'+
+  '<text x="525" y="202" text-anchor="middle" fill="#aaa" font-size="12">請確認 cash.json 已存在</text>';
   }
 }
 
