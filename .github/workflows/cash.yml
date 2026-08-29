@@ -36,6 +36,6 @@ jobs:
             exit 0
           fi
 
-          git add data/three-institutions.json
-          git commit -m "Update three institutions data"
+          git add cash.json
+          git commit -m "Update cash"
           git push
