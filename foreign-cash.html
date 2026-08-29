@@ -350,7 +350,7 @@ function drawChart(history){
 async function loadThreeInstitutionsData(){
   try{
     const response=await fetch(
-      "data/three-institutions.json?ts="+Date.now(),
+      "cash.json?ts="+Date.now(),
       {cache:"no-store"}
     );
 
