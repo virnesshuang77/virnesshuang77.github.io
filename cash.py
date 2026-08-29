@@ -203,7 +203,6 @@ def save_history(history: list[dict]) -> None:
         encoding="utf-8",
     )
 
-
 def main() -> None:
     today = date.today()  # runner 的系統日期通常為 UTC；下面實際用台灣日期
     today = __import__("datetime").datetime.now(TZ).date()
