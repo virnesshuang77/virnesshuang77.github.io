@@ -1,1 +1,172 @@
-
+{
+  "source": "https://www.twse.com.tw/rwd/zh/fund/BFI82U",
+  "unit": "億元",
+  "updated_at": "2026-08-29T19:08:57.950105+08:00",
+  "latest": {
+    "date": "2026-08-28",
+    "foreign": 417.54,
+    "trust": -1.97,
+    "dealer": 42.71,
+    "total": 458.28,
+    "raw": {
+      "foreign_net": 41754101187,
+      "trust_net": -196545900,
+      "dealer_proprietary_net": 134809299,
+      "dealer_hedge_net": 4135890866,
+      "dealer_net": 4270700165,
+      "total_net": 45828255452
+    }
+  },
+  "history": [
+    {
+      "date": "2026-08-28",
+      "foreign": 417.54,
+      "trust": -1.97,
+      "dealer": 42.71,
+      "total": 458.28,
+      "raw": {
+        "foreign_net": 41754101187,
+        "trust_net": -196545900,
+        "dealer_proprietary_net": 134809299,
+        "dealer_hedge_net": 4135890866,
+        "dealer_net": 4270700165,
+        "total_net": 45828255452
+      }
+    },
+    {
+      "date": "2026-08-27",
+      "foreign": 490.94,
+      "trust": -14.5,
+      "dealer": 150.35,
+      "total": 626.79,
+      "raw": {
+        "foreign_net": 49094206617,
+        "trust_net": -1450398707,
+        "dealer_proprietary_net": 5982778388,
+        "dealer_hedge_net": 9052397782,
+        "dealer_net": 15035176170,
+        "total_net": 62678984080
+      }
+    },
+    {
+      "date": "2026-08-26",
+      "foreign": 366.13,
+      "trust": 33.66,
+      "dealer": 179.34,
+      "total": 579.13,
+      "raw": {
+        "foreign_net": 36613190609,
+        "trust_net": 3365808527,
+        "dealer_proprietary_net": 4738511488,
+        "dealer_hedge_net": 13195210411,
+        "dealer_net": 17933721899,
+        "total_net": 57912721035
+      }
+    },
+    {
+      "date": "2026-08-25",
+      "foreign": -7.87,
+      "trust": -39.84,
+      "dealer": 0.6,
+      "total": -47.11,
+      "raw": {
+        "foreign_net": -786583259,
+        "trust_net": -3983977063,
+        "dealer_proprietary_net": 996988739,
+        "dealer_hedge_net": -936960617,
+        "dealer_net": 60028122,
+        "total_net": -4710532200
+      }
+    },
+    {
+      "date": "2026-08-24",
+      "foreign": -157.36,
+      "trust": 30.55,
+      "dealer": -43.33,
+      "total": -170.14,
+      "raw": {
+        "foreign_net": -15736131327,
+        "trust_net": 3054816594,
+        "dealer_proprietary_net": -14700943,
+        "dealer_hedge_net": -4317891239,
+        "dealer_net": -4332592182,
+        "total_net": -17013906915
+      }
+    },
+    {
+      "date": "2026-08-21",
+      "foreign": 283.05,
+      "trust": 21.01,
+      "dealer": 29.23,
+      "total": 333.29,
+      "raw": {
+        "foreign_net": 28305420985,
+        "trust_net": 2101463111,
+        "dealer_proprietary_net": 2909541414,
+        "dealer_hedge_net": 13026237,
+        "dealer_net": 2922567651,
+        "total_net": 33329451747
+      }
+    },
+    {
+      "date": "2026-08-20",
+      "foreign": 73.18,
+      "trust": -20.48,
+      "dealer": -61.08,
+      "total": -8.38,
+      "raw": {
+        "foreign_net": 7317634368,
+        "trust_net": -2047675577,
+        "dealer_proprietary_net": -2191846934,
+        "dealer_hedge_net": -3916363363,
+        "dealer_net": -6108210297,
+        "total_net": -838251506
+      }
+    },
+    {
+      "date": "2026-08-19",
+      "foreign": -416.39,
+      "trust": -166.01,
+      "dealer": -171.18,
+      "total": -753.59,
+      "raw": {
+        "foreign_net": -41639443960,
+        "trust_net": -16600943399,
+        "dealer_proprietary_net": -3962193056,
+        "dealer_hedge_net": -13156099446,
+        "dealer_net": -17118292502,
+        "total_net": -75358679861
+      }
+    },
+    {
+      "date": "2026-08-18",
+      "foreign": -119.86,
+      "trust": 38.27,
+      "dealer": -176.07,
+      "total": -257.66,
+      "raw": {
+        "foreign_net": -11985811420,
+        "trust_net": 3827137607,
+        "dealer_proprietary_net": -2173094177,
+        "dealer_hedge_net": -15434048324,
+        "dealer_net": -17607142501,
+        "total_net": -25765816314
+      }
+    },
+    {
+      "date": "2026-08-17",
+      "foreign": 454.47,
+      "trust": -177.77,
+      "dealer": 14.05,
+      "total": 290.76,
+      "raw": {
+        "foreign_net": 45447285026,
+        "trust_net": -17776851185,
+        "dealer_proprietary_net": 3540149840,
+        "dealer_hedge_net": -2134846924,
+        "dealer_net": 1405302916,
+        "total_net": 29075736757
+      }
+    }
+  ]
+}
