@@ -4,382 +4,2123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>三大法人買賣超</title>
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;background:#f5f6f8;color:#222;
-  font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif
-}
-.header{
-  height:62px;background:#fff;border-bottom:1px solid #e5e5e5;
-  display:flex;align-items:center;padding:0 28px
-}
-.logo{font-size:19px;font-weight:700;color:#238fc4}
-.wrap{max-width:1150px;margin:42px auto;padding:0 22px}
-.title{font-size:28px;font-weight:500;margin:0}
-.subtitle{margin-top:8px;color:#777;font-size:14px}
-.date{
-  margin-top:28px;background:#fff;border:1px solid #e2e2e2;
-  padding:18px 20px;border-radius:5px;
-  display:flex;justify-content:space-between;align-items:center
-}
-.date strong{font-size:20px;font-weight:500}
-.unit{color:#777;font-size:13px}
-.cards{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:14px;margin-top:18px
-}
-.card{
-  background:#fff;border:1px solid #e2e2e2;border-radius:5px;
-  padding:18px 20px
-}
-.card .label{font-size:14px;color:#666}
-.card .value{font-size:25px;margin-top:10px;font-weight:600}
-.positive{color:#e53935;font-weight:600}
-.negative{color:#1687bf;font-weight:600}
-.table-wrap{
-  margin-top:18px;background:#fff;border:1px solid #ddd;
-  border-radius:5px;overflow:hidden
-}
-table{width:100%;border-collapse:collapse}
-thead{background:#268fc5;color:#fff}
-th,td{padding:17px 22px;text-align:right}
-th:first-child,td:first-child{text-align:left}
-th{font-size:14px;font-weight:500}
-td{font-size:15px;border-bottom:1px solid #eee}
-tbody tr:nth-child(even){background:#f2f7fb}
-tbody tr:last-child td{border-bottom:0}
-.name{font-weight:500}
 
-/* ===== 10 個交易日走勢圖 ===== */
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#f5f6f8;
+  color:#222;
+  font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
+}
+
+.header{
+  height:62px;
+  background:#fff;
+  border-bottom:1px solid #e5e5e5;
+  display:flex;
+  align-items:center;
+  padding:0 28px;
+}
+
+.logo{
+  font-size:19px;
+  font-weight:700;
+  color:#238fc4;
+}
+
+.wrap{
+  max-width:1150px;
+  margin:42px auto;
+  padding:0 22px;
+}
+
+.title{
+  font-size:28px;
+  font-weight:500;
+  margin:0;
+}
+
+.subtitle{
+  margin-top:8px;
+  color:#777;
+  font-size:14px;
+}
+
+.date{
+  margin-top:28px;
+  background:#fff;
+  border:1px solid #e2e2e2;
+  padding:18px 20px;
+  border-radius:5px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.date strong{
+  font-size:20px;
+  font-weight:500;
+}
+
+.unit{
+  color:#777;
+  font-size:13px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:18px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid #e2e2e2;
+  border-radius:5px;
+  padding:18px 20px;
+}
+
+.card .label{
+  font-size:14px;
+  color:#666;
+}
+
+.card .value{
+  font-size:25px;
+  margin-top:10px;
+  font-weight:600;
+}
+
+.positive{
+  color:#e53935;
+  font-weight:600;
+}
+
+.negative{
+  color:#1687bf;
+  font-weight:600;
+}
+
+.table-wrap{
+  margin-top:18px;
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:5px;
+  overflow:hidden;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+thead{
+  background:#268fc5;
+  color:#fff;
+}
+
+th,
+td{
+  padding:17px 22px;
+  text-align:right;
+}
+
+th:first-child,
+td:first-child{
+  text-align:left;
+}
+
+th{
+  font-size:14px;
+  font-weight:500;
+}
+
+td{
+  font-size:15px;
+  border-bottom:1px solid #eee;
+}
+
+tbody tr:nth-child(even){
+  background:#f2f7fb;
+}
+
+tbody tr:last-child td{
+  border-bottom:0;
+}
+
+.name{
+  font-weight:500;
+}
+
+
+/* =========================================================
+   圖表
+   ========================================================= */
+
 .chart-box{
-  margin-top:22px;background:#fff;border:1px solid #ddd;
-  border-radius:5px;padding:24px 24px 20px
+  margin-top:22px;
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:5px;
+  padding:24px 24px 20px;
 }
+
 .chart-head{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:18px
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
 }
-.chart-title{font-size:19px;font-weight:500}
-.chart-desc{font-size:12px;color:#888;margin-top:5px}
-.legend{display:flex;gap:20px;font-size:12px;color:#666}
-.legend span{display:flex;align-items:center;gap:6px}
-.dot{width:10px;height:10px;border-radius:50%}
-.dot.foreign{background:#e53935}
-.dot.trust{background:#1687bf}
-.dot.dealer{background:#f39c12}
-.chart-scroll{overflow-x:auto}
-svg{display:block;width:100%;min-width:850px;height:390px}
-.gridline{stroke:#e6e9ec;stroke-width:1;stroke-dasharray:4 4}
-.zero-line{stroke:#999;stroke-width:1.5}
-.vline{stroke:#f0f1f2;stroke-width:1}
-.axis{stroke:#aaa;stroke-width:1}
-.axis-text{font-size:11px;fill:#777}
-.trend-line{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.trend-point{stroke:#fff;stroke-width:2}
+
+.chart-title{
+  font-size:19px;
+  font-weight:500;
+}
+
+.chart-desc{
+  font-size:12px;
+  color:#888;
+  margin-top:5px;
+}
+
+.legend{
+  display:flex;
+  gap:20px;
+  font-size:12px;
+  color:#666;
+}
+
+.legend span{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+}
+
+.dot.foreign{
+  background:#e53935;
+}
+
+.dot.trust{
+  background:#1687bf;
+}
+
+.dot.dealer{
+  background:#f39c12;
+}
+
+.chart-scroll{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+.chart-inner{
+  position:relative;
+  min-width:850px;
+}
+
+svg{
+  display:block;
+  width:100%;
+  min-width:850px;
+  height:390px;
+  touch-action:none;
+  cursor:crosshair;
+}
+
+.gridline{
+  stroke:#e6e9ec;
+  stroke-width:1;
+  stroke-dasharray:4 4;
+}
+
+.zero-line{
+  stroke:#999;
+  stroke-width:1.5;
+}
+
+.vline{
+  stroke:#f0f1f2;
+  stroke-width:1;
+}
+
+.axis{
+  stroke:#aaa;
+  stroke-width:1;
+}
+
+.axis-text{
+  font-size:11px;
+  fill:#777;
+}
+
+.trend-line{
+  fill:none;
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.trend-point{
+  stroke:#fff;
+  stroke-width:2;
+  cursor:pointer;
+}
+
+.hover-line{
+  stroke:#555;
+  stroke-width:1;
+  stroke-dasharray:5 4;
+  pointer-events:none;
+}
+
+.focus-point{
+  stroke:#fff;
+  stroke-width:3;
+  pointer-events:none;
+}
+
+.date-label{
+  user-select:none;
+}
+
+
+/* =========================================================
+   圖表資訊框
+   ========================================================= */
 
 .tooltip{
-  position:fixed;display:none;background:rgba(30,30,30,.94);color:#fff;
-  padding:10px 13px;border-radius:5px;font-size:12px;
-  pointer-events:none;z-index:50;line-height:1.7;white-space:nowrap
+  position:absolute;
+  display:none;
+  z-index:50;
+  min-width:220px;
+  background:rgba(30,30,30,.96);
+  color:#fff;
+  padding:12px 15px;
+  border-radius:7px;
+  font-size:13px;
+  line-height:1.8;
+  pointer-events:none;
+  box-shadow:0 4px 16px rgba(0,0,0,.18);
 }
-.note{margin-top:16px;color:#777;font-size:12px;line-height:1.8}
-.source{margin-top:25px;font-size:13px;color:#777}
-.source a{color:#1687bf;text-decoration:none}
-@media(max-width:700px){
-  .wrap{margin-top:25px;padding:0 12px}
-  .title{font-size:23px}
-  .cards{grid-template-columns:1fr}
-  .date{align-items:flex-start;gap:10px;flex-direction:column}
-  .table-wrap{overflow-x:auto}
-  table{min-width:500px}
-  th,td{padding:13px 10px;font-size:13px}
-  .chart-box{padding:18px 12px}
-  .chart-head{align-items:flex-start;flex-direction:column;gap:12px}
-  .legend{gap:12px}
+
+.tooltip-date{
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:5px;
+  padding-bottom:5px;
+  border-bottom:1px solid rgba(255,255,255,.18);
 }
+
+.tooltip-row{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.tooltip-label{
+  color:#ddd;
+}
+
+.tooltip-value{
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.tooltip-total{
+  margin-top:5px;
+  padding-top:5px;
+  border-top:1px solid rgba(255,255,255,.18);
+}
+
+
+/* =========================================================
+   說明
+   ========================================================= */
+
+.note{
+  margin-top:16px;
+  color:#777;
+  font-size:12px;
+  line-height:1.8;
+}
+
+.source{
+  margin-top:25px;
+  font-size:13px;
+  color:#777;
+}
+
+.source a{
+  color:#1687bf;
+  text-decoration:none;
+}
+
+
+/* =========================================================
+   導覽列
+   ========================================================= */
 
 .page-title{
-    text-align:center;
-    margin-top:8px;
-}
-.navbar{
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-bottom:28px;
-}
-.navlink{
-    display:inline-block;
-    text-decoration:none;
-    border:1px solid #d9e1e9;
-    background:#fff;
-    color:#344454;
-    border-radius:9px;
-    padding:9px 13px;
-    font-weight:700;
-    font-size:14px;
-    white-space:nowrap;
-}
-.navlink:hover{
-    border-color:#1677ff;
-    color:#1677ff;
-}
-@media(max-width:700px){
-    .navbar{
-        display:grid;
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:8px;
-        width:100%;
-        margin-bottom:22px;
-    }
-    .navlink{
-        width:100%;
-        text-align:center;
-        padding:11px 7px;
-        font-size:13px;
-    }
-    .page-title{
-        text-align:center;
-    }
+  text-align:center;
+  margin-top:8px;
 }
 
+.navbar{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:28px;
+}
+
+.navlink{
+  display:inline-block;
+  text-decoration:none;
+  border:1px solid #d9e1e9;
+  background:#fff;
+  color:#344454;
+  border-radius:9px;
+  padding:9px 13px;
+  font-weight:700;
+  font-size:14px;
+  white-space:nowrap;
+}
+
+.navlink:hover{
+  border-color:#1677ff;
+  color:#1677ff;
+}
+
+
+/* =========================================================
+   手機版
+   ========================================================= */
+
+@media(max-width:700px){
+
+  .wrap{
+    margin-top:25px;
+    padding:0 12px;
+  }
+
+  .title{
+    font-size:23px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .date{
+    align-items:flex-start;
+    gap:10px;
+    flex-direction:column;
+  }
+
+  .table-wrap{
+    overflow-x:auto;
+  }
+
+  table{
+    min-width:500px;
+  }
+
+  th,
+  td{
+    padding:13px 10px;
+    font-size:13px;
+  }
+
+  .chart-box{
+    padding:18px 12px;
+  }
+
+  .chart-head{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .legend{
+    gap:12px;
+  }
+
+  .navbar{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    width:100%;
+    margin-bottom:22px;
+  }
+
+  .navlink{
+    width:100%;
+    text-align:center;
+    padding:11px 7px;
+    font-size:13px;
+  }
+
+  .page-title{
+    text-align:center;
+  }
+
+  .tooltip{
+    min-width:205px;
+    font-size:12px;
+  }
+}
 </style>
 </head>
+
 <body>
 
-
-
 <main class="wrap">
-<nav class="navbar" aria-label="工具導覽">
-    <a class="navlink" href="index.html">📊 融資融券維持率</a>
-    <a class="navlink" href="calendar.html">📊 每日行事曆</a>
-    <a class="navlink" href="portfolio.html">📊 投資績效名片</a>
-    <a class="navlink" href="foreign.html">🏦 外資買賣超</a>
-    <a class="navlink" href="broker.html">🏦 投信買賣超</a>
-    <a class="navlink" href="credit.html">🏦 融資融券變化</a>
-</nav>
 
-  <h1 class="title page-title">三大法人買賣超</h1>
-  <div class="subtitle">每日整理外資、投信與自營商淨買賣金額</div>
+  <!-- 導覽列 -->
+  <nav class="navbar" aria-label="工具導覽">
 
+    <a class="navlink" href="index.html">
+      📊 融資融券維持率
+    </a>
+
+    <a class="navlink" href="calendar.html">
+      📊 每日行事曆
+    </a>
+
+    <a class="navlink" href="portfolio.html">
+      📊 投資績效名片
+    </a>
+
+    <a class="navlink" href="foreign.html">
+      🏦 外資買賣超
+    </a>
+
+    <a class="navlink" href="broker.html">
+      🏦 投信買賣超
+    </a>
+
+    <a class="navlink" href="credit.html">
+      🏦 融資融券變化
+    </a>
+
+  </nav>
+
+
+  <h1 class="title page-title">
+    三大法人買賣超
+  </h1>
+
+  <div class="subtitle">
+    每日整理外資、投信與自營商淨買賣金額
+  </div>
+
+
+  <!-- 日期 -->
   <section class="date">
-    <strong>2026年08月28日（五）</strong>
-    <span class="unit">單位：億元</span>
+
+    <strong id="currentDate">
+      載入中...
+    </strong>
+
+    <span class="unit">
+      單位：億元
+    </span>
+
   </section>
 
+
+  <!-- 三大法人卡片 -->
   <section class="cards">
+
     <div class="card">
-      <div class="label">外資</div>
-      <div class="value positive">+417.54 億元</div>
+
+      <div class="label">
+        外資
+      </div>
+
+      <div
+        id="foreignValue"
+        class="value"
+      >
+        載入中...
+      </div>
+
     </div>
+
+
     <div class="card">
-      <div class="label">投信</div>
-      <div class="value negative">-1.97 億元</div>
+
+      <div class="label">
+        投信
+      </div>
+
+      <div
+        id="trustValue"
+        class="value"
+      >
+        載入中...
+      </div>
+
     </div>
+
+
     <div class="card">
-      <div class="label">自營商</div>
-      <div class="value positive">+42.71 億元</div>
+
+      <div class="label">
+        自營商
+      </div>
+
+      <div
+        id="dealerValue"
+        class="value"
+      >
+        載入中...
+      </div>
+
     </div>
+
   </section>
 
+
+  <!-- 表格 -->
   <section class="table-wrap">
+
     <table>
+
       <thead>
+
         <tr>
-          <th>法人</th>
-          <th>本日淨買賣金額（億元）</th>
+
+          <th>
+            法人
+          </th>
+
+          <th>
+            本日淨買賣金額（億元）
+          </th>
+
         </tr>
+
       </thead>
+
+
       <tbody>
+
         <tr>
-          <td class="name">外資</td>
-          <td class="positive">+417.54</td>
+
+          <td class="name">
+            外資
+          </td>
+
+          <td
+            id="tableForeign"
+          >
+            -
+          </td>
+
         </tr>
+
+
         <tr>
-          <td class="name">投信</td>
-          <td class="negative">-1.97</td>
+
+          <td class="name">
+            投信
+          </td>
+
+          <td
+            id="tableTrust"
+          >
+            -
+          </td>
+
         </tr>
+
+
         <tr>
-          <td class="name">自營商</td>
-          <td class="positive">+42.71</td>
+
+          <td class="name">
+            自營商
+          </td>
+
+          <td
+            id="tableDealer"
+          >
+            -
+          </td>
+
         </tr>
+
+
         <tr>
-          <td class="name"><strong>三大法人合計</strong></td>
-          <td class="positive"><strong>+458.28</strong></td>
+
+          <td class="name">
+            <strong>
+              三大法人合計
+            </strong>
+          </td>
+
+          <td
+            id="tableTotal"
+          >
+            -
+          </td>
+
         </tr>
+
       </tbody>
+
     </table>
+
   </section>
+
+
+  <!-- =====================================================
+       圖表
+       ===================================================== -->
 
   <section class="chart-box">
+
     <div class="chart-head">
+
       <div>
-        <div class="chart-title">三大法人本月交易日走勢</div>
-        <div class="chart-desc">本月所有交易日｜單位：億元</div>
+
+        <div class="chart-title">
+          三大法人本月交易日走勢
+        </div>
+
+        <div class="chart-desc">
+          本月所有交易日｜單位：億元｜移動滑鼠或點擊圖表查看每日金額
+        </div>
+
       </div>
+
+
       <div class="legend">
-        <span><i class="dot foreign"></i>外資</span>
-        <span><i class="dot trust"></i>投信</span>
-        <span><i class="dot dealer"></i>自營商</span>
+
+        <span>
+          <i class="dot foreign"></i>
+          外資
+        </span>
+
+        <span>
+          <i class="dot trust"></i>
+          投信
+        </span>
+
+        <span>
+          <i class="dot dealer"></i>
+          自營商
+        </span>
+
       </div>
+
     </div>
+
+
     <div class="chart-scroll">
-      <svg id="trendChart" viewBox="0 0 1050 390" preserveAspectRatio="none" aria-label="三大法人本月走勢圖"></svg>
+
+      <div class="chart-inner">
+
+        <svg
+          id="trendChart"
+          viewBox="0 0 1050 390"
+          preserveAspectRatio="none"
+          aria-label="三大法人本月走勢圖"
+        ></svg>
+
+        <div
+          id="tooltip"
+          class="tooltip"
+        ></div>
+
+      </div>
+
     </div>
+
   </section>
 
-  <div id="tooltip" class="tooltip"></div>
 
   <div class="note">
+
     ※ 所有金額統一以「億元」表示。<br>
-    ※ 走勢圖會自動讀取 data/three-institutions.json，顯示本月所有已公布的交易日資料。<br>
+
+    ※ 走勢圖會自動讀取 cash.json，顯示目前月份所有已公布的交易日資料。<br>
+
+    ※ 電腦可將滑鼠移到圖表上查看每日金額；手機可直接點擊圖表。<br>
+
     ※ 正值代表淨買超，負值代表淨賣超。
+
   </div>
 
+
   <div class="source">
+
     資料來源：
-    <a href="https://www.twse.com.tw/zh/trading/foreign/bfi82u.html" target="_blank">
+
+    <a
+      href="https://www.twse.com.tw/zh/trading/foreign/bfi82u.html"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       臺灣證券交易所－三大法人買賣金額統計表
     </a>
+
   </div>
+
 </main>
+
 
 <script>
 
+/* =========================================================
+   基本設定
+   ========================================================= */
+
 const svg = document.getElementById("trendChart");
+const tooltip = document.getElementById("tooltip");
 
-function drawChart(history){
-  const data = [...history]
-    .filter(d => d && d.date)
-    .sort((a,b) => a.date.localeCompare(b.date));
+const currentDateEl =
+  document.getElementById("currentDate");
 
-  if(!data.length){
-    svg.innerHTML =
-      '<text x="525" y="190" text-anchor="middle" fill="#888" font-size="14">目前沒有本月資料</text>';
+const foreignValueEl =
+  document.getElementById("foreignValue");
+
+const trustValueEl =
+  document.getElementById("trustValue");
+
+const dealerValueEl =
+  document.getElementById("dealerValue");
+
+const tableForeign =
+  document.getElementById("tableForeign");
+
+const tableTrust =
+  document.getElementById("tableTrust");
+
+const tableDealer =
+  document.getElementById("tableDealer");
+
+const tableTotal =
+  document.getElementById("tableTotal");
+
+
+let chartData = [];
+
+let chartGeometry = null;
+
+let selectedIndex = null;
+
+
+/* =========================================================
+   格式化
+   ========================================================= */
+
+function formatNumber(value){
+
+  const number = Number(value) || 0;
+
+  return (
+    number >= 0 ? "+" : ""
+  ) + number.toFixed(2);
+
+}
+
+
+function formatDate(dateString){
+
+  if(!dateString){
+    return "-";
+  }
+
+  const parts =
+    String(dateString).split("-");
+
+  if(parts.length !== 3){
+    return dateString;
+  }
+
+  return (
+    parts[0] +
+    "年" +
+    Number(parts[1]) +
+    "月" +
+    Number(parts[2]) +
+    "日"
+  );
+
+}
+
+
+function getValueClass(value){
+
+  return Number(value) >= 0
+    ? "positive"
+    : "negative";
+
+}
+
+
+/* =========================================================
+   更新上方日期 / 卡片 / 表格
+   ========================================================= */
+
+function updateSelectedInfo(item){
+
+  if(!item){
     return;
   }
 
-  const W=1050,H=390,left=72,right=28,top=22,bottom=52;
-  const plotW=W-left-right, plotH=H-top-bottom;
+  const foreign =
+    Number(item.foreign) || 0;
 
-  const values=data.flatMap(d=>[
-    Number(d.foreign)||0,
-    Number(d.trust)||0,
-    Number(d.dealer)||0
-  ]);
+  const trust =
+    Number(item.trust) || 0;
 
-  let minVal=Math.floor(Math.min(...values,0)/50)*50;
-  let maxVal=Math.ceil(Math.max(...values,0)/50)*50;
+  const dealer =
+    Number(item.dealer) || 0;
 
-  if(minVal===maxVal){minVal-=50;maxVal+=50;}
-  if(maxVal-minVal<200){
-    const mid=(maxVal+minVal)/2;
-    minVal=Math.floor((mid-100)/50)*50;
-    maxVal=Math.ceil((mid+100)/50)*50;
-  }
+  const total =
+    Number(item.total) ||
+    foreign + trust + dealer;
 
-  const X=i => data.length===1
-    ? left+plotW/2
-    : left+i*plotW/(data.length-1);
 
-  const Y=v => top+(maxVal-v)/(maxVal-minVal)*plotH;
-  const fmt=v => (v>=0?"+":"")+Number(v).toFixed(2);
+  currentDateEl.textContent =
+    formatDate(item.date);
 
-  let out=`<rect x="0" y="0" width="${W}" height="${H}" fill="#fff"/>`;
 
-  // Y 軸
-  const firstGrid=Math.ceil(minVal/100)*100;
-  for(let v=firstGrid;v<=maxVal;v+=100){
-    const yy=Y(v);
-    out+=`<line class="${v===0?'zero-line':'gridline'}"
-      x1="${left}" y1="${yy}" x2="${W-right}" y2="${yy}"/>`;
-    out+=`<text class="axis-text" x="${left-10}" y="${yy+4}"
-      text-anchor="end">${v}</text>`;
-  }
+  foreignValueEl.textContent =
+    formatNumber(foreign) +
+    " 億元";
 
-  // X 軸日期：20 個交易日全部畫出
-  data.forEach((d,i)=>{
-    const xx=X(i);
-    out+=`<line class="vline" x1="${xx}" y1="${top}"
-      x2="${xx}" y2="${H-bottom}"/>`;
-    out+=`<text class="axis-text date-label" x="${xx}" y="${H-22}"
-      text-anchor="middle">${d.date.slice(5).replace("-","/")}</text>`;
-  });
+  foreignValueEl.className =
+    "value " +
+    getValueClass(foreign);
 
-  out+=`<line class="axis" x1="${left}" y1="${top}"
-    x2="${left}" y2="${H-bottom}"/>`;
-  out+=`<line class="axis" x1="${left}" y1="${H-bottom}"
-    x2="${W-right}" y2="${H-bottom}"/>`;
 
-  const series=[
-    {key:"foreign",color:"#e53935",label:"外資"},
-    {key:"trust",color:"#1687bf",label:"投信"},
-    {key:"dealer",color:"#f39c12",label:"自營商"}
-  ];
+  trustValueEl.textContent =
+    formatNumber(trust) +
+    " 億元";
 
-  series.forEach(item=>{
-    const points=data.map((d,i)=>
-      `${X(i).toFixed(1)},${Y(Number(d[item.key])||0).toFixed(1)}`
-    ).join(" ");
+  trustValueEl.className =
+    "value " +
+    getValueClass(trust);
 
-    out+=`<polyline class="trend-line"
-      points="${points}" stroke="${item.color}"/>`;
 
-    data.forEach((d,i)=>{
-      const value=Number(d[item.key])||0;
-      out+=`<circle class="trend-point"
-        cx="${X(i).toFixed(1)}"
-        cy="${Y(value).toFixed(1)}"
-        r="4.5"
-        fill="${item.color}">
-        <title>${d.date.slice(5).replace("-","/")}｜${item.label}：${fmt(value)} 億元</title>
-      </circle>`;
-    });
-  });
+  dealerValueEl.textContent =
+    formatNumber(dealer) +
+    " 億元";
 
-  svg.innerHTML=out;
+  dealerValueEl.className =
+    "value " +
+    getValueClass(dealer);
 
-  // 20 天時縮小日期文字，避免互相重疊。
-  svg.querySelectorAll(".date-label").forEach(el=>{
-    el.setAttribute("font-size", data.length>=18 ? "9" : "11");
-  });
+
+  tableForeign.textContent =
+    formatNumber(foreign);
+
+  tableForeign.className =
+    getValueClass(foreign);
+
+
+  tableTrust.textContent =
+    formatNumber(trust);
+
+  tableTrust.className =
+    getValueClass(trust);
+
+
+  tableDealer.textContent =
+    formatNumber(dealer);
+
+  tableDealer.className =
+    getValueClass(dealer);
+
+
+  tableTotal.textContent =
+    formatNumber(total);
+
+  tableTotal.className =
+    getValueClass(total);
+
 }
 
-async function loadThreeInstitutionsData(){
-  try{
-    const response=await fetch(
-      "cash.json?ts="+Date.now(),
-      {cache:"no-store"}
+
+/* =========================================================
+   Tooltip
+   ========================================================= */
+
+function showTooltip(item, x, y){
+
+  if(!item){
+    return;
+  }
+
+  const foreign =
+    Number(item.foreign) || 0;
+
+  const trust =
+    Number(item.trust) || 0;
+
+  const dealer =
+    Number(item.dealer) || 0;
+
+  const total =
+    Number(item.total) ||
+    foreign + trust + dealer;
+
+
+  tooltip.innerHTML = `
+
+    <div class="tooltip-date">
+      ${formatDate(item.date)}
+    </div>
+
+    <div class="tooltip-row">
+
+      <span class="tooltip-label">
+        外資
+      </span>
+
+      <span class="tooltip-value">
+        ${formatNumber(foreign)} 億元
+      </span>
+
+    </div>
+
+    <div class="tooltip-row">
+
+      <span class="tooltip-label">
+        投信
+      </span>
+
+      <span class="tooltip-value">
+        ${formatNumber(trust)} 億元
+      </span>
+
+    </div>
+
+    <div class="tooltip-row">
+
+      <span class="tooltip-label">
+        自營商
+      </span>
+
+      <span class="tooltip-value">
+        ${formatNumber(dealer)} 億元
+      </span>
+
+    </div>
+
+    <div class="tooltip-row tooltip-total">
+
+      <span class="tooltip-label">
+        三大法人合計
+      </span>
+
+      <span class="tooltip-value">
+        ${formatNumber(total)} 億元
+      </span>
+
+    </div>
+
+  `;
+
+
+  tooltip.style.display = "block";
+
+
+  const container =
+    document.querySelector(".chart-inner");
+
+  const containerWidth =
+    container.clientWidth;
+
+  const containerHeight =
+    container.clientHeight;
+
+
+  /*
+   * 預設放在游標右上方
+   */
+  let left = x + 15;
+
+  let top = y - 20;
+
+
+  /*
+   * 如果右邊空間不夠，
+   * 就改放到游標左邊
+   */
+  const tooltipWidth =
+    tooltip.offsetWidth;
+
+  if(
+    left + tooltipWidth >
+    containerWidth - 8
+  ){
+
+    left =
+      x -
+      tooltipWidth -
+      15;
+
+  }
+
+
+  /*
+   * 避免超出上方
+   */
+  if(top < 8){
+    top = 8;
+  }
+
+
+  /*
+   * 避免超出下方
+   */
+  const tooltipHeight =
+    tooltip.offsetHeight;
+
+  if(
+    top + tooltipHeight >
+    containerHeight - 8
+  ){
+
+    top =
+      containerHeight -
+      tooltipHeight -
+      8;
+
+  }
+
+
+  tooltip.style.left =
+    left + "px";
+
+  tooltip.style.top =
+    top + "px";
+
+}
+
+
+/* =========================================================
+   SVG 圖表
+   ========================================================= */
+
+function drawChart(history){
+
+  const data =
+    [...history]
+      .filter(
+        d => d && d.date
+      )
+      .sort(
+        (a,b) =>
+          a.date.localeCompare(b.date)
+      );
+
+
+  chartData = data;
+
+
+  if(!data.length){
+
+    svg.innerHTML = `
+
+      <text
+        x="525"
+        y="190"
+        text-anchor="middle"
+        fill="#888"
+        font-size="14"
+      >
+        目前沒有本月資料
+      </text>
+
+    `;
+
+    return;
+  }
+
+
+  const W = 1050;
+  const H = 390;
+
+  const left = 72;
+  const right = 28;
+  const top = 22;
+  const bottom = 52;
+
+  const plotW =
+    W - left - right;
+
+  const plotH =
+    H - top - bottom;
+
+
+  const values =
+    data.flatMap(
+      d => [
+
+        Number(d.foreign) || 0,
+
+        Number(d.trust) || 0,
+
+        Number(d.dealer) || 0
+
+      ]
     );
 
-    if(!response.ok){
-      throw new Error("HTTP "+response.status);
+
+  let minVal =
+    Math.floor(
+      Math.min(...values, 0) / 50
+    ) * 50;
+
+
+  let maxVal =
+    Math.ceil(
+      Math.max(...values, 0) / 50
+    ) * 50;
+
+
+  if(minVal === maxVal){
+
+    minVal -= 50;
+    maxVal += 50;
+
+  }
+
+
+  if(maxVal - minVal < 200){
+
+    const mid =
+      (maxVal + minVal) / 2;
+
+    minVal =
+      Math.floor(
+        (mid - 100) / 50
+      ) * 50;
+
+    maxVal =
+      Math.ceil(
+        (mid + 100) / 50
+      ) * 50;
+
+  }
+
+
+  const X = i => {
+
+    if(data.length === 1){
+
+      return left +
+        plotW / 2;
+
     }
 
-    const json=await response.json();
+    return left +
+      i *
+      plotW /
+      (data.length - 1);
 
-    // 只顯示目前月份。
-    const now=new Date();
-    const monthPrefix=
-      now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0");
+  };
 
-    const monthHistory=(json.history||[]).filter(item =>
-      String(item.date).startsWith(monthPrefix)
-    );
 
-    drawChart(monthHistory);
-  }catch(error){
-    console.error("無法讀取三大法人資料：",error);
+  const Y = v => {
 
-   svg.innerHTML=
-  '<text x="525" y="175" text-anchor="middle" fill="#888" font-size="14">無法讀取資料</text>'+
-  '<text x="525" y="202" text-anchor="middle" fill="#aaa" font-size="12">請確認 cash.json 已存在</text>';
+    return top +
+      (
+        (maxVal - v) /
+        (maxVal - minVal)
+      ) *
+      plotH;
+
+  };
+
+
+  chartGeometry = {
+    W,
+    H,
+    left,
+    right,
+    top,
+    bottom,
+    plotW,
+    plotH,
+    X,
+    Y
+  };
+
+
+  let out = `
+
+    <rect
+      x="0"
+      y="0"
+      width="${W}"
+      height="${H}"
+      fill="#fff"
+    />
+
+  `;
+
+
+  /* =====================================================
+     Y 軸
+     ===================================================== */
+
+  const firstGrid =
+    Math.ceil(minVal / 100) * 100;
+
+
+  for(
+    let v = firstGrid;
+    v <= maxVal;
+    v += 100
+  ){
+
+    const yy = Y(v);
+
+    out += `
+
+      <line
+        class="${v === 0
+          ? "zero-line"
+          : "gridline"}"
+        x1="${left}"
+        y1="${yy}"
+        x2="${W - right}"
+        y2="${yy}"
+      />
+
+      <text
+        class="axis-text"
+        x="${left - 10}"
+        y="${yy + 4}"
+        text-anchor="end"
+      >
+        ${v}
+      </text>
+
+    `;
+
   }
+
+
+  /* =====================================================
+     X 軸日期
+     ===================================================== */
+
+  data.forEach((d,i) => {
+
+    const xx = X(i);
+
+    out += `
+
+      <line
+        class="vline"
+        x1="${xx}"
+        y1="${top}"
+        x2="${xx}"
+        y2="${H - bottom}"
+      />
+
+      <text
+        class="axis-text date-label"
+        x="${xx}"
+        y="${H - 22}"
+        text-anchor="middle"
+      >
+        ${d.date.slice(5).replace("-", "/")}
+      </text>
+
+    `;
+
+  });
+
+
+  /* =====================================================
+     座標軸
+     ===================================================== */
+
+  out += `
+
+    <line
+      class="axis"
+      x1="${left}"
+      y1="${top}"
+      x2="${left}"
+      y2="${H - bottom}"
+    />
+
+    <line
+      class="axis"
+      x1="${left}"
+      y1="${H - bottom}"
+      x2="${W - right}"
+      y2="${H - bottom}"
+    />
+
+  `;
+
+
+  /* =====================================================
+     三條線
+     ===================================================== */
+
+  const series = [
+
+    {
+      key:"foreign",
+      color:"#e53935",
+      label:"外資"
+    },
+
+    {
+      key:"trust",
+      color:"#1687bf",
+      label:"投信"
+    },
+
+    {
+      key:"dealer",
+      color:"#f39c12",
+      label:"自營商"
+    }
+
+  ];
+
+
+  series.forEach(item => {
+
+    const points =
+      data.map(
+        (d,i) =>
+          `${X(i).toFixed(1)},${Y(
+            Number(d[item.key]) || 0
+          ).toFixed(1)}`
+      ).join(" ");
+
+
+    out += `
+
+      <polyline
+        class="trend-line"
+        points="${points}"
+        stroke="${item.color}"
+      />
+
+    `;
+
+
+    data.forEach((d,i) => {
+
+      const value =
+        Number(d[item.key]) || 0;
+
+
+      out += `
+
+        <circle
+          class="trend-point"
+          data-index="${i}"
+          data-series="${item.key}"
+          cx="${X(i).toFixed(1)}"
+          cy="${Y(value).toFixed(1)}"
+          r="4.5"
+          fill="${item.color}"
+        >
+
+          <title>
+            ${d.date.slice(5).replace("-", "/")}
+            ｜${item.label}：
+            ${formatNumber(value)} 億元
+          </title>
+
+        </circle>
+
+      `;
+
+    });
+
+  });
+
+
+  /*
+   * 垂直定位線
+   */
+  out += `
+
+    <line
+      id="hoverLine"
+      class="hover-line"
+      x1="0"
+      y1="${top}"
+      x2="0"
+      y2="${H - bottom}"
+      style="display:none"
+    />
+
+  `;
+
+
+  /*
+   * 三個被選取的大圓點
+   */
+  out += `
+
+    <circle
+      id="focusForeign"
+      class="focus-point"
+      r="7"
+      fill="#e53935"
+      style="display:none"
+    />
+
+    <circle
+      id="focusTrust"
+      class="focus-point"
+      r="7"
+      fill="#1687bf"
+      style="display:none"
+    />
+
+    <circle
+      id="focusDealer"
+      class="focus-point"
+      r="7"
+      fill="#f39c12"
+      style="display:none"
+    />
+
+  `;
+
+
+  svg.innerHTML = out;
+
+
+  /*
+   * 交易日很多時縮小日期文字
+   */
+  svg
+    .querySelectorAll(".date-label")
+    .forEach(el => {
+
+      el.setAttribute(
+        "font-size",
+        data.length >= 18
+          ? "9"
+          : "11"
+      );
+
+    });
+
+
+  /*
+   * 點擊資料點
+   */
+  svg
+    .querySelectorAll(".trend-point")
+    .forEach(point => {
+
+      point.addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          const index =
+            Number(
+              point.dataset.index
+            );
+
+          selectIndex(index);
+
+        }
+      );
+
+    });
+
+
+  /*
+   * 初始化選取最新一天
+   */
+  selectIndex(
+    data.length - 1,
+    false
+  );
+
 }
 
+
+/* =========================================================
+   選取某一天
+   ========================================================= */
+
+function selectIndex(index, moveTooltip = true){
+
+  if(
+    !chartData.length ||
+    !chartGeometry
+  ){
+    return;
+  }
+
+
+  index =
+    Math.max(
+      0,
+      Math.min(
+        chartData.length - 1,
+        index
+      )
+    );
+
+
+  selectedIndex = index;
+
+
+  const item =
+    chartData[index];
+
+
+  updateSelectedInfo(item);
+
+
+  const {
+    X,
+    Y,
+    top,
+    bottom
+  } = chartGeometry;
+
+
+  const x =
+    X(index);
+
+
+  const foreign =
+    Number(item.foreign) || 0;
+
+  const trust =
+    Number(item.trust) || 0;
+
+  const dealer =
+    Number(item.dealer) || 0;
+
+
+  const hoverLine =
+    document.getElementById(
+      "hoverLine"
+    );
+
+
+  const focusForeign =
+    document.getElementById(
+      "focusForeign"
+    );
+
+
+  const focusTrust =
+    document.getElementById(
+      "focusTrust"
+    );
+
+
+  const focusDealer =
+    document.getElementById(
+      "focusDealer"
+    );
+
+
+  if(hoverLine){
+
+    hoverLine.setAttribute(
+      "x1",
+      x
+    );
+
+    hoverLine.setAttribute(
+      "x2",
+      x
+    );
+
+    hoverLine.setAttribute(
+      "y1",
+      top
+    );
+
+    hoverLine.setAttribute(
+      "y2",
+      chartGeometry.H - bottom
+    );
+
+    hoverLine.style.display =
+      "block";
+
+  }
+
+
+  if(focusForeign){
+
+    focusForeign.setAttribute(
+      "cx",
+      x
+    );
+
+    focusForeign.setAttribute(
+      "cy",
+      Y(foreign)
+    );
+
+    focusForeign.style.display =
+      "block";
+
+  }
+
+
+  if(focusTrust){
+
+    focusTrust.setAttribute(
+      "cx",
+      x
+    );
+
+    focusTrust.setAttribute(
+      "cy",
+      Y(trust)
+    );
+
+    focusTrust.style.display =
+      "block";
+
+  }
+
+
+  if(focusDealer){
+
+    focusDealer.setAttribute(
+      "cx",
+      x
+    );
+
+    focusDealer.setAttribute(
+      "cy",
+      Y(dealer)
+    );
+
+    focusDealer.style.display =
+      "block";
+
+  }
+
+
+  if(moveTooltip){
+
+    /*
+     * SVG viewBox 寬度 1050，
+     * 實際顯示寬度可能不同，
+     * 因此把 SVG 座標換算成實際像素。
+     */
+
+    const rect =
+      svg.getBoundingClientRect();
+
+
+    const scaleX =
+      rect.width / chartGeometry.W;
+
+    const scaleY =
+      rect.height / chartGeometry.H;
+
+
+    const pixelX =
+      x * scaleX;
+
+
+    const pixelY =
+      Math.min(
+        Y(foreign),
+        Y(trust),
+        Y(dealer)
+      ) * scaleY;
+
+
+    showTooltip(
+      item,
+      pixelX,
+      pixelY
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   滑鼠移動
+   ========================================================= */
+
+svg.addEventListener(
+  "mousemove",
+  event => {
+
+    if(
+      !chartData.length ||
+      !chartGeometry
+    ){
+      return;
+    }
+
+
+    const rect =
+      svg.getBoundingClientRect();
+
+
+    /*
+     * 滑鼠相對 SVG 的位置
+     */
+    const px =
+      event.clientX -
+      rect.left;
+
+
+    /*
+     * 轉換成 viewBox 座標
+     */
+    const svgX =
+      px *
+      chartGeometry.W /
+      rect.width;
+
+
+    /*
+     * 找最接近的交易日
+     */
+    let nearestIndex = 0;
+
+    let nearestDistance =
+      Infinity;
+
+
+    chartData.forEach(
+      (item,index) => {
+
+        const distance =
+          Math.abs(
+            chartGeometry.X(index) -
+            svgX
+          );
+
+
+        if(
+          distance <
+          nearestDistance
+        ){
+
+          nearestDistance =
+            distance;
+
+          nearestIndex =
+            index;
+
+        }
+
+      }
+    );
+
+
+    selectedIndex =
+      nearestIndex;
+
+
+    const item =
+      chartData[nearestIndex];
+
+
+    updateSelectedInfo(item);
+
+
+    /*
+     * 更新定位線與大圓點
+     */
+    selectIndex(
+      nearestIndex,
+      false
+    );
+
+
+    /*
+     * Tooltip 顯示在滑鼠附近
+     */
+    const tooltipX =
+      px;
+
+
+    const tooltipY =
+      event.clientY -
+      rect.top;
+
+
+    showTooltip(
+      item,
+      tooltipX,
+      tooltipY
+    );
+
+  }
+);
+
+
+/* =========================================================
+   滑鼠離開圖表
+   ========================================================= */
+
+svg.addEventListener(
+  "mouseleave",
+  () => {
+
+    /*
+     * 不隱藏資訊，
+     * 讓使用者最後選到的日期保留。
+     */
+
+  }
+);
+
+
+/* =========================================================
+   手機觸控
+   ========================================================= */
+
+svg.addEventListener(
+  "pointerdown",
+  event => {
+
+    if(
+      event.pointerType !== "touch"
+    ){
+      return;
+    }
+
+
+    if(
+      !chartData.length ||
+      !chartGeometry
+    ){
+      return;
+    }
+
+
+    const rect =
+      svg.getBoundingClientRect();
+
+
+    const px =
+      event.clientX -
+      rect.left;
+
+
+    const svgX =
+      px *
+      chartGeometry.W /
+      rect.width;
+
+
+    let nearestIndex = 0;
+
+    let nearestDistance =
+      Infinity;
+
+
+    chartData.forEach(
+      (item,index) => {
+
+        const distance =
+          Math.abs(
+            chartGeometry.X(index) -
+            svgX
+          );
+
+
+        if(
+          distance <
+          nearestDistance
+        ){
+
+          nearestDistance =
+            distance;
+
+          nearestIndex =
+            index;
+
+        }
+
+      }
+    );
+
+
+    selectIndex(
+      nearestIndex,
+      true
+    );
+
+  }
+);
+
+
+/* =========================================================
+   讀取 cash.json
+   ========================================================= */
+
+async function loadThreeInstitutionsData(){
+
+  try{
+
+    /*
+     * 注意：
+     * cash.json 必須和 foreign-cash.html
+     * 在同一層。
+     */
+    const response =
+      await fetch(
+        "./cash.json?ts=" +
+        Date.now(),
+        {
+          cache:"no-store"
+        }
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "HTTP " +
+        response.status
+      );
+
+    }
+
+
+    const json =
+      await response.json();
+
+
+    const history =
+      Array.isArray(
+        json.history
+      )
+        ? json.history
+        : [];
+
+
+    /*
+     * 只顯示目前月份
+     */
+    const now =
+      new Date();
+
+
+    const monthPrefix =
+      now.getFullYear() +
+      "-" +
+      String(
+        now.getMonth() + 1
+      ).padStart(2,"0");
+
+
+    const monthHistory =
+      history.filter(
+        item =>
+          String(item.date)
+            .startsWith(
+              monthPrefix
+            )
+      );
+
+
+    /*
+     * 如果目前月份沒有資料，
+     * 顯示全部歷史資料中最新的一筆，
+     * 但圖表仍顯示目前月份資料。
+     */
+    if(monthHistory.length){
+
+      drawChart(
+        monthHistory
+      );
+
+    }else{
+
+      drawChart([]);
+
+      if(json.latest){
+
+        updateSelectedInfo(
+          json.latest
+        );
+
+      }
+
+    }
+
+
+  }catch(error){
+
+    console.error(
+      "無法讀取三大法人資料：",
+      error
+    );
+
+
+    svg.innerHTML = `
+
+      <text
+        x="525"
+        y="175"
+        text-anchor="middle"
+        fill="#888"
+        font-size="14"
+      >
+        無法讀取資料
+      </text>
+
+      <text
+        x="525"
+        y="202"
+        text-anchor="middle"
+        fill="#aaa"
+        font-size="12"
+      >
+        請確認 cash.json 已存在於網站根目錄
+      </text>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   啟動
+   ========================================================= */
+
 loadThreeInstitutionsData();
+
 </script>
+
 </body>
 </html>
