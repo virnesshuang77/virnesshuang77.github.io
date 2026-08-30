@@ -7,6 +7,7 @@
 <title>AI Trading Portfolio</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -25,11 +26,66 @@ body {
     line-height: 1.6;
 }
 
+
+/* =========================================================
+   Navigation
+========================================================= */
+
+.navbar {
+    width: min(1180px, calc(100% - 24px));
+    margin: 0 auto;
+    padding: 16px 0 0;
+
+    display: flex;
+    gap: 8px;
+
+    overflow-x: auto;
+    white-space: nowrap;
+
+    scrollbar-width: thin;
+}
+
+.navlink {
+    display: inline-block;
+
+    padding: 9px 13px;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    color: #475569;
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+.navlink:hover {
+    background: #f8fafc;
+}
+
+.navlink.active {
+    background: #111827;
+    color: #ffffff;
+    border-color: #111827;
+}
+
+
+/* =========================================================
+   Container
+========================================================= */
+
 .container {
     width: min(1180px, calc(100% - 24px));
     margin: 0 auto;
     padding: 24px 0 60px;
 }
+
 
 /* =========================================================
    Header
@@ -53,6 +109,7 @@ body {
     color: #d1d5db;
     font-size: 14px;
 }
+
 
 /* =========================================================
    Summary
@@ -92,6 +149,7 @@ body {
     color: #16a34a;
 }
 
+
 /* =========================================================
    Date
 ========================================================= */
@@ -110,6 +168,7 @@ body {
     color: #111827;
 }
 
+
 /* =========================================================
    Section
 ========================================================= */
@@ -126,6 +185,7 @@ body {
     margin: 0 0 17px;
     font-size: 21px;
 }
+
 
 /* =========================================================
    Holdings
@@ -190,6 +250,7 @@ body {
     color: #64748b;
 }
 
+
 /* =========================================================
    Waiting
 ========================================================= */
@@ -229,6 +290,7 @@ body {
     color: #64748b;
     font-size: 13px;
 }
+
 
 /* =========================================================
    Transactions
@@ -280,6 +342,7 @@ td {
     font-weight: 800;
 }
 
+
 /* =========================================================
    Performance
 ========================================================= */
@@ -315,6 +378,7 @@ td {
     font-weight: 800;
 }
 
+
 /* =========================================================
    Empty
 ========================================================= */
@@ -335,6 +399,7 @@ td {
     margin-bottom: 5px;
 }
 
+
 /* =========================================================
    Loading / Error
 ========================================================= */
@@ -352,6 +417,7 @@ td {
     background: #fff;
     color: #b91c1c;
 }
+
 
 /* =========================================================
    Rules
@@ -380,6 +446,7 @@ td {
     font-size: 13px;
 }
 
+
 /* =========================================================
    Footer
 ========================================================= */
@@ -390,6 +457,7 @@ td {
     color: #64748b;
     font-size: 12px;
 }
+
 
 /* =========================================================
    Mobile
@@ -430,7 +498,18 @@ td {
     }
 }
 
+
 @media (max-width: 500px) {
+
+    .navbar {
+        width: calc(100% - 16px);
+        padding-top: 10px;
+    }
+
+    .navlink {
+        font-size: 12px;
+        padding: 8px 11px;
+    }
 
     .container {
         width: calc(100% - 16px);
@@ -462,12 +541,77 @@ td {
         padding: 15px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =======================================================
+     Navigation
+======================================================= -->
+
+<nav
+    class="navbar"
+    aria-label="工具導覽"
+>
+
+    <a
+        class="navlink"
+        href="index.html"
+    >
+        📊 融資融券維持率
+    </a>
+
+    <a
+        class="navlink"
+        href="calendar.html"
+    >
+        📊 每日行事曆
+    </a>
+
+    <a
+        class="navlink active"
+        href="portfolio.html"
+    >
+        📊 投資績效名片
+    </a>
+
+    <a
+        class="navlink"
+        href="foreign.html"
+    >
+        🏦 外資買賣超
+    </a>
+
+    <a
+        class="navlink"
+        href="broker.html"
+    >
+        🏦 投信買賣超
+    </a>
+
+    <a
+        class="navlink"
+        href="credit.html"
+    >
+        🏦 融資融券變化
+    </a>
+
+    <a
+        class="navlink"
+        href="foreign-cash.html"
+    >
+        🏦 三大法人買賣超
+    </a>
+
+</nav>
+
+
 <div class="container">
+
 
 <!-- =======================================================
      Header
@@ -498,7 +642,8 @@ td {
 
         <div
             class="summary-value"
-            id="initialCapital">
+            id="initialCapital"
+        >
             —
         </div>
 
@@ -513,7 +658,8 @@ td {
 
         <div
             class="summary-value"
-            id="totalAssets">
+            id="totalAssets"
+        >
             —
         </div>
 
@@ -528,7 +674,8 @@ td {
 
         <div
             class="summary-value"
-            id="totalProfit">
+            id="totalProfit"
+        >
             —
         </div>
 
@@ -543,7 +690,8 @@ td {
 
         <div
             class="summary-value"
-            id="totalReturn">
+            id="totalReturn"
+        >
             —
         </div>
 
@@ -581,7 +729,8 @@ td {
 
     <div
         id="holdings"
-        class="holdings">
+        class="holdings"
+    >
 
         <div class="loading">
             正在讀取投資組合...
@@ -604,7 +753,8 @@ td {
 
     <div
         id="waitingList"
-        class="waiting-list">
+        class="waiting-list"
+    >
 
         <div class="loading">
             正在讀取等待中的標的...
@@ -644,6 +794,7 @@ td {
 
             </thead>
 
+
             <tbody id="transactions">
 
             </tbody>
@@ -667,7 +818,8 @@ td {
 
     <div
         id="performance"
-        class="performance-list">
+        class="performance-list"
+    >
 
         <div class="loading">
             正在讀取績效...
@@ -801,10 +953,12 @@ td {
     ChatGPT AI Trading Experiment · 僅供投資研究與績效紀錄
 </div>
 
+
 </div>
 
 
 <script>
+
 
 /* =========================================================
    資料來源
@@ -831,6 +985,7 @@ function number(value, fallback = 0) {
     return Number.isFinite(n)
         ? n
         : fallback;
+
 }
 
 
@@ -843,6 +998,7 @@ function formatMoney(value) {
             maximumFractionDigits: 0
         }
     );
+
 }
 
 
@@ -855,6 +1011,7 @@ function formatPrice(value) {
             maximumFractionDigits: 2
         }
     );
+
 }
 
 
@@ -871,6 +1028,7 @@ function formatPercent(value) {
     }
 
     return "0.00%";
+
 }
 
 
@@ -887,6 +1045,7 @@ function profitClass(value) {
     }
 
     return "flat";
+
 }
 
 
@@ -900,7 +1059,10 @@ function renderHoldings(holdings) {
         document.getElementById("holdings");
 
 
-    if (!Array.isArray(holdings) || holdings.length === 0) {
+    if (
+        !Array.isArray(holdings) ||
+        holdings.length === 0
+    ) {
 
         container.innerHTML = `
 
@@ -955,16 +1117,13 @@ function renderHoldings(holdings) {
                         #${index + 1}
                     </div>
 
-
                     <div class="holding-symbol">
                         ${escapeHTML(stock.symbol)}
                     </div>
 
-
                     <div class="holding-name">
                         ${escapeHTML(stock.name)}
                     </div>
-
 
                     <div class="holding-number">
 
@@ -978,7 +1137,6 @@ function renderHoldings(holdings) {
 
                     </div>
 
-
                     <div class="holding-number">
 
                         <span class="holding-label">
@@ -990,7 +1148,6 @@ function renderHoldings(holdings) {
                         </span>
 
                     </div>
-
 
                     <div class="holding-number">
 
@@ -1023,7 +1180,10 @@ function renderWaiting(waiting) {
         document.getElementById("waitingList");
 
 
-    if (!Array.isArray(waiting) || waiting.length === 0) {
+    if (
+        !Array.isArray(waiting) ||
+        waiting.length === 0
+    ) {
 
         container.innerHTML = `
 
@@ -1052,11 +1212,9 @@ function renderWaiting(waiting) {
                         ${escapeHTML(stock.symbol)}
                     </div>
 
-
                     <div class="waiting-name">
                         ${escapeHTML(stock.name)}
                     </div>
-
 
                     <div class="waiting-price">
 
@@ -1068,11 +1226,11 @@ function renderWaiting(waiting) {
 
                     </div>
 
-
                     <div class="waiting-status">
 
                         ${escapeHTML(
-                            stock.status || "等待進場"
+                            stock.status ||
+                            "等待進場"
                         )}
 
                     </div>
@@ -1105,8 +1263,10 @@ function renderTransactions(transactions) {
 
             <tr>
 
-                <td colspan="6"
-                    style="text-align:center;color:#64748b;padding:35px;">
+                <td
+                    colspan="6"
+                    style="text-align:center;color:#64748b;padding:35px;"
+                >
 
                     尚無交易紀錄
 
@@ -1126,10 +1286,7 @@ function renderTransactions(transactions) {
             const action =
                 transaction.action || "";
 
-
-            let actionClass =
-                "";
-
+            let actionClass = "";
 
             if (action === "買入") {
                 actionClass = "action-buy";
@@ -1157,11 +1314,15 @@ function renderTransactions(transactions) {
                     </td>
 
                     <td>
+
                         <strong>
                             ${escapeHTML(transaction.symbol)}
                         </strong>
+
                         <br>
+
                         ${escapeHTML(transaction.name)}
+
                     </td>
 
                     <td class="${actionClass}">
@@ -1227,10 +1388,6 @@ function renderPerformance(performance) {
     }
 
 
-    /*
-        最新日期放最上面
-    */
-
     const sorted =
         [...performance].sort(
             (a, b) =>
@@ -1256,17 +1413,14 @@ function renderPerformance(performance) {
                         ${escapeHTML(row.date)}
                     </div>
 
-
                     <div class="performance-assets">
                         ${formatMoney(row.total_assets)}
                     </div>
 
-
                     <div
-                        class="performance-return ${profitClass(returnRate)}">
-
+                        class="performance-return ${profitClass(returnRate)}"
+                    >
                         ${formatPercent(returnRate)}
-
                     </div>
 
                 </div>
@@ -1447,6 +1601,7 @@ async function loadPortfolio() {
 
 
     }
+
     catch (error) {
 
         console.error(error);
