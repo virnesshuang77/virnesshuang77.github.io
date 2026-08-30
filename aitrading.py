@@ -33,13 +33,27 @@ import requests
 #       volume_ratio_20d
 #
 #
-# 歷史資料：
+# ============================================================
+# History 儲存格式
+# ============================================================
 #
-#       tw_history.json
+# 為了避免 tw_history.json 過大，
+# 歷史資料只保存：
 #
-# AI Top 100：
+#       [close, volume]
 #
-#       tw_top100.json
+# 例如：
+#
+# "TWSE:2330": [2420, 15025832]
+#
+# 不再重複保存：
+#
+#       market
+#       symbol
+#       name
+#       trading_value
+#
+# 這些資料只需要存在 tw_top100.json。
 #
 # ============================================================
 
@@ -47,6 +61,8 @@ import requests
 TOP_N = 100
 
 HISTORY_DAYS = 300
+
+MAX_HISTORY_DAYS = 320
 
 OUTPUT_FILE = Path("tw_top100.json")
 
@@ -115,17 +131,15 @@ def clean_symbol(symbol):
 def is_tradeable_symbol(symbol):
 
     """
-    我們目前的策略：
+    目前允許：
 
-    4 碼數字標的都允許。
+    股票
+    ETF
 
-    因為我們已經決定：
-        股票可以
-        ETF 可以
+    原則：
 
-    目前只排除明顯不是一般 4 碼證券代號的項目。
+    只要是一般 4 碼數字證券代號，就允許進入候選池。
 
-    後續如果要加入更多商品，再另外處理。
     """
 
     symbol = clean_symbol(symbol)
@@ -188,7 +202,7 @@ def fetch_twse(date_string):
     }
 
     print(
-        f"[TWSE] {date_string}"
+        f"[TWSE] 取得資料：{date_string}"
     )
 
     response = SESSION.get(
@@ -216,6 +230,8 @@ def fetch_twse(date_string):
 
     if not tables:
 
+        print("[TWSE] 找不到 tables")
+
         return []
 
     target_table = None
@@ -234,6 +250,10 @@ def fetch_twse(date_string):
             break
 
     if target_table is None:
+
+        print(
+            "[TWSE] 找不到成交金額資料表"
+        )
 
         return []
 
@@ -285,6 +305,10 @@ def fetch_twse(date_string):
 
         if field not in field_index:
 
+            print(
+                f"[TWSE] 缺少欄位：{field}"
+            )
+
             return []
 
     result = []
@@ -302,6 +326,7 @@ def fetch_twse(date_string):
             )
 
             if not is_tradeable_symbol(symbol):
+
                 continue
 
             trading_value = clean_number(
@@ -313,6 +338,7 @@ def fetch_twse(date_string):
             )
 
             if trading_value is None:
+
                 continue
 
             result.append({
@@ -407,6 +433,10 @@ def fetch_twse(date_string):
 
             continue
 
+    print(
+        f"[TWSE] 成功取得 {len(result)} 檔"
+    )
+
     return result
 
 
@@ -432,7 +462,7 @@ def fetch_tpex(date_string):
     }
 
     print(
-        f"[TPEx] {date_string}"
+        f"[TPEx] 取得資料：{date_string}"
     )
 
     response = SESSION.get(
@@ -576,6 +606,10 @@ def fetch_tpex(date_string):
         or value_i is None
     ):
 
+        print(
+            "[TPEx] 缺少必要欄位"
+        )
+
         return []
 
     result = []
@@ -589,6 +623,7 @@ def fetch_tpex(date_string):
             )
 
             if not is_tradeable_symbol(symbol):
+
                 continue
 
             trading_value = clean_number(
@@ -596,6 +631,7 @@ def fetch_tpex(date_string):
             )
 
             if trading_value is None:
+
                 continue
 
             if (
@@ -679,6 +715,10 @@ def fetch_tpex(date_string):
 
             continue
 
+    print(
+        f"[TPEx] 成功取得 {len(result)} 檔"
+    )
+
     return result
 
 
@@ -691,6 +731,7 @@ def fetch_latest_market_data():
     for candidate in get_candidate_dates(10):
 
         print()
+
         print(
             "=" * 60
         )
@@ -753,6 +794,10 @@ def fetch_latest_market_data():
 def fetch_twse_institutional(
     date_string
 ):
+
+    print(
+        f"[TWSE] 取得三大法人：{date_string}"
+    )
 
     url = (
         "https://www.twse.com.tw/"
@@ -845,6 +890,7 @@ def fetch_twse_institutional(
             )
 
             if not is_tradeable_symbol(symbol):
+
                 continue
 
             result[symbol] = {
@@ -894,6 +940,10 @@ def fetch_twse_institutional(
 
             continue
 
+    print(
+        f"[TWSE] 法人資料：{len(result)} 檔"
+    )
+
     return result
 
 
@@ -902,6 +952,10 @@ def fetch_twse_institutional(
 # ============================================================
 
 def fetch_tpex_institutional():
+
+    print(
+        "[TPEx] 取得三大法人"
+    )
 
     url = (
         "https://www.tpex.org.tw/"
@@ -930,6 +984,7 @@ def fetch_tpex_institutional():
     for row in data:
 
         if not isinstance(row, dict):
+
             continue
 
         symbol = clean_symbol(
@@ -940,6 +995,7 @@ def fetch_tpex_institutional():
         )
 
         if not is_tradeable_symbol(symbol):
+
             continue
 
         result[symbol] = {
@@ -975,33 +1031,190 @@ def fetch_tpex_institutional():
 
         }
 
+    print(
+        f"[TPEx] 法人資料：{len(result)} 檔"
+    )
+
     return result
 
 
 # ============================================================
-# History Load
+# History
+# ============================================================
+
+def empty_history():
+
+    return {
+
+        "meta": {
+
+            "version": 2,
+
+            "format":
+                "compact",
+
+            "description":
+                "close_and_volume_only",
+
+            "initialized":
+                False,
+
+            "tracked_symbols":
+                []
+
+        },
+
+        "dates": {}
+
+    }
+
+
+# ============================================================
+# 舊 History 自動轉換
+# ============================================================
+
+def convert_old_history(data):
+
+    """
+    把舊版：
+
+    "TWSE:2330": {
+        "market": "TWSE",
+        "symbol": "2330",
+        "name": "台積電",
+        "close": 2420,
+        "volume": 15025832,
+        "trading_value": 36465015980
+    }
+
+    轉成：
+
+    "TWSE:2330": [
+        2420,
+        15025832
+    ]
+
+    """
+
+    if not isinstance(data, dict):
+
+        return empty_history()
+
+    # 已經是新版
+    if (
+        data.get("meta", {})
+        .get("version")
+        == 2
+    ):
+
+        return data
+
+    new_history = empty_history()
+
+    old_dates = data.get(
+        "dates",
+        data
+    )
+
+    if not isinstance(old_dates, dict):
+
+        return new_history
+
+    tracked = set()
+
+    for date_string, day_data in old_dates.items():
+
+        if not isinstance(day_data, dict):
+
+            continue
+
+        new_day = {}
+
+        for key, row in day_data.items():
+
+            # ------------------------------------------------
+            # 舊格式
+            # ------------------------------------------------
+
+            if isinstance(row, dict):
+
+                close = row.get(
+                    "close"
+                )
+
+                volume = row.get(
+                    "volume"
+                )
+
+                if (
+                    close is None
+                    and volume is None
+                ):
+
+                    continue
+
+                new_day[key] = [
+
+                    close,
+
+                    volume
+
+                ]
+
+                tracked.add(key)
+
+            # ------------------------------------------------
+            # 已經接近新版
+            # ------------------------------------------------
+
+            elif isinstance(row, list):
+
+                if len(row) >= 2:
+
+                    new_day[key] = [
+
+                        row[0],
+
+                        row[1]
+
+                    ]
+
+                    tracked.add(key)
+
+        if new_day:
+
+            new_history[
+                "dates"
+            ][date_string] = new_day
+
+    new_history[
+        "meta"
+    ][
+        "tracked_symbols"
+    ] = sorted(tracked)
+
+    print()
+
+    print(
+        "[HISTORY] 已將舊格式轉換為新版壓縮格式"
+    )
+
+    return new_history
+
+
+# ============================================================
+# 載入 History
 # ============================================================
 
 def load_history():
 
     if not HISTORY_FILE.exists():
 
-        return {
+        print(
+            "[HISTORY] 找不到 history，建立新檔"
+        )
 
-            "meta": {
-
-                "version": 1,
-
-                "initialized":
-                    False,
-
-                "tracked_symbols": []
-
-            },
-
-            "dates": {}
-
-        }
+        return empty_history()
 
     try:
 
@@ -1012,51 +1225,24 @@ def load_history():
 
             data = json.load(file)
 
-        # 舊版格式轉換
-        if "dates" not in data:
+        history = convert_old_history(
+            data
+        )
 
-            old_data = data
+        return history
 
-            return {
+    except Exception as exc:
 
-                "meta": {
+        print(
+            "[HISTORY WARNING] "
+            f"讀取失敗：{exc}"
+        )
 
-                    "version": 1,
+        print(
+            "[HISTORY] 建立新的 history"
+        )
 
-                    "initialized":
-                        False,
-
-                    "tracked_symbols":
-                        []
-
-                },
-
-                "dates":
-                    old_data
-
-            }
-
-        return data
-
-    except Exception:
-
-        return {
-
-            "meta": {
-
-                "version": 1,
-
-                "initialized":
-                    False,
-
-                "tracked_symbols":
-                    []
-
-            },
-
-            "dates": {}
-
-        }
+        return empty_history()
 
 
 # ============================================================
@@ -1070,18 +1256,18 @@ def save_history(history):
         {}
     )
 
-    # --------------------------------------------------------
-    # 最多保留 320 個交易日
-    # --------------------------------------------------------
-
     sorted_dates = sorted(
         dates.keys()
     )
 
-    if len(sorted_dates) > 320:
+    # --------------------------------------------------------
+    # 最多保留 320 個交易日
+    # --------------------------------------------------------
+
+    if len(sorted_dates) > MAX_HISTORY_DAYS:
 
         keep_dates = sorted_dates[
-            -320:
+            -MAX_HISTORY_DAYS:
         ]
 
         history["dates"] = {
@@ -1092,6 +1278,37 @@ def save_history(history):
             for d in keep_dates
 
         }
+
+    # --------------------------------------------------------
+    # 更新 meta
+    # --------------------------------------------------------
+
+    history[
+        "meta"
+    ][
+        "version"
+    ] = 2
+
+    history[
+        "meta"
+    ][
+        "format"
+    ] = "compact"
+
+    history[
+        "meta"
+    ][
+        "initialized"
+    ] = (
+
+        len(
+            history[
+                "dates"
+            ]
+        )
+        >= HISTORY_DAYS
+
+    )
 
     with HISTORY_FILE.open(
         "w",
@@ -1109,6 +1326,27 @@ def save_history(history):
             separators=(",", ":")
 
         )
+
+    # --------------------------------------------------------
+    # 顯示檔案大小
+    # --------------------------------------------------------
+
+    try:
+
+        size_mb = (
+            HISTORY_FILE.stat().st_size
+            / 1024
+            / 1024
+        )
+
+        print(
+            f"[HISTORY] 檔案大小："
+            f"{size_mb:.2f} MB"
+        )
+
+    except OSError:
+
+        pass
 
 
 # ============================================================
@@ -1136,16 +1374,18 @@ def add_history_day(
     ][date_string]
 
     rows = (
-        twse_rows +
-        tpex_rows
+        twse_rows
+        + tpex_rows
     )
 
     for stock in rows:
 
         key = (
+
             stock["market"]
             + ":"
             + stock["symbol"]
+
         )
 
         if (
@@ -1155,27 +1395,32 @@ def add_history_day(
 
             continue
 
-        target[key] = {
+        close = stock.get(
+            "close"
+        )
 
-            "market":
-                stock["market"],
+        volume = stock.get(
+            "volume"
+        )
 
-            "symbol":
-                stock["symbol"],
+        if (
+            close is None
+            and volume is None
+        ):
 
-            "name":
-                stock["name"],
+            continue
 
-            "close":
-                stock["close"],
+        # ----------------------------------------------------
+        # 壓縮格式
+        # ----------------------------------------------------
 
-            "volume":
-                stock["volume"],
+        target[key] = [
 
-            "trading_value":
-                stock["trading_value"],
+            close,
 
-        }
+            volume
+
+        ]
 
 
 # ============================================================
@@ -1188,8 +1433,8 @@ def get_top100(
 ):
 
     all_rows = (
-        twse_rows +
-        tpex_rows
+        twse_rows
+        + tpex_rows
     )
 
     unique = {}
@@ -1252,9 +1497,45 @@ def get_series(
         ][date_string].get(key)
 
         if not row:
+
             continue
 
-        if row.get("close") is None:
+        # ----------------------------------------------------
+        # 新格式：
+        #
+        # [close, volume]
+        # ----------------------------------------------------
+
+        if isinstance(row, list):
+
+            if len(row) < 2:
+
+                continue
+
+            close = row[0]
+
+            volume = row[1]
+
+        # ----------------------------------------------------
+        # 保險：如果還有舊格式
+        # ----------------------------------------------------
+
+        elif isinstance(row, dict):
+
+            close = row.get(
+                "close"
+            )
+
+            volume = row.get(
+                "volume"
+            )
+
+        else:
+
+            continue
+
+        if close is None:
+
             continue
 
         result.append({
@@ -1263,10 +1544,10 @@ def get_series(
                 date_string,
 
             "close":
-                row["close"],
+                close,
 
             "volume":
-                row.get("volume")
+                volume
 
         })
 
@@ -1290,6 +1571,7 @@ def average(values):
     ]
 
     if not values:
+
         return None
 
     return sum(values) / len(values)
@@ -1381,9 +1663,9 @@ def calculate_metrics(
 
     metrics = {}
 
-    # --------------------------------------------------------
+    # ========================================================
     # 今日漲跌幅
-    # --------------------------------------------------------
+    # ========================================================
 
     change = stock.get(
         "change"
@@ -1424,9 +1706,9 @@ def calculate_metrics(
             "change_percent"
         ] = None
 
-    # --------------------------------------------------------
+    # ========================================================
     # 報酬率
-    # --------------------------------------------------------
+    # ========================================================
 
     periods = {
 
@@ -1476,9 +1758,9 @@ def calculate_metrics(
 
             metrics[name] = None
 
-    # --------------------------------------------------------
+    # ========================================================
     # 移動平均
-    # --------------------------------------------------------
+    # ========================================================
 
     moving_averages = {
 
@@ -1514,9 +1796,9 @@ def calculate_metrics(
 
             metrics[name] = None
 
-    # --------------------------------------------------------
+    # ========================================================
     # 20 日平均成交量
-    # --------------------------------------------------------
+    # ========================================================
 
     if len(volumes) >= 20:
 
@@ -1527,8 +1809,11 @@ def calculate_metrics(
         metrics[
             "avg_volume_20d"
         ] = round(
+
             avg_volume,
+
             2
+
         )
 
         if (
@@ -1582,7 +1867,10 @@ def bootstrap_history(
         ).keys()
     )
 
-    # 已經有足夠歷史，不初始化
+    # --------------------------------------------------------
+    # 已經足夠
+    # --------------------------------------------------------
+
     if len(existing_dates) >= HISTORY_DAYS:
 
         print(
@@ -1593,33 +1881,38 @@ def bootstrap_history(
         return history
 
     print()
-    print("=" * 60)
+
+    print(
+        "=" * 60
+    )
 
     print(
         "[HISTORY] 開始初始化歷史資料"
     )
 
     print(
-        f"[HISTORY] 目標：約 {HISTORY_DAYS} 個交易日"
+        f"[HISTORY] 目標：約 "
+        f"{HISTORY_DAYS} 個交易日"
     )
 
     print(
-        f"[HISTORY] 追蹤標的："
+        f"[HISTORY] 目前追蹤標的："
         f"{len(tracked_keys)}"
     )
 
-    print("=" * 60)
+    print(
+        "=" * 60
+    )
 
     # --------------------------------------------------------
-    # 從約 500 個日曆日往前找，
-    # 足夠取得約 300 個交易日。
+    # 500 個日曆日
     # --------------------------------------------------------
 
     candidates = get_candidate_dates(
         500
     )
 
-    # 我們需要由舊到新
+    # 舊 → 新
     candidates.reverse()
 
     collected = 0
@@ -1642,7 +1935,7 @@ def bootstrap_history(
             "display"
         ]
 
-        # 已經有這天就跳過
+        # 已存在
         if date_string in history.get(
             "dates",
             {}
@@ -1680,7 +1973,6 @@ def bootstrap_history(
 
             )
 
-            # 如果這一天真的有我們追蹤的資料
             if history[
                 "dates"
             ].get(date_string):
@@ -1688,16 +1980,20 @@ def bootstrap_history(
                 collected += 1
 
                 print(
+
                     f"[HISTORY] "
                     f"{date_string} "
                     f"第 {collected} 個交易日"
+
                 )
 
         except Exception as exc:
 
             print(
+
                 f"[HISTORY WARNING] "
                 f"{date_string}: {exc}"
+
             )
 
         time.sleep(0.25)
@@ -1816,9 +2112,9 @@ def main():
         "=" * 60
     )
 
-    # --------------------------------------------------------
-    # 取得今天市場資料
-    # --------------------------------------------------------
+    # ========================================================
+    # 取得最近交易日
+    # ========================================================
 
     (
         date_string,
@@ -1840,9 +2136,9 @@ def main():
         f"{date_string}"
     )
 
-    # --------------------------------------------------------
-    # 目前 Top 100
-    # --------------------------------------------------------
+    # ========================================================
+    # Top 100
+    # ========================================================
 
     current_top100 = get_top100(
 
@@ -1861,9 +2157,9 @@ def main():
 
         )
 
-    # --------------------------------------------------------
-    # 更新追蹤標的
-    # --------------------------------------------------------
+    # ========================================================
+    # History
+    # ========================================================
 
     history = load_history()
 
@@ -1877,7 +2173,9 @@ def main():
 
         history[
             "meta"
-        ]["tracked_symbols"] = []
+        ][
+            "tracked_symbols"
+        ] = []
 
     tracked_keys = set(
 
@@ -1889,7 +2187,10 @@ def main():
 
     )
 
-    # 加入目前 Top 100
+    # --------------------------------------------------------
+    # 新增目前 Top 100
+    # --------------------------------------------------------
+
     for stock in current_top100:
 
         key = (
@@ -1910,9 +2211,9 @@ def main():
         tracked_keys
     )
 
-    # --------------------------------------------------------
-    # 歷史初始化
-    # --------------------------------------------------------
+    # ========================================================
+    # 初始化歷史
+    # ========================================================
 
     history = bootstrap_history(
 
@@ -1922,9 +2223,9 @@ def main():
 
     )
 
-    # --------------------------------------------------------
-    # 加入今天資料
-    # --------------------------------------------------------
+    # ========================================================
+    # 加入今天
+    # ========================================================
 
     add_history_day(
 
@@ -1940,9 +2241,9 @@ def main():
 
     )
 
-    # --------------------------------------------------------
+    # ========================================================
     # 三大法人
-    # --------------------------------------------------------
+    # ========================================================
 
     time.sleep(1)
 
@@ -1958,9 +2259,9 @@ def main():
         fetch_tpex_institutional()
     )
 
-    # --------------------------------------------------------
-    # 建立最終 Top 100
-    # --------------------------------------------------------
+    # ========================================================
+    # 最終 Top 100
+    # ========================================================
 
     final_top100 = []
 
@@ -2010,7 +2311,10 @@ def main():
             institution
         )
 
+        # ----------------------------------------------------
         # 技術資料
+        # ----------------------------------------------------
+
         metrics = calculate_metrics(
 
             history,
@@ -2029,9 +2333,9 @@ def main():
             stock
         )
 
-    # --------------------------------------------------------
+    # ========================================================
     # 排名
-    # --------------------------------------------------------
+    # ========================================================
 
     for index, stock in enumerate(
 
@@ -2043,9 +2347,9 @@ def main():
 
         stock["rank"] = index
 
-    # --------------------------------------------------------
-    # 儲存 history
-    # --------------------------------------------------------
+    # ========================================================
+    # History initialized 狀態
+    # ========================================================
 
     history[
         "meta"
@@ -2062,13 +2366,17 @@ def main():
 
     )
 
+    # ========================================================
+    # 儲存 History
+    # ========================================================
+
     save_history(
         history
     )
 
-    # --------------------------------------------------------
+    # ========================================================
     # 儲存 Top 100
-    # --------------------------------------------------------
+    # ========================================================
 
     output = build_output(
 
@@ -2098,9 +2406,9 @@ def main():
 
         )
 
-    # --------------------------------------------------------
+    # ========================================================
     # 顯示結果
-    # --------------------------------------------------------
+    # ========================================================
 
     print()
 
@@ -2109,7 +2417,7 @@ def main():
     )
 
     print(
-        "前 10 名"
+        "前 10 名："
     )
 
     print(
@@ -2138,7 +2446,7 @@ def main():
 
         print(
 
-            f'    今日='
+            f'    漲跌='
             f'{stock.get("change_percent")}% '
 
             f'5日='
@@ -2177,12 +2485,12 @@ def main():
     print()
 
     print(
-        "History：",
+        "歷史資料檔案：",
         HISTORY_FILE
     )
 
     print(
-        "Top 100：",
+        "Top 100 檔案：",
         OUTPUT_FILE
     )
 
@@ -2196,4 +2504,3 @@ def main():
 if __name__ == "__main__":
 
     main()
-
