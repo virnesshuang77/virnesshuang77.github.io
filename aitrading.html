@@ -1,0 +1,353 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Trading Experiment</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family:
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            "Noto Sans TC",
+            Arial,
+            sans-serif;
+        background: #f5f7fa;
+        color: #1f2937;
+        line-height: 1.7;
+    }
+
+    .container {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 40px 0 70px;
+    }
+
+    .hero {
+        background: #111827;
+        color: white;
+        border-radius: 18px;
+        padding: 42px 36px;
+        margin-bottom: 24px;
+    }
+
+    .hero h1 {
+        margin: 0 0 10px;
+        font-size: 34px;
+        letter-spacing: -0.5px;
+    }
+
+    .hero p {
+        margin: 0;
+        color: #d1d5db;
+        font-size: 16px;
+    }
+
+    .notice {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-left: 5px solid #6b7280;
+        border-radius: 12px;
+        padding: 20px 22px;
+        margin-bottom: 24px;
+    }
+
+    .notice strong {
+        display: block;
+        margin-bottom: 5px;
+        color: #111827;
+    }
+
+    .section {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 28px;
+        margin-bottom: 20px;
+    }
+
+    .section h2 {
+        margin: 0 0 18px;
+        font-size: 23px;
+        color: #111827;
+    }
+
+    .section h3 {
+        margin: 24px 0 8px;
+        font-size: 18px;
+        color: #374151;
+    }
+
+    .section p {
+        margin: 8px 0;
+    }
+
+    .rules {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .rule {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 16px;
+        background: #fafafa;
+    }
+
+    .rule-title {
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: #111827;
+    }
+
+    .status {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #eef2f7;
+        color: #4b5563;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    ul {
+        margin: 8px 0 0;
+        padding-left: 22px;
+    }
+
+    .footer {
+        text-align: center;
+        color: #6b7280;
+        font-size: 14px;
+        margin-top: 30px;
+    }
+
+    @media (max-width: 700px) {
+        .container {
+            width: min(100% - 20px, 1100px);
+            padding-top: 20px;
+        }
+
+        .hero {
+            padding: 30px 22px;
+            border-radius: 14px;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+        }
+
+        .section {
+            padding: 22px 18px;
+        }
+
+        .rules {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <section class="hero">
+        <h1>AI Trading Experiment</h1>
+        <p>
+            AI 股票投資實驗｜台股・美股・選擇權
+        </p>
+    </section>
+
+    <div class="notice">
+        <strong>實驗狀態：規則建立中</strong>
+        本頁目前只建立 AI 投資實驗的基本架構。
+        實際選股、交易、風控及績效計算規則將逐步建立，
+        在規則確定以前不進行正式排名。
+    </div>
+
+    <section class="section">
+        <h2>一、實驗目的</h2>
+
+        <p>
+            本實驗的目的，是讓不同 AI 模型在相同的市場資料、
+            相同的資金以及相同的交易規則下進行投資決策，
+            並長期比較其投資績效。
+        </p>
+
+        <p>
+            實驗將盡可能避免事後修改規則，
+            所有交易決策與市場資料均應留下歷史紀錄。
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>二、基本設定</h2>
+
+        <div class="rules">
+
+            <div class="rule">
+                <div class="rule-title">市場</div>
+                台灣股票、美國股票
+            </div>
+
+            <div class="rule">
+                <div class="rule-title">投資方式</div>
+                虛擬資金，不涉及真實交易
+            </div>
+
+            <div class="rule">
+                <div class="rule-title">投資期限</div>
+                長期持續實驗
+            </div>
+
+            <div class="rule">
+                <div class="rule-title">交易頻率</div>
+                原則上每日重新評估
+            </div>
+
+            <div class="rule">
+                <div class="rule-title">AI 模型</div>
+                GPT / Gemini / Claude / DeepSeek / 其他模型
+            </div>
+
+            <div class="rule">
+                <div class="rule-title">資料原則</div>
+                各 AI 應取得相同的市場資訊
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>三、AI 選股</h2>
+
+        <p>
+            AI 將根據統一提供的市場資料，
+            判斷哪些股票具有較高的投資價值。
+        </p>
+
+        <h3>目前規則</h3>
+
+        <span class="status">尚未制定</span>
+
+        <p>
+            後續將建立候選股票篩選方式、AI 評分方式、
+            持股數量以及單一股票最大持倉比例。
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>四、加碼機制</h2>
+
+        <p>
+            持有股票後，AI 可以根據新的市場資料重新評估是否增加持倉。
+        </p>
+
+        <h3>目前規則</h3>
+
+        <span class="status">尚未制定</span>
+
+        <p>
+            後續將明確定義加碼條件與最大加碼比例。
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>五、停利機制</h2>
+
+        <p>
+            當持有股票產生獲利後，系統將重新判斷
+            是否繼續持有或進行獲利了結。
+        </p>
+
+        <h3>目前規則</h3>
+
+        <span class="status">尚未制定</span>
+    </section>
+
+    <section class="section">
+        <h2>六、停損機制</h2>
+
+        <p>
+            系統將設定風險控制規則，
+            避免單一持股造成過大的投資組合損失。
+        </p>
+
+        <h3>目前規則</h3>
+
+        <span class="status">尚未制定</span>
+
+        <p>
+            停損規則將由程式執行，
+            不完全依賴 AI 臨時決定。
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>七、選擇權</h2>
+
+        <p>
+            實驗未來可能加入選擇權方向判斷，
+            包含偏多與偏空策略。
+        </p>
+
+        <h3>目前規則</h3>
+
+        <span class="status">尚未制定</span>
+
+        <ul>
+            <li>偏多方向</li>
+            <li>偏空方向</li>
+            <li>到期日</li>
+            <li>履約價</li>
+            <li>波動率</li>
+            <li>風險報酬</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>八、績效比較</h2>
+
+        <p>
+            所有 AI 將使用相同的初始資金與交易規則，
+            最終比較累積報酬率、最大回撤、勝率以及風險調整後績效。
+        </p>
+
+        <h3>目前狀態</h3>
+
+        <span class="status">尚未開始</span>
+    </section>
+
+    <section class="section">
+        <h2>九、實驗原則</h2>
+
+        <ul>
+            <li>所有 AI 使用相同的市場資料。</li>
+            <li>不得使用未來資料。</li>
+            <li>交易決策應留下時間紀錄。</li>
+            <li>歷史交易結果不得事後修改。</li>
+            <li>不同 AI 使用相同的交易規則。</li>
+            <li>所有績效均以虛擬投資計算。</li>
+        </ul>
+    </section>
+
+    <div class="footer">
+        AI Trading Experiment · Experimental Project
+    </div>
+
+</div>
+
+</body>
+</html>
+```
