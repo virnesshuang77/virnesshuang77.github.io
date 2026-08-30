@@ -4,294 +4,350 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AI Trading Experiment</title>
+<title>AI Trading</title>
 
 <style>
-    * {
-        box-sizing: border-box;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans TC",
+        Arial,
+        sans-serif;
+    background: #f5f7fa;
+    color: #1f2937;
+}
+
+.container {
+    width: min(1200px, calc(100% - 28px));
+    margin: 0 auto;
+    padding: 28px 0 60px;
+}
+
+/* =========================
+   Header
+========================= */
+
+.header {
+    background: #111827;
+    color: white;
+    border-radius: 18px;
+    padding: 30px 28px;
+    margin-bottom: 18px;
+}
+
+.header h1 {
+    margin: 0 0 6px;
+    font-size: 30px;
+}
+
+.header p {
+    margin: 0;
+    color: #d1d5db;
+}
+
+/* =========================
+   Summary
+========================= */
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.summary-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.summary-label {
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.summary-value {
+    font-size: 25px;
+    font-weight: 800;
+    color: #111827;
+}
+
+/* =========================
+   Notice
+========================= */
+
+.notice {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-left: 5px solid #374151;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+    line-height: 1.7;
+}
+
+/* =========================
+   Main
+========================= */
+
+.section {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 18px;
+}
+
+.section-title {
+    margin: 0 0 16px;
+    font-size: 22px;
+    color: #111827;
+}
+
+/* =========================
+   Stock Cards
+========================= */
+
+.stock-list {
+    display: grid;
+    gap: 14px;
+}
+
+.stock-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 20px;
+    background: #fff;
+}
+
+.stock-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.stock-name {
+    font-size: 21px;
+    font-weight: 800;
+    color: #111827;
+}
+
+.stock-symbol {
+    color: #6b7280;
+    font-size: 14px;
+    margin-left: 6px;
+}
+
+.stock-rank {
+    font-size: 13px;
+    font-weight: 700;
+    color: #6b7280;
+    white-space: nowrap;
+}
+
+.stock-price {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.stock-change {
+    font-size: 14px;
+    margin-left: 8px;
+}
+
+.positive {
+    color: #15803d;
+}
+
+.negative {
+    color: #dc2626;
+}
+
+.neutral {
+    color: #6b7280;
+}
+
+/* =========================
+   Tags
+========================= */
+
+.tags {
+    margin-top: 14px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 9px;
+    margin: 3px 4px 3px 0;
+    border-radius: 999px;
+    background: #f3f4f6;
+    color: #374151;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* =========================
+   Metrics
+========================= */
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.metric {
+    background: #f9fafb;
+    border: 1px solid #eef0f2;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.metric-label {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.metric-value {
+    margin-top: 2px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* =========================
+   Reason
+========================= */
+
+.reason {
+    margin-top: 16px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+.reason-title {
+    font-weight: 800;
+    margin-bottom: 6px;
+    color: #111827;
+}
+
+.reason ul {
+    margin: 6px 0 0;
+    padding-left: 20px;
+}
+
+.reason li {
+    margin-bottom: 4px;
+}
+
+/* =========================
+   Empty
+========================= */
+
+.empty {
+    text-align: center;
+    padding: 45px 20px;
+    color: #6b7280;
+}
+
+.empty strong {
+    display: block;
+    color: #111827;
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+/* =========================
+   Loading / Error
+========================= */
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #6b7280;
+}
+
+.error {
+    background: #fff;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+    padding: 18px;
+    border-radius: 12px;
+}
+
+/* =========================
+   Footer
+========================= */
+
+.footer {
+    text-align: center;
+    color: #6b7280;
+    font-size: 13px;
+    margin-top: 28px;
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 800px) {
+
+    .summary {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    body {
-        margin: 0;
-        font-family:
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            "Noto Sans TC",
-            Arial,
-            sans-serif;
-        background: #f5f7fa;
-        color: #1f2937;
-        line-height: 1.75;
+    .metrics {
+        grid-template-columns: repeat(2, 1fr);
     }
+}
+
+@media (max-width: 600px) {
 
     .container {
-        width: min(1100px, calc(100% - 32px));
-        margin: 0 auto;
-        padding: 40px 0 70px;
+        width: calc(100% - 18px);
+        padding-top: 15px;
     }
 
-    .hero {
-        background: #111827;
-        color: white;
-        border-radius: 18px;
-        padding: 42px 36px;
-        margin-bottom: 24px;
+    .header {
+        padding: 24px 20px;
+        border-radius: 14px;
     }
 
-    .hero h1 {
-        margin: 0 0 10px;
-        font-size: 34px;
-        letter-spacing: -0.5px;
-    }
-
-    .hero p {
-        margin: 0;
-        color: #d1d5db;
-        font-size: 16px;
-    }
-
-    .notice {
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-left: 5px solid #374151;
-        border-radius: 12px;
-        padding: 20px 22px;
-        margin-bottom: 24px;
-    }
-
-    .notice strong {
-        display: block;
-        margin-bottom: 6px;
-        color: #111827;
+    .header h1 {
+        font-size: 26px;
     }
 
     .section {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 16px;
-        padding: 28px;
-        margin-bottom: 20px;
+        padding: 17px;
     }
 
-    .section h2 {
-        margin: 0 0 18px;
-        font-size: 23px;
-        color: #111827;
+    .stock-card {
+        padding: 16px;
     }
 
-    .section h3 {
-        margin: 24px 0 8px;
-        font-size: 18px;
-        color: #374151;
-    }
-
-    .section p {
-        margin: 8px 0;
-    }
-
-    .flow {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 10px;
-        margin-top: 20px;
-    }
-
-    .flow-item {
-        position: relative;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 18px 12px;
-        text-align: center;
-        background: #fafafa;
-    }
-
-    .flow-number {
-        font-size: 13px;
-        color: #6b7280;
-        margin-bottom: 5px;
-    }
-
-    .flow-title {
-        font-weight: 700;
-        color: #111827;
-    }
-
-    .rules {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-    }
-
-    .rule {
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 18px;
-        background: #fafafa;
-    }
-
-    .rule-title {
-        font-weight: 700;
-        margin-bottom: 7px;
-        color: #111827;
-    }
-
-    .tag {
-        display: inline-block;
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: #eef2f7;
-        color: #374151;
-        font-size: 13px;
-        font-weight: 600;
-        margin: 3px 4px 3px 0;
-    }
-
-    .good {
-        border-left: 4px solid #4b5563;
-    }
-
-    .warning {
-        border-left: 4px solid #9ca3af;
-    }
-
-    .decision-box {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 10px;
-        margin-top: 18px;
-    }
-
-    .decision {
-        text-align: center;
-        padding: 15px 8px;
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
-        background: #fafafa;
-        font-weight: 700;
-    }
-
-    .allocation {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-        margin-top: 18px;
-    }
-
-    .allocation-card {
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 20px;
-        background: #fafafa;
-    }
-
-    .allocation-title {
+    .stock-name {
         font-size: 19px;
-        font-weight: 700;
-        margin-bottom: 10px;
-        color: #111827;
     }
 
-    .allocation-number {
-        font-size: 27px;
-        font-weight: 800;
-        margin-bottom: 8px;
-        color: #374151;
+    .metrics {
+        grid-template-columns: repeat(2, 1fr);
     }
-
-    .example {
-        background: #f9fafb;
-        border: 1px dashed #d1d5db;
-        border-radius: 12px;
-        padding: 18px;
-        margin-top: 14px;
-    }
-
-    .example-row {
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 7px 0;
-        border-bottom: 1px solid #e5e7eb;
-    }
-
-    .example-row:last-child {
-        border-bottom: none;
-    }
-
-    .status {
-        display: inline-block;
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: #eef2f7;
-        color: #4b5563;
-        font-size: 13px;
-        font-weight: 600;
-    }
-
-    ul {
-        margin: 8px 0 0;
-        padding-left: 22px;
-    }
-
-    li {
-        margin-bottom: 5px;
-    }
-
-    .highlight {
-        font-weight: 700;
-        color: #111827;
-    }
-
-    .footer {
-        text-align: center;
-        color: #6b7280;
-        font-size: 14px;
-        margin-top: 30px;
-    }
-
-    @media (max-width: 850px) {
-        .flow {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .decision-box {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-    }
-
-    @media (max-width: 700px) {
-        .container {
-            width: min(100% - 20px, 1100px);
-            padding-top: 20px;
-        }
-
-        .hero {
-            padding: 30px 22px;
-            border-radius: 14px;
-        }
-
-        .hero h1 {
-            font-size: 28px;
-        }
-
-        .section {
-            padding: 22px 18px;
-        }
-
-        .rules,
-        .allocation {
-            grid-template-columns: 1fr;
-        }
-
-        .flow {
-            grid-template-columns: 1fr;
-        }
-
-        .decision-box {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-    }
+}
 </style>
 </head>
 
@@ -299,675 +355,1130 @@
 
 <div class="container">
 
-    <!-- ===================================================== -->
-    <!-- Hero -->
-    <!-- ===================================================== -->
+    <!-- =========================
+         Header
+    ========================== -->
 
-    <section class="hero">
-        <h1>AI Trading Experiment</h1>
+    <header class="header">
+        <h1>🤖 AI Trading</h1>
         <p>
-            ChatGPT 台股投資實驗｜熱門題材・基本面・技術面・動態資金管理
+            ChatGPT 台股選股實驗｜熱門 → 基本面 → 技術面
         </p>
-    </section>
+    </header>
 
-    <!-- ===================================================== -->
-    <!-- Notice -->
-    <!-- ===================================================== -->
+    <!-- =========================
+         Summary
+    ========================== -->
 
-    <div class="notice">
-        <strong>實驗核心</strong>
-        本實驗不是單純利用 AI 預測明天哪一檔股票會上漲，
-        也不是單純依靠技術線型選股。
-        系統先從當日市場熱門股票開始，再檢視題材、
-        基本面與技術面，最後由 ChatGPT 做最終判斷。
-        每日最多選出 5 檔，也可以一檔都不選。
+    <div class="summary">
+
+        <div class="summary-card">
+            <div class="summary-label">熱門股票</div>
+            <div class="summary-value" id="totalStocks">-</div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-label">基本面可用</div>
+            <div class="summary-value" id="fundamentalStocks">-</div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-label">進入研究池</div>
+            <div class="summary-value" id="researchStocks">-</div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-label">最終標的</div>
+            <div class="summary-value" id="finalStocks">-</div>
+        </div>
+
     </div>
 
-    <!-- ===================================================== -->
-    <!-- 1. Purpose -->
-    <!-- ===================================================== -->
+    <!-- =========================
+         Notice
+    ========================== -->
+
+    <div class="notice">
+        <strong>今日選股邏輯</strong><br>
+        先從當日成交金額 Top 100 開始，
+        再檢查基本面與技術面。
+        本頁目前尚未加入新聞／題材自動分析，
+        因此不會假裝有題材判斷。
+        最後最多留下 5 檔；如果沒有足夠好的機會，也可以是 0 檔。
+    </div>
+
+    <!-- =========================
+         Final Stocks
+    ========================== -->
 
     <section class="section">
 
-        <h2>一、實驗目的</h2>
+        <h2 class="section-title">
+            🎯 今日值得關注的標的
+        </h2>
 
-        <p>
-            本實驗希望觀察 ChatGPT 在真實市場環境中的投資判斷能力。
-        </p>
-
-        <p>
-            與其要求 AI 每天從所有股票中猜測哪一檔會上漲，
-            本實驗採取由市場逐步縮小範圍的方式，
-            讓 ChatGPT 在相同且可追蹤的市場資料下做最後決策。
-        </p>
-
-        <p class="highlight">
-            最終目的不是證明 AI 一定能打敗市場，
-            而是公開記錄 ChatGPT 的每一次投資決策，
-            並用之後真正發生的市場價格驗證結果。
-        </p>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 2. Selection Flow -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>二、選股流程</h2>
-
-        <div class="flow">
-
-            <div class="flow-item">
-                <div class="flow-number">第一階段</div>
-                <div class="flow-title">熱門股</div>
-                <div>成交金額 Top 100</div>
+        <div id="stockList" class="stock-list">
+            <div class="loading">
+                正在讀取市場資料...
             </div>
-
-            <div class="flow-item">
-                <div class="flow-number">第二階段</div>
-                <div class="flow-title">題材</div>
-                <div>市場正在關注什麼</div>
-            </div>
-
-            <div class="flow-item">
-                <div class="flow-number">第三階段</div>
-                <div class="flow-title">基本面</div>
-                <div>公司是否站得住腳</div>
-            </div>
-
-            <div class="flow-item">
-                <div class="flow-number">第四階段</div>
-                <div class="flow-title">技術面</div>
-                <div>現在是否有好的位置</div>
-            </div>
-
-            <div class="flow-item">
-                <div class="flow-number">第五階段</div>
-                <div class="flow-title">ChatGPT</div>
-                <div>最終決策</div>
-            </div>
-
         </div>
-
-        <h3>核心概念</h3>
-
-        <p>
-            <span class="highlight">熱門</span>
-            用來確認市場資金與注意力目前集中在哪裡。
-        </p>
-
-        <p>
-            <span class="highlight">題材</span>
-            用來判斷股票是否具有市場正在交易的故事與催化因素。
-        </p>
-
-        <p>
-            <span class="highlight">基本面</span>
-            用來避免單純因為題材與技術線型漂亮，
-            就買進基本面明顯不足的股票。
-        </p>
-
-        <p>
-            <span class="highlight">技術面</span>
-            用來尋找合理的進場位置，而不是單獨決定買賣。
-        </p>
-
-        <p>
-            <span class="highlight">ChatGPT</span>
-            最後綜合以上資訊，判斷是否值得建立部位。
-        </p>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 3. Hot stocks -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>三、第一階段：市場熱門程度</h2>
-
-        <p>
-            系統首先從當日成交金額最高的股票中建立候選池。
-        </p>
-
-        <div class="rule good">
-
-            <div class="rule-title">目前設定</div>
-
-            <span class="tag">成交金額 Top 100</span>
-            <span class="tag">每日更新</span>
-            <span class="tag">台股</span>
-
-            <p>
-                Top 100 並不代表這 100 檔都是好股票，
-                而是代表它們當天具有較高的市場關注度與資金活動。
-            </p>
-
-        </div>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 4. Theme -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>四、第二階段：題材與市場關注度</h2>
-
-        <p>
-            一家公司即使基本面非常優秀，
-            如果市場目前沒有關注、沒有資金、沒有催化因素，
-            股價也可能長時間缺乏明顯動能。
-        </p>
-
-        <p>
-            因此本實驗不單純尋找「基本面最好」的公司，
-            而是尋找
-            <span class="highlight">
-                市場正在關注，而且具有合理基本面支撐的公司。
-            </span>
-        </p>
-
-        <h3>可能的市場題材</h3>
-
-        <span class="tag">AI</span>
-        <span class="tag">ASIC</span>
-        <span class="tag">HBM</span>
-        <span class="tag">CoWoS</span>
-        <span class="tag">半導體</span>
-        <span class="tag">記憶體</span>
-        <span class="tag">散熱</span>
-        <span class="tag">PCB</span>
-        <span class="tag">光通訊</span>
-        <span class="tag">機器人</span>
-        <span class="tag">重電</span>
-        <span class="tag">其他市場題材</span>
-
-        <h3>題材不是越熱門越好</h3>
-
-        <p>
-            純粹因為題材熱門、股價上漲，
-            並不足以成為買進理由。
-        </p>
-
-        <p>
-            如果公司基本面明顯惡化，
-            即使技術線型漂亮、題材非常熱門，
-            也不應僅因題材而進入最終投資組合。
-        </p>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 5. Fundamentals -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>五、第三階段：基本面</h2>
-
-        <p>
-            基本面的目的不是挑出「全市場最優秀的公司」，
-            而是確認投資故事至少具有合理的公司經營基礎。
-        </p>
-
-        <div class="rules">
-
-            <div class="rule">
-                <div class="rule-title">優先觀察</div>
-                <ul>
-                    <li>營收具有成長或改善趨勢</li>
-                    <li>獲利能力合理</li>
-                    <li>EPS 為正或正在明顯改善</li>
-                    <li>ROE 具有合理水準</li>
-                    <li>財務結構沒有明顯異常</li>
-                </ul>
-            </div>
-
-            <div class="rule warning">
-                <div class="rule-title">避免純題材炒作</div>
-                <ul>
-                    <li>長期嚴重虧損</li>
-                    <li>核心營業利益持續惡化</li>
-                    <li>營收與獲利同時明顯惡化</li>
-                    <li>財務結構出現重大問題</li>
-                    <li>只有題材、缺乏基本面支撐</li>
-                </ul>
-            </div>
-
-        </div>
-
-        <h3>特殊情況：反轉型公司</h3>
-
-        <p>
-            過去基本面不佳，但近期開始由虧轉盈、
-            營收快速改善或獲利能力明顯回升的公司，
-            不會因為過去表現不好就自動排除。
-        </p>
-
-        <p>
-            這類股票必須確認「改善是否真的正在發生」，
-            而不是單純因為題材而買進。
-        </p>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 6. Technical -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>六、第四階段：技術面與進場位置</h2>
-
-        <p>
-            技術面不是用來單獨選股，
-            而是用來回答一個更重要的問題：
-        </p>
-
-        <p class="highlight">
-            「這家公司值得研究，那現在是不是一個合理的進場位置？」
-        </p>
-
-        <div class="rules">
-
-            <div class="rule">
-                <div class="rule-title">可能的正向訊號</div>
-
-                <ul>
-                    <li>站上 MA10</li>
-                    <li>站上 MA20</li>
-                    <li>MA10 開始上揚</li>
-                    <li>MA20 開始上揚</li>
-                    <li>突破重要壓力</li>
-                    <li>回踩均線後重新轉強</li>
-                    <li>成交量配合價格突破</li>
-                </ul>
-
-            </div>
-
-            <div class="rule">
-                <div class="rule-title">超跌機會</div>
-
-                <ul>
-                    <li>短期跌幅過大</li>
-                    <li>市場同步恐慌</li>
-                    <li>股價接近重要支撐</li>
-                    <li>基本面尚未遭到破壞</li>
-                    <li>成交量與價格出現止跌訊號</li>
-                    <li>下跌可能屬於市場情緒而非公司基本面惡化</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-        <p>
-            因此，
-            <span class="highlight">
-                跌得深本身不是買進理由，也不是淘汰理由。
-            </span>
-        </p>
-
-        <p>
-            系統需要判斷的是：
-            「這次下跌到底是錯殺、正常修正，還是投資邏輯已經被破壞？」
-        </p>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 7. ChatGPT -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>七、第五階段：ChatGPT 最終判斷</h2>
-
-        <p>
-            經過前面的市場熱門程度、題材、基本面與技術面篩選後，
-            最後才交由 ChatGPT 進行綜合判斷。
-        </p>
-
-        <h3>ChatGPT 不需要每天一定選股</h3>
-
-        <p>
-            每日最多選出 5 檔股票。
-        </p>
-
-        <p>
-            如果當天沒有足夠好的投資機會，
-            ChatGPT 可以選擇少於 5 檔，
-            甚至：
-        </p>
-
-        <p>
-            <span class="status">今日 0 檔</span>
-        </p>
-
-        <p>
-            空手等待也是一種投資決策。
-        </p>
-
-        <h3>最終判斷</h3>
-
-        <div class="decision-box">
-
-            <div class="decision">BUY</div>
-            <div class="decision">HOLD</div>
-            <div class="decision">ADD</div>
-            <div class="decision">REDUCE</div>
-            <div class="decision">EXIT</div>
-
-        </div>
-
-        <p>
-            ChatGPT 必須說明做出判斷的主要原因，
-            而不是只提供一個分數。
-        </p>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 8. Capital Management -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>八、資金管理</h2>
-
-        <p>
-            本實驗不採取單次 All-in 的方式建立部位。
-        </p>
-
-        <p>
-            每一筆交易預留後續資金，
-            讓價格出現新的機會時仍然具有調整空間。
-        </p>
-
-        <div class="allocation">
-
-            <div class="allocation-card">
-
-                <div class="allocation-title">
-                    三段式進場
-                </div>
-
-                <div class="allocation-number">
-                    30% + 30% + 40%
-                </div>
-
-                <p>
-                    第一次建立部分部位，
-                    後續依照價格與投資邏輯決定是否使用剩餘資金。
-                </p>
-
-            </div>
-
-            <div class="allocation-card">
-
-                <div class="allocation-title">
-                    兩段式進場
-                </div>
-
-                <div class="allocation-number">
-                    40% + 60%
-                </div>
-
-                <p>
-                    適用於 ChatGPT 判斷初始進場信心較高，
-                    但仍然不採取一次 All-in 的情況。
-                </p>
-
-            </div>
-
-        </div>
-
-        <h3>重要原則</h3>
-
-        <p>
-            分批進場並不代表「越跌越買」。
-        </p>
-
-        <p>
-            每次加碼之前，都必須重新檢查：
-        </p>
-
-        <ul>
-            <li>原本的投資理由是否仍然成立？</li>
-            <li>下跌原因是否只是市場情緒？</li>
-            <li>題材是否仍然存在？</li>
-            <li>基本面是否仍然正常？</li>
-            <li>技術位置是否提供合理的風險報酬？</li>
-        </ul>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 9. Buy / Add / Reduce -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>九、買進、加碼與減碼</h2>
-
-        <h3>買進</h3>
-
-        <p>
-            買進不是單純因為股票下跌，
-            而是因為經過市場、題材、基本面與技術面分析後，
-            目前價格具有合理的風險報酬。
-        </p>
-
-        <h3>下跌後</h3>
-
-        <p>
-            股價下跌不會自動觸發停損。
-        </p>
-
-        <p>
-            如果投資邏輯仍然成立，
-            下跌甚至可能提供更好的加碼價格。
-        </p>
-
-        <p>
-            但如果公司的基本面、題材或核心投資理由發生重大變化，
-            即使股價已經跌很多，也不能因為「跌很多」就繼續攤平。
-        </p>
-
-        <h3>上漲後</h3>
-
-        <p>
-            上漲也不代表一定要全部賣出。
-        </p>
-
-        <p>
-            當價格大幅上漲後，
-            系統會重新評估風險報酬，
-            再決定：
-        </p>
-
-        <div class="decision-box">
-
-            <div class="decision">HOLD</div>
-            <div class="decision">ADD</div>
-            <div class="decision">REDUCE</div>
-            <div class="decision">EXIT</div>
-
-        </div>
-
-        <p>
-            因此減碼是「重新評估後的決策」，
-            而不是單純設定一個固定漲幅就全部賣掉。
-        </p>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 10. Stop loss -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>十、停損機制</h2>
-
-        <div class="rule warning">
-
-            <div class="rule-title">
-                停損不是單純的「跌 X% 就賣」
-            </div>
-
-            <p>
-                本實驗不希望把短期價格波動直接等同於投資失敗。
-            </p>
-
-            <p>
-                真正需要停損的情況，
-                是原本支持買進的投資邏輯已經遭到破壞。
-            </p>
-
-        </div>
-
-        <h3>可能造成投資邏輯失效的因素</h3>
-
-        <ul>
-            <li>重大基本面惡化</li>
-            <li>核心產品或業務出現重大問題</li>
-            <li>原本的市場題材明顯消失</li>
-            <li>公司出現重大負面事件</li>
-            <li>原先的投資假設已經不成立</li>
-        </ul>
-
-        <p>
-            因此，
-            <span class="highlight">
-                價格停損與投資邏輯停損必須分開看待。
-            </span>
-        </p>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 11. Example -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>十一、交易邏輯示例</h2>
-
-        <p>
-            以下僅為說明實驗規則，不代表任何實際股票推薦。
-        </p>
-
-        <div class="example">
-
-            <div class="example-row">
-                <span>初始判斷</span>
-                <strong>值得建立部位</strong>
-            </div>
-
-            <div class="example-row">
-                <span>第一次進場</span>
-                <strong>30%</strong>
-            </div>
-
-            <div class="example-row">
-                <span>股價下跌</span>
-                <strong>重新分析，而非自動停損</strong>
-            </div>
-
-            <div class="example-row">
-                <span>投資邏輯仍成立</span>
-                <strong>考慮第二次加碼</strong>
-            </div>
-
-            <div class="example-row">
-                <span>股價繼續上漲</span>
-                <strong>重新評估是否持有或減碼</strong>
-            </div>
-
-            <div class="example-row">
-                <span>投資邏輯失效</span>
-                <strong>EXIT</strong>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 12. Public Record -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>十二、公開績效紀錄</h2>
-
-        <p>
-            所有 ChatGPT 的投資決策都應留下歷史紀錄。
-        </p>
-
-        <ul>
-            <li>選股日期</li>
-            <li>股票代號</li>
-            <li>買進價格</li>
-            <li>加碼價格</li>
-            <li>減碼價格</li>
-            <li>出場價格</li>
-            <li>持有時間</li>
-            <li>個別股票報酬</li>
-            <li>投資組合報酬</li>
-            <li>與市場基準比較</li>
-        </ul>
-
-        <p>
-            歷史決策不因結果好壞而事後修改。
-        </p>
-
-        <p class="highlight">
-            本網站的目的，是讓使用者自行判斷 ChatGPT 的投資能力，
-            而不是要求使用者跟單。
-        </p>
-
-    </section>
-
-    <!-- ===================================================== -->
-    <!-- 13. Principles -->
-    <!-- ===================================================== -->
-
-    <section class="section">
-
-        <h2>十三、實驗原則</h2>
-
-        <ul>
-            <li>所有選股首先從當日熱門成交股票開始。</li>
-            <li>題材是重要的市場因素，但題材不能取代基本面。</li>
-            <li>基本面明顯不足的純題材股不因技術面漂亮而直接買進。</li>
-            <li>技術面用於尋找進場位置，不單獨決定股票。</li>
-            <li>ChatGPT 是最後的綜合判斷者。</li>
-            <li>每日最多選擇 5 檔股票。</li>
-            <li>沒有足夠好的機會時，可以選擇 0 檔。</li>
-            <li>不採取單次 All-in。</li>
-            <li>可以採用 30% + 30% + 40% 或 40% + 60% 分批進場。</li>
-            <li>股價下跌不代表投資邏輯一定失效。</li>
-            <li>加碼前必須重新檢查投資理由。</li>
-            <li>上漲後重新評估是否持有、加碼或減碼。</li>
-            <li>停損主要針對投資邏輯失效，而非單純價格波動。</li>
-            <li>所有決策留下公開歷史紀錄。</li>
-            <li>最終績效以實際市場結果驗證。</li>
-        </ul>
 
     </section>
 
     <div class="footer">
-        AI Trading Experiment · ChatGPT Taiwan Stock Experiment
+        AI Trading Experiment · Data-driven public experiment
     </div>
 
 </div>
+
+<script>
+
+/* =========================================================
+   基本設定
+========================================================= */
+
+const TOP100_URL = "tw_top100.json";
+const FUNDAMENTALS_URL = "tw_fundamentals.json";
+
+/*
+    最多留下幾檔
+*/
+const MAX_STOCKS = 5;
+
+
+/* =========================================================
+   工具
+========================================================= */
+
+function num(value) {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+}
+
+function pct(value) {
+    const n = num(value);
+
+    if (n === null) {
+        return "--";
+    }
+
+    const sign = n > 0 ? "+" : "";
+    return sign + n.toFixed(2) + "%";
+}
+
+function price(value) {
+    const n = num(value);
+
+    if (n === null) {
+        return "--";
+    }
+
+    return n.toLocaleString("zh-TW", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
+function getChangeClass(value) {
+
+    const n = num(value);
+
+    if (n === null) {
+        return "neutral";
+    }
+
+    if (n > 0) {
+        return "positive";
+    }
+
+    if (n < 0) {
+        return "negative";
+    }
+
+    return "neutral";
+}
+
+
+/* =========================================================
+   基本面判斷
+========================================================= */
+
+function fundamentalScore(f) {
+
+    let score = 0;
+
+    const revenueYoY = num(f.quarter_revenue_yoy);
+    const grossMargin = num(f.quarter_gross_margin);
+    const operatingMargin = num(f.quarter_operating_margin);
+    const netMargin = num(f.quarter_net_margin);
+    const eps = num(f.quarter_eps);
+    const epsYoY = num(f.quarter_eps_yoy);
+    const roe = num(f.roe_ttm);
+    const debtRatio = num(f.debt_ratio);
+    const currentRatio = num(f.current_ratio);
+
+    /*
+        營收
+    */
+
+    if (revenueYoY !== null) {
+
+        if (revenueYoY > 20) {
+            score += 3;
+        }
+        else if (revenueYoY > 5) {
+            score += 2;
+        }
+        else if (revenueYoY >= 0) {
+            score += 1;
+        }
+    }
+
+    /*
+        毛利率
+    */
+
+    if (grossMargin !== null) {
+
+        if (grossMargin > 30) {
+            score += 2;
+        }
+        else if (grossMargin > 15) {
+            score += 1;
+        }
+    }
+
+    /*
+        營業利益率
+    */
+
+    if (operatingMargin !== null) {
+
+        if (operatingMargin > 15) {
+            score += 3;
+        }
+        else if (operatingMargin > 5) {
+            score += 2;
+        }
+        else if (operatingMargin > 0) {
+            score += 1;
+        }
+    }
+
+    /*
+        EPS
+    */
+
+    if (eps !== null) {
+
+        if (eps > 0) {
+            score += 3;
+        }
+    }
+
+    /*
+        EPS 成長
+    */
+
+    if (epsYoY !== null) {
+
+        if (epsYoY > 20) {
+            score += 3;
+        }
+        else if (epsYoY > 0) {
+            score += 2;
+        }
+    }
+
+    /*
+        ROE
+    */
+
+    if (roe !== null) {
+
+        if (roe > 20) {
+            score += 3;
+        }
+        else if (roe > 10) {
+            score += 2;
+        }
+        else if (roe > 0) {
+            score += 1;
+        }
+    }
+
+    /*
+        負債比
+    */
+
+    if (debtRatio !== null) {
+
+        if (debtRatio < 50) {
+            score += 2;
+        }
+        else if (debtRatio < 70) {
+            score += 1;
+        }
+    }
+
+    /*
+        流動比
+    */
+
+    if (currentRatio !== null) {
+
+        if (currentRatio >= 1.5) {
+            score += 2;
+        }
+        else if (currentRatio >= 1) {
+            score += 1;
+        }
+    }
+
+    return score;
+}
+
+
+/* =========================================================
+   基本面硬性淘汰
+========================================================= */
+
+function fundamentalRejected(f) {
+
+    const eps = num(f.quarter_eps);
+    const operatingIncome = num(f.quarter_operating_income);
+    const revenueYoY = num(f.quarter_revenue_yoy);
+    const roe = num(f.roe_ttm);
+    const debtRatio = num(f.debt_ratio);
+
+    /*
+        明顯虧損：
+        EPS < 0 且營業利益也 <= 0
+    */
+
+    if (
+        eps !== null &&
+        operatingIncome !== null &&
+        eps < 0 &&
+        operatingIncome <= 0
+    ) {
+        return true;
+    }
+
+    /*
+        營收與獲利同時明顯惡化
+    */
+
+    if (
+        revenueYoY !== null &&
+        eps !== null &&
+        revenueYoY < -30 &&
+        eps < 0
+    ) {
+        return true;
+    }
+
+    /*
+        ROE 嚴重負值
+    */
+
+    if (
+        roe !== null &&
+        roe < -10
+    ) {
+        return true;
+    }
+
+    /*
+        負債非常高
+    */
+
+    if (
+        debtRatio !== null &&
+        debtRatio > 85
+    ) {
+        return true;
+    }
+
+    return false;
+}
+
+
+/* =========================================================
+   技術面
+========================================================= */
+
+function technicalScore(s) {
+
+    let score = 0;
+
+    const close = num(s.close);
+    const ma5 = num(s.ma5);
+    const ma20 = num(s.ma20);
+    const ma60 = num(s.ma60);
+    const ma120 = num(s.ma120);
+
+    const return5 = num(s.return_5d);
+    const return20 = num(s.return_20d);
+    const return60 = num(s.return_60d);
+
+    const volumeRatio = num(s.volume_ratio_20d);
+
+    /*
+        股價站上 MA
+    */
+
+    if (
+        close !== null &&
+        ma5 !== null &&
+        close > ma5
+    ) {
+        score += 1;
+    }
+
+    if (
+        close !== null &&
+        ma20 !== null &&
+        close > ma20
+    ) {
+        score += 2;
+    }
+
+    if (
+        close !== null &&
+        ma60 !== null &&
+        close > ma60
+    ) {
+        score += 2;
+    }
+
+    if (
+        close !== null &&
+        ma120 !== null &&
+        close > ma120
+    ) {
+        score += 1;
+    }
+
+    /*
+        均線排列
+    */
+
+    if (
+        ma5 !== null &&
+        ma20 !== null &&
+        ma5 > ma20
+    ) {
+        score += 2;
+    }
+
+    if (
+        ma20 !== null &&
+        ma60 !== null &&
+        ma20 > ma60
+    ) {
+        score += 2;
+    }
+
+    /*
+        中期趨勢
+    */
+
+    if (
+        return20 !== null &&
+        return20 > 0
+    ) {
+        score += 2;
+    }
+
+    if (
+        return60 !== null &&
+        return60 > 0
+    ) {
+        score += 2;
+    }
+
+    /*
+        成交量
+    */
+
+    if (
+        volumeRatio !== null &&
+        volumeRatio >= 1.2
+    ) {
+        score += 2;
+    }
+
+    /*
+        超跌反轉：
+        不能因為跌深直接淘汰。
+
+        如果 5 日跌很多，
+        但 60 日仍然為正，
+        給予少量機會分。
+    */
+
+    if (
+        return5 !== null &&
+        return60 !== null &&
+        return5 < -8 &&
+        return60 > 0
+    ) {
+        score += 2;
+    }
+
+    return score;
+}
+
+
+/* =========================================================
+   技術面描述
+========================================================= */
+
+function getTechnicalTags(s) {
+
+    const tags = [];
+
+    const close = num(s.close);
+    const ma5 = num(s.ma5);
+    const ma20 = num(s.ma20);
+    const ma60 = num(s.ma60);
+
+    const return5 = num(s.return_5d);
+    const return20 = num(s.return_20d);
+    const return60 = num(s.return_60d);
+
+    if (
+        close !== null &&
+        ma10Safe(s)
+    ) {
+        tags.push("短線轉強");
+    }
+
+    if (
+        close !== null &&
+        ma20 !== null &&
+        close > ma20
+    ) {
+        tags.push("站上MA20");
+    }
+
+    if (
+        ma20 !== null &&
+        ma60 !== null &&
+        ma20 > ma60
+    ) {
+        tags.push("MA20 > MA60");
+    }
+
+    if (
+        return5 !== null &&
+        return5 < -8 &&
+        return60 !== null &&
+        return60 > 0
+    ) {
+        tags.push("短線超跌");
+    }
+
+    if (
+        return20 !== null &&
+        return20 > 10
+    ) {
+        tags.push("20日強勢");
+    }
+
+    if (
+        return60 !== null &&
+        return60 > 20
+    ) {
+        tags.push("中期強勢");
+    }
+
+    return tags;
+}
+
+function ma10Safe(s) {
+
+    /*
+        目前 JSON 有 MA5 / MA20，
+        沒有 MA10。
+        因此不能假裝有 MA10。
+
+        這裡使用 MA5 > MA20
+        作為短線轉強的替代訊號。
+    */
+
+    const ma5 = num(s.ma5);
+    const ma20 = num(s.ma20);
+
+    if (
+        ma5 === null ||
+        ma20 === null
+    ) {
+        return false;
+    }
+
+    return ma5 > ma20;
+}
+
+
+/* =========================================================
+   建立研究候選
+========================================================= */
+
+function buildCandidates(stocks, fundamentals) {
+
+    const fundamentalMap = new Map();
+
+    fundamentals.forEach(f => {
+
+        if (!f.symbol) {
+            return;
+        }
+
+        fundamentalMap.set(
+            String(f.symbol),
+            f
+        );
+    });
+
+    const candidates = [];
+
+    stocks.forEach(stock => {
+
+        const symbol = String(stock.symbol);
+
+        const f = fundamentalMap.get(symbol);
+
+        /*
+            沒有基本面資料：
+            不進最終選股。
+        */
+
+        if (!f) {
+            return;
+        }
+
+        /*
+            基本面硬性淘汰
+        */
+
+        if (fundamentalRejected(f)) {
+            return;
+        }
+
+        const fs = fundamentalScore(f);
+        const ts = technicalScore(stock);
+
+        /*
+            綜合分數
+
+            基本面權重稍高，
+            技術面用來尋找進場位置。
+        */
+
+        const totalScore =
+            fs * 1.2 +
+            ts;
+
+        /*
+            最低基本面門檻
+
+            不是要求基本面非常漂亮，
+            但不能只是純題材垃圾股。
+        */
+
+        if (fs < 7) {
+            return;
+        }
+
+        /*
+            技術面至少需要有一些訊號。
+        */
+
+        if (ts < 4) {
+            return;
+        }
+
+        candidates.push({
+
+            ...stock,
+
+            fundamental: f,
+
+            fundamentalScore: fs,
+
+            technicalScore: ts,
+
+            totalScore: totalScore,
+
+            technicalTags:
+                getTechnicalTags(stock)
+
+        });
+
+    });
+
+    /*
+        綜合排名
+    */
+
+    candidates.sort(
+        (a, b) =>
+            b.totalScore -
+            a.totalScore
+    );
+
+    return candidates;
+}
+
+
+/* =========================================================
+   建立理由
+========================================================= */
+
+function buildReasons(stock) {
+
+    const f = stock.fundamental;
+
+    const reasons = [];
+
+    const revenueYoY = num(f.quarter_revenue_yoy);
+    const eps = num(f.quarter_eps);
+    const roe = num(f.roe_ttm);
+
+    const close = num(stock.close);
+    const ma20 = num(stock.ma20);
+    const return5 = num(stock.return_5d);
+    const return20 = num(stock.return_20d);
+
+    /*
+        基本面
+    */
+
+    if (
+        revenueYoY !== null &&
+        revenueYoY > 10
+    ) {
+        reasons.push(
+            `最新季度營收年增 ${pct(revenueYoY)}`
+        );
+    }
+
+    if (
+        eps !== null &&
+        eps > 0
+    ) {
+        reasons.push(
+            `最新季度 EPS ${eps.toFixed(2)}，仍為正`
+        );
+    }
+
+    if (
+        roe !== null &&
+        roe > 10
+    ) {
+        reasons.push(
+            `TTM ROE ${roe.toFixed(2)}%`
+        );
+    }
+
+    /*
+        技術面
+    */
+
+    if (
+        close !== null &&
+        ma20 !== null &&
+        close > ma20
+    ) {
+        reasons.push(
+            "股價站在 MA20 之上"
+        );
+    }
+
+    if (
+        return20 !== null &&
+        return20 > 0
+    ) {
+        reasons.push(
+            `20 日報酬 ${pct(return20)}`
+        );
+    }
+
+    /*
+        超跌
+    */
+
+    if (
+        return5 !== null &&
+        return5 < -8
+    ) {
+        reasons.push(
+            `短期回檔 ${pct(return5)}，但未因此直接淘汰`
+        );
+    }
+
+    /*
+        沒有理由時
+    */
+
+    if (reasons.length === 0) {
+
+        reasons.push(
+            "基本面與技術面條件達到目前研究門檻"
+        );
+    }
+
+    return reasons.slice(0, 5);
+}
+
+
+/* =========================================================
+   Render
+========================================================= */
+
+function renderStock(stock, rank) {
+
+    const f = stock.fundamental;
+
+    const changeClass =
+        getChangeClass(stock.change_percent);
+
+    const reasons =
+        buildReasons(stock);
+
+    const tags =
+        stock.technicalTags || [];
+
+    return `
+
+        <article class="stock-card">
+
+            <div class="stock-top">
+
+                <div>
+
+                    <div class="stock-name">
+
+                        ${stock.name || "未知股票"}
+
+                        <span class="stock-symbol">
+                            ${stock.symbol}
+                        </span>
+
+                    </div>
+
+                    <div class="stock-price">
+
+                        ${price(stock.close)}
+
+                        <span class="stock-change ${changeClass}">
+                            ${pct(stock.change_percent)}
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="stock-rank">
+                    #${rank}
+                </div>
+
+            </div>
+
+
+            <div class="tags">
+
+                <span class="tag">
+                    基本面 ${stock.fundamentalScore.toFixed(1)}
+                </span>
+
+                <span class="tag">
+                    技術面 ${stock.technicalScore}
+                </span>
+
+                ${tags.map(tag => `
+                    <span class="tag">
+                        ${tag}
+                    </span>
+                `).join("")}
+
+            </div>
+
+
+            <div class="metrics">
+
+                <div class="metric">
+                    <div class="metric-label">
+                        最新季度營收 YoY
+                    </div>
+
+                    <div class="metric-value">
+                        ${pct(f.quarter_revenue_yoy)}
+                    </div>
+                </div>
+
+
+                <div class="metric">
+                    <div class="metric-label">
+                        EPS
+                    </div>
+
+                    <div class="metric-value">
+                        ${num(f.quarter_eps) !== null
+                            ? num(f.quarter_eps).toFixed(2)
+                            : "--"}
+                    </div>
+                </div>
+
+
+                <div class="metric">
+                    <div class="metric-label">
+                        TTM ROE
+                    </div>
+
+                    <div class="metric-value">
+                        ${pct(f.roe_ttm)}
+                    </div>
+                </div>
+
+
+                <div class="metric">
+                    <div class="metric-label">
+                        20日報酬
+                    </div>
+
+                    <div class="metric-value">
+                        ${pct(stock.return_20d)}
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="reason">
+
+                <div class="reason-title">
+                    為什麼進入今日候選？
+                </div>
+
+                <ul>
+
+                    ${reasons.map(reason => `
+                        <li>${reason}</li>
+                    `).join("")}
+
+                </ul>
+
+            </div>
+
+        </article>
+
+    `;
+}
+
+
+/* =========================================================
+   Main
+========================================================= */
+
+async function loadData() {
+
+    const stockList =
+        document.getElementById("stockList");
+
+    try {
+
+        const [
+            top100Response,
+            fundamentalsResponse
+        ] = await Promise.all([
+
+            fetch(
+                TOP100_URL +
+                "?t=" +
+                Date.now()
+            ),
+
+            fetch(
+                FUNDAMENTALS_URL +
+                "?t=" +
+                Date.now()
+            )
+
+        ]);
+
+
+        if (!top100Response.ok) {
+            throw new Error(
+                "tw_top100.json 載入失敗"
+            );
+        }
+
+        if (!fundamentalsResponse.ok) {
+            throw new Error(
+                "tw_fundamentals.json 載入失敗"
+            );
+        }
+
+
+        const top100 =
+            await top100Response.json();
+
+        const fundamentalsData =
+            await fundamentalsResponse.json();
+
+
+        const stocks =
+            Array.isArray(top100.stocks)
+                ? top100.stocks
+                : [];
+
+
+        const fundamentals =
+            Array.isArray(fundamentalsData.stocks)
+                ? fundamentalsData.stocks
+                : [];
+
+
+        /*
+            Summary
+        */
+
+        document.getElementById(
+            "totalStocks"
+        ).textContent =
+            stocks.length;
+
+
+        document.getElementById(
+            "fundamentalStocks"
+        ).textContent =
+            fundamentalsData.fundamental_count ??
+            fundamentals.length;
+
+
+        /*
+            建立候選池
+        */
+
+        const candidates =
+            buildCandidates(
+                stocks,
+                fundamentals
+            );
+
+
+        document.getElementById(
+            "researchStocks"
+        ).textContent =
+            candidates.length;
+
+
+        /*
+            最多五檔
+        */
+
+        const finalStocks =
+            candidates.slice(
+                0,
+                MAX_STOCKS
+            );
+
+
+        document.getElementById(
+            "finalStocks"
+        ).textContent =
+            finalStocks.length;
+
+
+        /*
+            沒有標的
+        */
+
+        if (finalStocks.length === 0) {
+
+            stockList.innerHTML = `
+
+                <div class="empty">
+
+                    <strong>
+                        今日沒有符合條件的標的
+                    </strong>
+
+                    <div>
+                        不為了湊滿 5 檔而強迫選股。
+                        保留現金也是一種決策。
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        /*
+            顯示
+        */
+
+        stockList.innerHTML =
+            finalStocks
+                .map(
+                    (stock, index) =>
+                        renderStock(
+                            stock,
+                            index + 1
+                        )
+                )
+                .join("");
+
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        stockList.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    資料讀取失敗
+                </strong>
+
+                <br>
+
+                ${error.message}
+
+                <br><br>
+
+                請確認：
+                <br>
+                1. tw_top100.json 存在
+                <br>
+                2. tw_fundamentals.json 存在
+                <br>
+                3. GitHub Pages 已完成部署
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   啟動
+========================================================= */
+
+loadData();
+
+</script>
 
 </body>
 </html>
