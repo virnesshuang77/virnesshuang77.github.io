@@ -1,352 +1,2648 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>AI Trading Experiment</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
 
-    body {
-        margin: 0;
-        font-family:
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            "Noto Sans TC",
-            Arial,
-            sans-serif;
-        background: #f5f7fa;
-        color: #1f2937;
-        line-height: 1.7;
-    }
+/* =========================================================
+   基本
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans TC",
+        Arial,
+        sans-serif;
+
+    background: #f5f7fa;
+
+    color: #1f2937;
+
+    line-height: 1.7;
+}
+
+.container {
+
+    width:
+        min(
+            1400px,
+            calc(100% - 32px)
+        );
+
+    margin: 0 auto;
+
+    padding:
+        28px 0 70px;
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 25px;
+
+    flex-wrap: wrap;
+}
+
+.brand {
+
+    font-size: 23px;
+
+    font-weight: 900;
+
+    white-space: nowrap;
+}
+
+.actions {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+
+    display: inline-block;
+
+    text-decoration: none;
+
+    border: 1px solid #d5dee8;
+
+    background: #fff;
+
+    color: #18222c;
+
+    border-radius: 9px;
+
+    padding:
+        9px 13px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    transition: 0.15s;
+}
+
+.nav-btn:hover {
+
+    background: #f3f6f9;
+}
+
+.nav-btn.active {
+
+    background: #222;
+
+    color: #fff;
+
+    border-color: #222;
+}
+
+
+/* =========================================================
+   Hero
+   ========================================================= */
+
+.hero {
+
+    background: #111827;
+
+    color: white;
+
+    border-radius: 18px;
+
+    padding:
+        35px 32px;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+
+    margin:
+        0 0 8px;
+
+    font-size: 34px;
+
+    letter-spacing:
+        -0.5px;
+}
+
+.hero p {
+
+    margin: 0;
+
+    color: #d1d5db;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   狀態
+   ========================================================= */
+
+.status-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+.status-card {
+
+    background: white;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    padding:
+        18px 20px;
+}
+
+.status-title {
+
+    font-size: 13px;
+
+    color: #6b7280;
+
+    margin-bottom: 5px;
+}
+
+.status-value {
+
+    font-size: 23px;
+
+    font-weight: 900;
+
+    color: #111827;
+}
+
+.status-small {
+
+    font-size: 12px;
+
+    color: #6b7280;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   Section
+   ========================================================= */
+
+.section {
+
+    background: white;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+}
+
+.section h2 {
+
+    margin:
+        0 0 18px;
+
+    font-size: 22px;
+
+    color: #111827;
+}
+
+
+/* =========================================================
+   評分說明
+   ========================================================= */
+
+.score-rules {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap: 12px;
+}
+
+.score-rule {
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    padding: 16px;
+
+    background: #fafafa;
+}
+
+.score-rule-title {
+
+    font-weight: 800;
+
+    margin-bottom: 5px;
+}
+
+.score-rule-desc {
+
+    font-size: 14px;
+
+    color: #6b7280;
+}
+
+
+/* =========================================================
+   控制區
+   ========================================================= */
+
+.controls {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 15px;
+}
+
+.tabs {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.tab {
+
+    border:
+        1px solid #ddd;
+
+    background: white;
+
+    padding:
+        9px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.tab.active {
+
+    background: #222;
+
+    color: white;
+
+    border-color: #222;
+}
+
+#topSelect,
+#searchInput {
+
+    padding:
+        10px 13px;
+
+    border:
+        1px solid #ddd;
+
+    border-radius: 8px;
+
+    background: white;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+#searchInput {
+
+    width: 220px;
+}
+
+#topSelect:focus,
+#searchInput:focus {
+
+    border-color: #222;
+}
+
+
+/* =========================================================
+   Summary
+   ========================================================= */
+
+.summary {
+
+    color: #666;
+
+    font-size: 14px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================================================
+   表格
+   ========================================================= */
+
+.table-wrapper {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 4px 14px
+        rgba(
+            0,
+            0,
+            0,
+            0.05
+        );
+}
+
+table {
+
+    width: 100%;
+
+    min-width: 1250px;
+
+    border-collapse:
+        collapse;
+
+    background: white;
+}
+
+thead th {
+
+    background: #f0f2f5;
+
+    padding:
+        14px 12px;
+
+    text-align: right;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 2;
+}
+
+thead th:first-child,
+thead th:nth-child(2),
+thead th:nth-child(3) {
+
+    text-align: left;
+}
+
+tbody td {
+
+    padding:
+        13px 12px;
+
+    border-top:
+        1px solid #eee;
+
+    text-align: right;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+}
+
+tbody td:first-child,
+tbody td:nth-child(2),
+tbody td:nth-child(3) {
+
+    text-align: left;
+}
+
+tbody tr:hover {
+
+    background: #fafafa;
+}
+
+
+/* =========================================================
+   Rank
+   ========================================================= */
+
+.rank {
+
+    font-weight: 900;
+
+    color: #777;
+}
+
+.stock-id {
+
+    font-family: monospace;
+
+    font-weight: 700;
+
+    color: #555;
+}
+
+
+/* =========================================================
+   AI Score
+   ========================================================= */
+
+.ai-score {
+
+    font-size: 16px;
+
+    font-weight: 900;
+}
+
+.score-high {
+
+    color: #e53935;
+}
+
+.score-medium {
+
+    color: #d97706;
+}
+
+.score-low {
+
+    color: #6b7280;
+}
+
+
+/* =========================================================
+   正負
+   ========================================================= */
+
+.positive {
+
+    color: #e53935;
+
+    font-weight: 700;
+}
+
+.negative {
+
+    color: #16803c;
+
+    font-weight: 700;
+}
+
+.neutral {
+
+    color: #555;
+}
+
+
+/* =========================================================
+   Badge
+   ========================================================= */
+
+.badge {
+
+    display: inline-block;
+
+    padding:
+        3px 8px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+.badge-buy {
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+}
+
+.badge-watch {
+
+    background: #fef3c7;
+
+    color: #92400e;
+}
+
+.badge-neutral {
+
+    background: #eef2f7;
+
+    color: #4b5563;
+}
+
+
+/* =========================================================
+   Loading / Error
+   ========================================================= */
+
+.loading {
+
+    padding:
+        50px !important;
+
+    text-align:
+        center !important;
+
+    color: #777;
+}
+
+.error {
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: #c62828;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   手機
+   ========================================================= */
+
+@media (max-width: 900px) {
 
     .container {
-        width: min(1100px, calc(100% - 32px));
-        margin: 0 auto;
-        padding: 40px 0 70px;
+
+        width:
+            calc(100% - 20px);
+
+        padding-top: 18px;
+    }
+
+    .top {
+
+        align-items:
+            flex-start;
+    }
+
+    .brand {
+
+        width: 100%;
+    }
+
+    .actions {
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 7px;
+    }
+
+    .nav-btn {
+
+        text-align: center;
+
+        font-size: 12px;
+
+        padding:
+            10px 5px;
+    }
+
+    .status-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .score-rules {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .controls {
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+    .tabs {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr 1fr;
+    }
+
+    .tab {
+
+        width: 100%;
+
+        padding:
+            10px 5px;
+    }
+
+    #topSelect,
+    #searchInput {
+
+        width: 100%;
     }
 
     .hero {
-        background: #111827;
-        color: white;
-        border-radius: 18px;
-        padding: 42px 36px;
-        margin-bottom: 24px;
+
+        padding:
+            28px 22px;
     }
 
     .hero h1 {
-        margin: 0 0 10px;
-        font-size: 34px;
-        letter-spacing: -0.5px;
-    }
 
-    .hero p {
-        margin: 0;
-        color: #d1d5db;
-        font-size: 16px;
-    }
-
-    .notice {
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-left: 5px solid #6b7280;
-        border-radius: 12px;
-        padding: 20px 22px;
-        margin-bottom: 24px;
-    }
-
-    .notice strong {
-        display: block;
-        margin-bottom: 5px;
-        color: #111827;
+        font-size: 28px;
     }
 
     .section {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 16px;
-        padding: 28px;
-        margin-bottom: 20px;
+
+        padding:
+            20px 16px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .container {
+
+        width:
+            calc(100% - 16px);
+
+        padding-bottom: 45px;
     }
 
-    .section h2 {
-        margin: 0 0 18px;
-        font-size: 23px;
-        color: #111827;
+    .brand {
+
+        font-size: 20px;
     }
 
-    .section h3 {
-        margin: 24px 0 8px;
-        font-size: 18px;
-        color: #374151;
+    .actions {
+
+        gap: 6px;
     }
 
-    .section p {
-        margin: 8px 0;
+    .nav-btn {
+
+        font-size: 11px;
+
+        padding:
+            9px 3px;
     }
 
-    .rules {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
+    .hero {
+
+        border-radius: 14px;
+
+        padding:
+            25px 18px;
     }
 
-    .rule {
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 16px;
-        background: #fafafa;
+    .hero h1 {
+
+        font-size: 25px;
     }
 
-    .rule-title {
-        font-weight: 700;
-        margin-bottom: 4px;
-        color: #111827;
-    }
+    .hero p {
 
-    .status {
-        display: inline-block;
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: #eef2f7;
-        color: #4b5563;
-        font-size: 13px;
-        font-weight: 600;
-    }
-
-    ul {
-        margin: 8px 0 0;
-        padding-left: 22px;
-    }
-
-    .footer {
-        text-align: center;
-        color: #6b7280;
         font-size: 14px;
-        margin-top: 30px;
     }
 
-    @media (max-width: 700px) {
-        .container {
-            width: min(100% - 20px, 1100px);
-            padding-top: 20px;
-        }
+    .status-grid {
 
-        .hero {
-            padding: 30px 22px;
-            border-radius: 14px;
-        }
-
-        .hero h1 {
-            font-size: 28px;
-        }
-
-        .section {
-            padding: 22px 18px;
-        }
-
-        .rules {
-            grid-template-columns: 1fr;
-        }
+        gap: 8px;
     }
+
+    .status-card {
+
+        padding:
+            14px;
+    }
+
+    .status-value {
+
+        font-size: 20px;
+    }
+
+    .tabs {
+
+        gap: 5px;
+    }
+
+    .tab {
+
+        font-size: 11px;
+
+        padding:
+            9px 3px;
+    }
+
+    table {
+
+        min-width:
+            1250px;
+    }
+
+}
+
+
+/* =========================================================
+   超小手機
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .status-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .hero h1 {
+
+        font-size: 23px;
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
 <div class="container">
 
-    <section class="hero">
-        <h1>AI Trading Experiment</h1>
-        <p>
-            AI 股票投資實驗｜台股・美股・選擇權
-        </p>
-    </section>
 
-    <div class="notice">
-        <strong>實驗狀態：規則建立中</strong>
-        本頁目前只建立 AI 投資實驗的基本架構。
-        實際選股、交易、風控及績效計算規則將逐步建立，
-        在規則確定以前不進行正式排名。
+<!-- =====================================================
+     Header
+===================================================== -->
+
+<header class="top">
+
+    <div class="brand">
+        📈 投資績效名片
     </div>
 
-    <section class="section">
-        <h2>一、實驗目的</h2>
 
-        <p>
-            本實驗的目的，是讓不同 AI 模型在相同的市場資料、
-            相同的資金以及相同的交易規則下進行投資決策，
-            並長期比較其投資績效。
-        </p>
+    <div class="actions">
 
-        <p>
-            實驗將盡可能避免事後修改規則，
-            所有交易決策與市場資料均應留下歷史紀錄。
-        </p>
-    </section>
+        <a
+            class="nav-btn"
+            href="index.html"
+        >
+            📊 融資融券維持率
+        </a>
 
-    <section class="section">
-        <h2>二、基本設定</h2>
+        <a
+            class="nav-btn"
+            href="calendar.html"
+        >
+            📊 每日行事曆
+        </a>
 
-        <div class="rules">
+        <a
+            class="nav-btn"
+            href="foreign.html"
+        >
+            🏦 外資買賣超
+        </a>
 
-            <div class="rule">
-                <div class="rule-title">市場</div>
-                台灣股票、美國股票
-            </div>
+        <a
+            class="nav-btn"
+            href="broker.html"
+        >
+            🏢 投信買賣超
+        </a>
 
-            <div class="rule">
-                <div class="rule-title">投資方式</div>
-                虛擬資金，不涉及真實交易
-            </div>
+        <a
+            class="nav-btn"
+            href="credit.html"
+        >
+            🏢 融資融券變化
+        </a>
 
-            <div class="rule">
-                <div class="rule-title">投資期限</div>
-                長期持續實驗
-            </div>
+        <a
+            class="nav-btn"
+            href="foreign-cash.html"
+        >
+            🏢 三大法人買賣超
+        </a>
 
-            <div class="rule">
-                <div class="rule-title">交易頻率</div>
-                原則上每日重新評估
-            </div>
+        <a
+            class="nav-btn"
+            href="fundamentals.html"
+        >
+            📊 股票基本面
+        </a>
 
-            <div class="rule">
-                <div class="rule-title">AI 模型</div>
-                GPT / Gemini / Claude / DeepSeek / 其他模型
-            </div>
+    </div>
 
-            <div class="rule">
-                <div class="rule-title">資料原則</div>
-                各 AI 應取得相同的市場資訊
-            </div>
+</header>
 
+
+<!-- =====================================================
+     Hero
+===================================================== -->
+
+<section class="hero">
+
+    <h1>
+        🤖 AI Trading Experiment
+    </h1>
+
+    <p>
+        台股成交金額 Top 100 → 基本面 → 技術面 → 法人動向 → AI 候選股評分
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     系統狀態
+===================================================== -->
+
+<div class="status-grid">
+
+
+    <div class="status-card">
+
+        <div class="status-title">
+            候選股票
         </div>
-    </section>
 
-    <section class="section">
-        <h2>三、AI 選股</h2>
+        <div
+            class="status-value"
+            id="stockCount"
+        >
+            -
+        </div>
 
-        <p>
-            AI 將根據統一提供的市場資料，
-            判斷哪些股票具有較高的投資價值。
-        </p>
+        <div class="status-small">
+            成交金額 Top 100
+        </div>
 
-        <h3>目前規則</h3>
+    </div>
 
-        <span class="status">尚未制定</span>
 
-        <p>
-            後續將建立候選股票篩選方式、AI 評分方式、
-            持股數量以及單一股票最大持倉比例。
-        </p>
-    </section>
+    <div class="status-card">
 
-    <section class="section">
-        <h2>四、加碼機制</h2>
+        <div class="status-title">
+            基本面資料
+        </div>
 
-        <p>
-            持有股票後，AI 可以根據新的市場資料重新評估是否增加持倉。
-        </p>
+        <div
+            class="status-value"
+            id="fundamentalCount"
+        >
+            -
+        </div>
 
-        <h3>目前規則</h3>
+        <div class="status-small">
+            有完整基本面資料
+        </div>
 
-        <span class="status">尚未制定</span>
+    </div>
 
-        <p>
-            後續將明確定義加碼條件與最大加碼比例。
-        </p>
-    </section>
 
-    <section class="section">
-        <h2>五、停利機制</h2>
+    <div class="status-card">
 
-        <p>
-            當持有股票產生獲利後，系統將重新判斷
-            是否繼續持有或進行獲利了結。
-        </p>
+        <div class="status-title">
+            AI 候選股
+        </div>
 
-        <h3>目前規則</h3>
+        <div
+            class="status-value"
+            id="candidateCount"
+        >
+            -
+        </div>
 
-        <span class="status">尚未制定</span>
-    </section>
+        <div class="status-small">
+            評分達 60 分
+        </div>
 
-    <section class="section">
-        <h2>六、停損機制</h2>
+    </div>
 
-        <p>
-            系統將設定風險控制規則，
-            避免單一持股造成過大的投資組合損失。
-        </p>
 
-        <h3>目前規則</h3>
+    <div class="status-card">
 
-        <span class="status">尚未制定</span>
+        <div class="status-title">
+            資料日期
+        </div>
 
-        <p>
-            停損規則將由程式執行，
-            不完全依賴 AI 臨時決定。
-        </p>
-    </section>
+        <div
+            class="status-value"
+            id="dataDate"
+        >
+            -
+        </div>
 
-    <section class="section">
-        <h2>七、選擇權</h2>
+        <div class="status-small">
+            每日更新
+        </div>
 
-        <p>
-            實驗未來可能加入選擇權方向判斷，
-            包含偏多與偏空策略。
-        </p>
-
-        <h3>目前規則</h3>
-
-        <span class="status">尚未制定</span>
-
-        <ul>
-            <li>偏多方向</li>
-            <li>偏空方向</li>
-            <li>到期日</li>
-            <li>履約價</li>
-            <li>波動率</li>
-            <li>風險報酬</li>
-        </ul>
-    </section>
-
-    <section class="section">
-        <h2>八、績效比較</h2>
-
-        <p>
-            所有 AI 將使用相同的初始資金與交易規則，
-            最終比較累積報酬率、最大回撤、勝率以及風險調整後績效。
-        </p>
-
-        <h3>目前狀態</h3>
-
-        <span class="status">尚未開始</span>
-    </section>
-
-    <section class="section">
-        <h2>九、實驗原則</h2>
-
-        <ul>
-            <li>所有 AI 使用相同的市場資料。</li>
-            <li>不得使用未來資料。</li>
-            <li>交易決策應留下時間紀錄。</li>
-            <li>歷史交易結果不得事後修改。</li>
-            <li>不同 AI 使用相同的交易規則。</li>
-            <li>所有績效均以虛擬投資計算。</li>
-        </ul>
-    </section>
-
-    <div class="footer">
-        AI Trading Experiment · Experimental Project
     </div>
 
 </div>
 
-</body>
-</html>
 
+<!-- =====================================================
+     評分規則
+===================================================== -->
+
+<section class="section">
+
+    <h2>
+        🧠 AI Trading 評分模型
+    </h2>
+
+
+    <div class="score-rules">
+
+
+        <div class="score-rule">
+
+            <div class="score-rule-title">
+                📊 基本面　40 分
+            </div>
+
+            <div class="score-rule-desc">
+
+                營收成長、獲利能力、
+                EPS、ROE、財務體質。
+
+            </div>
+
+        </div>
+
+
+        <div class="score-rule">
+
+            <div class="score-rule-title">
+                📈 技術面　35 分
+            </div>
+
+            <div class="score-rule-desc">
+
+                近期報酬、均線位置、
+                成交量變化。
+
+            </div>
+
+        </div>
+
+
+        <div class="score-rule">
+
+            <div class="score-rule-title">
+                🏦 法人動向　25 分
+            </div>
+
+            <div class="score-rule-desc">
+
+                外資、投信、券商
+                三大法人淨買賣。
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     AI Ranking
+===================================================== -->
+
+<section class="section">
+
+    <h2>
+        ⭐ AI 候選股排名
+    </h2>
+
+
+    <div class="controls">
+
+        <div class="tabs">
+
+            <button
+                class="tab active"
+                data-mode="all"
+            >
+                全部
+            </button>
+
+            <button
+                class="tab"
+                data-mode="candidate"
+            >
+                ⭐ 候選股
+            </button>
+
+            <button
+                class="tab"
+                data-mode="strong"
+            >
+                🔥 高分股
+            </button>
+
+        </div>
+
+
+        <select id="topSelect">
+
+            <option value="10">
+                TOP 10
+            </option>
+
+            <option value="20">
+                TOP 20
+            </option>
+
+            <option value="50">
+                TOP 50
+            </option>
+
+            <option value="100">
+                TOP 100
+            </option>
+
+        </select>
+
+
+        <input
+            id="searchInput"
+            type="search"
+            placeholder="搜尋股票代號 / 名稱"
+        >
+
+    </div>
+
+
+    <div
+        class="summary"
+        id="summary"
+    >
+        正在計算 AI 評分...
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Rank
+                    </th>
+
+                    <th>
+                        股票代號
+                    </th>
+
+                    <th>
+                        股票名稱
+                    </th>
+
+                    <th>
+                        AI Score
+                    </th>
+
+                    <th>
+                        評級
+                    </th>
+
+                    <th>
+                        營收 YoY
+                    </th>
+
+                    <th>
+                        毛利率
+                    </th>
+
+                    <th>
+                        ROE
+                    </th>
+
+                    <th>
+                        5日報酬
+                    </th>
+
+                    <th>
+                        20日報酬
+                    </th>
+
+                    <th>
+                        60日報酬
+                    </th>
+
+                    <th>
+                        20日量比
+                    </th>
+
+                    <th>
+                        法人淨買賣
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="tableBody">
+
+                <tr>
+
+                    <td
+                        colspan="13"
+                        class="loading"
+                    >
+                        正在載入資料...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+</div>
+
+
+<script>
+
+/* ========================================================
+   全域
+======================================================== */
+
+let topData = [];
+
+let fundamentalMap = new Map();
+
+let rankingData = [];
+
+let topN = 10;
+
+let currentMode = "all";
+
+
+/* ========================================================
+   數字
+======================================================== */
+
+function num(value) {
+
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+        return null;
+    }
+
+    const n =
+        Number(
+            String(value)
+                .replace(/,/g, "")
+                .trim()
+        );
+
+    return Number.isFinite(n)
+        ? n
+        : null;
+}
+
+
+/* ========================================================
+   百分比
+======================================================== */
+
+function pct(value) {
+
+    const n = num(value);
+
+    if (n === null) {
+        return "-";
+    }
+
+    return (
+        n >= 0
+            ? "+"
+            : ""
+    )
+    +
+    n.toFixed(2)
+    +
+    "%";
+}
+
+
+/* ========================================================
+   一般數字
+======================================================== */
+
+function number(value, digits = 2) {
+
+    const n = num(value);
+
+    if (n === null) {
+        return "-";
+    }
+
+    return n.toLocaleString(
+        "zh-TW",
+        {
+            minimumFractionDigits: digits,
+            maximumFractionDigits: digits
+        }
+    );
+}
+
+
+/* ========================================================
+   法人數字
+======================================================== */
+
+function formatInstitutional(value) {
+
+    const n = num(value);
+
+    if (n === null) {
+        return "-";
+    }
+
+    const abs = Math.abs(n);
+
+    let result;
+
+    if (abs >= 100000000) {
+
+        result =
+            (
+                abs / 100000000
+            ).toFixed(2)
+            +
+            "億";
+
+    }
+
+    else if (abs >= 10000) {
+
+        result =
+            (
+                abs / 10000
+            ).toFixed(0)
+            +
+            "萬";
+
+    }
+
+    else {
+
+        result =
+            Math.round(abs)
+                .toLocaleString("zh-TW");
+
+    }
+
+    return (
+        n > 0
+            ? "+"
+            : n < 0
+                ? "-"
+                : ""
+    )
+    +
+    result;
+}
+
+
+/* ========================================================
+   顏色
+======================================================== */
+
+function positiveNegativeClass(value) {
+
+    const n = num(value);
+
+    if (n === null) {
+        return "neutral";
+    }
+
+    if (n > 0) {
+        return "positive";
+    }
+
+    if (n < 0) {
+        return "negative";
+    }
+
+    return "neutral";
+}
+
+
+/* ========================================================
+   基本面評分
+   最高 40 分
+======================================================== */
+
+function fundamentalScore(f) {
+
+    if (
+        !f ||
+        f.fundamental_available === false
+    ) {
+        return 0;
+    }
+
+
+    let score = 0;
+
+
+    /* 營收成長：最高 8 分 */
+
+    const revenueYoY =
+        num(
+            f.quarter_revenue_yoy
+        );
+
+    if (revenueYoY !== null) {
+
+        if (revenueYoY >= 30) {
+            score += 8;
+        }
+
+        else if (revenueYoY >= 15) {
+            score += 6;
+        }
+
+        else if (revenueYoY > 0) {
+            score += 4;
+        }
+
+        else {
+            score += 0;
+        }
+    }
+
+
+    /* 毛利率：最高 6 分 */
+
+    const grossMargin =
+        num(
+            f.quarter_gross_margin
+        );
+
+    if (grossMargin !== null) {
+
+        if (grossMargin >= 40) {
+            score += 6;
+        }
+
+        else if (grossMargin >= 25) {
+            score += 4;
+        }
+
+        else if (grossMargin >= 15) {
+            score += 2;
+        }
+    }
+
+
+    /* 營益率：最高 6 分 */
+
+    const operatingMargin =
+        num(
+            f.quarter_operating_margin
+        );
+
+    if (operatingMargin !== null) {
+
+        if (operatingMargin >= 20) {
+            score += 6;
+        }
+
+        else if (operatingMargin >= 10) {
+            score += 4;
+        }
+
+        else if (operatingMargin > 0) {
+            score += 2;
+        }
+    }
+
+
+    /* ROE：最高 10 分 */
+
+    const roe =
+        num(
+            f.roe_ttm
+        );
+
+    if (roe !== null) {
+
+        if (roe >= 20) {
+            score += 10;
+        }
+
+        else if (roe >= 15) {
+            score += 8;
+        }
+
+        else if (roe >= 10) {
+            score += 5;
+        }
+
+        else if (roe > 0) {
+            score += 2;
+        }
+    }
+
+
+    /* 負債比：最高 5 分 */
+
+    const debtRatio =
+        num(
+            f.debt_ratio
+        );
+
+    if (debtRatio !== null) {
+
+        if (debtRatio <= 30) {
+            score += 5;
+        }
+
+        else if (debtRatio <= 50) {
+            score += 4;
+        }
+
+        else if (debtRatio <= 65) {
+            score += 2;
+        }
+    }
+
+
+    /* 流動比：最高 5 分 */
+
+    const currentRatio =
+        num(
+            f.current_ratio
+        );
+
+    if (currentRatio !== null) {
+
+        if (currentRatio >= 2) {
+            score += 5;
+        }
+
+        else if (currentRatio >= 1.5) {
+            score += 4;
+        }
+
+        else if (currentRatio >= 1) {
+            score += 2;
+        }
+    }
+
+
+    return Math.min(
+        score,
+        40
+    );
+}
+
+
+/* ========================================================
+   技術面評分
+   最高 35 分
+======================================================== */
+
+function technicalScore(s) {
+
+    let score = 0;
+
+
+    /* 5日報酬：最高 7 */
+
+    const r5 =
+        num(
+            s.return_5d
+        );
+
+    if (r5 !== null) {
+
+        if (r5 >= 10) {
+            score += 7;
+        }
+
+        else if (r5 >= 5) {
+            score += 5;
+        }
+
+        else if (r5 > 0) {
+            score += 3;
+        }
+    }
+
+
+    /* 20日報酬：最高 8 */
+
+    const r20 =
+        num(
+            s.return_20d
+        );
+
+    if (r20 !== null) {
+
+        if (r20 >= 20) {
+            score += 8;
+        }
+
+        else if (r20 >= 10) {
+            score += 6;
+        }
+
+        else if (r20 > 0) {
+            score += 3;
+        }
+    }
+
+
+    /* 60日報酬：最高 7 */
+
+    const r60 =
+        num(
+            s.return_60d
+        );
+
+    if (r60 !== null) {
+
+        if (r60 >= 30) {
+            score += 7;
+        }
+
+        else if (r60 >= 15) {
+            score += 5;
+        }
+
+        else if (r60 > 0) {
+            score += 3;
+        }
+    }
+
+
+    /* 20日量比：最高 5 */
+
+    const volumeRatio =
+        num(
+            s.volume_ratio_20d
+        );
+
+    if (volumeRatio !== null) {
+
+        if (
+            volumeRatio >= 1.5 &&
+            volumeRatio <= 3
+        ) {
+            score += 5;
+        }
+
+        else if (
+            volumeRatio >= 1.2
+        ) {
+            score += 3;
+        }
+
+        else if (
+            volumeRatio >= 1
+        ) {
+            score += 2;
+        }
+    }
+
+
+    /* 股價相對 MA20：最高 8 */
+
+    const close =
+        num(s.close);
+
+    const ma20 =
+        num(s.ma20);
+
+    if (
+        close !== null &&
+        ma20 !== null &&
+        ma20 > 0
+    ) {
+
+        const ratio =
+            (
+                close / ma20
+            ) - 1;
+
+
+        if (ratio >= 0.10) {
+            score += 8;
+        }
+
+        else if (ratio >= 0.03) {
+            score += 6;
+        }
+
+        else if (ratio >= 0) {
+            score += 3;
+        }
+    }
+
+
+    return Math.min(
+        score,
+        35
+    );
+}
+
+
+/* ========================================================
+   法人評分
+   最高 25 分
+======================================================== */
+
+function institutionalScore(s) {
+
+    let score = 0;
+
+
+    const foreign =
+        num(
+            s.foreign_net
+        ) || 0;
+
+    const trust =
+        num(
+            s.trust_net
+        ) || 0;
+
+    const dealer =
+        num(
+            s.dealer_net
+        ) || 0;
+
+
+    /* 外資 */
+
+    if (foreign > 0) {
+        score += 6;
+    }
+
+    else if (foreign < 0) {
+        score += 1;
+    }
+
+
+    /* 投信 */
+
+    if (trust > 0) {
+        score += 6;
+    }
+
+    else if (trust < 0) {
+        score += 1;
+    }
+
+
+    /* 自營商 */
+
+    if (dealer > 0) {
+        score += 4;
+    }
+
+    else if (dealer < 0) {
+        score += 1;
+    }
+
+
+    /* 三大法人方向 */
+
+    const total =
+        num(
+            s.institutional_net
+        ) || 0;
+
+
+    if (total > 0) {
+
+        score += 9;
+
+    }
+
+    else if (total < 0) {
+
+        score += 1;
+
+    }
+
+
+    return Math.min(
+        score,
+        25
+    );
+}
+
+
+/* ========================================================
+   AI 總分
+======================================================== */
+
+function calculateScore(stock, fundamental) {
+
+    const fScore =
+        fundamentalScore(
+            fundamental
+        );
+
+    const tScore =
+        technicalScore(
+            stock
+        );
+
+    const iScore =
+        institutionalScore(
+            stock
+        );
+
+
+    const total =
+        fScore +
+        tScore +
+        iScore;
+
+
+    return {
+
+        total,
+
+        fundamental:
+            fScore,
+
+        technical:
+            tScore,
+
+        institutional:
+            iScore
+
+    };
+}
+
+
+/* ========================================================
+   評級
+======================================================== */
+
+function getRating(score) {
+
+    if (score >= 80) {
+
+        return {
+            text: "🔥 高分",
+            className: "badge-buy"
+        };
+
+    }
+
+    if (score >= 60) {
+
+        return {
+            text: "⭐ 候選",
+            className: "badge-watch"
+        };
+
+    }
+
+    return {
+        text: "觀察",
+        className: "badge-neutral"
+    };
+
+}
+
+
+/* ========================================================
+   搜尋
+======================================================== */
+
+function getSearchRows() {
+
+    const keyword =
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    if (!keyword) {
+
+        return rankingData;
+
+    }
+
+
+    return rankingData.filter(
+        item => {
+
+            const symbol =
+                String(
+                    item.symbol
+                )
+                .toLowerCase();
+
+            const name =
+                String(
+                    item.name
+                )
+                .toLowerCase();
+
+            return (
+                symbol.includes(keyword) ||
+                name.includes(keyword)
+            );
+
+        }
+    );
+
+}
+
+
+/* ========================================================
+   模式
+======================================================== */
+
+function getModeRows() {
+
+    let rows =
+        getSearchRows();
+
+
+    if (
+        currentMode ===
+        "candidate"
+    ) {
+
+        rows =
+            rows.filter(
+                item =>
+                    item.score >= 60
+            );
+
+    }
+
+
+    if (
+        currentMode ===
+        "strong"
+    ) {
+
+        rows =
+            rows.filter(
+                item =>
+                    item.score >= 80
+            );
+
+    }
+
+
+    return rows;
+
+}
+
+
+/* ========================================================
+   顯示表格
+======================================================== */
+
+function renderTable() {
+
+    const tbody =
+        document.getElementById(
+            "tableBody"
+        );
+
+    const summary =
+        document.getElementById(
+            "summary"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    const filtered =
+        getModeRows();
+
+
+    const rows =
+        filtered.slice(
+            0,
+            topN
+        );
+
+
+    summary.textContent =
+
+        `AI 評分｜`
+        +
+        `共 ${rankingData.length} 檔｜`
+        +
+        `符合條件 ${filtered.length} 檔｜`
+        +
+        `顯示 TOP ${rows.length}`;
+
+
+    if (rows.length === 0) {
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="13"
+                    class="loading"
+                >
+                    沒有符合條件的股票。
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    rows.forEach(
+        (item, index) => {
+
+            const rating =
+                getRating(
+                    item.score
+                );
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td class="rank">
+                    ${index + 1}
+                </td>
+
+                <td class="stock-id">
+                    ${item.symbol}
+                </td>
+
+                <td>
+                    ${item.name}
+                </td>
+
+                <td
+                    class="ai-score ${
+                        item.score >= 80
+                            ? "score-high"
+                            : item.score >= 60
+                                ? "score-medium"
+                                : "score-low"
+                    }"
+                >
+                    ${item.score}
+                </td>
+
+                <td>
+                    <span
+                        class="badge ${rating.className}"
+                    >
+                        ${rating.text}
+                    </span>
+                </td>
+
+                <td
+                    class="${positiveNegativeClass(
+                        item.revenue_yoy
+                    )}"
+                >
+                    ${pct(item.revenue_yoy)}
+                </td>
+
+                <td>
+                    ${pct(item.gross_margin)}
+                </td>
+
+                <td
+                    class="${positiveNegativeClass(
+                        item.roe
+                    )}"
+                >
+                    ${pct(item.roe)}
+                </td>
+
+                <td
+                    class="${positiveNegativeClass(
+                        item.return_5d
+                    )}"
+                >
+                    ${pct(item.return_5d)}
+                </td>
+
+                <td
+                    class="${positiveNegativeClass(
+                        item.return_20d
+                    )}"
+                >
+                    ${pct(item.return_20d)}
+                </td>
+
+                <td
+                    class="${positiveNegativeClass(
+                        item.return_60d
+                    )}"
+                >
+                    ${pct(item.return_60d)}
+                </td>
+
+                <td>
+                    ${number(
+                        item.volume_ratio,
+                        2
+                    )}
+                </td>
+
+                <td
+                    class="${positiveNegativeClass(
+                        item.institutional_net
+                    )}"
+                >
+                    ${formatInstitutional(
+                        item.institutional_net
+                    )}
+                </td>
+
+            `;
+
+
+            tbody.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* ========================================================
+   建立排名
+======================================================== */
+
+function buildRanking() {
+
+    rankingData =
+        topData.map(
+            stock => {
+
+                const symbol =
+                    String(
+                        stock.symbol
+                    );
+
+
+                const fundamental =
+                    fundamentalMap.get(
+                        symbol
+                    );
+
+
+                const score =
+                    calculateScore(
+                        stock,
+                        fundamental
+                    );
+
+
+                return {
+
+                    ...stock,
+
+                    score:
+                        score.total,
+
+                    fundamental_score:
+                        score.fundamental,
+
+                    technical_score:
+                        score.technical,
+
+                    institutional_score:
+                        score.institutional,
+
+                    revenue_yoy:
+                        fundamental
+                            ?.quarter_revenue_yoy,
+
+                    gross_margin:
+                        fundamental
+                            ?.quarter_gross_margin,
+
+                    roe:
+                        fundamental
+                            ?.roe_ttm,
+
+                    return_5d:
+                        stock.return_5d,
+
+                    return_20d:
+                        stock.return_20d,
+
+                    return_60d:
+                        stock.return_60d,
+
+                    volume_ratio:
+                        stock.volume_ratio_20d
+
+                };
+
+            }
+        );
+
+
+    rankingData.sort(
+        (a, b) =>
+            b.score -
+            a.score
+    );
+
+
+    document
+        .getElementById(
+            "candidateCount"
+        )
+        .textContent =
+        rankingData.filter(
+            item =>
+                item.score >= 60
+        ).length;
+
+
+    renderTable();
+
+}
+
+
+/* ========================================================
+   載入資料
+======================================================== */
+
+async function loadData() {
+
+    const tbody =
+        document.getElementById(
+            "tableBody"
+        );
+
+
+    try {
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="13"
+                    class="loading"
+                >
+                    正在載入 Top 100 與基本面資料...
+                </td>
+
+            </tr>
+
+        `;
+
+
+        /* ------------------------------------------------
+           同時載入兩個 JSON
+        ------------------------------------------------ */
+
+        const [
+            topResponse,
+            fundamentalResponse
+        ] =
+            await Promise.all([
+
+                fetch(
+                    "tw_top100.json?ts="
+                    +
+                    Date.now()
+                ),
+
+                fetch(
+                    "tw_fundamentals.json?ts="
+                    +
+                    Date.now()
+                )
+
+            ]);
+
+
+        if (!topResponse.ok) {
+
+            throw new Error(
+                "tw_top100.json 載入失敗：HTTP "
+                +
+                topResponse.status
+            );
+
+        }
+
+
+        if (!fundamentalResponse.ok) {
+
+            throw new Error(
+                "tw_fundamentals.json 載入失敗：HTTP "
+                +
+                fundamentalResponse.status
+            );
+
+        }
+
+
+        const topJson =
+            await topResponse.json();
+
+
+        const fundamentalJson =
+            await fundamentalResponse.json();
+
+
+        /* ------------------------------------------------
+           Top 100
+        ------------------------------------------------ */
+
+        if (
+            !Array.isArray(
+                topJson.stocks
+            )
+        ) {
+
+            throw new Error(
+                "tw_top100.json 找不到 stocks"
+            );
+
+        }
+
+
+        topData =
+            topJson.stocks;
+
+
+        /* ------------------------------------------------
+           基本面 Map
+        ------------------------------------------------ */
+
+        if (
+            !Array.isArray(
+                fundamentalJson.stocks
+            )
+        ) {
+
+            throw new Error(
+                "tw_fundamentals.json 找不到 stocks"
+            );
+
+        }
+
+
+        fundamentalMap =
+            new Map(
+
+                fundamentalJson.stocks.map(
+                    item => [
+                        String(
+                            item.symbol
+                        ),
+                        item
+                    ]
+                )
+
+            );
+
+
+        /* ------------------------------------------------
+           狀態
+        ------------------------------------------------ */
+
+        document
+            .getElementById(
+                "stockCount"
+            )
+            .textContent =
+            topData.length;
+
+
+        document
+            .getElementById(
+                "fundamentalCount"
+            )
+            .textContent =
+
+            fundamentalJson.fundamental_count
+            ??
+            fundamentalJson.stocks.filter(
+                item =>
+                    item.fundamental_available !== false
+            ).length;
+
+
+        document
+            .getElementById(
+                "dataDate"
+            )
+            .textContent =
+            topJson.date
+            ??
+            fundamentalJson.top100_date
+            ??
+            "-";
+
+
+        buildRanking();
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "AI Trading 資料錯誤：",
+            error
+        );
+
+
+        document
+            .getElementById(
+                "summary"
+            )
+            .textContent =
+            error.message;
+
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="13">
+
+                    <div class="error">
+
+                        <strong>
+                            ❌ AI Trading 資料載入失敗
+                        </strong>
+
+                        <br><br>
+
+                        ${error.message}
+
+                        <br><br>
+
+                        請確認以下兩個檔案存在於網站根目錄：
+
+                        <br>
+
+                        <strong>
+                            tw_top100.json
+                        </strong>
+
+                        <br>
+
+                        <strong>
+                            tw_fundamentals.json
+                        </strong>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+/* ========================================================
+   模式按鈕
+======================================================== */
+
+document
+    .querySelectorAll(
+        ".tab"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    document
+                        .querySelectorAll(
+                            ".tab"
+                        )
+                        .forEach(
+                            btn =>
+                                btn.classList
+                                    .remove(
+                                        "active"
+                                    )
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    currentMode =
+                        this.dataset.mode;
+
+
+                    renderTable();
+
+                }
+            );
+
+        }
+    );
+
+
+/* ========================================================
+   TOP
+======================================================== */
+
+document
+    .getElementById(
+        "topSelect"
+    )
+    .addEventListener(
+        "change",
+        function() {
+
+            topN =
+                Number(
+                    this.value
+                );
+
+
+            renderTable();
+
+        }
+    );
+
+
+/* ========================================================
+   搜尋
+======================================================== */
+
+document
+    .getElementById(
+        "searchInput"
+    )
+    .addEventListener(
+        "input",
+        function() {
+
+            renderTable();
+
+        }
+    );
+
+
+/* ========================================================
+   啟動
+======================================================== */
+
+loadData();
+
+</script>
+
+</body>
+
+</html>
