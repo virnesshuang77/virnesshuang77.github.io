@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AI Trading</title>
+<title>AI Trading｜ChatGPT 台股選股實驗</title>
 
 <style>
 * {
@@ -13,6 +13,8 @@
 
 body {
     margin: 0;
+    background: #f4f6f8;
+    color: #111827;
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -20,42 +22,40 @@ body {
         "Noto Sans TC",
         Arial,
         sans-serif;
-    background: #f5f7fa;
-    color: #111827;
 }
 
 .container {
-    width: min(1100px, calc(100% - 24px));
+    width: min(1200px, calc(100% - 30px));
     margin: 0 auto;
-    padding: 28px 0 60px;
+    padding: 22px 0 45px;
 }
 
-/* =========================
+/* =========================================================
    Header
-========================= */
+   ========================================================= */
 
-.header {
+.hero {
     background: #111827;
-    color: #fff;
-    border-radius: 16px;
-    padding: 28px;
+    color: white;
+    border-radius: 15px;
+    padding: 28px 30px;
     margin-bottom: 18px;
 }
 
-.header h1 {
+.hero h1 {
     margin: 0 0 5px;
-    font-size: 30px;
+    font-size: 29px;
 }
 
-.header p {
+.hero p {
     margin: 0;
     color: #d1d5db;
-    font-size: 15px;
+    font-size: 14px;
 }
 
-/* =========================
+/* =========================================================
    Summary
-========================= */
+   ========================================================= */
 
 .summary {
     display: grid;
@@ -65,16 +65,16 @@ body {
 }
 
 .summary-card {
-    background: #fff;
-    border: 1px solid #e5e7eb;
+    background: white;
+    border: 1px solid #dfe4ea;
     border-radius: 13px;
-    padding: 17px;
+    padding: 18px;
 }
 
 .summary-label {
+    color: #64748b;
     font-size: 13px;
-    color: #6b7280;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
 .summary-value {
@@ -82,42 +82,50 @@ body {
     font-weight: 800;
 }
 
-/* =========================
-   Date
-========================= */
-
-.date-box {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 13px;
-    padding: 15px 18px;
-    margin-bottom: 18px;
-    color: #374151;
+.summary-small {
+    margin-top: 4px;
+    color: #7b8794;
+    font-size: 11px;
 }
 
-.date-box strong {
+/* =========================================================
+   Date
+   ========================================================= */
+
+.data-info {
+    background: white;
+    border: 1px solid #dfe4ea;
+    border-radius: 12px;
+    padding: 15px 18px;
+    margin-bottom: 18px;
+    color: #475569;
+    font-size: 13px;
+}
+
+.data-info strong {
     color: #111827;
 }
 
-/* =========================
-   Section
-========================= */
+/* =========================================================
+   Main
+   ========================================================= */
 
-.section {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
+.card {
+    background: white;
+    border: 1px solid #dfe4ea;
+    border-radius: 15px;
     padding: 22px;
+    margin-bottom: 18px;
 }
 
-.section-title {
-    margin: 0 0 18px;
-    font-size: 22px;
+.card-title {
+    margin: 0 0 16px;
+    font-size: 21px;
 }
 
-/* =========================
+/* =========================================================
    Stock list
-========================= */
+   ========================================================= */
 
 .stock-list {
     display: flex;
@@ -127,196 +135,184 @@ body {
 
 .stock-row {
     display: grid;
-    grid-template-columns: 70px 120px 1fr 150px 120px;
+    grid-template-columns: 65px 100px 1fr 150px 100px;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 
-    min-height: 72px;
-
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e0e5eb;
     border-radius: 12px;
-
-    padding: 12px 18px;
-
+    padding: 17px 18px;
     background: #fff;
-
-    transition: transform .15s ease,
-                box-shadow .15s ease;
 }
 
 .stock-row:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(0,0,0,.06);
+    background: #fafbfc;
 }
-
-/* =========================
-   Rank
-========================= */
 
 .rank {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 800;
-    color: #6b7280;
+    color: #64748b;
 }
-
-.rank.top {
-    color: #111827;
-}
-
-/* =========================
-   Symbol
-========================= */
 
 .symbol {
-    font-size: 17px;
     font-weight: 800;
-    color: #374151;
+    color: #334155;
 }
 
-/* =========================
-   Name
-========================= */
-
-.name {
-    font-size: 19px;
+.stock-name {
+    font-size: 18px;
     font-weight: 800;
-    color: #111827;
 }
-
-/* =========================
-   Price
-========================= */
 
 .price {
     text-align: right;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
 }
-
-/* =========================
-   Change
-========================= */
 
 .change {
     text-align: right;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .up {
-    color: #dc2626;
+    color: #ef4444;
 }
 
 .down {
-    color: #15803d;
+    color: #16a34a;
 }
 
 .flat {
-    color: #6b7280;
+    color: #64748b;
 }
 
-/* =========================
+/* =========================================================
    Empty
-========================= */
+   ========================================================= */
 
 .empty {
+    padding: 45px 20px;
     text-align: center;
-    padding: 55px 20px;
-    color: #6b7280;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    background: #f8fafc;
 }
 
 .empty-title {
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 800;
-    color: #111827;
     margin-bottom: 7px;
 }
 
-/* =========================
-   Loading
-========================= */
-
-.loading {
-    text-align: center;
-    padding: 45px;
-    color: #6b7280;
+.empty-text {
+    color: #64748b;
+    font-size: 13px;
 }
 
-/* =========================
-   Error
-========================= */
+/* =========================================================
+   Rules
+   ========================================================= */
 
-.error {
-    padding: 20px;
-    border-radius: 12px;
-    background: #fff;
-    border: 1px solid #fecaca;
-    color: #b91c1c;
+.rules {
+    display: grid;
+    gap: 10px;
 }
 
-/* =========================
+.rule {
+    border: 1px solid #e1e6eb;
+    border-radius: 11px;
+    padding: 15px 17px;
+    background: #fafbfc;
+}
+
+.rule-title {
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.rule-text {
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.final-rule {
+    margin-top: 14px;
+    padding: 15px 17px;
+    border-radius: 11px;
+    background: #111827;
+    color: white;
+}
+
+.final-rule strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* =========================================================
    Footer
-========================= */
+   ========================================================= */
 
 .footer {
     text-align: center;
-    color: #6b7280;
-    font-size: 13px;
+    color: #64748b;
+    font-size: 12px;
     margin-top: 25px;
 }
 
-/* =========================
+/* =========================================================
    Mobile
-========================= */
+   ========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
 
     .container {
-        width: calc(100% - 16px);
-        padding-top: 15px;
+        width: min(100% - 20px, 1200px);
+        padding-top: 12px;
     }
 
-    .header {
-        padding: 23px 20px;
+    .hero {
+        padding: 25px 20px;
     }
 
-    .header h1 {
-        font-size: 26px;
+    .hero h1 {
+        font-size: 25px;
     }
 
     .summary {
         grid-template-columns: 1fr;
     }
 
-    .section {
-        padding: 15px;
+    .card {
+        padding: 16px;
     }
 
     .stock-row {
-        grid-template-columns: 42px 75px 1fr;
-        gap: 7px 10px;
-        padding: 13px 12px;
+        grid-template-columns: 45px 75px 1fr;
+        gap: 7px;
+        padding: 14px;
     }
 
-    .rank {
-        grid-row: span 2;
-    }
-
-    .symbol {
-        font-size: 14px;
-    }
-
-    .name {
-        font-size: 17px;
-    }
-
-    .price {
-        text-align: left;
+    .stock-name {
         font-size: 16px;
     }
 
-    .change {
+    .price {
+        grid-column: 2 / 3;
         text-align: left;
+        font-size: 15px;
+    }
+
+    .change {
+        grid-column: 3 / 4;
+        text-align: right;
         font-size: 14px;
+    }
+
+    .rank {
+        font-size: 16px;
     }
 }
 </style>
@@ -326,33 +322,35 @@ body {
 
 <div class="container">
 
-    <!-- =========================
+    <!-- =====================================================
          Header
-    ========================== -->
+         ===================================================== -->
 
-    <header class="header">
+    <section class="hero">
         <h1>🤖 AI Trading</h1>
         <p>
             ChatGPT 台股選股實驗
         </p>
-    </header>
+    </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          Summary
-    ========================== -->
+         ===================================================== -->
 
-    <div class="summary">
+    <section class="summary">
 
         <div class="summary-card">
             <div class="summary-label">
                 今日熱門股票
             </div>
 
-            <div
-                class="summary-value"
-                id="totalStocks">
-                -
+            <div class="summary-value" id="top100Count">
+                —
+            </div>
+
+            <div class="summary-small">
+                當日成交金額 Top 100
             </div>
         </div>
 
@@ -362,10 +360,12 @@ body {
                 通過篩選
             </div>
 
-            <div
-                class="summary-value"
-                id="candidateStocks">
-                -
+            <div class="summary-value" id="qualifiedCount">
+                —
+            </div>
+
+            <div class="summary-small">
+                基本面 + 技術面
             </div>
         </div>
 
@@ -375,48 +375,55 @@ body {
                 今日最終標的
             </div>
 
-            <div
-                class="summary-value"
-                id="finalStocks">
-                -
+            <div class="summary-value" id="finalCount">
+                —
+            </div>
+
+            <div class="summary-small">
+                最多 5 檔
             </div>
         </div>
 
-    </div>
+    </section>
 
 
-    <!-- =========================
-         Date
-    ========================== -->
+    <!-- =====================================================
+         Data information
+         ===================================================== -->
 
-    <div class="date-box">
+    <section class="data-info">
 
         資料日期：
-        <strong id="dataDate">-</strong>
+        <strong id="dataDate">載入中...</strong>
 
-        <span style="margin-left:15px;">
-            AI 最後篩選：最多 5 檔
-        </span>
+        <span style="margin:0 10px;color:#cbd5e1;">|</span>
 
-    </div>
+        ChatGPT 最終篩選：
+        <strong>最多 5 檔</strong>
+
+    </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          Final stocks
-    ========================== -->
+         ===================================================== -->
 
-    <section class="section">
+    <section class="card">
 
-        <h2 class="section-title">
+        <h2 class="card-title">
             🎯 今日 AI 選股
         </h2>
 
-        <div
-            id="stockList"
-            class="stock-list">
+        <div id="stockList" class="stock-list">
 
-            <div class="loading">
-                正在讀取資料...
+            <div class="empty">
+                <div class="empty-title">
+                    正在分析股票...
+                </div>
+
+                <div class="empty-text">
+                    正在讀取今日 Top 100 資料
+                </div>
             </div>
 
         </div>
@@ -424,8 +431,109 @@ body {
     </section>
 
 
+    <!-- =====================================================
+         Rules
+         ===================================================== -->
+
+    <section class="card">
+
+        <h2 class="card-title">
+            📋 篩選規則
+        </h2>
+
+        <div class="rules">
+
+            <div class="rule">
+
+                <div class="rule-title">
+                    第一階段｜熱門
+                </div>
+
+                <div class="rule-text">
+                    每個交易日先從當日成交金額 Top 100
+                    開始篩選。
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+                    第二階段｜基本面
+                </div>
+
+                <div class="rule-text">
+                    優先保留基本面健康、具有實際獲利能力的公司。
+                    明顯虧損或基本面過度薄弱的標的原則上排除。
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+                    第三階段｜技術面
+                </div>
+
+                <div class="rule-text">
+                    檢查短期與中期均線、價格趨勢及成交量變化。
+                    優先保留趨勢較健康或出現轉強訊號的股票。
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+                    跌深不等於直接淘汰
+                </div>
+
+                <div class="rule-text">
+                    股票短期下跌不會單獨成為淘汰理由。
+                    如果基本面仍然健康，且中期結構仍具有條件，
+                    跌深標的仍可以進入候選範圍。
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+                    題材資料
+                </div>
+
+                <div class="rule-text">
+                    目前版本尚未加入新聞與題材自動分析。
+                    未取得資料時，不假裝判斷題材強弱。
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="final-rule">
+
+            <strong>
+                最終規則
+            </strong>
+
+            最多選出 5 檔。
+            不足 5 檔完全正常。
+            如果沒有符合條件的股票，當日可以是 0 檔，
+            不為了湊數而強迫選股。
+
+        </div>
+
+    </section>
+
+
     <div class="footer">
-        AI Trading Experiment
+        ChatGPT AI Trading Experiment · 僅供投資研究與績效紀錄
     </div>
 
 </div>
@@ -434,26 +542,22 @@ body {
 <script>
 
 /* =========================================================
-   JSON
-========================================================= */
+   資料來源
+   ========================================================= */
 
 const TOP100_URL = "tw_top100.json";
 const FUNDAMENTALS_URL = "tw_fundamentals.json";
 
-const MAX_STOCKS = 5;
-
 
 /* =========================================================
    工具
-========================================================= */
+   ========================================================= */
 
-function number(value) {
+function number(value, fallback = 0) {
 
     const n = Number(value);
 
-    return Number.isFinite(n)
-        ? n
-        : null;
+    return Number.isFinite(n) ? n : fallback;
 }
 
 
@@ -461,30 +565,21 @@ function percent(value) {
 
     const n = number(value);
 
-    if (n === null) {
-        return "--";
+    if (n > 0) {
+        return "+" + n.toFixed(2) + "%";
     }
 
-    const sign =
-        n > 0
-            ? "+"
-            : "";
+    if (n < 0) {
+        return n.toFixed(2) + "%";
+    }
 
-    return sign +
-        n.toFixed(2) +
-        "%";
+    return "0.00%";
 }
 
 
 function formatPrice(value) {
 
-    const n = number(value);
-
-    if (n === null) {
-        return "--";
-    }
-
-    return n.toLocaleString(
+    return number(value).toLocaleString(
         "zh-TW",
         {
             minimumFractionDigits: 2,
@@ -495,370 +590,148 @@ function formatPrice(value) {
 
 
 /* =========================================================
-   基本面分數
-========================================================= */
+   基本面條件
+   =========================================================
 
-function fundamentalScore(f) {
+   這裡不是用單一分數。
+   目的只是先排除明顯基本面不健康的公司。
 
-    let score = 0;
+   保留：
+   - EPS > 0
+   - 最新季度營收 > 0
+   - TTM 營收 > 0
+   - TTM 淨利 > 0
+   - ROE 不為負
 
-    const revenueYoY =
-        number(f.quarter_revenue_yoy);
+   注意：
+   不要求 ROE 必須非常高。
+   避免把正在轉強的公司全部刪掉。
+   ========================================================= */
 
-    const grossMargin =
-        number(f.quarter_gross_margin);
+function fundamentalPass(stock) {
 
-    const operatingMargin =
-        number(f.quarter_operating_margin);
+    if (!stock) {
+        return false;
+    }
+
+    if (stock.fundamental_available === false) {
+        return false;
+    }
 
     const eps =
-        number(f.quarter_eps);
+        number(stock.quarter_eps, 0);
 
-    const epsYoY =
-        number(f.quarter_eps_yoy);
+    const revenue =
+        number(stock.ttm_revenue, 0);
+
+    const netIncome =
+        number(stock.ttm_net_income, 0);
 
     const roe =
-        number(f.roe_ttm);
+        number(stock.roe_ttm, 0);
 
-    const debtRatio =
-        number(f.debt_ratio);
-
-    const currentRatio =
-        number(f.current_ratio);
-
-
-    /* 營收 */
-
-    if (revenueYoY !== null) {
-
-        if (revenueYoY > 20) {
-            score += 3;
-        }
-        else if (revenueYoY > 5) {
-            score += 2;
-        }
-        else if (revenueYoY >= 0) {
-            score += 1;
-        }
+    if (eps <= 0) {
+        return false;
     }
 
-
-    /* 毛利率 */
-
-    if (grossMargin !== null) {
-
-        if (grossMargin > 30) {
-            score += 2;
-        }
-        else if (grossMargin > 15) {
-            score += 1;
-        }
+    if (revenue <= 0) {
+        return false;
     }
 
-
-    /* 營業利益率 */
-
-    if (operatingMargin !== null) {
-
-        if (operatingMargin > 15) {
-            score += 3;
-        }
-        else if (operatingMargin > 5) {
-            score += 2;
-        }
-        else if (operatingMargin > 0) {
-            score += 1;
-        }
+    if (netIncome <= 0) {
+        return false;
     }
 
-
-    /* EPS */
-
-    if (eps !== null && eps > 0) {
-        score += 3;
+    if (roe < 0) {
+        return false;
     }
 
-
-    /* EPS 成長 */
-
-    if (epsYoY !== null) {
-
-        if (epsYoY > 20) {
-            score += 3;
-        }
-        else if (epsYoY > 0) {
-            score += 2;
-        }
-    }
-
-
-    /* ROE */
-
-    if (roe !== null) {
-
-        if (roe > 20) {
-            score += 3;
-        }
-        else if (roe > 10) {
-            score += 2;
-        }
-        else if (roe > 0) {
-            score += 1;
-        }
-    }
-
-
-    /* 負債 */
-
-    if (debtRatio !== null) {
-
-        if (debtRatio < 50) {
-            score += 2;
-        }
-        else if (debtRatio < 70) {
-            score += 1;
-        }
-    }
-
-
-    /* 流動比 */
-
-    if (currentRatio !== null) {
-
-        if (currentRatio >= 1.5) {
-            score += 2;
-        }
-        else if (currentRatio >= 1) {
-            score += 1;
-        }
-    }
-
-
-    return score;
+    return true;
 }
 
 
 /* =========================================================
-   基本面淘汰
-========================================================= */
+   技術面條件
+   =========================================================
 
-function fundamentalRejected(f) {
+   不採取「跌了就淘汰」。
 
-    const eps =
-        number(f.quarter_eps);
+   主要觀察：
 
-    const operatingIncome =
-        number(f.quarter_operating_income);
+   1. 股價站在 MA20 上方
+   2. MA20 > MA60
+   3. 短期趨勢開始改善
+   4. 成交量不能完全失去流動性
 
-    const revenueYoY =
-        number(f.quarter_revenue_yoy);
+   技術面分數只是用來排序，
+   不是用來硬湊 5 檔。
+   ========================================================= */
 
-    const roe =
-        number(f.roe_ttm);
-
-    const debtRatio =
-        number(f.debt_ratio);
-
-
-    /*
-        EPS 負 + 營業利益負
-    */
-
-    if (
-        eps !== null &&
-        operatingIncome !== null &&
-        eps < 0 &&
-        operatingIncome <= 0
-    ) {
-        return true;
-    }
-
-
-    /*
-        營收大幅衰退 + EPS 負
-    */
-
-    if (
-        revenueYoY !== null &&
-        eps !== null &&
-        revenueYoY < -30 &&
-        eps < 0
-    ) {
-        return true;
-    }
-
-
-    /*
-        ROE 嚴重負值
-    */
-
-    if (
-        roe !== null &&
-        roe < -10
-    ) {
-        return true;
-    }
-
-
-    /*
-        負債比例過高
-    */
-
-    if (
-        debtRatio !== null &&
-        debtRatio > 85
-    ) {
-        return true;
-    }
-
-
-    return false;
-}
-
-
-/* =========================================================
-   技術面分數
-========================================================= */
-
-function technicalScore(s) {
+function technicalScore(stock) {
 
     let score = 0;
 
     const close =
-        number(s.close);
+        number(stock.close);
 
     const ma5 =
-        number(s.ma5);
+        number(stock.ma5);
 
     const ma20 =
-        number(s.ma20);
+        number(stock.ma20);
 
     const ma60 =
-        number(s.ma60);
-
-    const ma120 =
-        number(s.ma120);
-
-    const return5 =
-        number(s.return_5d);
-
-    const return20 =
-        number(s.return_20d);
-
-    const return60 =
-        number(s.return_60d);
+        number(stock.ma60);
 
     const volumeRatio =
-        number(s.volume_ratio_20d);
+        number(stock.volume_ratio_20d);
+
+    const return5 =
+        number(stock.return_5d);
+
+    const return20 =
+        number(stock.return_20d);
 
 
-    /* 股價 > MA5 */
+    /* 股價站上 MA20 */
 
-    if (
-        close !== null &&
-        ma5 !== null &&
-        close > ma5
-    ) {
-        score += 1;
-    }
-
-
-    /* 股價 > MA20 */
-
-    if (
-        close !== null &&
-        ma20 !== null &&
-        close > ma20
-    ) {
-        score += 2;
-    }
-
-
-    /* 股價 > MA60 */
-
-    if (
-        close !== null &&
-        ma60 !== null &&
-        close > ma60
-    ) {
-        score += 2;
-    }
-
-
-    /* 股價 > MA120 */
-
-    if (
-        close !== null &&
-        ma120 !== null &&
-        close > ma120
-    ) {
-        score += 1;
-    }
-
-
-    /* MA5 > MA20 */
-
-    if (
-        ma5 !== null &&
-        ma20 !== null &&
-        ma5 > ma20
-    ) {
-        score += 2;
+    if (close > 0 && ma20 > 0 && close > ma20) {
+        score += 3;
     }
 
 
     /* MA20 > MA60 */
 
-    if (
-        ma20 !== null &&
-        ma60 !== null &&
-        ma20 > ma60
-    ) {
+    if (ma20 > 0 && ma60 > 0 && ma20 > ma60) {
+        score += 3;
+    }
+
+
+    /* MA5 > MA20 */
+
+    if (ma5 > 0 && ma20 > 0 && ma5 > ma20) {
         score += 2;
     }
 
 
-    /* 20日正報酬 */
+    /* 五日趨勢 */
 
-    if (
-        return20 !== null &&
-        return20 > 0
-    ) {
+    if (return5 > 0) {
+        score += 1;
+    }
+
+
+    /* 二十日趨勢 */
+
+    if (return20 > 0) {
         score += 2;
     }
 
 
-    /* 60日正報酬 */
+    /* 成交量放大 */
 
-    if (
-        return60 !== null &&
-        return60 > 0
-    ) {
-        score += 2;
-    }
-
-
-    /* 成交量增加 */
-
-    if (
-        volumeRatio !== null &&
-        volumeRatio >= 1.2
-    ) {
-        score += 2;
-    }
-
-
-    /*
-        短線超跌但中期仍強
-    */
-
-    if (
-        return5 !== null &&
-        return60 !== null &&
-        return5 < -8 &&
-        return60 > 0
-    ) {
-        score += 2;
+    if (volumeRatio >= 1.2) {
+        score += 1;
     }
 
 
@@ -867,28 +740,30 @@ function technicalScore(s) {
 
 
 /* =========================================================
-   建立候選
-========================================================= */
+   股票篩選
+   ========================================================= */
 
-function buildCandidates(
-    stocks,
-    fundamentals
-) {
+function selectStocks(top100, fundamentals) {
 
     const fundamentalMap =
         new Map();
 
+    const fundamentalStocks =
+        Array.isArray(fundamentals.stocks)
+            ? fundamentals.stocks
+            : [];
 
-    fundamentals.forEach(f => {
 
-        if (!f.symbol) {
-            return;
+    fundamentalStocks.forEach(stock => {
+
+        if (stock.symbol) {
+
+            fundamentalMap.set(
+                String(stock.symbol),
+                stock
+            );
+
         }
-
-        fundamentalMap.set(
-            String(f.symbol),
-            f
-        );
 
     });
 
@@ -896,176 +771,241 @@ function buildCandidates(
     const candidates = [];
 
 
-    stocks.forEach(stock => {
+    top100.forEach(stock => {
 
         const symbol =
-            String(stock.symbol);
+            String(stock.symbol || "");
 
-        const f =
+
+        const fundamental =
             fundamentalMap.get(symbol);
 
 
-        /*
-            沒有基本面
-        */
-
-        if (!f) {
+        if (!fundamental) {
             return;
         }
 
 
-        /*
-            基本面淘汰
-        */
+        /* -------------------------
+           基本面第一關
+           ------------------------- */
 
-        if (
-            fundamentalRejected(f)
-        ) {
+        if (!fundamentalPass(fundamental)) {
             return;
         }
 
 
-        const fs =
-            fundamentalScore(f);
+        /* -------------------------
+           合併資料
+           ------------------------- */
 
-        const ts =
-            technicalScore(stock);
+        const merged = {
+            ...stock,
+            ...fundamental
+        };
+
+
+        /* -------------------------
+           技術面
+           ------------------------- */
+
+        const techScore =
+            technicalScore(merged);
 
 
         /*
-            基本面最低門檻
+         * 至少要有基本的技術面條件。
+         *
+         * 不要求所有條件都完美，
+         * 避免市場大跌時完全沒有標的。
+         */
 
-            防止純題材、
-            基本面太差的股票進來。
-        */
-
-        if (fs < 7) {
+        if (techScore < 4) {
             return;
         }
-
-
-        /*
-            技術面最低門檻
-        */
-
-        if (ts < 4) {
-            return;
-        }
-
-
-        /*
-            綜合分數
-
-            基本面稍微提高權重。
-        */
-
-        const totalScore =
-            fs * 1.2 +
-            ts;
 
 
         candidates.push({
 
-            ...stock,
+            ...merged,
 
-            fundamental: f,
-
-            fundamentalScore: fs,
-
-            technicalScore: ts,
-
-            totalScore
+            techScore
 
         });
 
     });
 
 
+    /* =====================================================
+       排序
+       =====================================================
+
+       第一優先：
+       技術面
+
+       第二優先：
+       基本面獲利能力
+
+       第三優先：
+       成交金額
+
+       注意：
+       這不是要追漲。
+       只是從已經通過基本面的股票中，
+       找出技術條件相對完整者。
+       ===================================================== */
+
+    candidates.sort((a, b) => {
+
+        if (b.techScore !== a.techScore) {
+
+            return b.techScore - a.techScore;
+
+        }
+
+
+        const aRoe =
+            number(a.roe_ttm);
+
+        const bRoe =
+            number(b.roe_ttm);
+
+
+        if (bRoe !== aRoe) {
+
+            return bRoe - aRoe;
+
+        }
+
+
+        return (
+            number(b.trading_value)
+            -
+            number(a.trading_value)
+        );
+
+    });
+
+
     /*
-        排名
-    */
+     * 最多五檔。
+     */
 
-    candidates.sort(
-        (a, b) =>
-            b.totalScore -
-            a.totalScore
-    );
-
-
-    return candidates;
+    return candidates.slice(0, 5);
 }
 
 
 /* =========================================================
-   Render
-========================================================= */
+   顯示股票
+   ========================================================= */
 
-function renderStock(
-    stock,
-    rank
-) {
+function renderStocks(stocks) {
 
-    const change =
-        number(stock.change_percent);
+    const container =
+        document.getElementById("stockList");
 
 
-    let changeClass = "flat";
+    if (!stocks.length) {
 
-    if (change > 0) {
-        changeClass = "up";
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-title">
+                    今日 0 檔
+                </div>
+
+                <div class="empty-text">
+                    今日沒有足夠條件的標的。
+                    不為了湊滿 5 檔而強迫選股。
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
     }
-    else if (change < 0) {
-        changeClass = "down";
-    }
 
 
-    return `
+    container.innerHTML =
+        stocks.map((stock, index) => {
 
-        <div class="stock-row">
-
-            <div
-                class="rank ${rank <= 3 ? "top" : ""}">
-                #${rank}
-            </div>
+            const change =
+                number(stock.change_percent);
 
 
-            <div class="symbol">
-                ${stock.symbol}
-            </div>
+            let changeClass =
+                "flat";
 
 
-            <div class="name">
-                ${stock.name || "--"}
-            </div>
+            if (change > 0) {
+
+                changeClass = "up";
+
+            }
+            else if (change < 0) {
+
+                changeClass = "down";
+
+            }
 
 
-            <div class="price">
-                ${formatPrice(stock.close)}
-            </div>
+            return `
+
+                <div class="stock-row">
+
+                    <div class="rank">
+                        #${index + 1}
+                    </div>
+
+                    <div class="symbol">
+                        ${escapeHTML(stock.symbol)}
+                    </div>
+
+                    <div class="stock-name">
+                        ${escapeHTML(stock.name)}
+                    </div>
+
+                    <div class="price">
+                        ${formatPrice(stock.close)}
+                    </div>
+
+                    <div class="change ${changeClass}">
+                        ${percent(change)}
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
 
 
-            <div
-                class="change ${changeClass}">
-                ${percent(stock.change_percent)}
-            </div>
+/* =========================================================
+   防止股票名稱等資料直接插入 HTML
+   ========================================================= */
 
-        </div>
+function escapeHTML(value) {
 
-    `;
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
 }
 
 
 /* =========================================================
    載入資料
-========================================================= */
+   ========================================================= */
 
 async function loadData() {
-
-    const stockList =
-        document.getElementById(
-            "stockList"
-        );
-
 
     try {
 
@@ -1075,15 +1015,17 @@ async function loadData() {
         ] = await Promise.all([
 
             fetch(
-                TOP100_URL +
-                "?t=" +
-                Date.now()
+                TOP100_URL,
+                {
+                    cache: "no-store"
+                }
             ),
 
             fetch(
-                FUNDAMENTALS_URL +
-                "?t=" +
-                Date.now()
+                FUNDAMENTALS_URL,
+                {
+                    cache: "no-store"
+                }
             )
 
         ]);
@@ -1092,7 +1034,7 @@ async function loadData() {
         if (!top100Response.ok) {
 
             throw new Error(
-                "tw_top100.json 載入失敗"
+                "無法讀取 tw_top100.json"
             );
 
         }
@@ -1101,130 +1043,125 @@ async function loadData() {
         if (!fundamentalsResponse.ok) {
 
             throw new Error(
-                "tw_fundamentals.json 載入失敗"
+                "無法讀取 tw_fundamentals.json"
             );
 
         }
 
 
-        const top100 =
+        const top100Data =
             await top100Response.json();
 
 
-        const fundamentalData =
+        const fundamentalsData =
             await fundamentalsResponse.json();
 
 
-        const stocks =
-            Array.isArray(top100.stocks)
-                ? top100.stocks
+        const top100 =
+            Array.isArray(top100Data.stocks)
+                ? top100Data.stocks
                 : [];
 
 
-        const fundamentals =
-            Array.isArray(
-                fundamentalData.stocks
-            )
-                ? fundamentalData.stocks
-                : [];
+        /* =================================================
+           更新統計
+           ================================================= */
 
+        document.getElementById(
+            "top100Count"
+        ).textContent =
+            top100.length;
 
-        /*
-            日期
-        */
 
         document.getElementById(
             "dataDate"
         ).textContent =
-            top100.date || "--";
+            top100Data.date || "—";
 
 
-        /*
-            Top 100
-        */
+        /* =================================================
+           篩選
+           ================================================= */
 
-        document.getElementById(
-            "totalStocks"
-        ).textContent =
-            stocks.length;
-
-
-        /*
-            建立候選
-        */
-
-        const candidates =
-            buildCandidates(
-                stocks,
-                fundamentals
+        const selected =
+            selectStocks(
+                top100,
+                fundamentalsData
             );
 
 
-        document.getElementById(
-            "candidateStocks"
-        ).textContent =
-            candidates.length;
-
-
         /*
-            最多 5 檔
-        */
+         * 這裡的 qualified 是：
+         * 通過基本面 + 技術面最低條件的數量。
+         */
 
-        const finalStocks =
-            candidates.slice(
-                0,
-                MAX_STOCKS
+        let qualifiedCount = 0;
+
+
+        const fundamentalsMap =
+            new Map();
+
+
+        (
+            fundamentalsData.stocks || []
+        ).forEach(stock => {
+
+            fundamentalsMap.set(
+                String(stock.symbol),
+                stock
             );
 
+        });
+
+
+        top100.forEach(stock => {
+
+            const fundamental =
+                fundamentalsMap.get(
+                    String(stock.symbol)
+                );
+
+
+            if (!fundamental) {
+                return;
+            }
+
+
+            if (!fundamentalPass(fundamental)) {
+                return;
+            }
+
+
+            const merged = {
+                ...stock,
+                ...fundamental
+            };
+
+
+            if (
+                technicalScore(merged) >= 4
+            ) {
+
+                qualifiedCount++;
+
+            }
+
+        });
+
 
         document.getElementById(
-            "finalStocks"
+            "qualifiedCount"
         ).textContent =
-            finalStocks.length;
+            qualifiedCount;
 
 
-        /*
-            沒有股票
-        */
-
-        if (
-            finalStocks.length === 0
-        ) {
-
-            stockList.innerHTML = `
-
-                <div class="empty">
-
-                    <div class="empty-title">
-                        今日 0 檔
-                    </div>
-
-                    今天沒有足夠符合目前
-                    篩選條件的股票。
-
-                </div>
-
-            `;
-
-            return;
-        }
+        document.getElementById(
+            "finalCount"
+        ).textContent =
+            selected.length;
 
 
-        /*
-            顯示
-        */
-
-        stockList.innerHTML =
-            finalStocks
-                .map(
-                    (stock, index) =>
-                        renderStock(
-                            stock,
-                            index + 1
-                        )
-                )
-                .join("");
-
+        renderStocks(selected);
 
     }
     catch (error) {
@@ -1232,17 +1169,36 @@ async function loadData() {
         console.error(error);
 
 
-        stockList.innerHTML = `
+        document.getElementById(
+            "top100Count"
+        ).textContent = "—";
 
-            <div class="error">
 
-                <strong>
+        document.getElementById(
+            "qualifiedCount"
+        ).textContent = "—";
+
+
+        document.getElementById(
+            "finalCount"
+        ).textContent = "—";
+
+
+        document.getElementById(
+            "stockList"
+        ).innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-title">
                     資料讀取失敗
-                </strong>
+                </div>
 
-                <br><br>
-
-                ${error.message}
+                <div class="empty-text">
+                    請確認 tw_top100.json
+                    與 tw_fundamentals.json
+                    是否存在。
+                </div>
 
             </div>
 
@@ -1255,7 +1211,7 @@ async function loadData() {
 
 /* =========================================================
    啟動
-========================================================= */
+   ========================================================= */
 
 loadData();
 
