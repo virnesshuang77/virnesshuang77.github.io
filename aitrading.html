@@ -21,11 +21,11 @@ body {
         Arial,
         sans-serif;
     background: #f5f7fa;
-    color: #1f2937;
+    color: #111827;
 }
 
 .container {
-    width: min(1200px, calc(100% - 28px));
+    width: min(1100px, calc(100% - 24px));
     margin: 0 auto;
     padding: 28px 0 60px;
 }
@@ -36,20 +36,21 @@ body {
 
 .header {
     background: #111827;
-    color: white;
-    border-radius: 18px;
-    padding: 30px 28px;
+    color: #fff;
+    border-radius: 16px;
+    padding: 28px;
     margin-bottom: 18px;
 }
 
 .header h1 {
-    margin: 0 0 6px;
+    margin: 0 0 5px;
     font-size: 30px;
 }
 
 .header p {
     margin: 0;
     color: #d1d5db;
+    font-size: 15px;
 }
 
 /* =========================
@@ -58,201 +59,159 @@ body {
 
 .summary {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin-bottom: 18px;
 }
 
 .summary-card {
-    background: white;
+    background: #fff;
     border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    padding: 18px;
+    border-radius: 13px;
+    padding: 17px;
 }
 
 .summary-label {
-    color: #6b7280;
     font-size: 13px;
+    color: #6b7280;
     margin-bottom: 4px;
 }
 
 .summary-value {
     font-size: 25px;
     font-weight: 800;
+}
+
+/* =========================
+   Date
+========================= */
+
+.date-box {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 13px;
+    padding: 15px 18px;
+    margin-bottom: 18px;
+    color: #374151;
+}
+
+.date-box strong {
     color: #111827;
 }
 
 /* =========================
-   Notice
-========================= */
-
-.notice {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-left: 5px solid #374151;
-    border-radius: 12px;
-    padding: 16px 18px;
-    margin-bottom: 18px;
-    line-height: 1.7;
-}
-
-/* =========================
-   Main
+   Section
 ========================= */
 
 .section {
-    background: white;
+    background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 16px;
     padding: 22px;
-    margin-bottom: 18px;
 }
 
 .section-title {
-    margin: 0 0 16px;
+    margin: 0 0 18px;
     font-size: 22px;
+}
+
+/* =========================
+   Stock list
+========================= */
+
+.stock-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stock-row {
+    display: grid;
+    grid-template-columns: 70px 120px 1fr 150px 120px;
+    align-items: center;
+    gap: 15px;
+
+    min-height: 72px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    padding: 12px 18px;
+
+    background: #fff;
+
+    transition: transform .15s ease,
+                box-shadow .15s ease;
+}
+
+.stock-row:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0,0,0,.06);
+}
+
+/* =========================
+   Rank
+========================= */
+
+.rank {
+    font-size: 20px;
+    font-weight: 800;
+    color: #6b7280;
+}
+
+.rank.top {
     color: #111827;
 }
 
 /* =========================
-   Stock Cards
+   Symbol
 ========================= */
 
-.stock-list {
-    display: grid;
-    gap: 14px;
+.symbol {
+    font-size: 17px;
+    font-weight: 800;
+    color: #374151;
 }
 
-.stock-card {
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    padding: 20px;
-    background: #fff;
-}
+/* =========================
+   Name
+========================= */
 
-.stock-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 15px;
-}
-
-.stock-name {
-    font-size: 21px;
+.name {
+    font-size: 19px;
     font-weight: 800;
     color: #111827;
 }
 
-.stock-symbol {
-    color: #6b7280;
-    font-size: 14px;
-    margin-left: 6px;
-}
+/* =========================
+   Price
+========================= */
 
-.stock-rank {
-    font-size: 13px;
-    font-weight: 700;
-    color: #6b7280;
-    white-space: nowrap;
-}
-
-.stock-price {
-    margin-top: 8px;
+.price {
+    text-align: right;
     font-size: 18px;
     font-weight: 700;
 }
 
-.stock-change {
-    font-size: 14px;
-    margin-left: 8px;
+/* =========================
+   Change
+========================= */
+
+.change {
+    text-align: right;
+    font-weight: 700;
 }
 
-.positive {
-    color: #15803d;
-}
-
-.negative {
+.up {
     color: #dc2626;
 }
 
-.neutral {
+.down {
+    color: #15803d;
+}
+
+.flat {
     color: #6b7280;
-}
-
-/* =========================
-   Tags
-========================= */
-
-.tags {
-    margin-top: 14px;
-}
-
-.tag {
-    display: inline-block;
-    padding: 4px 9px;
-    margin: 3px 4px 3px 0;
-    border-radius: 999px;
-    background: #f3f4f6;
-    color: #374151;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-/* =========================
-   Metrics
-========================= */
-
-.metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 16px;
-}
-
-.metric {
-    background: #f9fafb;
-    border: 1px solid #eef0f2;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.metric-label {
-    font-size: 12px;
-    color: #6b7280;
-}
-
-.metric-value {
-    margin-top: 2px;
-    font-size: 15px;
-    font-weight: 700;
-    color: #111827;
-}
-
-/* =========================
-   Reason
-========================= */
-
-.reason {
-    margin-top: 16px;
-    padding: 14px;
-    border-radius: 10px;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-}
-
-.reason-title {
-    font-weight: 800;
-    margin-bottom: 6px;
-    color: #111827;
-}
-
-.reason ul {
-    margin: 6px 0 0;
-    padding-left: 20px;
-}
-
-.reason li {
-    margin-bottom: 4px;
 }
 
 /* =========================
@@ -261,33 +220,37 @@ body {
 
 .empty {
     text-align: center;
-    padding: 45px 20px;
+    padding: 55px 20px;
     color: #6b7280;
 }
 
-.empty strong {
-    display: block;
+.empty-title {
+    font-size: 21px;
+    font-weight: 800;
     color: #111827;
-    font-size: 20px;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 }
 
 /* =========================
-   Loading / Error
+   Loading
 ========================= */
 
 .loading {
     text-align: center;
-    padding: 40px;
+    padding: 45px;
     color: #6b7280;
 }
 
+/* =========================
+   Error
+========================= */
+
 .error {
+    padding: 20px;
+    border-radius: 12px;
     background: #fff;
     border: 1px solid #fecaca;
     color: #b91c1c;
-    padding: 18px;
-    border-radius: 12px;
 }
 
 /* =========================
@@ -298,54 +261,62 @@ body {
     text-align: center;
     color: #6b7280;
     font-size: 13px;
-    margin-top: 28px;
+    margin-top: 25px;
 }
 
 /* =========================
    Mobile
 ========================= */
 
-@media (max-width: 800px) {
-
-    .summary {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .metrics {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
     .container {
-        width: calc(100% - 18px);
+        width: calc(100% - 16px);
         padding-top: 15px;
     }
 
     .header {
-        padding: 24px 20px;
-        border-radius: 14px;
+        padding: 23px 20px;
     }
 
     .header h1 {
         font-size: 26px;
     }
 
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
     .section {
-        padding: 17px;
+        padding: 15px;
     }
 
-    .stock-card {
-        padding: 16px;
+    .stock-row {
+        grid-template-columns: 42px 75px 1fr;
+        gap: 7px 10px;
+        padding: 13px 12px;
     }
 
-    .stock-name {
-        font-size: 19px;
+    .rank {
+        grid-row: span 2;
     }
 
-    .metrics {
-        grid-template-columns: repeat(2, 1fr);
+    .symbol {
+        font-size: 14px;
+    }
+
+    .name {
+        font-size: 17px;
+    }
+
+    .price {
+        text-align: left;
+        font-size: 16px;
+    }
+
+    .change {
+        text-align: left;
+        font-size: 14px;
     }
 }
 </style>
@@ -362,9 +333,10 @@ body {
     <header class="header">
         <h1>🤖 AI Trading</h1>
         <p>
-            ChatGPT 台股選股實驗｜熱門 → 基本面 → 技術面
+            ChatGPT 台股選股實驗
         </p>
     </header>
+
 
     <!-- =========================
          Summary
@@ -373,76 +345,101 @@ body {
     <div class="summary">
 
         <div class="summary-card">
-            <div class="summary-label">熱門股票</div>
-            <div class="summary-value" id="totalStocks">-</div>
+            <div class="summary-label">
+                今日熱門股票
+            </div>
+
+            <div
+                class="summary-value"
+                id="totalStocks">
+                -
+            </div>
         </div>
 
-        <div class="summary-card">
-            <div class="summary-label">基本面可用</div>
-            <div class="summary-value" id="fundamentalStocks">-</div>
-        </div>
 
         <div class="summary-card">
-            <div class="summary-label">進入研究池</div>
-            <div class="summary-value" id="researchStocks">-</div>
+            <div class="summary-label">
+                通過篩選
+            </div>
+
+            <div
+                class="summary-value"
+                id="candidateStocks">
+                -
+            </div>
         </div>
 
+
         <div class="summary-card">
-            <div class="summary-label">最終標的</div>
-            <div class="summary-value" id="finalStocks">-</div>
+            <div class="summary-label">
+                今日最終標的
+            </div>
+
+            <div
+                class="summary-value"
+                id="finalStocks">
+                -
+            </div>
         </div>
 
     </div>
 
+
     <!-- =========================
-         Notice
+         Date
     ========================== -->
 
-    <div class="notice">
-        <strong>今日選股邏輯</strong><br>
-        先從當日成交金額 Top 100 開始，
-        再檢查基本面與技術面。
-        本頁目前尚未加入新聞／題材自動分析，
-        因此不會假裝有題材判斷。
-        最後最多留下 5 檔；如果沒有足夠好的機會，也可以是 0 檔。
+    <div class="date-box">
+
+        資料日期：
+        <strong id="dataDate">-</strong>
+
+        <span style="margin-left:15px;">
+            AI 最後篩選：最多 5 檔
+        </span>
+
     </div>
 
+
     <!-- =========================
-         Final Stocks
+         Final stocks
     ========================== -->
 
     <section class="section">
 
         <h2 class="section-title">
-            🎯 今日值得關注的標的
+            🎯 今日 AI 選股
         </h2>
 
-        <div id="stockList" class="stock-list">
+        <div
+            id="stockList"
+            class="stock-list">
+
             <div class="loading">
-                正在讀取市場資料...
+                正在讀取資料...
             </div>
+
         </div>
 
     </section>
 
+
     <div class="footer">
-        AI Trading Experiment · Data-driven public experiment
+        AI Trading Experiment
     </div>
 
 </div>
 
+
 <script>
 
 /* =========================================================
-   基本設定
+   JSON
 ========================================================= */
 
 const TOP100_URL = "tw_top100.json";
 const FUNDAMENTALS_URL = "tw_fundamentals.json";
 
-/*
-    最多留下幾檔
-*/
 const MAX_STOCKS = 5;
 
 
@@ -450,76 +447,87 @@ const MAX_STOCKS = 5;
    工具
 ========================================================= */
 
-function num(value) {
+function number(value) {
+
     const n = Number(value);
-    return Number.isFinite(n) ? n : null;
+
+    return Number.isFinite(n)
+        ? n
+        : null;
 }
 
-function pct(value) {
-    const n = num(value);
+
+function percent(value) {
+
+    const n = number(value);
 
     if (n === null) {
         return "--";
     }
 
-    const sign = n > 0 ? "+" : "";
-    return sign + n.toFixed(2) + "%";
+    const sign =
+        n > 0
+            ? "+"
+            : "";
+
+    return sign +
+        n.toFixed(2) +
+        "%";
 }
 
-function price(value) {
-    const n = num(value);
+
+function formatPrice(value) {
+
+    const n = number(value);
 
     if (n === null) {
         return "--";
     }
 
-    return n.toLocaleString("zh-TW", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    });
-}
-
-function getChangeClass(value) {
-
-    const n = num(value);
-
-    if (n === null) {
-        return "neutral";
-    }
-
-    if (n > 0) {
-        return "positive";
-    }
-
-    if (n < 0) {
-        return "negative";
-    }
-
-    return "neutral";
+    return n.toLocaleString(
+        "zh-TW",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    );
 }
 
 
 /* =========================================================
-   基本面判斷
+   基本面分數
 ========================================================= */
 
 function fundamentalScore(f) {
 
     let score = 0;
 
-    const revenueYoY = num(f.quarter_revenue_yoy);
-    const grossMargin = num(f.quarter_gross_margin);
-    const operatingMargin = num(f.quarter_operating_margin);
-    const netMargin = num(f.quarter_net_margin);
-    const eps = num(f.quarter_eps);
-    const epsYoY = num(f.quarter_eps_yoy);
-    const roe = num(f.roe_ttm);
-    const debtRatio = num(f.debt_ratio);
-    const currentRatio = num(f.current_ratio);
+    const revenueYoY =
+        number(f.quarter_revenue_yoy);
 
-    /*
-        營收
-    */
+    const grossMargin =
+        number(f.quarter_gross_margin);
+
+    const operatingMargin =
+        number(f.quarter_operating_margin);
+
+    const eps =
+        number(f.quarter_eps);
+
+    const epsYoY =
+        number(f.quarter_eps_yoy);
+
+    const roe =
+        number(f.roe_ttm);
+
+    const debtRatio =
+        number(f.debt_ratio);
+
+    const currentRatio =
+        number(f.current_ratio);
+
+
+    /* 營收 */
 
     if (revenueYoY !== null) {
 
@@ -534,9 +542,8 @@ function fundamentalScore(f) {
         }
     }
 
-    /*
-        毛利率
-    */
+
+    /* 毛利率 */
 
     if (grossMargin !== null) {
 
@@ -548,9 +555,8 @@ function fundamentalScore(f) {
         }
     }
 
-    /*
-        營業利益率
-    */
+
+    /* 營業利益率 */
 
     if (operatingMargin !== null) {
 
@@ -565,20 +571,15 @@ function fundamentalScore(f) {
         }
     }
 
-    /*
-        EPS
-    */
 
-    if (eps !== null) {
+    /* EPS */
 
-        if (eps > 0) {
-            score += 3;
-        }
+    if (eps !== null && eps > 0) {
+        score += 3;
     }
 
-    /*
-        EPS 成長
-    */
+
+    /* EPS 成長 */
 
     if (epsYoY !== null) {
 
@@ -590,9 +591,8 @@ function fundamentalScore(f) {
         }
     }
 
-    /*
-        ROE
-    */
+
+    /* ROE */
 
     if (roe !== null) {
 
@@ -607,9 +607,8 @@ function fundamentalScore(f) {
         }
     }
 
-    /*
-        負債比
-    */
+
+    /* 負債 */
 
     if (debtRatio !== null) {
 
@@ -621,9 +620,8 @@ function fundamentalScore(f) {
         }
     }
 
-    /*
-        流動比
-    */
+
+    /* 流動比 */
 
     if (currentRatio !== null) {
 
@@ -635,25 +633,35 @@ function fundamentalScore(f) {
         }
     }
 
+
     return score;
 }
 
 
 /* =========================================================
-   基本面硬性淘汰
+   基本面淘汰
 ========================================================= */
 
 function fundamentalRejected(f) {
 
-    const eps = num(f.quarter_eps);
-    const operatingIncome = num(f.quarter_operating_income);
-    const revenueYoY = num(f.quarter_revenue_yoy);
-    const roe = num(f.roe_ttm);
-    const debtRatio = num(f.debt_ratio);
+    const eps =
+        number(f.quarter_eps);
+
+    const operatingIncome =
+        number(f.quarter_operating_income);
+
+    const revenueYoY =
+        number(f.quarter_revenue_yoy);
+
+    const roe =
+        number(f.roe_ttm);
+
+    const debtRatio =
+        number(f.debt_ratio);
+
 
     /*
-        明顯虧損：
-        EPS < 0 且營業利益也 <= 0
+        EPS 負 + 營業利益負
     */
 
     if (
@@ -665,8 +673,9 @@ function fundamentalRejected(f) {
         return true;
     }
 
+
     /*
-        營收與獲利同時明顯惡化
+        營收大幅衰退 + EPS 負
     */
 
     if (
@@ -677,6 +686,7 @@ function fundamentalRejected(f) {
     ) {
         return true;
     }
+
 
     /*
         ROE 嚴重負值
@@ -689,8 +699,9 @@ function fundamentalRejected(f) {
         return true;
     }
 
+
     /*
-        負債非常高
+        負債比例過高
     */
 
     if (
@@ -700,33 +711,48 @@ function fundamentalRejected(f) {
         return true;
     }
 
+
     return false;
 }
 
 
 /* =========================================================
-   技術面
+   技術面分數
 ========================================================= */
 
 function technicalScore(s) {
 
     let score = 0;
 
-    const close = num(s.close);
-    const ma5 = num(s.ma5);
-    const ma20 = num(s.ma20);
-    const ma60 = num(s.ma60);
-    const ma120 = num(s.ma120);
+    const close =
+        number(s.close);
 
-    const return5 = num(s.return_5d);
-    const return20 = num(s.return_20d);
-    const return60 = num(s.return_60d);
+    const ma5 =
+        number(s.ma5);
 
-    const volumeRatio = num(s.volume_ratio_20d);
+    const ma20 =
+        number(s.ma20);
 
-    /*
-        股價站上 MA
-    */
+    const ma60 =
+        number(s.ma60);
+
+    const ma120 =
+        number(s.ma120);
+
+    const return5 =
+        number(s.return_5d);
+
+    const return20 =
+        number(s.return_20d);
+
+    const return60 =
+        number(s.return_60d);
+
+    const volumeRatio =
+        number(s.volume_ratio_20d);
+
+
+    /* 股價 > MA5 */
 
     if (
         close !== null &&
@@ -736,6 +762,9 @@ function technicalScore(s) {
         score += 1;
     }
 
+
+    /* 股價 > MA20 */
+
     if (
         close !== null &&
         ma20 !== null &&
@@ -743,6 +772,9 @@ function technicalScore(s) {
     ) {
         score += 2;
     }
+
+
+    /* 股價 > MA60 */
 
     if (
         close !== null &&
@@ -752,6 +784,9 @@ function technicalScore(s) {
         score += 2;
     }
 
+
+    /* 股價 > MA120 */
+
     if (
         close !== null &&
         ma120 !== null &&
@@ -760,9 +795,8 @@ function technicalScore(s) {
         score += 1;
     }
 
-    /*
-        均線排列
-    */
+
+    /* MA5 > MA20 */
 
     if (
         ma5 !== null &&
@@ -772,6 +806,9 @@ function technicalScore(s) {
         score += 2;
     }
 
+
+    /* MA20 > MA60 */
+
     if (
         ma20 !== null &&
         ma60 !== null &&
@@ -780,9 +817,8 @@ function technicalScore(s) {
         score += 2;
     }
 
-    /*
-        中期趨勢
-    */
+
+    /* 20日正報酬 */
 
     if (
         return20 !== null &&
@@ -791,6 +827,9 @@ function technicalScore(s) {
         score += 2;
     }
 
+
+    /* 60日正報酬 */
+
     if (
         return60 !== null &&
         return60 > 0
@@ -798,9 +837,8 @@ function technicalScore(s) {
         score += 2;
     }
 
-    /*
-        成交量
-    */
+
+    /* 成交量增加 */
 
     if (
         volumeRatio !== null &&
@@ -809,13 +847,9 @@ function technicalScore(s) {
         score += 2;
     }
 
-    /*
-        超跌反轉：
-        不能因為跌深直接淘汰。
 
-        如果 5 日跌很多，
-        但 60 日仍然為正，
-        給予少量機會分。
+    /*
+        短線超跌但中期仍強
     */
 
     if (
@@ -827,108 +861,23 @@ function technicalScore(s) {
         score += 2;
     }
 
+
     return score;
 }
 
 
 /* =========================================================
-   技術面描述
+   建立候選
 ========================================================= */
 
-function getTechnicalTags(s) {
+function buildCandidates(
+    stocks,
+    fundamentals
+) {
 
-    const tags = [];
+    const fundamentalMap =
+        new Map();
 
-    const close = num(s.close);
-    const ma5 = num(s.ma5);
-    const ma20 = num(s.ma20);
-    const ma60 = num(s.ma60);
-
-    const return5 = num(s.return_5d);
-    const return20 = num(s.return_20d);
-    const return60 = num(s.return_60d);
-
-    if (
-        close !== null &&
-        ma10Safe(s)
-    ) {
-        tags.push("短線轉強");
-    }
-
-    if (
-        close !== null &&
-        ma20 !== null &&
-        close > ma20
-    ) {
-        tags.push("站上MA20");
-    }
-
-    if (
-        ma20 !== null &&
-        ma60 !== null &&
-        ma20 > ma60
-    ) {
-        tags.push("MA20 > MA60");
-    }
-
-    if (
-        return5 !== null &&
-        return5 < -8 &&
-        return60 !== null &&
-        return60 > 0
-    ) {
-        tags.push("短線超跌");
-    }
-
-    if (
-        return20 !== null &&
-        return20 > 10
-    ) {
-        tags.push("20日強勢");
-    }
-
-    if (
-        return60 !== null &&
-        return60 > 20
-    ) {
-        tags.push("中期強勢");
-    }
-
-    return tags;
-}
-
-function ma10Safe(s) {
-
-    /*
-        目前 JSON 有 MA5 / MA20，
-        沒有 MA10。
-        因此不能假裝有 MA10。
-
-        這裡使用 MA5 > MA20
-        作為短線轉強的替代訊號。
-    */
-
-    const ma5 = num(s.ma5);
-    const ma20 = num(s.ma20);
-
-    if (
-        ma5 === null ||
-        ma20 === null
-    ) {
-        return false;
-    }
-
-    return ma5 > ma20;
-}
-
-
-/* =========================================================
-   建立研究候選
-========================================================= */
-
-function buildCandidates(stocks, fundamentals) {
-
-    const fundamentalMap = new Map();
 
     fundamentals.forEach(f => {
 
@@ -940,65 +889,80 @@ function buildCandidates(stocks, fundamentals) {
             String(f.symbol),
             f
         );
+
     });
+
 
     const candidates = [];
 
+
     stocks.forEach(stock => {
 
-        const symbol = String(stock.symbol);
+        const symbol =
+            String(stock.symbol);
 
-        const f = fundamentalMap.get(symbol);
+        const f =
+            fundamentalMap.get(symbol);
+
 
         /*
-            沒有基本面資料：
-            不進最終選股。
+            沒有基本面
         */
 
         if (!f) {
             return;
         }
 
+
         /*
-            基本面硬性淘汰
+            基本面淘汰
         */
 
-        if (fundamentalRejected(f)) {
+        if (
+            fundamentalRejected(f)
+        ) {
             return;
         }
 
-        const fs = fundamentalScore(f);
-        const ts = technicalScore(stock);
+
+        const fs =
+            fundamentalScore(f);
+
+        const ts =
+            technicalScore(stock);
+
 
         /*
-            綜合分數
+            基本面最低門檻
 
-            基本面權重稍高，
-            技術面用來尋找進場位置。
-        */
-
-        const totalScore =
-            fs * 1.2 +
-            ts;
-
-        /*
-            最低基本面門檻
-
-            不是要求基本面非常漂亮，
-            但不能只是純題材垃圾股。
+            防止純題材、
+            基本面太差的股票進來。
         */
 
         if (fs < 7) {
             return;
         }
 
+
         /*
-            技術面至少需要有一些訊號。
+            技術面最低門檻
         */
 
         if (ts < 4) {
             return;
         }
+
+
+        /*
+            綜合分數
+
+            基本面稍微提高權重。
+        */
+
+        const totalScore =
+            fs * 1.2 +
+            ts;
+
 
         candidates.push({
 
@@ -1010,17 +974,15 @@ function buildCandidates(stocks, fundamentals) {
 
             technicalScore: ts,
 
-            totalScore: totalScore,
-
-            technicalTags:
-                getTechnicalTags(stock)
+            totalScore
 
         });
 
     });
 
+
     /*
-        綜合排名
+        排名
     */
 
     candidates.sort(
@@ -1029,108 +991,8 @@ function buildCandidates(stocks, fundamentals) {
             a.totalScore
     );
 
+
     return candidates;
-}
-
-
-/* =========================================================
-   建立理由
-========================================================= */
-
-function buildReasons(stock) {
-
-    const f = stock.fundamental;
-
-    const reasons = [];
-
-    const revenueYoY = num(f.quarter_revenue_yoy);
-    const eps = num(f.quarter_eps);
-    const roe = num(f.roe_ttm);
-
-    const close = num(stock.close);
-    const ma20 = num(stock.ma20);
-    const return5 = num(stock.return_5d);
-    const return20 = num(stock.return_20d);
-
-    /*
-        基本面
-    */
-
-    if (
-        revenueYoY !== null &&
-        revenueYoY > 10
-    ) {
-        reasons.push(
-            `最新季度營收年增 ${pct(revenueYoY)}`
-        );
-    }
-
-    if (
-        eps !== null &&
-        eps > 0
-    ) {
-        reasons.push(
-            `最新季度 EPS ${eps.toFixed(2)}，仍為正`
-        );
-    }
-
-    if (
-        roe !== null &&
-        roe > 10
-    ) {
-        reasons.push(
-            `TTM ROE ${roe.toFixed(2)}%`
-        );
-    }
-
-    /*
-        技術面
-    */
-
-    if (
-        close !== null &&
-        ma20 !== null &&
-        close > ma20
-    ) {
-        reasons.push(
-            "股價站在 MA20 之上"
-        );
-    }
-
-    if (
-        return20 !== null &&
-        return20 > 0
-    ) {
-        reasons.push(
-            `20 日報酬 ${pct(return20)}`
-        );
-    }
-
-    /*
-        超跌
-    */
-
-    if (
-        return5 !== null &&
-        return5 < -8
-    ) {
-        reasons.push(
-            `短期回檔 ${pct(return5)}，但未因此直接淘汰`
-        );
-    }
-
-    /*
-        沒有理由時
-    */
-
-    if (reasons.length === 0) {
-
-        reasons.push(
-            "基本面與技術面條件達到目前研究門檻"
-        );
-    }
-
-    return reasons.slice(0, 5);
 }
 
 
@@ -1138,155 +1000,72 @@ function buildReasons(stock) {
    Render
 ========================================================= */
 
-function renderStock(stock, rank) {
+function renderStock(
+    stock,
+    rank
+) {
 
-    const f = stock.fundamental;
+    const change =
+        number(stock.change_percent);
 
-    const changeClass =
-        getChangeClass(stock.change_percent);
 
-    const reasons =
-        buildReasons(stock);
+    let changeClass = "flat";
 
-    const tags =
-        stock.technicalTags || [];
+    if (change > 0) {
+        changeClass = "up";
+    }
+    else if (change < 0) {
+        changeClass = "down";
+    }
+
 
     return `
 
-        <article class="stock-card">
+        <div class="stock-row">
 
-            <div class="stock-top">
-
-                <div>
-
-                    <div class="stock-name">
-
-                        ${stock.name || "未知股票"}
-
-                        <span class="stock-symbol">
-                            ${stock.symbol}
-                        </span>
-
-                    </div>
-
-                    <div class="stock-price">
-
-                        ${price(stock.close)}
-
-                        <span class="stock-change ${changeClass}">
-                            ${pct(stock.change_percent)}
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <div class="stock-rank">
-                    #${rank}
-                </div>
-
+            <div
+                class="rank ${rank <= 3 ? "top" : ""}">
+                #${rank}
             </div>
 
 
-            <div class="tags">
-
-                <span class="tag">
-                    基本面 ${stock.fundamentalScore.toFixed(1)}
-                </span>
-
-                <span class="tag">
-                    技術面 ${stock.technicalScore}
-                </span>
-
-                ${tags.map(tag => `
-                    <span class="tag">
-                        ${tag}
-                    </span>
-                `).join("")}
-
+            <div class="symbol">
+                ${stock.symbol}
             </div>
 
 
-            <div class="metrics">
-
-                <div class="metric">
-                    <div class="metric-label">
-                        最新季度營收 YoY
-                    </div>
-
-                    <div class="metric-value">
-                        ${pct(f.quarter_revenue_yoy)}
-                    </div>
-                </div>
-
-
-                <div class="metric">
-                    <div class="metric-label">
-                        EPS
-                    </div>
-
-                    <div class="metric-value">
-                        ${num(f.quarter_eps) !== null
-                            ? num(f.quarter_eps).toFixed(2)
-                            : "--"}
-                    </div>
-                </div>
-
-
-                <div class="metric">
-                    <div class="metric-label">
-                        TTM ROE
-                    </div>
-
-                    <div class="metric-value">
-                        ${pct(f.roe_ttm)}
-                    </div>
-                </div>
-
-
-                <div class="metric">
-                    <div class="metric-label">
-                        20日報酬
-                    </div>
-
-                    <div class="metric-value">
-                        ${pct(stock.return_20d)}
-                    </div>
-                </div>
-
+            <div class="name">
+                ${stock.name || "--"}
             </div>
 
 
-            <div class="reason">
-
-                <div class="reason-title">
-                    為什麼進入今日候選？
-                </div>
-
-                <ul>
-
-                    ${reasons.map(reason => `
-                        <li>${reason}</li>
-                    `).join("")}
-
-                </ul>
-
+            <div class="price">
+                ${formatPrice(stock.close)}
             </div>
 
-        </article>
+
+            <div
+                class="change ${changeClass}">
+                ${percent(stock.change_percent)}
+            </div>
+
+        </div>
 
     `;
 }
 
 
 /* =========================================================
-   Main
+   載入資料
 ========================================================= */
 
 async function loadData() {
 
     const stockList =
-        document.getElementById("stockList");
+        document.getElementById(
+            "stockList"
+        );
+
 
     try {
 
@@ -1311,22 +1090,28 @@ async function loadData() {
 
 
         if (!top100Response.ok) {
+
             throw new Error(
                 "tw_top100.json 載入失敗"
             );
+
         }
 
+
         if (!fundamentalsResponse.ok) {
+
             throw new Error(
                 "tw_fundamentals.json 載入失敗"
             );
+
         }
 
 
         const top100 =
             await top100Response.json();
 
-        const fundamentalsData =
+
+        const fundamentalData =
             await fundamentalsResponse.json();
 
 
@@ -1337,13 +1122,25 @@ async function loadData() {
 
 
         const fundamentals =
-            Array.isArray(fundamentalsData.stocks)
-                ? fundamentalsData.stocks
+            Array.isArray(
+                fundamentalData.stocks
+            )
+                ? fundamentalData.stocks
                 : [];
 
 
         /*
-            Summary
+            日期
+        */
+
+        document.getElementById(
+            "dataDate"
+        ).textContent =
+            top100.date || "--";
+
+
+        /*
+            Top 100
         */
 
         document.getElementById(
@@ -1352,15 +1149,8 @@ async function loadData() {
             stocks.length;
 
 
-        document.getElementById(
-            "fundamentalStocks"
-        ).textContent =
-            fundamentalsData.fundamental_count ??
-            fundamentals.length;
-
-
         /*
-            建立候選池
+            建立候選
         */
 
         const candidates =
@@ -1371,13 +1161,13 @@ async function loadData() {
 
 
         document.getElementById(
-            "researchStocks"
+            "candidateStocks"
         ).textContent =
             candidates.length;
 
 
         /*
-            最多五檔
+            最多 5 檔
         */
 
         const finalStocks =
@@ -1394,23 +1184,23 @@ async function loadData() {
 
 
         /*
-            沒有標的
+            沒有股票
         */
 
-        if (finalStocks.length === 0) {
+        if (
+            finalStocks.length === 0
+        ) {
 
             stockList.innerHTML = `
 
                 <div class="empty">
 
-                    <strong>
-                        今日沒有符合條件的標的
-                    </strong>
-
-                    <div>
-                        不為了湊滿 5 檔而強迫選股。
-                        保留現金也是一種決策。
+                    <div class="empty-title">
+                        今日 0 檔
                     </div>
+
+                    今天沒有足夠符合目前
+                    篩選條件的股票。
 
                 </div>
 
@@ -1441,6 +1231,7 @@ async function loadData() {
 
         console.error(error);
 
+
         stockList.innerHTML = `
 
             <div class="error">
@@ -1449,19 +1240,9 @@ async function loadData() {
                     資料讀取失敗
                 </strong>
 
-                <br>
-
-                ${error.message}
-
                 <br><br>
 
-                請確認：
-                <br>
-                1. tw_top100.json 存在
-                <br>
-                2. tw_fundamentals.json 存在
-                <br>
-                3. GitHub Pages 已完成部署
+                ${error.message}
 
             </div>
 
