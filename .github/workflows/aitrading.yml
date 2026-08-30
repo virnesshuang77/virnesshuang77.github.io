@@ -47,7 +47,8 @@ jobs:
       - name: Run Taiwan Top 100
         run: |
           python aitrading.py
-            # ------------------------------------------------------
+
+      # ------------------------------------------------------
       # 4.5. 取得 Top 100 基本面資料
       # ------------------------------------------------------
       - name: Run Taiwan Fundamentals
@@ -60,6 +61,9 @@ jobs:
       - name: Verify output
         run: |
           test -f tw_top100.json
+          test -f tw_history.json
+          test -f tw_fundamentals.json
+
           python - <<'PY'
           import json
 
@@ -87,6 +91,27 @@ jobs:
               raise SystemExit(
                   f"錯誤：Top 100 實際只有 {len(stocks)} 檔"
               )
+
+          with open("tw_fundamentals.json", "r", encoding="utf-8") as f:
+              fundamental_data = json.load(f)
+
+          fundamental_stocks = fundamental_data.get("stocks", [])
+
+          print()
+          print("基本面資料數量:", len(fundamental_stocks))
+          print(
+              "有基本面資料:",
+              fundamental_data.get("fundamental_count")
+          )
+          print(
+              "無基本面資料:",
+              fundamental_data.get("no_fundamental_count")
+          )
+
+          if len(fundamental_stocks) != 100:
+              raise SystemExit(
+                  "錯誤：基本面資料不是 100 檔"
+              )
           PY
 
       # ------------------------------------------------------
@@ -97,11 +122,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add tw_top100.json tw_history.json
+          git add tw_top100.json tw_history.json tw_fundamentals.json
 
           if git diff --cached --quiet; then
             echo "沒有資料變更，不需要 commit。"
           else
-            git commit -m "Update Taiwan AI trading Top 100"
+            git commit -m "Update Taiwan AI trading data"
             git push
           fi
