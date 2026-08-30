@@ -1,1 +1,1921 @@
-.
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<title>基本面資料</title>
+
+<style>
+
+/* =========================================================
+   基本
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+body {
+    font-family:
+        Arial,
+        "Microsoft JhengHei",
+        sans-serif;
+
+    background: #f5f7fa;
+
+    color: #222;
+
+    overflow-x: hidden;
+}
+
+.wrap {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 20px 50px;
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.brand {
+    font-size: 23px;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    display: inline-block;
+    text-decoration: none;
+
+    border: 1px solid #d5dee8;
+    background: #fff;
+    color: #18222c;
+
+    border-radius: 9px;
+
+    padding: 9px 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.15s;
+
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    background: #f3f6f9;
+}
+
+.nav-btn.active {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}
+
+
+/* =========================================================
+   標題
+   ========================================================= */
+
+h1 {
+    margin: 0 0 5px;
+
+    font-size: 32px;
+
+    line-height: 1.3;
+}
+
+.date {
+    color: #777;
+
+    margin-bottom: 25px;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   控制區
+   ========================================================= */
+
+.controls {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   模式按鈕
+   ========================================================= */
+
+.tabs {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.tab {
+    border: 1px solid #ddd;
+
+    background: white;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: 0.15s;
+}
+
+.tab:hover {
+    background: #f3f6f9;
+}
+
+.tab.active {
+    background: #222;
+
+    color: white;
+
+    border-color: #222;
+}
+
+
+/* =========================================================
+   TOP
+   ========================================================= */
+
+#topSelect {
+    padding: 10px 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    background: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+#topSelect:focus {
+    outline: none;
+
+    border-color: #222;
+}
+
+
+/* =========================================================
+   搜尋
+   ========================================================= */
+
+#searchInput {
+    width: 220px;
+
+    padding: 10px 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    background: white;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+#searchInput:focus {
+    border-color: #222;
+}
+
+
+/* =========================================================
+   Summary
+   ========================================================= */
+
+.summary {
+    width: 100%;
+
+    color: #666;
+
+    font-size: 14px;
+
+    margin-top: -8px;
+
+    margin-bottom: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   表格
+   ========================================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    background: white;
+
+    border-radius: 14px;
+
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,0.05);
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 1250px;
+}
+
+thead th {
+    background: #f0f2f5;
+
+    padding: 15px 14px;
+
+    text-align: right;
+
+    white-space: nowrap;
+
+    font-weight: 800;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 2;
+}
+
+thead th:first-child,
+thead th:nth-child(2),
+thead th:nth-child(3) {
+    text-align: left;
+}
+
+tbody td {
+    padding: 14px;
+
+    border-top: 1px solid #eee;
+
+    text-align: right;
+
+    white-space: nowrap;
+}
+
+tbody td:first-child,
+tbody td:nth-child(2),
+tbody td:nth-child(3) {
+    text-align: left;
+}
+
+tbody tr:hover {
+    background: #fafafa;
+}
+
+
+/* =========================================================
+   Rank
+   ========================================================= */
+
+.rank {
+    width: 65px;
+
+    font-weight: bold;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   股票代號
+   ========================================================= */
+
+.stock-id {
+    color: #555;
+
+    font-family: monospace;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   數值顏色
+   ========================================================= */
+
+.positive {
+    color: #e53935;
+
+    font-weight: bold;
+}
+
+.negative {
+    color: #16803c;
+
+    font-weight: bold;
+}
+
+.neutral {
+    color: #555;
+}
+
+
+/* =========================================================
+   無資料
+   ========================================================= */
+
+.no-data {
+    color: #999;
+
+    font-style: italic;
+}
+
+
+/* =========================================================
+   載入
+   ========================================================= */
+
+.loading {
+    padding: 55px !important;
+
+    text-align: center !important;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   錯誤
+   ========================================================= */
+
+.error {
+    padding: 40px;
+
+    text-align: center;
+
+    color: #c62828;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   平板
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .wrap {
+        padding:
+            18px
+            12px
+            40px;
+    }
+
+    .top {
+        align-items: flex-start;
+
+        margin-bottom: 22px;
+    }
+
+    .brand {
+        width: 100%;
+    }
+
+    .actions {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 7px;
+    }
+
+    .nav-btn {
+        width: 100%;
+
+        text-align: center;
+
+        padding:
+            10px 6px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .controls {
+        align-items:
+            stretch;
+
+        flex-direction:
+            column;
+
+        gap: 10px;
+    }
+
+    .tabs {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr 1fr;
+
+        gap: 7px;
+    }
+
+    .tab {
+        width: 100%;
+
+        min-width: 0;
+
+        text-align: center;
+
+        padding:
+            10px 5px;
+
+        font-size: 13px;
+    }
+
+    #topSelect,
+    #searchInput {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   手機
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .wrap {
+        padding:
+            12px 10px
+            40px;
+    }
+
+
+    /* Header */
+
+    .top {
+        display: block;
+
+        margin-bottom: 18px;
+    }
+
+    .brand {
+        font-size: 21px;
+
+        margin-bottom: 11px;
+    }
+
+    .actions {
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        width: 100%;
+
+        gap: 7px;
+    }
+
+    .nav-btn {
+        font-size: 12px;
+
+        padding:
+            10px 4px;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    /* 標題 */
+
+    h1 {
+        font-size: 25px;
+
+        line-height: 1.35;
+    }
+
+    .date {
+        font-size: 14px;
+
+        margin-bottom: 18px;
+    }
+
+
+    /* 控制區 */
+
+    .controls {
+        width: 100%;
+
+        margin-bottom: 15px;
+    }
+
+    .tabs {
+        grid-template-columns:
+            1fr 1fr 1fr;
+
+        gap: 6px;
+    }
+
+    .tab {
+        font-size: 12px;
+
+        padding:
+            10px 3px;
+
+        border-radius: 7px;
+    }
+
+    #topSelect {
+        width: 100%;
+
+        min-height: 42px;
+
+        font-size: 14px;
+    }
+
+    #searchInput {
+        width: 100%;
+
+        min-height: 42px;
+
+        font-size: 14px;
+    }
+
+
+    /* Summary */
+
+    .summary {
+        font-size: 12px;
+
+        line-height: 1.6;
+
+        margin-bottom: 10px;
+    }
+
+
+    /* 表格 */
+
+    .table-wrapper {
+        border-radius: 12px;
+
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 1250px;
+    }
+
+    thead th {
+        padding:
+            12px 10px;
+
+        font-size: 12px;
+    }
+
+    tbody td {
+        padding:
+            12px 10px;
+
+        font-size: 12px;
+    }
+
+    .stock-id {
+        font-size: 14px;
+
+        font-weight: 600;
+    }
+
+
+    /* 第一欄 */
+
+    thead th:first-child,
+    tbody td:first-child {
+        min-width: 55px;
+    }
+}
+
+
+/* =========================================================
+   超小手機
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .wrap {
+        padding:
+            10px 8px
+            35px;
+    }
+
+    .brand {
+        font-size: 20px;
+    }
+
+    .nav-btn {
+        font-size: 11px;
+
+        padding:
+            9px 3px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    .tabs {
+        gap: 5px;
+    }
+
+    .tab {
+        font-size: 11px;
+
+        padding:
+            9px 2px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="wrap">
+
+
+<!-- =====================================================
+     Header
+===================================================== -->
+
+<header class="top">
+
+    <div class="brand">
+        📈 投資績效名片
+    </div>
+
+
+    <div class="actions">
+
+        <a
+            class="nav-btn"
+            href="index.html"
+        >
+            📊 融資融券維持率
+        </a>
+
+        <a
+            class="nav-btn"
+            href="calendar.html"
+        >
+            📊 每日行事曆
+        </a>
+
+        <a
+            class="nav-btn"
+            href="foreign.html"
+        >
+            🏦 外資買賣超
+        </a>
+
+        <a
+            class="nav-btn"
+            href="broker.html"
+        >
+            🏢 投信買賣超
+        </a>
+
+        <a
+            class="nav-btn"
+            href="credit.html"
+        >
+            🏢 融資融券變化
+        </a>
+
+        <a
+            class="nav-btn"
+            href="foreign-cash.html"
+        >
+            🏢 三大法人買賣超
+        </a>
+
+        <a
+            class="nav-btn active"
+            href="fundamentals.html"
+        >
+            📊 股票基本面
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     標題
+===================================================== -->
+
+<h1>
+    📊 股票基本面
+</h1>
+
+
+<div
+    class="date"
+    id="dataDate"
+>
+    資料載入中...
+</div>
+
+
+<!-- =====================================================
+     控制
+===================================================== -->
+
+<div class="controls">
+
+    <div class="tabs">
+
+        <button
+            class="tab active"
+            data-type="profitability"
+        >
+            📈 獲利能力
+        </button>
+
+        <button
+            class="tab"
+            data-type="financial"
+        >
+            🏦 財務體質
+        </button>
+
+        <button
+            class="tab"
+            data-type="complete"
+        >
+            📋 完整基本面
+        </button>
+
+    </div>
+
+
+    <select id="topSelect">
+
+        <option value="10">
+            TOP 10
+        </option>
+
+        <option value="20">
+            TOP 20
+        </option>
+
+        <option value="50">
+            TOP 50
+        </option>
+
+        <option value="100">
+            TOP 100
+        </option>
+
+    </select>
+
+
+    <input
+        id="searchInput"
+        type="search"
+        placeholder="搜尋股票代號 / 名稱"
+    >
+
+</div>
+
+
+<!-- =====================================================
+     Summary
+===================================================== -->
+
+<div
+    class="summary"
+    id="summary"
+>
+    正在載入基本面資料...
+</div>
+
+
+<!-- =====================================================
+     表格
+===================================================== -->
+
+<div class="table-wrapper">
+
+<table>
+
+<thead id="tableHead">
+</thead>
+
+<tbody id="tableBody">
+
+<tr>
+
+    <td
+        colspan="10"
+        class="loading"
+    >
+        正在載入基本面資料...
+    </td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ========================================================
+   全域
+======================================================== */
+
+let fundamentalsData = [];
+
+let currentType = "profitability";
+
+let topN = 10;
+
+
+/* ========================================================
+   數字
+======================================================== */
+
+function toNumber(value) {
+
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+        return null;
+    }
+
+    const n =
+        Number(
+            String(value)
+                .replace(/,/g, "")
+                .trim()
+        );
+
+    return Number.isFinite(n)
+        ? n
+        : null;
+}
+
+
+/* ========================================================
+   數字格式
+======================================================== */
+
+function formatNumber(value, digits = 2) {
+
+    const number = toNumber(value);
+
+    if (number === null) {
+        return "-";
+    }
+
+    return number.toLocaleString(
+        "zh-TW",
+        {
+            minimumFractionDigits: digits,
+            maximumFractionDigits: digits
+        }
+    );
+}
+
+
+/* ========================================================
+   百分比
+======================================================== */
+
+function formatPercent(value) {
+
+    const number = toNumber(value);
+
+    if (number === null) {
+        return "-";
+    }
+
+    return (
+        number >= 0 ? "+" : ""
+    )
+    +
+    number.toLocaleString(
+        "zh-TW",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    )
+    +
+    "%";
+}
+
+
+/* ========================================================
+   金額
+======================================================== */
+
+function formatMoney(value) {
+
+    const number = toNumber(value);
+
+    if (number === null) {
+        return "-";
+    }
+
+    const abs = Math.abs(number);
+
+    if (abs >= 1000000000000) {
+
+        return (
+            number / 1000000000000
+        ).toFixed(2) + " 兆";
+    }
+
+    if (abs >= 100000000) {
+
+        return (
+            number / 100000000
+        ).toFixed(2) + " 億";
+    }
+
+    if (abs >= 10000) {
+
+        return (
+            number / 10000
+        ).toFixed(0) + " 萬";
+    }
+
+    return number.toLocaleString("zh-TW");
+}
+
+
+/* ========================================================
+   EPS
+======================================================== */
+
+function formatEPS(value) {
+
+    const number = toNumber(value);
+
+    if (number === null) {
+        return "-";
+    }
+
+    return number.toLocaleString(
+        "zh-TW",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    );
+}
+
+
+/* ========================================================
+   百分比顏色
+======================================================== */
+
+function percentClass(value) {
+
+    const number = toNumber(value);
+
+    if (number === null) {
+        return "neutral";
+    }
+
+    if (number > 0) {
+        return "positive";
+    }
+
+    if (number < 0) {
+        return "negative";
+    }
+
+    return "neutral";
+}
+
+
+/* ========================================================
+   股票名稱
+======================================================== */
+
+function getStockName(item) {
+
+    return String(
+        item.name ??
+        "-"
+    ).trim();
+
+}
+
+
+/* ========================================================
+   股票代號
+======================================================== */
+
+function getStockId(item) {
+
+    return String(
+        item.symbol ??
+        "-"
+    ).trim();
+
+}
+
+
+/* ========================================================
+   搜尋
+======================================================== */
+
+function getFilteredRows() {
+
+    const keyword =
+        document
+            .getElementById("searchInput")
+            .value
+            .trim()
+            .toLowerCase();
+
+    if (!keyword) {
+        return fundamentalsData;
+    }
+
+    return fundamentalsData.filter(
+        item => {
+
+            const symbol =
+                getStockId(item)
+                    .toLowerCase();
+
+            const name =
+                getStockName(item)
+                    .toLowerCase();
+
+            return (
+                symbol.includes(keyword) ||
+                name.includes(keyword)
+            );
+
+        }
+    );
+
+}
+
+
+/* ========================================================
+   表頭
+======================================================== */
+
+function renderHead() {
+
+    const tableHead =
+        document.getElementById("tableHead");
+
+    let html = "";
+
+
+    if (currentType === "profitability") {
+
+        html = `
+
+            <tr>
+
+                <th>Rank</th>
+
+                <th>股票代號</th>
+
+                <th>股票名稱</th>
+
+                <th>季度營收</th>
+
+                <th>營收 YoY</th>
+
+                <th>毛利率</th>
+
+                <th>營益率</th>
+
+                <th>淨利率</th>
+
+                <th>季度 EPS</th>
+
+                <th>EPS YoY</th>
+
+                <th>TTM EPS</th>
+
+                <th>ROE</th>
+
+            </tr>
+
+        `;
+
+    }
+
+
+    else if (currentType === "financial") {
+
+        html = `
+
+            <tr>
+
+                <th>Rank</th>
+
+                <th>股票代號</th>
+
+                <th>股票名稱</th>
+
+                <th>資產</th>
+
+                <th>負債</th>
+
+                <th>權益</th>
+
+                <th>負債比</th>
+
+                <th>流動資產</th>
+
+                <th>流動負債</th>
+
+                <th>流動比</th>
+
+                <th>ROE</th>
+
+            </tr>
+
+        `;
+
+    }
+
+
+    else {
+
+        html = `
+
+            <tr>
+
+                <th>Rank</th>
+
+                <th>股票代號</th>
+
+                <th>股票名稱</th>
+
+                <th>季度營收</th>
+
+                <th>營收 YoY</th>
+
+                <th>毛利率</th>
+
+                <th>營益率</th>
+
+                <th>淨利率</th>
+
+                <th>季度 EPS</th>
+
+                <th>EPS YoY</th>
+
+                <th>TTM 營收</th>
+
+                <th>TTM EPS</th>
+
+                <th>負債比</th>
+
+                <th>流動比</th>
+
+                <th>ROE</th>
+
+                <th>資料日期</th>
+
+            </tr>
+
+        `;
+
+    }
+
+
+    tableHead.innerHTML = html;
+
+}
+
+
+/* ========================================================
+   顯示資料
+======================================================== */
+
+function renderTable() {
+
+    const tableBody =
+        document.getElementById(
+            "tableBody"
+        );
+
+    const summary =
+        document.getElementById(
+            "summary"
+        );
+
+
+    renderHead();
+
+
+    tableBody.innerHTML = "";
+
+
+    let rows =
+        getFilteredRows();
+
+
+    const totalFiltered =
+        rows.length;
+
+
+    rows =
+        rows.slice(
+            0,
+            topN
+        );
+
+
+    summary.textContent =
+
+        `基本面｜共 ${fundamentalsData.length} 檔｜`
+        +
+        `符合搜尋 ${totalFiltered} 檔｜`
+        +
+        `顯示 TOP ${rows.length}`;
+
+
+    if (rows.length === 0) {
+
+        const colspan =
+            currentType === "complete"
+                ? 16
+                : currentType === "profitability"
+                    ? 12
+                    : 11;
+
+        tableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="${colspan}"
+                    class="loading"
+                >
+                    找不到符合條件的股票。
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+    }
+
+
+    rows.forEach(
+        (item, index) => {
+
+            const hasData =
+                item.fundamental_available !== false;
+
+
+            const rank =
+                index + 1;
+
+
+            let html = "";
+
+
+            if (!hasData) {
+
+                const colspan =
+                    currentType === "complete"
+                        ? 16
+                        : currentType === "profitability"
+                            ? 12
+                            : 11;
+
+                html = `
+
+                    <tr>
+
+                        <td class="rank">
+                            ${rank}
+                        </td>
+
+                        <td class="stock-id">
+                            ${getStockId(item)}
+                        </td>
+
+                        <td>
+                            ${getStockName(item)}
+                        </td>
+
+                        <td
+                            colspan="${colspan - 3}"
+                            class="no-data"
+                        >
+                            無基本面資料
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+
+
+            else if (
+                currentType === "profitability"
+            ) {
+
+                html = `
+
+                    <tr>
+
+                        <td class="rank">
+                            ${rank}
+                        </td>
+
+                        <td class="stock-id">
+                            ${getStockId(item)}
+                        </td>
+
+                        <td>
+                            ${getStockName(item)}
+                        </td>
+
+                        <td>
+                            ${formatMoney(item.quarter_revenue)}
+                        </td>
+
+                        <td class="${percentClass(item.quarter_revenue_yoy)}">
+                            ${formatPercent(item.quarter_revenue_yoy)}
+                        </td>
+
+                        <td>
+                            ${formatPercent(item.quarter_gross_margin)}
+                        </td>
+
+                        <td>
+                            ${formatPercent(item.quarter_operating_margin)}
+                        </td>
+
+                        <td>
+                            ${formatPercent(item.quarter_net_margin)}
+                        </td>
+
+                        <td>
+                            ${formatEPS(item.quarter_eps)}
+                        </td>
+
+                        <td class="${percentClass(item.quarter_eps_yoy)}">
+                            ${formatPercent(item.quarter_eps_yoy)}
+                        </td>
+
+                        <td>
+                            ${formatEPS(item.ttm_eps)}
+                        </td>
+
+                        <td class="${percentClass(item.roe_ttm)}">
+                            ${formatPercent(item.roe_ttm)}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+
+
+            else if (
+                currentType === "financial"
+            ) {
+
+                html = `
+
+                    <tr>
+
+                        <td class="rank">
+                            ${rank}
+                        </td>
+
+                        <td class="stock-id">
+                            ${getStockId(item)}
+                        </td>
+
+                        <td>
+                            ${getStockName(item)}
+                        </td>
+
+                        <td>
+                            ${formatMoney(item.assets)}
+                        </td>
+
+                        <td>
+                            ${formatMoney(item.liabilities)}
+                        </td>
+
+                        <td>
+                            ${formatMoney(item.equity)}
+                        </td>
+
+                        <td>
+                            ${formatPercent(item.debt_ratio)}
+                        </td>
+
+                        <td>
+                            ${formatMoney(item.current_assets)}
+                        </td>
+
+                        <td>
+                            ${formatMoney(item.current_liabilities)}
+                        </td>
+
+                        <td>
+                            ${formatNumber(item.current_ratio, 2)}
+                        </td>
+
+                        <td class="${percentClass(item.roe_ttm)}">
+                            ${formatPercent(item.roe_ttm)}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+
+
+            else {
+
+                html = `
+
+                    <tr>
+
+                        <td class="rank">
+                            ${rank}
+                        </td>
+
+                        <td class="stock-id">
+                            ${getStockId(item)}
+                        </td>
+
+                        <td>
+                            ${getStockName(item)}
+                        </td>
+
+                        <td>
+                            ${formatMoney(item.quarter_revenue)}
+                        </td>
+
+                        <td class="${percentClass(item.quarter_revenue_yoy)}">
+                            ${formatPercent(item.quarter_revenue_yoy)}
+                        </td>
+
+                        <td>
+                            ${formatPercent(item.quarter_gross_margin)}
+                        </td>
+
+                        <td>
+                            ${formatPercent(item.quarter_operating_margin)}
+                        </td>
+
+                        <td>
+                            ${formatPercent(item.quarter_net_margin)}
+                        </td>
+
+                        <td>
+                            ${formatEPS(item.quarter_eps)}
+                        </td>
+
+                        <td class="${percentClass(item.quarter_eps_yoy)}">
+                            ${formatPercent(item.quarter_eps_yoy)}
+                        </td>
+
+                        <td>
+                            ${formatMoney(item.ttm_revenue)}
+                        </td>
+
+                        <td>
+                            ${formatEPS(item.ttm_eps)}
+                        </td>
+
+                        <td>
+                            ${formatPercent(item.debt_ratio)}
+                        </td>
+
+                        <td>
+                            ${formatNumber(item.current_ratio, 2)}
+                        </td>
+
+                        <td class="${percentClass(item.roe_ttm)}">
+                            ${formatPercent(item.roe_ttm)}
+                        </td>
+
+                        <td>
+                            ${item.data_as_of ?? "-"}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+
+
+            tableBody.insertAdjacentHTML(
+                "beforeend",
+                html
+            );
+
+        }
+    );
+
+}
+
+
+/* ========================================================
+   載入 JSON
+======================================================== */
+
+async function loadData() {
+
+    const tableBody =
+        document.getElementById(
+            "tableBody"
+        );
+
+
+    try {
+
+        tableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="16"
+                    class="loading"
+                >
+                    正在載入基本面資料...
+                </td>
+
+            </tr>
+
+        `;
+
+
+        const response =
+            await fetch(
+                "tw_fundamentals.json?ts="
+                +
+                Date.now()
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+
+                "tw_fundamentals.json 載入失敗：HTTP "
+                +
+                response.status
+
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "tw_fundamentals.json：",
+            data
+        );
+
+
+        /* ------------------------------------------------
+           日期
+        ------------------------------------------------ */
+
+        document
+            .getElementById(
+                "dataDate"
+            )
+            .textContent =
+
+            "資料日期："
+            +
+            (
+                data.top100_date
+                ??
+                "-"
+            )
+            +
+            "｜基本面更新："
+            +
+            (
+                data.generated_at
+                ??
+                "-"
+            );
+
+
+        /* ------------------------------------------------
+           stocks
+        ------------------------------------------------ */
+
+        if (
+            !Array.isArray(
+                data.stocks
+            )
+        ) {
+
+            throw new Error(
+                "tw_fundamentals.json 找不到 stocks 資料"
+            );
+
+        }
+
+
+        fundamentalsData =
+            data.stocks.map(
+                item => ({
+                    ...item
+                })
+            );
+
+
+        console.log(
+            "基本面資料筆數：",
+            fundamentalsData.length
+        );
+
+
+        console.log(
+            "有基本面：",
+            data.fundamental_count
+        );
+
+
+        console.log(
+            "無基本面：",
+            data.no_fundamental_count
+        );
+
+
+        renderTable();
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "基本面資料錯誤：",
+            error
+        );
+
+
+        document
+            .getElementById(
+                "dataDate"
+            )
+            .textContent =
+            "資料載入失敗";
+
+
+        document
+            .getElementById(
+                "summary"
+            )
+            .textContent =
+            error.message;
+
+
+        tableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="16"
+                >
+
+                    <div class="error">
+
+                        <strong>
+                            ❌ 無法載入基本面資料
+                        </strong>
+
+                        <br><br>
+
+                        ${error.message}
+
+                        <br><br>
+
+                        請確認
+                        <strong>
+                            tw_fundamentals.json
+                        </strong>
+                        存在於網站根目錄。
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+/* ========================================================
+   三個模式按鈕
+======================================================== */
+
+document
+    .querySelectorAll(
+        ".tab"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    document
+                        .querySelectorAll(
+                            ".tab"
+                        )
+                        .forEach(
+                            btn =>
+                                btn.classList
+                                    .remove(
+                                        "active"
+                                    )
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    currentType =
+                        this.dataset.type;
+
+
+                    renderTable();
+
+                }
+            );
+
+        }
+    );
+
+
+/* ========================================================
+   TOP
+======================================================== */
+
+document
+    .getElementById(
+        "topSelect"
+    )
+    .addEventListener(
+        "change",
+        function() {
+
+            topN =
+                Number(
+                    this.value
+                );
+
+
+            renderTable();
+
+        }
+    );
+
+
+/* ========================================================
+   搜尋
+======================================================== */
+
+document
+    .getElementById(
+        "searchInput"
+    )
+    .addEventListener(
+        "input",
+        function() {
+
+            renderTable();
+
+        }
+    );
+
+
+/* ========================================================
+   啟動
+======================================================== */
+
+loadData();
+
+</script>
+
+</body>
+
+</html>
