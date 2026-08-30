@@ -1,1427 +1,550 @@
-<!doctype html>
-<html lang="zh-Hant">
-
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="utf-8">
-
-<meta
-    name="viewport"
-    content="width=device-width,initial-scale=1,viewport-fit=cover"
->
-
-<title>每日投資績效</title>
+<title>AI Trading Portfolio</title>
 
 <style>
-
-/* =========================================================
-   基本
-   ========================================================= */
-
 * {
     box-sizing: border-box;
 }
 
-html,
 body {
     margin: 0;
-    padding: 0;
-    width: 100%;
-    max-width: 100%;
-}
-
-body {
-
-    background: #f4f7fb;
-
-    color: #18222c;
-
+    background: #f5f7fa;
+    color: #111827;
     font-family:
-        system-ui,
         -apple-system,
+        BlinkMacSystemFont,
         "Segoe UI",
         "Noto Sans TC",
         Arial,
         sans-serif;
-
-    overflow-x: hidden;
-
+    line-height: 1.6;
 }
 
+.container {
+    width: min(1180px, calc(100% - 24px));
+    margin: 0 auto;
+    padding: 24px 0 60px;
+}
 
 /* =========================================================
-   主容器
-   ========================================================= */
+   Header
+========================================================= */
 
-.wrap {
-
-    width: 100%;
-
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding: 18px;
-
-}
-
-
-/* =========================================================
-   頂部
-   ========================================================= */
-
-.top {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 12px;
-
-    margin-bottom: 16px;
-
-}
-
-.brand {
-
-    font-size: 23px;
-
-    font-weight: 900;
-
-    line-height: 1.3;
-
-}
-
-.actions {
-
-    display: flex;
-
-    gap: 8px;
-
-    flex-wrap: wrap;
-
-    justify-content: flex-end;
-
-}
-
-
-/* =========================================================
-   按鈕
-   ========================================================= */
-
-.btn {
-
-    border: 1px solid #d5dee8;
-
-    background: #fff;
-
-    border-radius: 9px;
-
-    padding: 9px 13px;
-
-    font-weight: 800;
-
-    cursor: pointer;
-
-    text-decoration: none;
-
-    color: #18222c;
-
-    font-size: 14px;
-
-    white-space: nowrap;
-
-    line-height: 1.4;
-
-}
-
-.btn.primary {
-
-    background: #1683ff;
-
-    color: #fff;
-
-    border-color: #1683ff;
-
-}
-
-
-/* =========================================================
-   卡片
-   ========================================================= */
-
-.card {
-
-    background: #fff;
-
-    border: 1px solid #dfe6ee;
-
-    border-radius: 15px;
-
-    padding: 18px;
-
+.hero {
+    background: #111827;
+    color: white;
+    border-radius: 18px;
+    padding: 30px;
     margin-bottom: 18px;
-
-    min-width: 0;
-
 }
 
-.title {
-
-    font-size: 20px;
-
-    font-weight: 900;
-
-    margin: 0 0 15px;
-
-    line-height: 1.4;
-
+.hero h1 {
+    margin: 0 0 5px;
+    font-size: 30px;
 }
 
-.hint {
-
-    font-size: 12px;
-
-    color: #71808d;
-
-    line-height: 1.7;
-
-}
-
-
-/* =========================================================
-   表單 Grid
-   ========================================================= */
-
-.grid {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 14px;
-
-}
-
-label {
-
-    display: block;
-
-    font-size: 12px;
-
-    color: #687784;
-
-    font-weight: 800;
-
-    margin-bottom: 6px;
-
-}
-
-input {
-
-    width: 100%;
-
-    border: 1px solid #d5dfe8;
-
-    border-radius: 8px;
-
-    padding: 10px;
-
-    font-size: 15px;
-
-    min-width: 0;
-
-}
-
-
-/* =========================================================
-   股票輸入列
-   ========================================================= */
-
-.stock-row {
-
-    display: grid;
-
-    grid-template-columns:
-        1.2fr
-        .8fr
-        .8fr
-        .9fr
-        auto;
-
-    gap: 9px;
-
-    align-items: end;
-
-    padding: 12px;
-
-    border: 1px solid #e0e7ee;
-
-    border-radius: 10px;
-
-    background: #fafcfe;
-
-    margin-bottom: 9px;
-
-    min-width: 0;
-
-}
-
-.remove {
-
-    padding: 10px 12px;
-
-    border: 1px solid #d8e1e8;
-
-    background: #fff;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    white-space: nowrap;
-
-}
-
-.toolbar {
-
-    display: flex;
-
-    gap: 8px;
-
-    flex-wrap: wrap;
-
-    margin-top: 12px;
-
-}
-
-
-/* =========================================================
-   狀態
-   ========================================================= */
-
-.status {
-
-    margin-top: 12px;
-
-    padding: 10px 12px;
-
-    border-radius: 9px;
-
-    background: #eef7ff;
-
-    color: #35627e;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-
-}
-
-.status.err {
-
-    background: #fff0f0;
-
-    color: #a52a2a;
-
-}
-
-.status.ok {
-
-    background: #edf9f2;
-
-    color: #187445;
-
-}
-
-
-/* =========================================================
-   主畫面 Layout
-   ========================================================= */
-
-.layout {
-
-    display: grid;
-
-    grid-template-columns:
-        260px 1fr;
-
-    gap: 18px;
-
-    min-width: 0;
-
-}
-
-.sidebar {
-
-    height: max-content;
-
-}
-
-.avatar {
-
-    width: 64px;
-
-    height: 64px;
-
-    border-radius: 50%;
-
-    background: #e9eef4;
-
-    display: grid;
-
-    place-items: center;
-
-    font-size: 32px;
-
-    overflow: hidden;
-
-}
-
-.nick {
-
-    font-size: 20px;
-
-    font-weight: 900;
-
-    margin-top: 10px;
-
-    word-break: break-word;
-
-}
-
-.small {
-
-    font-size: 12px;
-
-    color: #778591;
-
-}
-
-.intro {
-
-    font-size: 13px;
-
-    color: #6f7d8a;
-
-    line-height: 1.6;
-
-    margin: 13px 0;
-
-    word-break: break-word;
-
-}
-
-.menu {
-
-    margin:
-        18px
-        -18px
-        -18px;
-
-    border-top:
-        1px solid #e6ebf0;
-
-}
-
-.menu a {
-
-    display: block;
-
-    padding: 12px 18px;
-
-    border-bottom:
-        1px solid #edf0f3;
-
+.hero p {
+    margin: 0;
+    color: #d1d5db;
     font-size: 14px;
-
-    font-weight: 700;
-
-    text-decoration: none;
-
-    color: #18222c;
-
 }
-
-.menu a.active {
-
-    background: #edf8f1;
-
-    color: #16814d;
-
-    border-left:
-        3px solid #2aaa69;
-
-}
-
 
 /* =========================================================
-   總覽
-   ========================================================= */
+   Summary
+========================================================= */
 
-.summarygrid {
-
+.summary {
     display: grid;
-
-    grid-template-columns:
-        1.1fr .9fr;
-
-    gap: 14px;
-
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
 }
 
-.total,
-.today {
-
-    border:
-        1px solid #e1e8ef;
-
-    border-radius: 12px;
-
+.summary-card {
+    background: white;
+    border: 1px solid #e1e6eb;
+    border-radius: 14px;
     padding: 18px;
-
-    min-width: 0;
-
 }
 
-.today {
-
-    background: #f0fbf4;
-
-    border-color: #cfe9d8;
-
+.summary-label {
+    color: #64748b;
+    font-size: 13px;
 }
 
-.label {
-
-    font-size: 12px;
-
-    color: #71808d;
-
+.summary-value {
+    margin-top: 3px;
+    font-size: 25px;
+    font-weight: 800;
+    color: #111827;
 }
 
-.big {
-
-    font-size: 29px;
-
-    font-weight: 900;
-
-    margin-top: 4px;
-
-    overflow-wrap: anywhere;
-
+.summary-value.profit {
+    color: #dc2626;
 }
 
-.metrics {
+.summary-value.loss {
+    color: #16a34a;
+}
 
+/* =========================================================
+   Date
+========================================================= */
+
+.info-bar {
+    background: white;
+    border: 1px solid #e1e6eb;
+    border-radius: 12px;
+    padding: 14px 17px;
+    margin-bottom: 18px;
+    color: #475569;
+    font-size: 13px;
+}
+
+.info-bar strong {
+    color: #111827;
+}
+
+/* =========================================================
+   Section
+========================================================= */
+
+.section {
+    background: white;
+    border: 1px solid #e1e6eb;
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 18px;
+}
+
+.section-title {
+    margin: 0 0 17px;
+    font-size: 21px;
+}
+
+/* =========================================================
+   Holdings
+========================================================= */
+
+.holdings {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.holding {
     display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
+    grid-template-columns: 70px 90px 1fr 130px 130px 120px;
+    align-items: center;
     gap: 12px;
 
-    margin-top: 15px;
-
+    border: 1px solid #e3e7ec;
+    border-radius: 12px;
+    padding: 15px 17px;
 }
 
-.metric {
-
-    border-top:
-        1px solid #e8edf2;
-
-    padding-top: 10px;
-
-    min-width: 0;
-
+.holding-rank {
+    font-weight: 800;
+    color: #64748b;
 }
 
-.metric strong {
+.holding-symbol {
+    font-weight: 800;
+    color: #334155;
+}
 
+.holding-name {
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.holding-number {
+    text-align: right;
+    font-size: 14px;
+}
+
+.holding-label {
     display: block;
-
-    font-size: 19px;
-
-    margin-top: 3px;
-
-    overflow-wrap: anywhere;
-
+    color: #94a3b8;
+    font-size: 11px;
 }
 
-.positive {
-
-    color: #df3e4e;
-
+.holding-value {
+    font-weight: 700;
 }
 
-.green {
-
-    color: #198d51;
-
+.profit {
+    color: #dc2626;
 }
 
-.muted {
-
-    color: #7a8791;
-
+.loss {
+    color: #16a34a;
 }
 
+.flat {
+    color: #64748b;
+}
 
 /* =========================================================
-   表格
-   ========================================================= */
+   Waiting
+========================================================= */
 
-.tablewrap {
+.waiting-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
-    width: 100%;
+.waiting {
+    display: grid;
+    grid-template-columns: 90px 1fr 160px 150px;
+    align-items: center;
+    gap: 12px;
 
+    border: 1px solid #e3e7ec;
+    border-radius: 12px;
+    padding: 14px 17px;
+}
+
+.waiting-symbol {
+    font-weight: 800;
+}
+
+.waiting-name {
+    font-weight: 700;
+}
+
+.waiting-price {
+    text-align: right;
+    font-weight: 700;
+}
+
+.waiting-status {
+    text-align: right;
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* =========================================================
+   Transactions
+========================================================= */
+
+.table-wrap {
     overflow-x: auto;
-
-    -webkit-overflow-scrolling: touch;
-
-    border-radius: 10px;
-
 }
 
 table {
-
     width: 100%;
-
     border-collapse: collapse;
-
-    min-width: 820px;
-
-}
-
-th,
-td {
-
-    padding:
-        11px 8px;
-
-    border-bottom:
-        1px solid #e7ebef;
-
-    text-align: right;
-
-    font-size: 13px;
-
-    white-space: nowrap;
-
-}
-
-th:first-child,
-td:first-child {
-
-    text-align: left;
-
+    min-width: 650px;
 }
 
 th {
-
+    background: #f8fafc;
+    color: #64748b;
     font-size: 12px;
-
-    color: #71808d;
-
-    background: #f7f9fb;
-
-}
-
-.stockname {
-
-    font-weight: 900;
-
-}
-
-.code {
-
-    display: block;
-
-    color: #81909d;
-
-    font-size: 11px;
-
-}
-
-.notice {
-
-    font-size: 12px;
-
-    line-height: 1.7;
-
-    background: #fff9e9;
-
-    border:
-        1px solid #f1d899;
-
-    border-radius: 10px;
-
+    font-weight: 700;
     padding: 12px;
-
-    color: #766126;
-
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
 }
 
-.hidden {
-
-    display: none !important;
-
+td {
+    padding: 13px 12px;
+    border-bottom: 1px solid #edf0f3;
+    font-size: 13px;
 }
+
+.action-buy {
+    color: #dc2626;
+    font-weight: 800;
+}
+
+.action-sell {
+    color: #16a34a;
+    font-weight: 800;
+}
+
+.action-add {
+    color: #dc2626;
+    font-weight: 800;
+}
+
+.action-reduce {
+    color: #16a34a;
+    font-weight: 800;
+}
+
+/* =========================================================
+   Performance
+========================================================= */
+
+.performance-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.performance-row {
+    display: grid;
+    grid-template-columns: 130px 1fr 150px;
+    align-items: center;
+
+    padding: 12px 14px;
+
+    border: 1px solid #edf0f3;
+    border-radius: 10px;
+}
+
+.performance-date {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.performance-assets {
+    font-weight: 700;
+}
+
+.performance-return {
+    text-align: right;
+    font-weight: 800;
+}
+
+/* =========================================================
+   Empty
+========================================================= */
 
 .empty {
-
-    padding: 30px;
-
     text-align: center;
-
-    color: #7b8792;
-
+    padding: 42px 20px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    background: #f8fafc;
+    color: #64748b;
 }
 
+.empty strong {
+    display: block;
+    color: #111827;
+    font-size: 19px;
+    margin-bottom: 5px;
+}
 
 /* =========================================================
-   頭像
-   ========================================================= */
+   Loading / Error
+========================================================= */
 
-.avatar-options {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    flex-wrap: wrap;
-
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #64748b;
 }
 
-.avatar-choice {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 5px;
-
-    padding: 8px 11px;
-
-    border:
-        1px solid #d5dfe8;
-
-    border-radius: 9px;
-
+.error {
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #fecaca;
     background: #fff;
-
-    cursor: pointer;
-
-    font-weight: 700;
-
+    color: #b91c1c;
 }
-
-.avatar-choice input {
-
-    width: auto;
-
-}
-
-.avatar-img {
-
-    width: 64px;
-
-    height: 64px;
-
-    border-radius: 50%;
-
-    object-fit: cover;
-
-    background: #e9eef4;
-
-}
-
-.spinner {
-
-    display: inline-block;
-
-    width: 12px;
-
-    height: 12px;
-
-    border:
-        2px solid #b9d3e6;
-
-    border-top-color: #1976d2;
-
-    border-radius: 50%;
-
-    animation:
-        spin .7s linear infinite;
-
-    margin-right: 6px;
-
-    vertical-align: -2px;
-
-}
-
-@keyframes spin {
-
-    to {
-        transform: rotate(360deg);
-    }
-
-}
-
 
 /* =========================================================
-   平板
-   ========================================================= */
+   Rules
+========================================================= */
 
-@media (max-width: 850px) {
-
-    .layout,
-    .grid,
-    .summarygrid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-    .sidebar {
-
-        display: none;
-
-    }
-
-    .stock-row {
-
-        grid-template-columns:
-            1fr 1fr;
-
-    }
-
+.rules {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
 }
 
+.rule {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 13px 15px;
+    background: #fafbfc;
+}
+
+.rule-title {
+    font-weight: 800;
+    margin-bottom: 3px;
+}
+
+.rule-text {
+    color: #475569;
+    font-size: 13px;
+}
 
 /* =========================================================
-   手機
-   ========================================================= */
+   Footer
+========================================================= */
 
-@media (max-width: 600px) {
+.footer {
+    text-align: center;
+    margin-top: 28px;
+    color: #64748b;
+    font-size: 12px;
+}
 
-    .wrap {
+/* =========================================================
+   Mobile
+========================================================= */
 
-        width: 100%;
+@media (max-width: 800px) {
 
-        padding:
-            12px 10px;
-
+    .summary {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-
-    /* -----------------------------------------------------
-       頂部
-       ----------------------------------------------------- */
-
-    .top {
-
-        display: block;
-
-        margin-bottom: 14px;
-
+    .holding {
+        grid-template-columns: 42px 65px 1fr;
+        gap: 6px 10px;
     }
 
-    .brand {
-
-        font-size: 22px;
-
-        margin-bottom: 12px;
-
+    .holding-number {
+        text-align: left;
     }
 
-    .actions {
-
-        display: grid;
-
-        grid-template-columns:
-            1fr 1fr;
-
-        gap: 7px;
-
-        width: 100%;
-
+    .waiting {
+        grid-template-columns: 65px 1fr;
     }
 
-    .actions .btn {
-
-        width: 100%;
-
-        text-align: center;
-
-        padding:
-            10px 5px;
-
-        font-size: 12px;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-
+    .waiting-price,
+    .waiting-status {
+        text-align: left;
     }
 
-
-    /* -----------------------------------------------------
-       卡片
-       ----------------------------------------------------- */
-
-    .card {
-
-        padding: 14px;
-
-        border-radius: 13px;
-
-        margin-bottom: 14px;
-
+    .performance-row {
+        grid-template-columns: 90px 1fr;
+        gap: 5px;
     }
 
-    .title {
+    .performance-return {
+        text-align: left;
+        grid-column: 2;
+    }
+}
 
-        font-size: 19px;
+@media (max-width: 500px) {
 
-        margin-bottom: 13px;
-
+    .container {
+        width: calc(100% - 16px);
+        padding-top: 12px;
     }
 
-
-    /* -----------------------------------------------------
-       編輯投資組合
-       ----------------------------------------------------- */
-
-    .grid {
-
-        grid-template-columns: 1fr;
-
-        gap: 12px;
-
+    .hero {
+        padding: 24px 20px;
     }
 
-    input {
-
-        min-height: 44px;
-
-        font-size: 16px;
-
+    .hero h1 {
+        font-size: 25px;
     }
 
-
-    /* -----------------------------------------------------
-       頭像
-       ----------------------------------------------------- */
-
-    .avatar-options {
-
-        display: grid;
-
-        grid-template-columns:
-            1fr 1fr;
-
-        gap: 7px;
-
-    }
-
-    .avatar-choice {
-
-        justify-content: center;
-
-        width: 100%;
-
-        padding: 10px 6px;
-
-        font-size: 13px;
-
-    }
-
-    #avatarUploadBtn {
-
-        width: 100%;
-
-    }
-
-
-    /* -----------------------------------------------------
-       股票輸入
-       ----------------------------------------------------- */
-
-    .stock-row {
-
-        grid-template-columns: 1fr;
-
-        gap: 10px;
-
-        padding: 12px;
-
-    }
-
-    .stock-row > div {
-
-        width: 100%;
-
-    }
-
-    .remove {
-
-        width: 100%;
-
-        min-height: 44px;
-
-    }
-
-
-    /* -----------------------------------------------------
-       工具按鈕
-       ----------------------------------------------------- */
-
-    .toolbar {
-
-        display: grid;
-
-        grid-template-columns:
-            1fr;
-
+    .summary {
+        grid-template-columns: 1fr 1fr;
         gap: 8px;
-
     }
 
-    .toolbar .btn {
-
-        width: 100%;
-
-        min-height: 44px;
-
+    .summary-card {
+        padding: 14px;
     }
 
-
-    /* -----------------------------------------------------
-       投資組合總覽
-       ----------------------------------------------------- */
-
-    .summarygrid {
-
-        grid-template-columns:
-            1fr;
-
-        gap: 10px;
-
+    .summary-value {
+        font-size: 21px;
     }
 
-    .total,
-    .today {
-
+    .section {
         padding: 15px;
-
     }
-
-    .big {
-
-        font-size: 26px;
-
-    }
-
-    .metrics {
-
-        grid-template-columns:
-            1fr 1fr;
-
-        gap: 10px;
-
-    }
-
-    .metric strong {
-
-        font-size: 17px;
-
-    }
-
-
-    /* -----------------------------------------------------
-       今日績效
-       ----------------------------------------------------- */
-
-    .today {
-
-        min-height: 120px;
-
-    }
-
-
-    /* -----------------------------------------------------
-       持股表格
-       ----------------------------------------------------- */
-
-    .tablewrap {
-
-        position: relative;
-
-        overflow-x: auto;
-
-        padding-bottom: 4px;
-
-    }
-
-    table {
-
-        min-width: 820px;
-
-    }
-
-    th,
-    td {
-
-        padding:
-            10px 8px;
-
-        font-size: 12px;
-
-    }
-
-
-    /* -----------------------------------------------------
-       提示
-       ----------------------------------------------------- */
-
-    .notice {
-
-        font-size: 12px;
-
-        padding: 11px;
-
-    }
-
 }
-
-
-/* =========================================================
-   超小手機
-   ========================================================= */
-
-@media (max-width: 400px) {
-
-    .wrap {
-
-        padding:
-            10px 8px;
-
-    }
-
-    .brand {
-
-        font-size: 20px;
-
-    }
-
-    .actions {
-
-        grid-template-columns:
-            1fr 1fr;
-
-    }
-
-    .actions .btn {
-
-        font-size: 11px;
-
-        padding:
-            9px 3px;
-
-    }
-
-    .card {
-
-        padding: 12px;
-
-    }
-
-    .metrics {
-
-        grid-template-columns:
-            1fr;
-
-    }
-
-    .avatar-options {
-
-        grid-template-columns:
-            1fr;
-
-    }
-
-    .big {
-
-        font-size: 24px;
-
-    }
-
-}
-
-
-/* =========================================================
-   防止任何元素撐破手機
-   ========================================================= */
-
-img,
-video,
-iframe {
-
-    max-width: 100%;
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
-<div class="wrap">
+<div class="container">
+
+<!-- =======================================================
+     Header
+======================================================= -->
+
+<section class="hero">
+
+    <h1>📊 AI Trading Portfolio</h1>
+
+    <p>
+        ChatGPT 台股 AI 投資實驗｜公開追蹤實際交易紀錄與累積績效
+    </p>
+
+</section>
 
 
 <!-- =======================================================
-     頂部
-     ======================================================= -->
+     Summary
+======================================================= -->
 
-<header class="top">
+<section class="summary">
 
-    <div class="brand">
-        📈 投資績效名片
-    </div>
+    <div class="summary-card">
 
-
-    <div class="actions">
-
-        <a
-            class="btn"
-            href="index.html"
-        >
-            📊 融資融券維持率
-        </a>
-        <a
-            class="btn"
-            href="calendar.html"
-        >
-            📊 每日行事曆
-        </a>
-
-        <a
-            class="btn"
-            href="foreign.html"
-        >
-            🏦 外資買賣超
-        </a>
-
-
-        <a
-            class="btn"
-            href="broker.html"
-        >
-            🏢 投信買賣超
-        </a>
-        <a
-            class="btn"
-            href="credit.html"
-        >
-            🏦 融資融券變化
-        </a>
-        <a
-            class="btn"
-            href="foreign-cash.html"
-        >
-            🏦 三大法人買賣超
-        </a>
-        <button
-            class="btn"
-            onclick="showEditor()"
-        >
-            ⚙ 編輯持股
-        </button>
-
-
-        <button
-            class="btn primary"
-            onclick="sharePage()"
-        >
-            🔗 分享
-        </button>
-
-    </div>
-
-</header>
-
-
-<!-- =======================================================
-     建立／編輯投資組合
-     ======================================================= -->
-
-<section
-    id="editor"
-    class="card"
->
-
-    <h2 class="title">
-        建立／編輯投資組合
-    </h2>
-
-
-    <div class="grid">
-
-        <div>
-
-            <label>
-                公開暱稱
-            </label>
-
-            <input
-                id="nickname"
-                maxlength="30"
-                placeholder="例如：台股長線王"
-            >
-
+        <div class="summary-label">
+            初始資金
         </div>
-
-
-        <div>
-
-            <label>
-                一句話介紹（選填）
-            </label>
-
-            <input
-                id="bio"
-                maxlength="80"
-                placeholder="例如：慢慢買、慢慢累積"
-            >
-
-        </div>
-
-    </div>
-
-
-    <div style="margin-top:16px">
-
-        <label>
-            頭像
-        </label>
-
-
-        <div class="avatar-options">
-
-            <label class="avatar-choice">
-
-                <input
-                    type="radio"
-                    name="avatarType"
-                    value="male"
-                    checked
-                >
-
-                👨 男
-
-            </label>
-
-
-            <label class="avatar-choice">
-
-                <input
-                    type="radio"
-                    name="avatarType"
-                    value="female"
-                >
-
-                👩 女
-
-            </label>
-
-
-            <label class="avatar-choice">
-
-                <input
-                    type="radio"
-                    name="avatarType"
-                    value="custom"
-                >
-
-                📷 自己上傳
-
-            </label>
-
-
-            <input
-                id="avatarFile"
-                type="file"
-                accept="image/*"
-                style="display:none"
-            >
-
-
-            <button
-                type="button"
-                class="btn"
-                id="avatarUploadBtn"
-                onclick="document.getElementById('avatarFile').click()"
-            >
-                選擇照片
-            </button>
-
-        </div>
-
-
-        <div class="hint">
-
-            自訂照片只儲存在目前瀏覽器；
-            男女頭像會隨投資組合設定保存。
-
-        </div>
-
-    </div>
-
-
-    <div style="margin-top:16px">
-
-        <label>
-            持股明細
-        </label>
-
-
-        <div id="stockRows"></div>
-
-
-        <div class="toolbar">
-
-            <button
-                class="btn"
-                onclick="addStock()"
-            >
-                ＋ 新增股票
-            </button>
-
-
-            <button
-                class="btn primary"
-                onclick="savePortfolio()"
-            >
-                💾 儲存
-            </button>
-
-        </div>
-
 
         <div
-            id="saveStatus"
-            class="status"
-        >
-            只輸入股票代號、股數、平均成本即可；
-            目前價格由免費行情 Proxy 自動抓取。
+            class="summary-value"
+            id="initialCapital">
+            —
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <div class="summary-label">
+            目前總資產
+        </div>
+
+        <div
+            class="summary-value"
+            id="totalAssets">
+            —
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <div class="summary-label">
+            累積損益
+        </div>
+
+        <div
+            class="summary-value"
+            id="totalProfit">
+            —
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <div class="summary-label">
+            累積報酬率
+        </div>
+
+        <div
+            class="summary-value"
+            id="totalReturn">
+            —
         </div>
 
     </div>
@@ -1430,311 +553,252 @@ iframe {
 
 
 <!-- =======================================================
-     投資組合顯示
-     ======================================================= -->
+     Info
+======================================================= -->
 
-<div
-    id="view"
-    class="layout hidden"
->
+<div class="info-bar">
+
+    最新資料日期：
+    <strong id="dataDate">—</strong>
+
+    <span style="margin:0 10px;color:#cbd5e1;">|</span>
+
+    最後更新：
+    <strong id="updatedAt">—</strong>
+
+</div>
 
 
-    <!-- ===================================================
-         左側
-         =================================================== -->
+<!-- =======================================================
+     Holdings
+======================================================= -->
 
-    <aside class="card sidebar">
+<section class="section">
 
-        <div
-            class="avatar"
-            id="viewAvatar"
-        >
-            👨
+    <h2 class="section-title">
+        📌 目前持有
+    </h2>
+
+    <div
+        id="holdings"
+        class="holdings">
+
+        <div class="loading">
+            正在讀取投資組合...
         </div>
 
+    </div>
 
-        <div
-            class="nick"
-            id="viewNick"
-        >
-            匿名投資人
+</section>
+
+
+<!-- =======================================================
+     Waiting
+======================================================= -->
+
+<section class="section">
+
+    <h2 class="section-title">
+        ⏳ 等待進場
+    </h2>
+
+    <div
+        id="waitingList"
+        class="waiting-list">
+
+        <div class="loading">
+            正在讀取等待中的標的...
         </div>
 
+    </div>
 
-        <div class="small">
-            公開暱稱
+</section>
+
+
+<!-- =======================================================
+     Transactions
+======================================================= -->
+
+<section class="section">
+
+    <h2 class="section-title">
+        🔄 交易紀錄
+    </h2>
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>日期</th>
+                    <th>股票</th>
+                    <th>動作</th>
+                    <th>價格</th>
+                    <th>配置</th>
+                    <th>原因</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="transactions">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     Daily Performance
+======================================================= -->
+
+<section class="section">
+
+    <h2 class="section-title">
+        📈 每日累積績效
+    </h2>
+
+    <div
+        id="performance"
+        class="performance-list">
+
+        <div class="loading">
+            正在讀取績效...
         </div>
 
+    </div>
 
-        <div
-            class="intro"
-            id="viewBio"
-        >
-            —
-        </div>
+</section>
 
 
-        <div class="menu">
+<!-- =======================================================
+     Rules
+======================================================= -->
 
-            <a
-                class="active"
-                href="#overview"
-            >
-                ⌂　總覽
-            </a>
+<section class="section">
 
-
-            <a href="#holdings">
-                ▣　持股明細
-            </a>
-
-        </div>
-
-    </aside>
+    <h2 class="section-title">
+        📋 AI Trading 交易規則
+    </h2>
 
 
-    <!-- ===================================================
-         主內容
-         =================================================== -->
+    <div class="rules">
 
-    <main>
+        <div class="rule">
 
-
-        <!-- =================================================
-             投資組合總覽
-             ================================================= -->
-
-        <section
-            class="card"
-            id="overview"
-        >
-
-            <h2 class="title">
-                投資組合總覽
-            </h2>
-
-
-            <div class="summarygrid">
-
-
-                <div class="total">
-
-                    <div class="label">
-                        目前總市值
-                    </div>
-
-
-                    <div
-                        class="big"
-                        id="totalValue"
-                    >
-                        —
-                    </div>
-
-
-                    <div class="metrics">
-
-
-                        <div class="metric">
-
-                            <div class="label">
-                                投入成本
-                            </div>
-
-                            <strong id="costValue">
-                                —
-                            </strong>
-
-                        </div>
-
-
-                        <div class="metric">
-
-                            <div class="label">
-                                未實現損益
-                            </div>
-
-                            <strong id="pnlValue">
-                                —
-                            </strong>
-
-                        </div>
-
-
-                        <div class="metric">
-
-                            <div class="label">
-                                總報酬率
-                            </div>
-
-                            <strong id="returnValue">
-                                —
-                            </strong>
-
-                        </div>
-
-
-                        <div class="metric">
-
-                            <div class="label">
-                                持股檔數
-                            </div>
-
-                            <strong id="countValue">
-                                —
-                            </strong>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-                <div class="today">
-
-                    <div class="label">
-                        今日績效
-                    </div>
-
-
-                    <div
-                        class="big green"
-                        id="todayValue"
-                    >
-
-                        <span class="spinner"></span>
-                        正在抓取行情…
-
-                    </div>
-
-
-                    <div
-                        class="hint"
-                        id="quoteStatus"
-                    >
-                        每次開啟頁面都會重新讀取 Cookie，
-                        再透過免費 Proxy 取得公開行情。
-                    </div>
-
-                </div>
-
-
+            <div class="rule-title">
+                ① AI 選股
             </div>
 
-        </section>
-
-
-        <!-- =================================================
-             持股明細
-             ================================================= -->
-
-        <section
-            class="card"
-            id="holdings"
-        >
-
-            <h2 class="title">
-                持股與損益明細
-            </h2>
-
-
-            <div class="tablewrap">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                股票
-                            </th>
-
-                            <th>
-                                股數
-                            </th>
-
-                            <th>
-                                平均成本
-                            </th>
-
-                            <th>
-                                目前價格
-                            </th>
-
-                            <th>
-                                市值
-                            </th>
-
-                            <th>
-                                未實現損益
-                            </th>
-
-                            <th>
-                                報酬率
-                            </th>
-
-                            <th>
-                                今日損益
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="holdRows"></tbody>
-
-                </table>
-
+            <div class="rule-text">
+                每個交易日盤後由 AI 從當日熱門股票中篩選，
+                最多產生 5 檔交易候選。
             </div>
-
-        </section>
-
-
-        <!-- =================================================
-             資料更新
-             ================================================= -->
-
-        <section class="card">
-
-            <h2 class="title">
-                資料更新
-            </h2>
-
-
-            <div
-                class="hint"
-                id="lastUpdate"
-            >
-                —
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             注意事項
-             ================================================= -->
-
-        <div class="notice">
-
-            🔒 <b>免費版：</b>
-
-            持股資料存在使用者自己的 Cookie；
-            行情由你的 Cloudflare Worker
-            代理 TWSE / TPEx 公開資料。
-
-            若要跨裝置同步同一份投資組合，
-            未來再增加資料庫即可。
 
         </div>
 
 
-    </main>
+        <div class="rule">
 
+            <div class="rule-title">
+                ② 下一交易日才進場
+            </div>
+
+            <div class="rule-text">
+                AI 選股當日不視為已買入。
+                必須等下一個交易日才開始等待進場。
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div class="rule-title">
+                ③ 第一筆買入
+            </div>
+
+            <div class="rule-text">
+                當盤中價格低於或等於
+                AI 選股日前一交易日的收盤價時，
+                觸發第一次買入。
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div class="rule-title">
+                ④ 分批建立部位
+            </div>
+
+            <div class="rule-text">
+                不一次投入全部資金。
+                預設採 30% + 30% + 40% 的分批資金配置，
+                後續依交易規則決定是否繼續加碼。
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div class="rule-title">
+                ⑤ 持有後持續追蹤
+            </div>
+
+            <div class="rule-text">
+                股票買入後不會因為下一天 AI 選了其他股票
+                就從投資組合消失。
+                已持有部位會持續計算每日績效。
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div class="rule-title">
+                ⑥ 績效永久累積
+            </div>
+
+            <div class="rule-text">
+                每個交易日保存投資組合資產價值，
+                用於計算累積損益與累積報酬率。
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div class="rule-title">
+                ⑦ 不強迫交易
+            </div>
+
+            <div class="rule-text">
+                沒有符合條件的標的就不買。
+                沒有符合加碼條件就不加碼。
+                現金本身也是投資組合的一部分。
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="footer">
+    ChatGPT AI Trading Experiment · 僅供投資研究與績效紀錄
 </div>
 
 </div>
@@ -1743,1264 +807,694 @@ iframe {
 <script>
 
 /* =========================================================
-   Cookie / API
-   ========================================================= */
+   資料來源
+========================================================= */
 
-const COOKIE =
-    "investment_portfolio_v3";
-
-
-const API_BASE =
-    "https://tw-stock-quotes.virnesshuang.workers.dev";
+const PORTFOLIO_URL = "ai_portfolio.json";
 
 
 /* =========================================================
-   Cookie
-   ========================================================= */
+   初始資金
+========================================================= */
 
-function setCookie(
-    n,
-    v,
-    d = 3650
-) {
-
-    document.cookie =
-        n +
-        "=" +
-        encodeURIComponent(v) +
-        "; max-age=" +
-        d * 86400 +
-        "; path=/; SameSite=Lax";
-
-}
-
-
-function getCookie(n) {
-
-    for (
-        const p
-        of document.cookie.split("; ")
-    ) {
-
-        const i =
-            p.indexOf("=");
-
-
-        if (
-            i >= 0 &&
-            p.slice(0, i) === n
-        ) {
-
-            return decodeURIComponent(
-                p.slice(i + 1)
-            );
-
-        }
-
-    }
-
-    return null;
-
-}
+const DEFAULT_CAPITAL = 1000000;
 
 
 /* =========================================================
-   安全文字
-   ========================================================= */
+   工具
+========================================================= */
 
-function esc(v) {
+function number(value, fallback = 0) {
 
-    return String(v ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/"/g, "&quot;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
+    const n = Number(value);
 
+    return Number.isFinite(n)
+        ? n
+        : fallback;
 }
 
 
-/* =========================================================
-   數字格式
-   ========================================================= */
-
-function fmt(n) {
-
-    return Math.round(n)
-        .toLocaleString("zh-TW");
-
-}
-
-
-/* =========================================================
-   新增股票
-   ========================================================= */
-
-function addStock(
-    s = {
-        name: "",
-        code: "",
-        shares: "",
-        cost: ""
-    }
-) {
-
-    const r =
-        document.createElement(
-            "div"
-        );
-
-
-    r.className =
-        "stock-row";
-
-
-    r.innerHTML = `
-
-        <div>
-
-            <label>
-                股票名稱（選填）
-            </label>
-
-            <input
-                class="s-name"
-                value="${esc(s.name)}"
-                placeholder="台積電"
-            >
-
-        </div>
-
-
-        <div>
-
-            <label>
-                股票代號 *
-            </label>
-
-            <input
-                class="s-code"
-                inputmode="numeric"
-                maxlength="6"
-                value="${esc(s.code)}"
-                placeholder="2330"
-            >
-
-        </div>
-
-
-        <div>
-
-            <label>
-                股數 *
-            </label>
-
-            <input
-                class="s-shares"
-                type="number"
-                min="0"
-                value="${s.shares || ""}"
-                placeholder="3000"
-            >
-
-        </div>
-
-
-        <div>
-
-            <label>
-                平均成本 *
-            </label>
-
-            <input
-                class="s-cost"
-                type="number"
-                min="0"
-                step="0.01"
-                value="${s.cost || ""}"
-                placeholder="980"
-            >
-
-        </div>
-
-
-        <button
-            class="remove"
-            onclick="this.parentElement.remove()"
-        >
-            刪除
-        </button>
-
-    `;
-
-
-    document
-        .getElementById("stockRows")
-        .appendChild(r);
-
-}
-
-
-/* =========================================================
-   頭像
-   ========================================================= */
-
-function getAvatarType() {
-
-    return document
-        .querySelector(
-            "input[name=avatarType]:checked"
-        )?.value || "male";
-
-}
-
-
-function setAvatarType(type) {
-
-    const el =
-        document.querySelector(
-            `input[name="avatarType"][value="${type}"]`
-        );
-
-
-    if (el) {
-
-        el.checked = true;
-
-    }
-
-}
-
-
-/* =========================================================
-   讀取表單
-   ========================================================= */
-
-function readForm() {
-
-    return {
-
-        nickname:
-            document
-                .getElementById("nickname")
-                .value
-                .trim()
-                ||
-                "匿名投資人",
-
-
-        bio:
-            document
-                .getElementById("bio")
-                .value
-                .trim(),
-
-
-        avatarType:
-            getAvatarType(),
-
-
-        stocks:
-
-            [
-                ...
-                document
-                    .querySelectorAll(
-                        ".stock-row"
-                    )
-            ]
-
-            .map(
-                r => ({
-
-                    name:
-                        r.querySelector(
-                            ".s-name"
-                        )
-                        .value
-                        .trim(),
-
-
-                    code:
-                        r.querySelector(
-                            ".s-code"
-                        )
-                        .value
-                        .trim(),
-
-
-                    shares:
-                        +r.querySelector(
-                            ".s-shares"
-                        ).value || 0,
-
-
-                    cost:
-                        +r.querySelector(
-                            ".s-cost"
-                        ).value || 0
-
-                })
-            )
-
-            .filter(
-                x =>
-                    x.code &&
-                    x.shares > 0 &&
-                    x.cost > 0
-            ),
-
-
-        updatedAt:
-            new Date().toISOString()
-
-    };
-
-}
-
-
-/* =========================================================
-   自訂頭像
-   ========================================================= */
-
-const AVATAR_KEY =
-    "investment_avatar_image_v1";
-
-
-function renderAvatar(p) {
-
-    const box =
-        document.getElementById(
-            "viewAvatar"
-        );
-
-
-    if (!box) return;
-
-
-    const type =
-        p.avatarType || "male";
-
-
-    if (type === "custom") {
-
-        const img =
-            localStorage.getItem(
-                AVATAR_KEY
-            );
-
-
-        if (img) {
-
-            box.innerHTML = `
-                <img
-                    class="avatar-img"
-                    src="${img}"
-                    alt="自訂頭像"
-                >
-            `;
-
-            return;
-
-        }
-
-    }
-
-
-    box.textContent =
-        type === "female"
-            ? "👩"
-            : "👨";
-
-}
-
-
-function loadAvatarSettings(p) {
-
-    setAvatarType(
-        p.avatarType || "male"
-    );
-
-}
-
-
-/* =========================================================
-   上傳頭像
-   ========================================================= */
-
-document
-    .getElementById("avatarFile")
-    .addEventListener(
-        "change",
-        function() {
-
-            const file =
-                this.files?.[0];
-
-
-            if (!file) return;
-
-
-            const reader =
-                new FileReader();
-
-
-            reader.onload = () => {
-
-                const img =
-                    new Image();
-
-
-                img.onload = () => {
-
-                    const c =
-                        document.createElement(
-                            "canvas"
-                        );
-
-
-                    const max = 128;
-
-
-                    const scale =
-                        Math.min(
-                            1,
-                            max /
-                            Math.max(
-                                img.width,
-                                img.height
-                            )
-                        );
-
-
-                    c.width =
-                        Math.max(
-                            1,
-                            Math.round(
-                                img.width *
-                                scale
-                            )
-                        );
-
-
-                    c.height =
-                        Math.max(
-                            1,
-                            Math.round(
-                                img.height *
-                                scale
-                            )
-                        );
-
-
-                    const ctx =
-                        c.getContext(
-                            "2d"
-                        );
-
-
-                    ctx.drawImage(
-                        img,
-                        0,
-                        0,
-                        c.width,
-                        c.height
-                    );
-
-
-                    localStorage.setItem(
-                        AVATAR_KEY,
-                        c.toDataURL(
-                            "image/jpeg",
-                            .78
-                        )
-                    );
-
-
-                    setAvatarType(
-                        "custom"
-                    );
-
-
-                    document
-                        .getElementById(
-                            "avatarUploadBtn"
-                        )
-                        .textContent =
-                        "✓ 已選照片";
-
-                };
-
-
-                img.src =
-                    reader.result;
-
-            };
-
-
-            reader.readAsDataURL(
-                file
-            );
-
+function formatMoney(value) {
+
+    return "$" + number(value).toLocaleString(
+        "zh-TW",
+        {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
         }
     );
+}
+
+
+function formatPrice(value) {
+
+    return number(value).toLocaleString(
+        "zh-TW",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    );
+}
+
+
+function formatPercent(value) {
+
+    const n = number(value);
+
+    if (n > 0) {
+        return "+" + n.toFixed(2) + "%";
+    }
+
+    if (n < 0) {
+        return n.toFixed(2) + "%";
+    }
+
+    return "0.00%";
+}
+
+
+function profitClass(value) {
+
+    const n = number(value);
+
+    if (n > 0) {
+        return "profit";
+    }
+
+    if (n < 0) {
+        return "loss";
+    }
+
+    return "flat";
+}
 
 
 /* =========================================================
-   儲存
-   ========================================================= */
+   目前持有
+========================================================= */
 
-function savePortfolio() {
+function renderHoldings(holdings) {
 
-    const p =
-        readForm();
+    const container =
+        document.getElementById("holdings");
 
 
-    if (!p.stocks.length) {
+    if (!Array.isArray(holdings) || holdings.length === 0) {
 
-        alert(
-            "請至少輸入一檔股票，並填寫代號、股數、平均成本。"
-        );
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <strong>
+                    目前沒有持有股票
+                </strong>
+
+                等待符合進場條件的標的。
+
+            </div>
+
+        `;
 
         return;
-
     }
 
 
-    setCookie(
-        COOKIE,
-        JSON.stringify(p)
-    );
+    container.innerHTML =
+        holdings.map((stock, index) => {
+
+            const quantity =
+                number(stock.quantity);
+
+            const cost =
+                number(stock.average_cost);
+
+            const currentPrice =
+                number(stock.current_price);
+
+            const marketValue =
+                quantity * currentPrice;
+
+            const costValue =
+                quantity * cost;
+
+            const profit =
+                marketValue - costValue;
+
+            const returnRate =
+                costValue > 0
+                    ? profit / costValue * 100
+                    : 0;
 
 
-    document
-        .getElementById(
-            "saveStatus"
-        )
-        .textContent =
-        "✓ 已儲存。重新整理後會從 Cookie 讀取最新持股。";
+            return `
+
+                <div class="holding">
+
+                    <div class="holding-rank">
+                        #${index + 1}
+                    </div>
 
 
-    renderBase(p);
-
-    renderAvatar(p);
-
-
-    document
-        .getElementById(
-            "editor"
-        )
-        .classList.add(
-            "hidden"
-        );
+                    <div class="holding-symbol">
+                        ${escapeHTML(stock.symbol)}
+                    </div>
 
 
-    refreshQuotes(p);
+                    <div class="holding-name">
+                        ${escapeHTML(stock.name)}
+                    </div>
+
+
+                    <div class="holding-number">
+
+                        <span class="holding-label">
+                            持有股數
+                        </span>
+
+                        <span class="holding-value">
+                            ${quantity.toLocaleString("zh-TW")}
+                        </span>
+
+                    </div>
+
+
+                    <div class="holding-number">
+
+                        <span class="holding-label">
+                            平均成本
+                        </span>
+
+                        <span class="holding-value">
+                            ${formatPrice(cost)}
+                        </span>
+
+                    </div>
+
+
+                    <div class="holding-number">
+
+                        <span class="holding-label">
+                            目前損益
+                        </span>
+
+                        <span class="holding-value ${profitClass(returnRate)}">
+                            ${formatPercent(returnRate)}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
 
 }
 
 
 /* =========================================================
-   編輯
-   ========================================================= */
+   等待進場
+========================================================= */
 
-function showEditor() {
+function renderWaiting(waiting) {
 
-    document
-        .getElementById(
-            "editor"
-        )
-        .classList.remove(
-            "hidden"
-        );
+    const container =
+        document.getElementById("waitingList");
 
 
-    const raw =
-        getCookie(COOKIE);
+    if (!Array.isArray(waiting) || waiting.length === 0) {
 
+        container.innerHTML = `
 
-    if (raw) {
+            <div class="empty">
 
-        try {
+                <strong>
+                    目前沒有等待進場的標的
+                </strong>
 
-            const p =
-                JSON.parse(raw);
+            </div>
 
+        `;
 
-            document
-                .getElementById(
-                    "nickname"
-                )
-                .value =
-                p.nickname || "";
-
-
-            document
-                .getElementById(
-                    "bio"
-                )
-                .value =
-                p.bio || "";
-
-
-            loadAvatarSettings(p);
-
-
-            document
-                .getElementById(
-                    "stockRows"
-                )
-                .innerHTML = "";
-
-
-            (p.stocks || [])
-                .forEach(
-                    addStock
-                );
-
-        }
-
-        catch(e) {}
-
+        return;
     }
+
+
+    container.innerHTML =
+        waiting.map(stock => {
+
+            return `
+
+                <div class="waiting">
+
+                    <div class="waiting-symbol">
+                        ${escapeHTML(stock.symbol)}
+                    </div>
+
+
+                    <div class="waiting-name">
+                        ${escapeHTML(stock.name)}
+                    </div>
+
+
+                    <div class="waiting-price">
+
+                        <span class="holding-label">
+                            觸發價格
+                        </span>
+
+                        ${formatPrice(stock.trigger_price)}
+
+                    </div>
+
+
+                    <div class="waiting-status">
+
+                        ${escapeHTML(
+                            stock.status || "等待進場"
+                        )}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
 
 }
 
 
 /* =========================================================
-   載入
-   ========================================================= */
+   交易紀錄
+========================================================= */
 
-function load() {
+function renderTransactions(transactions) {
 
-    const raw =
-        getCookie(COOKIE);
+    const tbody =
+        document.getElementById("transactions");
 
 
-    if (!raw) {
+    if (
+        !Array.isArray(transactions) ||
+        transactions.length === 0
+    ) {
 
-        addStock({
-            code: "2330",
-            shares: 3000,
-            cost: 980
-        });
+        tbody.innerHTML = `
 
-        return null;
+            <tr>
 
+                <td colspan="6"
+                    style="text-align:center;color:#64748b;padding:35px;">
+
+                    尚無交易紀錄
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
     }
 
+
+    tbody.innerHTML =
+        transactions.map(transaction => {
+
+            const action =
+                transaction.action || "";
+
+
+            let actionClass =
+                "";
+
+
+            if (action === "買入") {
+                actionClass = "action-buy";
+            }
+
+            else if (action === "加碼") {
+                actionClass = "action-add";
+            }
+
+            else if (action === "減碼") {
+                actionClass = "action-reduce";
+            }
+
+            else if (action === "賣出") {
+                actionClass = "action-sell";
+            }
+
+
+            return `
+
+                <tr>
+
+                    <td>
+                        ${escapeHTML(transaction.date)}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${escapeHTML(transaction.symbol)}
+                        </strong>
+                        <br>
+                        ${escapeHTML(transaction.name)}
+                    </td>
+
+                    <td class="${actionClass}">
+                        ${escapeHTML(action)}
+                    </td>
+
+                    <td>
+                        ${formatPrice(transaction.price)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            transaction.allocation || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            transaction.reason || "-"
+                        )}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+   每日績效
+========================================================= */
+
+function renderPerformance(performance) {
+
+    const container =
+        document.getElementById("performance");
+
+
+    if (
+        !Array.isArray(performance) ||
+        performance.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <strong>
+                    尚無每日績效資料
+                </strong>
+
+                第一筆交易或每日資產紀錄產生後，
+                會從這裡開始累積。
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    /*
+        最新日期放最上面
+    */
+
+    const sorted =
+        [...performance].sort(
+            (a, b) =>
+                String(b.date)
+                    .localeCompare(
+                        String(a.date)
+                    )
+        );
+
+
+    container.innerHTML =
+        sorted.map(row => {
+
+            const returnRate =
+                number(row.return_percent);
+
+
+            return `
+
+                <div class="performance-row">
+
+                    <div class="performance-date">
+                        ${escapeHTML(row.date)}
+                    </div>
+
+
+                    <div class="performance-assets">
+                        ${formatMoney(row.total_assets)}
+                    </div>
+
+
+                    <div
+                        class="performance-return ${profitClass(returnRate)}">
+
+                        ${formatPercent(returnRate)}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+   HTML Escape
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   主程式
+========================================================= */
+
+async function loadPortfolio() {
 
     try {
 
-        const p =
-            JSON.parse(raw);
-
-
-        document
-            .getElementById(
-                "nickname"
-            )
-            .value =
-            p.nickname || "";
-
-
-        document
-            .getElementById(
-                "bio"
-            )
-            .value =
-            p.bio || "";
-
-
-        loadAvatarSettings(p);
-
-
-        document
-            .getElementById(
-                "stockRows"
-            )
-            .innerHTML = "";
-
-
-        (p.stocks || [])
-            .forEach(
-                addStock
+        const response =
+            await fetch(
+                PORTFOLIO_URL +
+                "?t=" +
+                Date.now(),
+                {
+                    cache: "no-store"
+                }
             );
 
 
-        document
-            .getElementById(
-                "editor"
-            )
-            .classList.add(
-                "hidden"
+        if (!response.ok) {
+
+            throw new Error(
+                "ai_portfolio.json 尚未建立"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        /* =================================================
+           基本資料
+        ================================================= */
+
+        const initialCapital =
+            number(
+                data.initial_capital,
+                DEFAULT_CAPITAL
             );
 
 
-        renderBase(p);
-
-        renderAvatar(p);
-
-
-        return p;
-
-    }
-
-    catch(e) {
-
-        return null;
-
-    }
-
-}
+        const totalAssets =
+            number(
+                data.total_assets,
+                initialCapital
+            );
 
 
-/* =========================================================
-   基本畫面
-   ========================================================= */
+        const totalProfit =
+            totalAssets -
+            initialCapital;
 
-function renderBase(p) {
 
-    document
-        .getElementById(
-            "view"
-        )
-        .classList.remove(
-            "hidden"
+        const totalReturn =
+            initialCapital > 0
+                ? totalProfit /
+                  initialCapital *
+                  100
+                : 0;
+
+
+        /* =================================================
+           Summary
+        ================================================= */
+
+        document.getElementById(
+            "initialCapital"
+        ).textContent =
+            formatMoney(initialCapital);
+
+
+        document.getElementById(
+            "totalAssets"
+        ).textContent =
+            formatMoney(totalAssets);
+
+
+        const profitElement =
+            document.getElementById(
+                "totalProfit"
+            );
+
+
+        profitElement.textContent =
+            (totalProfit >= 0 ? "+" : "") +
+            formatMoney(
+                Math.abs(totalProfit)
+            );
+
+
+        profitElement.className =
+            "summary-value " +
+            profitClass(totalProfit);
+
+
+        const returnElement =
+            document.getElementById(
+                "totalReturn"
+            );
+
+
+        returnElement.textContent =
+            formatPercent(totalReturn);
+
+
+        returnElement.className =
+            "summary-value " +
+            profitClass(totalReturn);
+
+
+        /* =================================================
+           日期
+        ================================================= */
+
+        document.getElementById(
+            "dataDate"
+        ).textContent =
+            data.date || "—";
+
+
+        document.getElementById(
+            "updatedAt"
+        ).textContent =
+            data.updated_at || "—";
+
+
+        /* =================================================
+           各區塊
+        ================================================= */
+
+        renderHoldings(
+            data.holdings || []
         );
 
 
-    renderAvatar(p);
+        renderWaiting(
+            data.waiting || []
+        );
 
 
-    document
-        .getElementById(
-            "viewNick"
-        )
-        .textContent =
-        p.nickname ||
-        "匿名投資人";
+        renderTransactions(
+            data.transactions || []
+        );
 
 
-    document
-        .getElementById(
-            "viewBio"
-        )
-        .textContent =
-        p.bio || "—";
+        renderPerformance(
+            data.performance || []
+        );
 
 
-    document
-        .getElementById(
-            "countValue"
-        )
-        .textContent =
-        p.stocks.length +
-        " 檔";
+    }
+    catch (error) {
 
-}
+        console.error(error);
 
 
-/* =========================================================
-   顯示行情
-   ========================================================= */
+        document.getElementById(
+            "holdings"
+        ).innerHTML = `
 
-function renderQuotes(q, p) {
+            <div class="error">
 
-    let total = 0;
+                <strong>
+                    尚未建立 AI Portfolio 資料
+                </strong>
 
-    let cost = 0;
+                <br><br>
 
-    let today = 0;
+                ${escapeHTML(error.message)}
 
+                <br><br>
 
-    document
-        .getElementById(
-            "holdRows"
-        )
-        .innerHTML =
+                等交易資料建立後，
+                本頁會自動顯示持股與累積績效。
 
-        p.stocks
+            </div>
 
-            .map(
-                x => {
-
-                    const a =
-                        q[x.code];
-
-
-                    const price =
-                        a?.price || 0;
-
-
-                    const change =
-                        a?.change || 0;
-
-
-                    const value =
-                        price *
-                        x.shares;
-
-
-                    const c =
-                        x.cost *
-                        x.shares;
-
-
-                    const pnl =
-                        value - c;
-
-
-                    const ret =
-                        c
-                            ? pnl / c * 100
-                            : 0;
-
-
-                    const day =
-                        change *
-                        x.shares;
-
-
-                    total += value;
-
-                    cost += c;
-
-                    today += day;
-
-
-                    return `
-
-                        <tr>
-
-                            <td>
-
-                                <span
-                                    class="stockname"
-                                >
-                                    ${esc(
-                                        a?.name ||
-                                        x.name ||
-                                        "未命名"
-                                    )}
-                                </span>
-
-                                <span
-                                    class="code"
-                                >
-                                    ${esc(x.code)}
-                                    ${
-                                        a?.market
-                                            ? "・" +
-                                              a.market
-                                            : ""
-                                    }
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                ${fmt(x.shares)}
-                            </td>
-
-
-                            <td>
-                                ${x.cost.toFixed(2)}
-                            </td>
-
-
-                            <td>
-                                ${
-                                    price
-                                        ? price.toFixed(2)
-                                        : "無資料"
-                                }
-                            </td>
-
-
-                            <td>
-                                ${
-                                    price
-                                        ? fmt(value)
-                                        : "—"
-                                }
-                            </td>
-
-
-                            <td
-                                class="${
-                                    pnl >= 0
-                                        ? "positive"
-                                        : "green"
-                                }"
-                            >
-                                ${
-                                    price
-                                        ? (
-                                            pnl >= 0
-                                                ? "+"
-                                                : ""
-                                          ) +
-                                          fmt(pnl)
-                                        : "—"
-                                }
-                            </td>
-
-
-                            <td
-                                class="${
-                                    ret >= 0
-                                        ? "positive"
-                                        : "green"
-                                }"
-                            >
-                                ${
-                                    price
-                                        ? (
-                                            ret >= 0
-                                                ? "+"
-                                                : ""
-                                          ) +
-                                          ret.toFixed(2) +
-                                          "%"
-                                        : "—"
-                                }
-                            </td>
-
-
-                            <td
-                                class="${
-                                    day >= 0
-                                        ? "positive"
-                                        : "green"
-                                }"
-                            >
-                                ${
-                                    price
-                                        ? (
-                                            day >= 0
-                                                ? "+"
-                                                : ""
-                                          ) +
-                                          fmt(day)
-                                        : "—"
-                                }
-                            </td>
-
-                        </tr>
-
-                    `;
-
-                }
-            )
-
-            .join("")
-
-        ||
-
-        `
-            <tr>
-                <td
-                    colspan="8"
-                    class="empty"
-                >
-                    尚未建立持股
-                </td>
-            </tr>
         `;
 
 
-    const pnl =
-        total - cost;
+        document.getElementById(
+            "waitingList"
+        ).innerHTML = "";
 
 
-    const ret =
-        cost
-            ? pnl / cost * 100
-            : 0;
-
-
-    document
-        .getElementById(
-            "totalValue"
-        )
-        .textContent =
-        total
-            ? fmt(total)
-            : "—";
-
-
-    document
-        .getElementById(
-            "costValue"
-        )
-        .textContent =
-        fmt(cost);
-
-
-    document
-        .getElementById(
-            "pnlValue"
-        )
-        .textContent =
-        total
-            ? (
-                pnl >= 0
-                    ? "+"
-                    : ""
-              ) +
-              fmt(pnl)
-            : "—";
-
-
-    document
-        .getElementById(
-            "returnValue"
-        )
-        .textContent =
-        total
-            ? (
-                ret >= 0
-                    ? "+"
-                    : ""
-              ) +
-              ret.toFixed(2) +
-              "%"
-            : "—";
-
-
-    document
-        .getElementById(
-            "pnlValue"
-        )
-        .className =
-        pnl >= 0
-            ? "positive"
-            : "green";
-
-
-    document
-        .getElementById(
-            "returnValue"
-        )
-        .className =
-        ret >= 0
-            ? "positive"
-            : "green";
-
-
-    document
-        .getElementById(
-            "todayValue"
-        )
-        .textContent =
-        q._ok
-            ? (
-                today >= 0
-                    ? "+"
-                    : ""
-              ) +
-              fmt(today) +
-              " 元"
-            : "行情取得失敗";
-
-
-    document
-        .getElementById(
-            "todayValue"
-        )
-        .className =
-        q._ok
-            ? "big green"
-            : "big muted";
-
-
-    document
-        .getElementById(
-            "quoteStatus"
-        )
-        .textContent =
-        q._ok
-            ? `已取得 ${q._found}/${p.stocks.length} 檔行情。`
-            : "Worker 尚未成功取得行情，請檢查 Worker 網址或稍後重試。";
-
-
-    document
-        .getElementById(
-            "lastUpdate"
-        )
-        .textContent =
-        q._time
-            ? "行情更新時間：" +
-              q._time
-            : "尚未取得行情";
-
-}
-
-
-/* =========================================================
-   取得行情
-   ========================================================= */
-
-async function refreshQuotes(p) {
-
-    if (
-        API_BASE ===
-        "__WORKER_URL__"
-    ) {
-
-        document
-            .getElementById(
-                "todayValue"
-            )
-            .textContent =
-            "尚未設定 Worker";
-
-
-        document
-            .getElementById(
-                "quoteStatus"
-            )
-            .textContent =
-            "請先把程式中的 __WORKER_URL__ 換成你的 Cloudflare Worker 網址。";
-
-
-        return;
+        document.getElementById(
+            "performance"
+        ).innerHTML = "";
 
     }
-
-
-    try {
-
-        const codes =
-            p.stocks
-                .map(
-                    x => x.code
-                )
-                .join(",");
-
-
-        const r =
-            await fetch(
-                API_BASE.replace(
-                    /\/$/,
-                    ""
-                ) +
-                "/api/quotes?symbols=" +
-                encodeURIComponent(
-                    codes
-                ),
-                {
-                    cache:
-                        "no-store"
-                }
-            );
-
-
-        if (!r.ok) {
-
-            throw new Error(
-                "HTTP " +
-                r.status
-            );
-
-        }
-
-
-        const d =
-            await r.json();
-
-
-        const q =
-            d.quotes || {};
-
-
-        q._ok =
-            !!d.ok &&
-            d.found > 0;
-
-
-        q._found =
-            d.found || 0;
-
-
-        q._time =
-            new Date()
-                .toLocaleString(
-                    "zh-TW"
-                );
-
-
-        renderQuotes(
-            q,
-            p
-        );
-
-    }
-
-    catch(e) {
-
-        const q = {
-
-            _ok: false,
-
-            _found: 0
-
-        };
-
-
-        renderQuotes(
-            q,
-            p
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   分享
-   ========================================================= */
-
-function sharePage() {
-
-    navigator
-        .clipboard
-        ?.writeText(
-            location.href
-        )
-
-        .then(
-            () =>
-                alert(
-                    "網址已複製"
-                )
-        )
-
-        .catch(
-            () =>
-                alert(
-                    "請複製瀏覽器網址列"
-                )
-        );
 
 }
 
 
 /* =========================================================
    啟動
-   ========================================================= */
+========================================================= */
 
-const p =
-    load();
-
-
-if (p) {
-
-    refreshQuotes(p);
-
-}
+loadPortfolio();
 
 </script>
 
