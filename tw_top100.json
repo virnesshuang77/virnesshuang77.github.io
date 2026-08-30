@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T11:46:57",
+  "generated_at": "2026-08-30T11:51:18",
   "date": "2026-08-28",
   "market": "TW",
   "ranking_method": "trading_value",
@@ -7,8 +7,15 @@
   "top_n": 100,
   "source": [
     "TWSE",
-    "TPEx"
+    "TPEx",
+    "TWSE T86",
+    "TPEx 3insti"
   ],
+  "institutional_data": {
+    "unit": "shares",
+    "positive": "net_buy",
+    "negative": "net_sell"
+  },
   "stocks": [
     {
       "market": "TWSE",
@@ -22,6 +29,10 @@
       "close": 597.0,
       "change": 42.0,
       "pe": 40.2,
+      "foreign_net": -2215620,
+      "trust_net": -1105289,
+      "dealer_net": 559448,
+      "institutional_net": -2761461,
       "rank": 1
     },
     {
@@ -36,6 +47,10 @@
       "close": 220.5,
       "change": 7.0,
       "pe": 35.56,
+      "foreign_net": 15678983,
+      "trust_net": 8561096,
+      "dealer_net": -971734,
+      "institutional_net": 23268345,
       "rank": 2
     },
     {
@@ -50,6 +65,10 @@
       "close": 540.0,
       "change": 1.0,
       "pe": 20.95,
+      "foreign_net": -772623,
+      "trust_net": 95791,
+      "dealer_net": -1751406,
+      "institutional_net": -2428238,
       "rank": 3
     },
     {
@@ -64,6 +83,10 @@
       "close": 130.0,
       "change": 11.5,
       "pe": 19.55,
+      "foreign_net": 88988696,
+      "trust_net": 3935859,
+      "dealer_net": 2724319,
+      "institutional_net": 95648874,
       "rank": 4
     },
     {
@@ -78,6 +101,10 @@
       "close": 2420.0,
       "change": 10.0,
       "pe": 28.05,
+      "foreign_net": 3031655,
+      "trust_net": -1764995,
+      "dealer_net": -23367,
+      "institutional_net": 1243293,
       "rank": 5
     },
     {
@@ -92,6 +119,10 @@
       "close": 7065.0,
       "change": 150.0,
       "pe": 37.58,
+      "foreign_net": 563648,
+      "trust_net": 159680,
+      "dealer_net": -99592,
+      "institutional_net": 623736,
       "rank": 6
     },
     {
@@ -106,6 +137,10 @@
       "close": 1110.0,
       "change": 70.0,
       "pe": 73.9,
+      "foreign_net": 3673341,
+      "trust_net": -13242,
+      "dealer_net": -518749,
+      "institutional_net": 3141350,
       "rank": 7
     },
     {
@@ -120,6 +155,10 @@
       "close": 181.5,
       "change": 4.5,
       "pe": 20.01,
+      "foreign_net": -31131358,
+      "trust_net": -3124568,
+      "dealer_net": -4559954,
+      "institutional_net": -38815880,
       "rank": 8
     },
     {
@@ -134,6 +173,10 @@
       "close": 1830.0,
       "change": 60.0,
       "pe": 58.24,
+      "foreign_net": 1163858,
+      "trust_net": -731354,
+      "dealer_net": 114276,
+      "institutional_net": 546780,
       "rank": 9
     },
     {
@@ -148,6 +191,10 @@
       "close": 439.0,
       "change": -6.5,
       "pe": null,
+      "foreign_net": 1382612,
+      "trust_net": 2775000,
+      "dealer_net": -53838,
+      "institutional_net": 4103774,
       "rank": 10
     },
     {
@@ -162,6 +209,10 @@
       "close": 241.0,
       "change": 3.0,
       "pe": 38.81,
+      "foreign_net": 226976,
+      "trust_net": 1996000,
+      "dealer_net": -97310,
+      "institutional_net": 2125666,
       "rank": 11
     },
     {
@@ -176,6 +227,10 @@
       "close": 543.0,
       "change": 49.0,
       "pe": null,
+      "foreign_net": -1193453,
+      "trust_net": -80000,
+      "dealer_net": 160303,
+      "institutional_net": -1113150,
       "rank": 12
     },
     {
@@ -190,6 +245,10 @@
       "close": 1240.0,
       "change": 55.0,
       "pe": 145.71,
+      "foreign_net": -1189048,
+      "trust_net": 339961,
+      "dealer_net": -37449,
+      "institutional_net": -886536,
       "rank": 13
     },
     {
@@ -204,6 +263,10 @@
       "close": 343.5,
       "change": 9.0,
       "pe": 109.05,
+      "foreign_net": 636069,
+      "trust_net": -675000,
+      "dealer_net": 252219,
+      "institutional_net": 213288,
       "rank": 14
     },
     {
@@ -218,6 +281,10 @@
       "close": 3985.0,
       "change": 120.0,
       "pe": 65.81,
+      "foreign_net": 1096338,
+      "trust_net": -117270,
+      "dealer_net": 17242,
+      "institutional_net": 996310,
       "rank": 15
     },
     {
@@ -232,6 +299,10 @@
       "close": 899.0,
       "change": 15.0,
       "pe": 166.79,
+      "foreign_net": -2575871,
+      "trust_net": -9000,
+      "dealer_net": -9230,
+      "institutional_net": -2594101,
       "rank": 16
     },
     {
@@ -246,6 +317,10 @@
       "close": 480.5,
       "change": 3.5,
       "pe": 56.86,
+      "foreign_net": -64166,
+      "trust_net": 435860,
+      "dealer_net": -86629,
+      "institutional_net": 285065,
       "rank": 17
     },
     {
@@ -260,6 +335,10 @@
       "close": 313.5,
       "change": 28.5,
       "pe": 35.22,
+      "foreign_net": 1048048,
+      "trust_net": 29000,
+      "dealer_net": 808935,
+      "institutional_net": 1885983,
       "rank": 18
     },
     {
@@ -274,6 +353,10 @@
       "close": 317.5,
       "change": 16.5,
       "pe": 37.13,
+      "foreign_net": 4122033,
+      "trust_net": 778641,
+      "dealer_net": 281702,
+      "institutional_net": 5182376,
       "rank": 19
     },
     {
@@ -288,6 +371,10 @@
       "close": 125.5,
       "change": 9.0,
       "pe": null,
+      "foreign_net": 25452551,
+      "trust_net": 1189000,
+      "dealer_net": 1315326,
+      "institutional_net": 27956877,
       "rank": 20
     },
     {
@@ -302,6 +389,10 @@
       "close": 48.6,
       "change": 2.35,
       "pe": 62.31,
+      "foreign_net": 23715394,
+      "trust_net": 188000,
+      "dealer_net": 4454483,
+      "institutional_net": 28357877,
       "rank": 21
     },
     {
@@ -316,6 +407,10 @@
       "close": 582.0,
       "change": 19.0,
       "pe": 90.23,
+      "foreign_net": 1524738,
+      "trust_net": -1281000,
+      "dealer_net": -239692,
+      "institutional_net": 4046,
       "rank": 22
     },
     {
@@ -330,6 +425,10 @@
       "close": 270.0,
       "change": 22.5,
       "pe": 35.39,
+      "foreign_net": 11540547,
+      "trust_net": 998621,
+      "dealer_net": 1448074,
+      "institutional_net": 13987242,
       "rank": 23
     },
     {
@@ -344,6 +443,10 @@
       "close": 7200.0,
       "change": 385.0,
       "pe": 23.08,
+      "foreign_net": 2303,
+      "trust_net": -92019,
+      "dealer_net": 118396,
+      "institutional_net": 28680,
       "rank": 24
     },
     {
@@ -358,6 +461,10 @@
       "close": 3360.0,
       "change": 20.0,
       "pe": 44.79,
+      "foreign_net": -33669,
+      "trust_net": 626941,
+      "dealer_net": -89303,
+      "institutional_net": 503969,
       "rank": 25
     },
     {
@@ -372,6 +479,10 @@
       "close": 917.0,
       "change": 83.0,
       "pe": 24.81,
+      "foreign_net": 1669366,
+      "trust_net": 1343000,
+      "dealer_net": 241233,
+      "institutional_net": 3253599,
       "rank": 26
     },
     {
@@ -386,6 +497,10 @@
       "close": 635.0,
       "change": 57.0,
       "pe": 128.8,
+      "foreign_net": 2563735,
+      "trust_net": 596000,
+      "dealer_net": 172952,
+      "institutional_net": 3332687,
       "rank": 27
     },
     {
@@ -400,6 +515,10 @@
       "close": 1130.0,
       "change": 100.0,
       "pe": 40.56,
+      "foreign_net": 493878,
+      "trust_net": 445617,
+      "dealer_net": 492011,
+      "institutional_net": 1431506,
       "rank": 28
     },
     {
@@ -414,6 +533,10 @@
       "close": 972.0,
       "change": 14.0,
       "pe": null,
+      "foreign_net": -1857756,
+      "trust_net": 30000,
+      "dealer_net": -530,
+      "institutional_net": -1828286,
       "rank": 29
     },
     {
@@ -428,6 +551,10 @@
       "close": 621.0,
       "change": 16.0,
       "pe": 44.93,
+      "foreign_net": -567164,
+      "trust_net": 61612,
+      "dealer_net": 945758,
+      "institutional_net": 440206,
       "rank": 30
     },
     {
@@ -442,6 +569,10 @@
       "close": 6015.0,
       "change": 95.0,
       "pe": 154.19,
+      "foreign_net": -49451,
+      "trust_net": 42985,
+      "dealer_net": 33159,
+      "institutional_net": 26693,
       "rank": 31
     },
     {
@@ -456,6 +587,10 @@
       "close": 386.0,
       "change": 35.0,
       "pe": null,
+      "foreign_net": 4911469,
+      "trust_net": 3336000,
+      "dealer_net": 60864,
+      "institutional_net": 8308333,
       "rank": 32
     },
     {
@@ -470,6 +605,10 @@
       "close": 742.0,
       "change": 67.0,
       "pe": 72.39,
+      "foreign_net": 341266,
+      "trust_net": -13000,
+      "dealer_net": 83717,
+      "institutional_net": 411983,
       "rank": 33
     },
     {
@@ -484,6 +623,10 @@
       "close": 3305.0,
       "change": -65.0,
       "pe": null,
+      "foreign_net": 421760,
+      "trust_net": -3000,
+      "dealer_net": -29997,
+      "institutional_net": 388763,
       "rank": 34
     },
     {
@@ -498,6 +641,10 @@
       "close": 5490.0,
       "change": 0.0,
       "pe": 85.85,
+      "foreign_net": 45437,
+      "trust_net": -171253,
+      "dealer_net": -25380,
+      "institutional_net": -151196,
       "rank": 35
     },
     {
@@ -512,6 +659,10 @@
       "close": 182.5,
       "change": -5.0,
       "pe": null,
+      "foreign_net": -5377014,
+      "trust_net": 838000,
+      "dealer_net": -1619919,
+      "institutional_net": -6158933,
       "rank": 36
     },
     {
@@ -526,6 +677,10 @@
       "close": 70.0,
       "change": 0.4,
       "pe": 23.33,
+      "foreign_net": 1219930,
+      "trust_net": -13000,
+      "dealer_net": 308973,
+      "institutional_net": 1515903,
       "rank": 37
     },
     {
@@ -540,6 +695,10 @@
       "close": 2260.0,
       "change": 205.0,
       "pe": 41.5,
+      "foreign_net": -441940,
+      "trust_net": 509967,
+      "dealer_net": -75106,
+      "institutional_net": -7079,
       "rank": 38
     },
     {
@@ -554,6 +713,10 @@
       "close": 5030.0,
       "change": -60.0,
       "pe": null,
+      "foreign_net": 129015,
+      "trust_net": -580520,
+      "dealer_net": 28638,
+      "institutional_net": -422867,
       "rank": 39
     },
     {
@@ -568,6 +731,10 @@
       "close": 2345.0,
       "change": 120.0,
       "pe": 50.16,
+      "foreign_net": 118949,
+      "trust_net": 584000,
+      "dealer_net": -50562,
+      "institutional_net": 652387,
       "rank": 40
     },
     {
@@ -582,6 +749,10 @@
       "close": 1365.0,
       "change": -65.0,
       "pe": null,
+      "foreign_net": 345107,
+      "trust_net": 416000,
+      "dealer_net": -38166,
+      "institutional_net": 722941,
       "rank": 41
     },
     {
@@ -596,6 +767,10 @@
       "close": 106.95,
       "change": 0.9,
       "pe": 0.0,
+      "foreign_net": 41108708,
+      "trust_net": 0,
+      "dealer_net": -3994360,
+      "institutional_net": 37114348,
       "rank": 42
     },
     {
@@ -610,6 +785,10 @@
       "close": 4065.0,
       "change": 195.0,
       "pe": 59.62,
+      "foreign_net": 374551,
+      "trust_net": 17986,
+      "dealer_net": 114526,
+      "institutional_net": 507063,
       "rank": 43
     },
     {
@@ -624,6 +803,10 @@
       "close": 253.0,
       "change": 1.0,
       "pe": 16.68,
+      "foreign_net": 1192347,
+      "trust_net": 307759,
+      "dealer_net": -723523,
+      "institutional_net": 776583,
       "rank": 44
     },
     {
@@ -638,6 +821,10 @@
       "close": 110.0,
       "change": 1.0,
       "pe": null,
+      "foreign_net": -3817926,
+      "trust_net": 0,
+      "dealer_net": 263318,
+      "institutional_net": -3554608,
       "rank": 45
     },
     {
@@ -652,6 +839,10 @@
       "close": 1490.0,
       "change": 45.0,
       "pe": null,
+      "foreign_net": 258097,
+      "trust_net": -52000,
+      "dealer_net": 28952,
+      "institutional_net": 235049,
       "rank": 46
     },
     {
@@ -666,6 +857,10 @@
       "close": 287.0,
       "change": 10.0,
       "pe": 28.42,
+      "foreign_net": 8790054,
+      "trust_net": -4000,
+      "dealer_net": 746188,
+      "institutional_net": 9532242,
       "rank": 47
     },
     {
@@ -680,6 +875,10 @@
       "close": 92.8,
       "change": 6.2,
       "pe": null,
+      "foreign_net": 7581800,
+      "trust_net": 0,
+      "dealer_net": -495347,
+      "institutional_net": 7086453,
       "rank": 48
     },
     {
@@ -694,6 +893,10 @@
       "close": 1140.0,
       "change": 80.0,
       "pe": null,
+      "foreign_net": 1596703,
+      "trust_net": 460000,
+      "dealer_net": 116676,
+      "institutional_net": 2173379,
       "rank": 49
     },
     {
@@ -708,6 +911,10 @@
       "close": 454.0,
       "change": 31.5,
       "pe": 91.53,
+      "foreign_net": -48681,
+      "trust_net": 0,
+      "dealer_net": 46280,
+      "institutional_net": -2401,
       "rank": 50
     },
     {
@@ -722,6 +929,10 @@
       "close": 2150.0,
       "change": -5.0,
       "pe": null,
+      "foreign_net": -47632,
+      "trust_net": -3000,
+      "dealer_net": -70187,
+      "institutional_net": -120819,
       "rank": 51
     },
     {
@@ -736,6 +947,10 @@
       "close": 154.0,
       "change": 7.5,
       "pe": 40.85,
+      "foreign_net": 9150422,
+      "trust_net": 265000,
+      "dealer_net": 59544,
+      "institutional_net": 9474966,
       "rank": 52
     },
     {
@@ -750,6 +965,10 @@
       "close": 1545.0,
       "change": 15.0,
       "pe": 75.66,
+      "foreign_net": -186859,
+      "trust_net": -5000,
+      "dealer_net": 465,
+      "institutional_net": -191394,
       "rank": 53
     },
     {
@@ -764,6 +983,10 @@
       "close": 14300.0,
       "change": 40.0,
       "pe": 78.84,
+      "foreign_net": 102881,
+      "trust_net": -58724,
+      "dealer_net": -9869,
+      "institutional_net": 34288,
       "rank": 54
     },
     {
@@ -778,6 +1001,10 @@
       "close": 96.1,
       "change": 0.5,
       "pe": 961.0,
+      "foreign_net": -5622993,
+      "trust_net": 0,
+      "dealer_net": -112273,
+      "institutional_net": -5735266,
       "rank": 55
     },
     {
@@ -792,6 +1019,10 @@
       "close": 15630.0,
       "change": 325.0,
       "pe": null,
+      "foreign_net": 75822,
+      "trust_net": -110200,
+      "dealer_net": 3291,
+      "institutional_net": -31087,
       "rank": 56
     },
     {
@@ -806,6 +1037,10 @@
       "close": 5785.0,
       "change": 140.0,
       "pe": 130.56,
+      "foreign_net": -27227,
+      "trust_net": 49274,
+      "dealer_net": 21278,
+      "institutional_net": 43325,
       "rank": 57
     },
     {
@@ -820,6 +1055,10 @@
       "close": 1265.0,
       "change": 45.0,
       "pe": 85.19,
+      "foreign_net": -716399,
+      "trust_net": 28000,
+      "dealer_net": 11137,
+      "institutional_net": -677262,
       "rank": 58
     },
     {
@@ -834,6 +1073,10 @@
       "close": 2125.0,
       "change": 35.0,
       "pe": 33.39,
+      "foreign_net": -531917,
+      "trust_net": -17091,
+      "dealer_net": -4671,
+      "institutional_net": -553679,
       "rank": 59
     },
     {
@@ -848,6 +1091,10 @@
       "close": 190.0,
       "change": 21.0,
       "pe": 500.0,
+      "foreign_net": -7514156,
+      "trust_net": 0,
+      "dealer_net": -493823,
+      "institutional_net": -8007979,
       "rank": 60
     },
     {
@@ -862,6 +1109,10 @@
       "close": 1735.0,
       "change": 110.0,
       "pe": 21.15,
+      "foreign_net": 132965,
+      "trust_net": -219639,
+      "dealer_net": 47674,
+      "institutional_net": -39000,
       "rank": 61
     },
     {
@@ -876,6 +1127,10 @@
       "close": 520.0,
       "change": -18.0,
       "pe": null,
+      "foreign_net": 831184,
+      "trust_net": 0,
+      "dealer_net": -64404,
+      "institutional_net": 766780,
       "rank": 62
     },
     {
@@ -890,6 +1145,10 @@
       "close": 96.3,
       "change": 1.1,
       "pe": null,
+      "foreign_net": -4904265,
+      "trust_net": 660000,
+      "dealer_net": -367972,
+      "institutional_net": -4612237,
       "rank": 63
     },
     {
@@ -904,6 +1163,10 @@
       "close": 189.5,
       "change": 9.5,
       "pe": 394.79,
+      "foreign_net": -2742992,
+      "trust_net": 0,
+      "dealer_net": -146193,
+      "institutional_net": -2889185,
       "rank": 64
     },
     {
@@ -918,6 +1181,10 @@
       "close": 178.0,
       "change": 1.5,
       "pe": 14.14,
+      "foreign_net": -8245861,
+      "trust_net": 204446,
+      "dealer_net": -208748,
+      "institutional_net": -8250163,
       "rank": 65
     },
     {
@@ -932,6 +1199,10 @@
       "close": 67.8,
       "change": 2.5,
       "pe": 32.75,
+      "foreign_net": -24256778,
+      "trust_net": 0,
+      "dealer_net": -3248566,
+      "institutional_net": -27505344,
       "rank": 66
     },
     {
@@ -946,6 +1217,10 @@
       "close": 400.0,
       "change": 2.5,
       "pe": null,
+      "foreign_net": 796081,
+      "trust_net": 0,
+      "dealer_net": -183486,
+      "institutional_net": 612595,
       "rank": 67
     },
     {
@@ -960,6 +1235,10 @@
       "close": 2540.0,
       "change": -110.0,
       "pe": null,
+      "foreign_net": -63369,
+      "trust_net": 8000,
+      "dealer_net": 7981,
+      "institutional_net": -47388,
       "rank": 68
     },
     {
@@ -974,6 +1253,10 @@
       "close": 1510.0,
       "change": 85.0,
       "pe": null,
+      "foreign_net": -336781,
+      "trust_net": 255000,
+      "dealer_net": 5762,
+      "institutional_net": -76019,
       "rank": 69
     },
     {
@@ -988,6 +1271,10 @@
       "close": 783.0,
       "change": 41.0,
       "pe": 54.91,
+      "foreign_net": -118433,
+      "trust_net": 0,
+      "dealer_net": -15067,
+      "institutional_net": -133500,
       "rank": 70
     },
     {
@@ -1002,6 +1289,10 @@
       "close": 399.0,
       "change": 5.0,
       "pe": 306.92,
+      "foreign_net": -1122932,
+      "trust_net": 707000,
+      "dealer_net": -247015,
+      "institutional_net": -662947,
       "rank": 71
     },
     {
@@ -1016,6 +1307,10 @@
       "close": 239.0,
       "change": 21.5,
       "pe": null,
+      "foreign_net": 3534268,
+      "trust_net": 0,
+      "dealer_net": 274213,
+      "institutional_net": 3808481,
       "rank": 72
     },
     {
@@ -1030,6 +1325,10 @@
       "close": 217.0,
       "change": 7.0,
       "pe": 149.66,
+      "foreign_net": 2259890,
+      "trust_net": 0,
+      "dealer_net": 256076,
+      "institutional_net": 2515966,
       "rank": 73
     },
     {
@@ -1044,6 +1343,10 @@
       "close": 754.0,
       "change": -22.0,
       "pe": null,
+      "foreign_net": -413274,
+      "trust_net": 0,
+      "dealer_net": -667,
+      "institutional_net": -413941,
       "rank": 74
     },
     {
@@ -1058,6 +1361,10 @@
       "close": 2010.0,
       "change": 20.0,
       "pe": 51.28,
+      "foreign_net": 57483,
+      "trust_net": -32818,
+      "dealer_net": -12251,
+      "institutional_net": 12414,
       "rank": 75
     },
     {
@@ -1072,6 +1379,10 @@
       "close": 126.5,
       "change": 1.0,
       "pe": 29.98,
+      "foreign_net": -431613,
+      "trust_net": -380000,
+      "dealer_net": -320399,
+      "institutional_net": -1132012,
       "rank": 76
     },
     {
@@ -1086,6 +1397,10 @@
       "close": 201.0,
       "change": 2.0,
       "pe": null,
+      "foreign_net": -2523386,
+      "trust_net": 0,
+      "dealer_net": 81619,
+      "institutional_net": -2441767,
       "rank": 77
     },
     {
@@ -1100,6 +1415,10 @@
       "close": 130.0,
       "change": -7.5,
       "pe": null,
+      "foreign_net": 916174,
+      "trust_net": 0,
+      "dealer_net": -56427,
+      "institutional_net": 859747,
       "rank": 78
     },
     {
@@ -1114,6 +1433,10 @@
       "close": 272.5,
       "change": 7.0,
       "pe": null,
+      "foreign_net": -138773,
+      "trust_net": 0,
+      "dealer_net": 60092,
+      "institutional_net": -78681,
       "rank": 79
     },
     {
@@ -1128,6 +1451,10 @@
       "close": 60.8,
       "change": 1.6,
       "pe": 70.7,
+      "foreign_net": 11554188,
+      "trust_net": 0,
+      "dealer_net": 1782792,
+      "institutional_net": 13336980,
       "rank": 80
     },
     {
@@ -1142,6 +1469,10 @@
       "close": 332.5,
       "change": 1.0,
       "pe": 14.49,
+      "foreign_net": -669334,
+      "trust_net": 308515,
+      "dealer_net": 17930,
+      "institutional_net": -342889,
       "rank": 81
     },
     {
@@ -1156,6 +1487,10 @@
       "close": 174.0,
       "change": 5.5,
       "pe": 23.05,
+      "foreign_net": -1129644,
+      "trust_net": 0,
+      "dealer_net": 22991,
+      "institutional_net": -1106653,
       "rank": 82
     },
     {
@@ -1170,6 +1505,10 @@
       "close": 153.0,
       "change": 2.0,
       "pe": null,
+      "foreign_net": 661671,
+      "trust_net": -378000,
+      "dealer_net": 192061,
+      "institutional_net": 475732,
       "rank": 83
     },
     {
@@ -1184,6 +1523,10 @@
       "close": 183.5,
       "change": 1.5,
       "pe": null,
+      "foreign_net": -1481409,
+      "trust_net": 10000,
+      "dealer_net": -9052,
+      "institutional_net": -1480461,
       "rank": 84
     },
     {
@@ -1198,6 +1541,10 @@
       "close": 6490.0,
       "change": 145.0,
       "pe": 67.0,
+      "foreign_net": 157026,
+      "trust_net": -126924,
+      "dealer_net": 2287,
+      "institutional_net": 32389,
       "rank": 85
     },
     {
@@ -1212,6 +1559,10 @@
       "close": 25.85,
       "change": 0.6,
       "pe": 107.71,
+      "foreign_net": 14811460,
+      "trust_net": -23000,
+      "dealer_net": 1492554,
+      "institutional_net": 16281014,
       "rank": 86
     },
     {
@@ -1226,6 +1577,10 @@
       "close": 682.0,
       "change": 62.0,
       "pe": null,
+      "foreign_net": -266940,
+      "trust_net": -1000,
+      "dealer_net": 46466,
+      "institutional_net": -221474,
       "rank": 87
     },
     {
@@ -1240,6 +1595,10 @@
       "close": 14.15,
       "change": 0.15,
       "pe": 0.0,
+      "foreign_net": 7504823,
+      "trust_net": 0,
+      "dealer_net": -622093,
+      "institutional_net": 6882730,
       "rank": 88
     },
     {
@@ -1254,6 +1613,10 @@
       "close": 701.0,
       "change": -3.0,
       "pe": null,
+      "foreign_net": 70051,
+      "trust_net": 0,
+      "dealer_net": -6893,
+      "institutional_net": 63158,
       "rank": 89
     },
     {
@@ -1268,6 +1631,10 @@
       "close": 755.0,
       "change": 15.0,
       "pe": 49.41,
+      "foreign_net": -668326,
+      "trust_net": 105000,
+      "dealer_net": -49373,
+      "institutional_net": -612699,
       "rank": 90
     },
     {
@@ -1282,6 +1649,10 @@
       "close": 1470.0,
       "change": -20.0,
       "pe": null,
+      "foreign_net": -469434,
+      "trust_net": -46000,
+      "dealer_net": 82411,
+      "institutional_net": -433023,
       "rank": 91
     },
     {
@@ -1296,6 +1667,10 @@
       "close": 48.2,
       "change": 2.05,
       "pe": 18.75,
+      "foreign_net": 42353340,
+      "trust_net": -2885169,
+      "dealer_net": -204965,
+      "institutional_net": 39263206,
       "rank": 92
     },
     {
@@ -1310,6 +1685,10 @@
       "close": 188.5,
       "change": 3.5,
       "pe": 32.56,
+      "foreign_net": -3309656,
+      "trust_net": -1000,
+      "dealer_net": -328088,
+      "institutional_net": -3638744,
       "rank": 93
     },
     {
@@ -1324,6 +1703,10 @@
       "close": 219.0,
       "change": 15.0,
       "pe": 25.61,
+      "foreign_net": 3905291,
+      "trust_net": -1012000,
+      "dealer_net": 847629,
+      "institutional_net": 3740920,
       "rank": 94
     },
     {
@@ -1338,6 +1721,10 @@
       "close": 412.0,
       "change": -3.5,
       "pe": null,
+      "foreign_net": -1624241,
+      "trust_net": -9000,
+      "dealer_net": -138888,
+      "institutional_net": -1772129,
       "rank": 95
     },
     {
@@ -1352,6 +1739,10 @@
       "close": 458.0,
       "change": 12.5,
       "pe": 46.5,
+      "foreign_net": -936148,
+      "trust_net": -620000,
+      "dealer_net": -36810,
+      "institutional_net": -1592958,
       "rank": 96
     },
     {
@@ -1366,6 +1757,10 @@
       "close": 235.0,
       "change": 15.5,
       "pe": null,
+      "foreign_net": 3897344,
+      "trust_net": -1000,
+      "dealer_net": 612769,
+      "institutional_net": 4509113,
       "rank": 97
     },
     {
@@ -1380,6 +1775,10 @@
       "close": 133.0,
       "change": 2.5,
       "pe": 31.97,
+      "foreign_net": -2401846,
+      "trust_net": 0,
+      "dealer_net": -16415,
+      "institutional_net": -2418261,
       "rank": 98
     },
     {
@@ -1394,6 +1793,10 @@
       "close": 269.5,
       "change": 4.5,
       "pe": 8.5,
+      "foreign_net": -676539,
+      "trust_net": 0,
+      "dealer_net": -169114,
+      "institutional_net": -845653,
       "rank": 99
     },
     {
@@ -1408,6 +1811,10 @@
       "close": 148.0,
       "change": 6.0,
       "pe": null,
+      "foreign_net": 58037,
+      "trust_net": 0,
+      "dealer_net": 17113,
+      "institutional_net": 75150,
       "rank": 100
     }
   ]
