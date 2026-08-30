@@ -19,18 +19,19 @@ INITIAL_CAPITAL = 1_000_000
 # 最多 5 檔
 MAX_STOCKS = 5
 
-# 每檔最多使用初始資金 20%
+# 每檔股票最多使用初始資金 20%
 MAX_ALLOCATION_PER_STOCK = 0.20
 
-# 第一筆買入 = 該檔目標資金的 30%
+# 第一筆買入 = 該檔目標部位的 30%
 FIRST_BUY_ALLOCATION = 0.30
 
 
 # ============================================================
-# JSON 工具
+# JSON
 # ============================================================
 
 def load_json(path, default=None):
+
     if default is None:
         default = {}
 
@@ -38,17 +39,32 @@ def load_json(path, default=None):
         return default
 
     try:
-        with open(path, "r", encoding="utf-8") as f:
+
+        with open(
+            path,
+            "r",
+            encoding="utf-8"
+        ) as f:
+
             return json.load(f)
+
     except Exception as e:
+
         print(f"讀取 {path} 失敗：{e}")
+
         return default
 
 
 def save_json(path, data):
+
     temp_path = f"{path}.tmp"
 
-    with open(temp_path, "w", encoding="utf-8") as f:
+    with open(
+        temp_path,
+        "w",
+        encoding="utf-8"
+    ) as f:
+
         json.dump(
             data,
             f,
@@ -56,71 +72,95 @@ def save_json(path, data):
             indent=2
         )
 
-    os.replace(temp_path, path)
+    os.replace(
+        temp_path,
+        path
+    )
 
+
+# ============================================================
+# 工具
+# ============================================================
 
 def num(value, default=0.0):
+
     try:
+
         if value is None or value == "":
             return default
 
         return float(value)
 
     except (TypeError, ValueError):
+
         return default
 
 
 def today_string():
-    return datetime.now().strftime("%Y-%m-%d")
+
+    return datetime.now().strftime(
+        "%Y-%m-%d"
+    )
 
 
 def now_string():
+
     return datetime.now().isoformat(
         timespec="seconds"
     )
 
 
 # ============================================================
-# Portfolio 初始結構
+# 建立空白 Portfolio
 # ============================================================
 
 def default_portfolio():
 
     return {
+
         "version": 1,
 
-        "initial_capital": INITIAL_CAPITAL,
+        "initial_capital":
+            INITIAL_CAPITAL,
 
-        "cash": INITIAL_CAPITAL,
+        "cash":
+            INITIAL_CAPITAL,
 
-        "total_assets": INITIAL_CAPITAL,
+        "total_assets":
+            INITIAL_CAPITAL,
 
-        "total_profit": 0,
+        "total_profit":
+            0,
 
-        "total_return_percent": 0,
+        "total_return_percent":
+            0,
 
-        "date": today_string(),
+        "date":
+            today_string(),
 
-        "updated_at": now_string(),
+        "updated_at":
+            now_string(),
 
-        "signal_queue": [],
+        "signal_queue":
+            [],
 
-        "holdings": [],
+        "holdings":
+            [],
 
-        "waiting": [],
+        "waiting":
+            [],
 
-        "transactions": [],
+        "transactions":
+            [],
 
-        "performance": []
+        "performance":
+            []
+
     }
 
 
 # ============================================================
 # 基本面篩選
-#
-# 目的：
-# 不要因為題材或技術線漂亮，
-# 就去選基本面明顯很差的公司。
 # ============================================================
 
 def fundamental_pass(stock):
@@ -129,40 +169,66 @@ def fundamental_pass(stock):
         return False
 
     # 沒有基本面資料
-    if stock.get("fundamental_available") is False:
+    if stock.get(
+        "fundamental_available"
+    ) is False:
+
         return False
 
     # EPS 必須為正
-    if num(stock.get("quarter_eps")) <= 0:
+    if num(
+        stock.get("quarter_eps")
+    ) <= 0:
+
         return False
 
-    # TTM 營收必須存在
-    if num(stock.get("ttm_revenue")) <= 0:
+    # TTM 營收必須為正
+    if num(
+        stock.get("ttm_revenue")
+    ) <= 0:
+
         return False
 
     # TTM 淨利必須為正
-    if num(stock.get("ttm_net_income")) <= 0:
+    if num(
+        stock.get("ttm_net_income")
+    ) <= 0:
+
         return False
 
     # ROE 不接受負值
-    if num(stock.get("roe_ttm")) < 0:
+    if num(
+        stock.get("roe_ttm")
+    ) < 0:
+
         return False
 
     return True
 
 
 # ============================================================
-# 技術面評分
+# 技術面分數
 # ============================================================
 
 def technical_score(stock):
 
     score = 0
 
-    close = num(stock.get("close"))
-    ma5 = num(stock.get("ma5"))
-    ma20 = num(stock.get("ma20"))
-    ma60 = num(stock.get("ma60"))
+    close = num(
+        stock.get("close")
+    )
+
+    ma5 = num(
+        stock.get("ma5")
+    )
+
+    ma20 = num(
+        stock.get("ma20")
+    )
+
+    ma60 = num(
+        stock.get("ma60")
+    )
 
     volume_ratio = num(
         stock.get("volume_ratio_20d")
@@ -176,66 +242,61 @@ def technical_score(stock):
         stock.get("return_20d")
     )
 
-    # --------------------------------------------------------
-    # 收盤價站上 MA20
-    # --------------------------------------------------------
-
+    # 收盤站上 MA20
     if (
         close > 0
         and ma20 > 0
         and close > ma20
     ):
+
         score += 3
 
-    # --------------------------------------------------------
     # MA20 > MA60
-    # --------------------------------------------------------
-
     if (
         ma20 > 0
         and ma60 > 0
         and ma20 > ma60
     ):
+
         score += 3
 
-    # --------------------------------------------------------
     # MA5 > MA20
-    # --------------------------------------------------------
-
     if (
         ma5 > 0
         and ma20 > 0
         and ma5 > ma20
     ):
+
         score += 2
 
-    # --------------------------------------------------------
-    # 5 日報酬為正
-    # --------------------------------------------------------
-
+    # 5日報酬為正
     if return5 > 0:
+
         score += 1
 
-    # --------------------------------------------------------
-    # 20 日報酬為正
-    # --------------------------------------------------------
-
+    # 20日報酬為正
     if return20 > 0:
+
         score += 2
 
-    # --------------------------------------------------------
     # 成交量放大
-    # --------------------------------------------------------
-
     if volume_ratio >= 1.2:
+
         score += 1
 
     return score
 
 
 # ============================================================
-# 從 Top100 + 基本面 + 技術面
-# 篩選最終 0～5 檔
+# 最終選股
+#
+# Top100
+# ↓
+# 基本面
+# ↓
+# 技術面
+# ↓
+# 最多 5 檔
 # ============================================================
 
 def select_final_stocks():
@@ -268,31 +329,32 @@ def select_final_stocks():
         f"基本面資料：{len(fundamentals)} 檔"
     )
 
-    # --------------------------------------------------------
-    # 基本面資料建立索引
-    # --------------------------------------------------------
-
     fundamental_map = {}
 
     for stock in fundamentals:
 
         symbol = str(
-            stock.get("symbol", "")
+            stock.get(
+                "symbol",
+                ""
+            )
         ).strip()
 
         if symbol:
-            fundamental_map[symbol] = stock
+
+            fundamental_map[
+                symbol
+            ] = stock
 
     candidates = []
-
-    # --------------------------------------------------------
-    # Top100 → 基本面
-    # --------------------------------------------------------
 
     for stock in top100:
 
         symbol = str(
-            stock.get("symbol", "")
+            stock.get(
+                "symbol",
+                ""
+            )
         ).strip()
 
         if not symbol:
@@ -305,15 +367,11 @@ def select_final_stocks():
         if fundamental is None:
             continue
 
-        # 基本面不合格
         if not fundamental_pass(
             fundamental
         ):
-            continue
 
-        # ----------------------------------------------------
-        # 合併 Top100 + 基本面資料
-        # ----------------------------------------------------
+            continue
 
         merged = dict(stock)
 
@@ -321,62 +379,52 @@ def select_final_stocks():
             fundamental
         )
 
-        # ----------------------------------------------------
-        # 技術面
-        # ----------------------------------------------------
-
         tech_score = technical_score(
             merged
         )
 
-        # ----------------------------------------------------
-        # 技術面最低門檻
-        # ----------------------------------------------------
-
+        # 技術面至少 4 分
         if tech_score < 4:
             continue
 
-        merged["_technical_score"] = (
-            tech_score
-        )
+        merged[
+            "_technical_score"
+        ] = tech_score
 
         candidates.append(
             merged
         )
 
-    # --------------------------------------------------------
     # 排序
-    #
-    # 1. 技術面
-    # 2. ROE
-    # 3. 成交金額
-    # --------------------------------------------------------
-
     candidates.sort(
+
         key=lambda x: (
+
             num(
                 x.get(
                     "_technical_score"
                 )
             ),
+
             num(
                 x.get(
                     "roe_ttm"
                 )
             ),
+
             num(
                 x.get(
                     "trading_value"
                 )
             )
+
         ),
+
         reverse=True
+
     )
 
-    # --------------------------------------------------------
     # 最多 5 檔
-    # --------------------------------------------------------
-
     final_stocks = candidates[
         :MAX_STOCKS
     ]
@@ -391,19 +439,19 @@ def select_final_stocks():
         f"{len(final_stocks)} 檔"
     )
 
-    print()
-
     for index, stock in enumerate(
         final_stocks,
         start=1
     ):
 
         print(
+
             f"#{index} "
             f"{stock.get('symbol')} "
             f"{stock.get('name')} "
             f"技術分數="
             f"{stock.get('_technical_score')}"
+
         )
 
     return (
@@ -413,7 +461,7 @@ def select_final_stocks():
 
 
 # ============================================================
-# 建立新的等待訊號
+# 加入等待訊號
 # ============================================================
 
 def add_new_signals(
@@ -429,8 +477,7 @@ def add_new_signals(
     if not signal_date:
 
         print(
-            "tw_top100.json 沒有日期，"
-            "無法建立 AI 訊號。"
+            "找不到 Top100 日期"
         )
 
         return
@@ -444,32 +491,45 @@ def add_new_signals(
 
         (
             str(
-                item.get("symbol")
+                item.get(
+                    "symbol"
+                )
             ),
+
             str(
-                item.get("signal_date")
+                item.get(
+                    "signal_date"
+                )
             )
+
         )
 
         for item in signal_queue
+
     }
 
     holdings_symbols = {
 
         str(
-            item.get("symbol")
+            item.get(
+                "symbol"
+            )
         )
 
         for item in portfolio.get(
             "holdings",
             []
         )
+
     }
 
     for stock in final_stocks:
 
         symbol = str(
-            stock.get("symbol", "")
+            stock.get(
+                "symbol",
+                ""
+            )
         ).strip()
 
         if not symbol:
@@ -480,61 +540,60 @@ def add_new_signals(
             str(signal_date)
         )
 
-        # 已經存在
         if key in existing:
             continue
 
-        # 已經持有
         if symbol in holdings_symbols:
             continue
 
         reference_close = num(
-            stock.get("close")
+            stock.get(
+                "close"
+            )
         )
 
         if reference_close <= 0:
             continue
 
-        signal = {
-
-            "signal_date":
-                signal_date,
-
-            "symbol":
-                symbol,
-
-            "name":
-                stock.get(
-                    "name",
-                    ""
-                ),
-
-            "market":
-                stock.get(
-                    "market",
-                    ""
-                ),
-
-            # ★ 鎖定 AI 選股日收盤價
-            "reference_close":
-                reference_close,
-
-            # ★ 第一次買入觸發價
-            "first_buy_trigger":
-                reference_close,
-
-            "status":
-                "waiting",
-
-            "first_buy_allocation":
-                FIRST_BUY_ALLOCATION,
-
-            "created_at":
-                now_string()
-        }
-
         signal_queue.append(
-            signal
+
+            {
+
+                "signal_date":
+                    signal_date,
+
+                "symbol":
+                    symbol,
+
+                "name":
+                    stock.get(
+                        "name",
+                        ""
+                    ),
+
+                "market":
+                    stock.get(
+                        "market",
+                        ""
+                    ),
+
+                "reference_close":
+                    reference_close,
+
+                "first_buy_trigger":
+                    reference_close,
+
+                "status":
+                    "waiting",
+
+                "first_buy_allocation":
+                    FIRST_BUY_ALLOCATION,
+
+                "created_at":
+                    now_string()
+
+            }
+
         )
 
         existing.add(
@@ -542,11 +601,13 @@ def add_new_signals(
         )
 
         print(
+
             f"新增等待訊號："
             f"{symbol} "
             f"{stock.get('name', '')} "
             f"參考收盤="
             f"{reference_close}"
+
         )
 
 
@@ -554,7 +615,9 @@ def add_new_signals(
 # TWSE 即時行情
 # ============================================================
 
-def get_twse_quotes(symbols):
+def get_twse_quotes(
+    symbols
+):
 
     quotes = {}
 
@@ -562,26 +625,43 @@ def get_twse_quotes(symbols):
         return quotes
 
     ex_ch = "|".join(
+
         f"tse_{symbol}.tw"
+
         for symbol in symbols
+
     )
 
     try:
 
         response = requests.get(
+
             "https://mis.twse.com.tw/"
             "stock/api/"
             "getStockInfo.jsp",
+
             params={
-                "ex_ch": ex_ch,
-                "json": "1",
-                "delay": "0"
+
+                "ex_ch":
+                    ex_ch,
+
+                "json":
+                    "1",
+
+                "delay":
+                    "0"
+
             },
+
             headers={
+
                 "User-Agent":
                     "Mozilla/5.0"
+
             },
+
             timeout=20
+
         )
 
         response.raise_for_status()
@@ -594,7 +674,10 @@ def get_twse_quotes(symbols):
         ):
 
             symbol = str(
-                item.get("c", "")
+                item.get(
+                    "c",
+                    ""
+                )
             )
 
             if not symbol:
@@ -602,7 +685,10 @@ def get_twse_quotes(symbols):
 
             price = None
 
+            # ------------------------------------------------
             # 最新成交價
+            # ------------------------------------------------
+
             z = item.get("z")
 
             if z not in (
@@ -612,60 +698,21 @@ def get_twse_quotes(symbols):
             ):
 
                 try:
+
                     price = float(z)
+
                 except:
+
                     price = None
 
-            # 如果沒有最新成交價
-            # 使用最佳賣價
-            if price is None:
-
-                ask = item.get("a")
-
-                if ask:
-
-                    try:
-
-                        first = ask.split(
-                            "_"
-                        )[0]
-
-                        if first not in (
-                            "",
-                            "-"
-                        ):
-
-                            price = float(
-                                first
-                            )
-
-                    except:
-                        pass
-
-            # 再使用最佳買價
-            if price is None:
-
-                bid = item.get("b")
-
-                if bid:
-
-                    try:
-
-                        first = bid.split(
-                            "_"
-                        )[0]
-
-                        if first not in (
-                            "",
-                            "-"
-                        ):
-
-                            price = float(
-                                first
-                            )
-
-                    except:
-                        pass
+            # ------------------------------------------------
+            # 注意：
+            #
+            # 沒有真正成交價時，
+            # 不使用昨收。
+            #
+            # 避免週末把昨收誤判成盤中價格。
+            # ------------------------------------------------
 
             if (
                 price is not None
@@ -684,7 +731,14 @@ def get_twse_quotes(symbols):
                         item.get(
                             "t",
                             ""
+                        ),
+
+                    "date":
+                        item.get(
+                            "d",
+                            ""
                         )
+
                 }
 
     except Exception as e:
@@ -697,10 +751,12 @@ def get_twse_quotes(symbols):
 
 
 # ============================================================
-# TPEx 即時行情
+# TPEx
 # ============================================================
 
-def get_tpex_quotes(symbols):
+def get_tpex_quotes(
+    symbols
+):
 
     quotes = {}
 
@@ -710,14 +766,20 @@ def get_tpex_quotes(symbols):
     try:
 
         response = requests.get(
+
             "https://www.tpex.org.tw/"
             "openapi/v1.1/"
             "tpex_mainboard_quotes",
+
             headers={
+
                 "User-Agent":
                     "Mozilla/5.0"
+
             },
+
             timeout=20
+
         )
 
         response.raise_for_status()
@@ -731,19 +793,27 @@ def get_tpex_quotes(symbols):
         for item in data:
 
             symbol = str(
+
                 item.get(
                     "SecuritiesCompanyCode",
                     ""
                 )
+
             )
 
             if symbol not in wanted:
                 continue
 
             price_value = (
+
                 item.get("Close")
+
                 or
-                item.get("ClosingPrice")
+
+                item.get(
+                    "ClosingPrice"
+                )
+
             )
 
             price = num(
@@ -765,7 +835,11 @@ def get_tpex_quotes(symbols):
                         "TPEX",
 
                     "time":
-                        ""
+                        "",
+
+                    "date":
+                        today_string()
+
                 }
 
     except Exception as e:
@@ -778,10 +852,12 @@ def get_tpex_quotes(symbols):
 
 
 # ============================================================
-# 取得所有需要監控的即時價格
+# 取得行情
 # ============================================================
 
-def get_realtime_quotes(stocks):
+def get_realtime_quotes(
+    stocks
+):
 
     quotes = {}
 
@@ -791,11 +867,17 @@ def get_realtime_quotes(stocks):
     for stock in stocks:
 
         symbol = str(
-            stock.get("symbol", "")
+            stock.get(
+                "symbol",
+                ""
+            )
         )
 
         market = str(
-            stock.get("market", "")
+            stock.get(
+                "market",
+                ""
+            )
         ).upper()
 
         if not symbol:
@@ -809,7 +891,7 @@ def get_realtime_quotes(stocks):
 
         elif market in (
             "TPEX",
-            "TPEX "
+            "TPEx"
         ):
 
             tpex_symbols.append(
@@ -832,16 +914,24 @@ def get_realtime_quotes(stocks):
 
 
 # ============================================================
-# 第一次買入
-#
-# 規則：
-#
-# 8/28 選股
-# ↓
-# 8/31 以後才可以買
-# ↓
-# 盤中價格 <= 8/28 收盤
-# ↓
+# 是否允許今天進行交易
+# ============================================================
+
+def is_trading_day():
+
+    weekday = datetime.now().weekday()
+
+    # 5 = Saturday
+    # 6 = Sunday
+
+    if weekday >= 5:
+
+        return False
+
+    return True
+
+
+# ============================================================
 # 第一次買入
 # ============================================================
 
@@ -851,6 +941,19 @@ def process_first_buy(
 ):
 
     today = today_string()
+
+    # --------------------------------------------------------
+    # ★ 週末絕對不買
+    # --------------------------------------------------------
+
+    if not is_trading_day():
+
+        print(
+            "今天不是交易日，"
+            "不執行任何買入。"
+        )
+
+        return
 
     for signal in portfolio.get(
         "signal_queue",
@@ -875,6 +978,7 @@ def process_first_buy(
         # ----------------------------------------------------
 
         if str(signal_date) >= str(today):
+
             continue
 
         symbol = str(
@@ -889,13 +993,53 @@ def process_first_buy(
         )
 
         if quote is None:
+
             continue
 
+        # ----------------------------------------------------
+        # 確認行情日期
+        #
+        # TWSE 如果有日期欄位，
+        # 必須是今天。
+        # ----------------------------------------------------
+
+        quote_date = str(
+            quote.get(
+                "date",
+                ""
+            )
+        )
+
+        if quote_date:
+
+            normalized_quote_date = (
+                quote_date.replace(
+                    "/",
+                    "-"
+                )
+            )
+
+            if normalized_quote_date != today:
+
+                print(
+
+                    f"{symbol} "
+                    f"行情日期 {quote_date} "
+                    f"不是今天 {today}，"
+                    f"不買。"
+
+                )
+
+                continue
+
         current_price = num(
-            quote.get("price")
+            quote.get(
+                "price"
+            )
         )
 
         if current_price <= 0:
+
             continue
 
         reference_close = num(
@@ -905,33 +1049,42 @@ def process_first_buy(
         )
 
         if reference_close <= 0:
+
             continue
 
         # ====================================================
-        # ★ 核心規則
+        # ★ 核心買入規則
         #
-        # 盤中價格 <= 選股日收盤價
+        # 當日盤中價格
+        # <= AI 選股日收盤價
+        #
+        # 才買入
         # ====================================================
 
         if current_price > reference_close:
+
             continue
 
         # ----------------------------------------------------
-        # 每檔最多 20%
+        # 每檔目標部位 = 初始資金 20%
         # ----------------------------------------------------
 
         target_budget = (
+
             INITIAL_CAPITAL
             * MAX_ALLOCATION_PER_STOCK
+
         )
 
         # ----------------------------------------------------
-        # 第一次 = 30%
+        # 第一筆 = 目標部位 30%
         # ----------------------------------------------------
 
         buy_budget = (
+
             target_budget
             * FIRST_BUY_ALLOCATION
+
         )
 
         cash = num(
@@ -954,31 +1107,39 @@ def process_first_buy(
         )
 
         quantity = int(
+
             buy_budget
             // current_price
+
         )
 
         if quantity <= 0:
 
             print(
+
                 f"{symbol} "
-                f"現金不足以買入 1 股"
+                f"資金不足以買入 1 股"
+
             )
 
             continue
 
         actual_amount = (
+
             quantity
             * current_price
+
         )
 
         # ----------------------------------------------------
-        # 扣除現金
+        # 扣現金
         # ----------------------------------------------------
 
         portfolio["cash"] = (
+
             cash
             - actual_amount
+
         )
 
         # ----------------------------------------------------
@@ -991,6 +1152,7 @@ def process_first_buy(
         ).append(
 
             {
+
                 "symbol":
                     symbol,
 
@@ -1041,7 +1203,9 @@ def process_first_buy(
 
                 "allocation_used":
                     FIRST_BUY_ALLOCATION
+
             }
+
         )
 
         # ----------------------------------------------------
@@ -1057,7 +1221,7 @@ def process_first_buy(
         )
 
         # ----------------------------------------------------
-        # 寫入交易紀錄
+        # 交易紀錄
         # ----------------------------------------------------
 
         portfolio.setdefault(
@@ -1066,6 +1230,7 @@ def process_first_buy(
         ).append(
 
             {
+
                 "date":
                     today,
 
@@ -1101,19 +1266,23 @@ def process_first_buy(
 
                 "reference_close":
                     reference_close
+
             }
+
         )
 
         print(
+
             f"★ 第一筆買入："
             f"{symbol} "
             f"{quantity} 股 @ "
             f"{current_price}"
+
         )
 
 
 # ============================================================
-# 更新目前持股
+# 更新持股價格
 # ============================================================
 
 def update_holdings(
@@ -1141,7 +1310,9 @@ def update_holdings(
             continue
 
         current_price = num(
-            quote.get("price")
+            quote.get(
+                "price"
+            )
         )
 
         if current_price <= 0:
@@ -1160,18 +1331,24 @@ def update_holdings(
         )
 
         market_value = (
+
             quantity
             * current_price
+
         )
 
         invested = (
+
             quantity
             * average_cost
+
         )
 
         profit = (
+
             market_value
             - invested
+
         )
 
         return_percent = 0
@@ -1179,9 +1356,11 @@ def update_holdings(
         if invested > 0:
 
             return_percent = (
+
                 profit
                 / invested
                 * 100
+
             )
 
         holding[
@@ -1227,6 +1406,7 @@ def update_waiting(
             "holdings",
             []
         )
+
     }
 
     for signal in portfolio.get(
@@ -1248,11 +1428,13 @@ def update_waiting(
         )
 
         if symbol in holdings_symbols:
+
             continue
 
         waiting.append(
 
             {
+
                 "symbol":
                     symbol,
 
@@ -1274,14 +1456,16 @@ def update_waiting(
 
                 "status":
                     "等待價格 ≤ 選股日收盤"
+
             }
+
         )
 
     portfolio["waiting"] = waiting
 
 
 # ============================================================
-# 更新總資產
+# 總資產
 # ============================================================
 
 def update_total_assets(
@@ -1307,6 +1491,7 @@ def update_total_assets(
             "holdings",
             []
         )
+
     )
 
     total_assets = (
@@ -1331,9 +1516,11 @@ def update_total_assets(
     if initial_capital > 0:
 
         total_return = (
+
             total_profit
             / initial_capital
             * 100
+
         )
 
     portfolio[
@@ -1412,6 +1599,7 @@ def update_daily_performance(
                     []
                 )
             )
+
     }
 
     existing = None
@@ -1423,6 +1611,7 @@ def update_daily_performance(
         ) == today:
 
             existing = item
+
             break
 
     if existing is None:
@@ -1438,6 +1627,7 @@ def update_daily_performance(
         )
 
     performance.sort(
+
         key=lambda x:
             str(
                 x.get(
@@ -1445,6 +1635,7 @@ def update_daily_performance(
                     ""
                 )
             )
+
     )
 
 
@@ -1466,15 +1657,13 @@ def main():
     print()
 
     # --------------------------------------------------------
-    # 讀取 Portfolio
+    # 1. Portfolio
     # --------------------------------------------------------
 
     portfolio = load_json(
         PORTFOLIO_FILE,
         default_portfolio()
     )
-
-    # 補齊舊 JSON 缺少欄位
 
     defaults = default_portfolio()
 
@@ -1485,7 +1674,7 @@ def main():
             portfolio[key] = value
 
     # --------------------------------------------------------
-    # 1. AI 最終 0～5 檔
+    # 2. AI 最終 0～5 檔
     # --------------------------------------------------------
 
     (
@@ -1494,17 +1683,21 @@ def main():
     ) = select_final_stocks()
 
     # --------------------------------------------------------
-    # 2. 加入等待訊號
+    # 3. 建立等待訊號
     # --------------------------------------------------------
 
     add_new_signals(
+
         portfolio,
+
         top100_data,
+
         final_stocks
+
     )
 
     # --------------------------------------------------------
-    # 3. 建立監控清單
+    # 4. 建立監控清單
     # --------------------------------------------------------
 
     monitor = {}
@@ -1535,6 +1728,7 @@ def main():
                         "market",
                         ""
                     )
+
             }
 
     for holding in portfolio.get(
@@ -1559,6 +1753,7 @@ def main():
                     "market",
                     ""
                 )
+
         }
 
     monitor_stocks = list(
@@ -1566,6 +1761,7 @@ def main():
     )
 
     print()
+
     print(
         "目前監控：",
         [
@@ -1575,37 +1771,54 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 4. 即時行情
+    # 5. 只有交易日才取得行情
     # --------------------------------------------------------
 
-    quotes = get_realtime_quotes(
-        monitor_stocks
-    )
+    quotes = {}
 
-    print(
-        f"取得行情：{len(quotes)} 檔"
-    )
+    if is_trading_day():
+
+        quotes = get_realtime_quotes(
+            monitor_stocks
+        )
+
+        print(
+            f"取得行情：{len(quotes)} 檔"
+        )
+
+    else:
+
+        print(
+            "今天為週末，"
+            "不取得行情、不買入。"
+        )
 
     # --------------------------------------------------------
-    # 5. 第一次買入
+    # 6. 第一次買入
     # --------------------------------------------------------
 
     process_first_buy(
+
         portfolio,
+
         quotes
+
     )
 
     # --------------------------------------------------------
-    # 6. 更新持股
+    # 7. 更新持股
     # --------------------------------------------------------
 
     update_holdings(
+
         portfolio,
+
         quotes
+
     )
 
     # --------------------------------------------------------
-    # 7. 更新等待名單
+    # 8. 更新等待名單
     # --------------------------------------------------------
 
     update_waiting(
@@ -1613,7 +1826,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 8. 更新總資產
+    # 9. 更新總資產
     # --------------------------------------------------------
 
     update_total_assets(
@@ -1621,7 +1834,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 9. 更新每日績效
+    # 10. 更新每日績效
     # --------------------------------------------------------
 
     update_daily_performance(
@@ -1629,24 +1842,31 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 10. 更新時間
+    # 11. 更新時間
     # --------------------------------------------------------
 
-    portfolio["date"] = today_string()
+    portfolio[
+        "date"
+    ] = today_string()
 
-    portfolio["updated_at"] = now_string()
+    portfolio[
+        "updated_at"
+    ] = now_string()
 
     # --------------------------------------------------------
-    # 11. 儲存
+    # 12. 儲存
     # --------------------------------------------------------
 
     save_json(
+
         PORTFOLIO_FILE,
+
         portfolio
+
     )
 
     # --------------------------------------------------------
-    # 12. 顯示結果
+    # 13. 顯示
     # --------------------------------------------------------
 
     print()
@@ -1739,8 +1959,9 @@ def main():
 
 
 # ============================================================
-# Run
+# 執行
 # ============================================================
 
 if __name__ == "__main__":
+
     main()
