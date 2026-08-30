@@ -14,10 +14,6 @@
 
 <style>
 
-/* =========================================================
-   基本
-   ========================================================= */
-
 * {
     box-sizing: border-box;
 }
@@ -57,15 +53,17 @@ body {
 
 /* =========================================================
    Header
-   ========================================================= */
+========================================================= */
 
 .top {
 
     display: flex;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
-    align-items: center;
+    align-items:
+        center;
 
     gap: 14px;
 
@@ -98,7 +96,8 @@ body {
 
     text-decoration: none;
 
-    border: 1px solid #d5dee8;
+    border:
+        1px solid #d5dee8;
 
     background: #fff;
 
@@ -133,7 +132,7 @@ body {
 
 /* =========================================================
    Hero
-   ========================================================= */
+========================================================= */
 
 .hero {
 
@@ -171,8 +170,8 @@ body {
 
 
 /* =========================================================
-   狀態
-   ========================================================= */
+   狀態卡
+========================================================= */
 
 .status-grid {
 
@@ -235,7 +234,7 @@ body {
 
 /* =========================================================
    Section
-   ========================================================= */
+========================================================= */
 
 .section {
 
@@ -263,8 +262,8 @@ body {
 
 
 /* =========================================================
-   評分說明
-   ========================================================= */
+   評分模型
+========================================================= */
 
 .score-rules {
 
@@ -311,7 +310,7 @@ body {
 
 /* =========================================================
    控制區
-   ========================================================= */
+========================================================= */
 
 .controls {
 
@@ -320,7 +319,8 @@ body {
     justify-content:
         space-between;
 
-    align-items: center;
+    align-items:
+        center;
 
     gap: 12px;
 
@@ -398,7 +398,7 @@ body {
 
 /* =========================================================
    Summary
-   ========================================================= */
+========================================================= */
 
 .summary {
 
@@ -411,8 +411,8 @@ body {
 
 
 /* =========================================================
-   表格
-   ========================================================= */
+   Table
+========================================================= */
 
 .table-wrapper {
 
@@ -505,7 +505,7 @@ tbody tr:hover {
 
 /* =========================================================
    Rank
-   ========================================================= */
+========================================================= */
 
 .rank {
 
@@ -525,8 +525,8 @@ tbody tr:hover {
 
 
 /* =========================================================
-   AI Score
-   ========================================================= */
+   Score
+========================================================= */
 
 .ai-score {
 
@@ -553,7 +553,7 @@ tbody tr:hover {
 
 /* =========================================================
    正負
-   ========================================================= */
+========================================================= */
 
 .positive {
 
@@ -577,7 +577,7 @@ tbody tr:hover {
 
 /* =========================================================
    Badge
-   ========================================================= */
+========================================================= */
 
 .badge {
 
@@ -617,7 +617,7 @@ tbody tr:hover {
 
 /* =========================================================
    Loading / Error
-   ========================================================= */
+========================================================= */
 
 .loading {
 
@@ -643,8 +643,8 @@ tbody tr:hover {
 
 
 /* =========================================================
-   手機
-   ========================================================= */
+   Tablet
+========================================================= */
 
 @media (max-width: 900px) {
 
@@ -751,6 +751,10 @@ tbody tr:hover {
 }
 
 
+/* =========================================================
+   Mobile
+========================================================= */
+
 @media (max-width: 600px) {
 
     .container {
@@ -837,7 +841,7 @@ tbody tr:hover {
 
 /* =========================================================
    超小手機
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 400px) {
 
@@ -942,7 +946,7 @@ tbody tr:hover {
     </h1>
 
     <p>
-        台股成交金額 Top 100 → 基本面 → 技術面 → 法人動向 → AI 候選股評分
+        台股成交金額 Top 100 → 基本面 → 技術面 → 法人動向 → AI 候選股
     </p>
 
 </section>
@@ -958,7 +962,7 @@ tbody tr:hover {
     <div class="status-card">
 
         <div class="status-title">
-            候選股票
+            第一階段候選池
         </div>
 
         <div
@@ -989,7 +993,7 @@ tbody tr:hover {
         </div>
 
         <div class="status-small">
-            有完整基本面資料
+            有基本面資料
         </div>
 
     </div>
@@ -1009,7 +1013,7 @@ tbody tr:hover {
         </div>
 
         <div class="status-small">
-            評分達 60 分
+            AI Score ≥ 60
         </div>
 
     </div>
@@ -1038,7 +1042,7 @@ tbody tr:hover {
 
 
 <!-- =====================================================
-     評分規則
+     評分模型
 ===================================================== -->
 
 <section class="section">
@@ -1091,7 +1095,7 @@ tbody tr:hover {
 
             <div class="score-rule-desc">
 
-                外資、投信、券商
+                外資、投信、券商、
                 三大法人淨買賣。
 
             </div>
@@ -1120,18 +1124,20 @@ tbody tr:hover {
         <div class="tabs">
 
             <button
-                class="tab active"
+                class="tab"
                 data-mode="all"
             >
                 全部
             </button>
 
+
             <button
-                class="tab"
+                class="tab active"
                 data-mode="candidate"
             >
                 ⭐ 候選股
             </button>
+
 
             <button
                 class="tab"
@@ -1283,9 +1289,14 @@ let fundamentalMap = new Map();
 
 let rankingData = [];
 
-let topN = 10;
 
-let currentMode = "all";
+/*
+ * 預設：
+ * 直接顯示 AI 候選股
+ */
+let currentMode = "candidate";
+
+let topN = 10;
 
 
 /* ========================================================
@@ -1321,10 +1332,13 @@ function num(value) {
 
 function pct(value) {
 
-    const n = num(value);
+    const n =
+        num(value);
 
     if (n === null) {
+
         return "-";
+
     }
 
     return (
@@ -1343,21 +1357,31 @@ function pct(value) {
    一般數字
 ======================================================== */
 
-function number(value, digits = 2) {
+function number(
+    value,
+    digits = 2
+) {
 
-    const n = num(value);
+    const n =
+        num(value);
 
     if (n === null) {
+
         return "-";
+
     }
 
     return n.toLocaleString(
         "zh-TW",
         {
-            minimumFractionDigits: digits,
-            maximumFractionDigits: digits
+            minimumFractionDigits:
+                digits,
+
+            maximumFractionDigits:
+                digits
         }
     );
+
 }
 
 
@@ -1365,34 +1389,47 @@ function number(value, digits = 2) {
    法人數字
 ======================================================== */
 
-function formatInstitutional(value) {
+function formatInstitutional(
+    value
+) {
 
-    const n = num(value);
+    const n =
+        num(value);
 
     if (n === null) {
+
         return "-";
+
     }
 
-    const abs = Math.abs(n);
+    const abs =
+        Math.abs(n);
 
     let result;
 
-    if (abs >= 100000000) {
+
+    if (
+        abs >= 100000000
+    ) {
 
         result =
             (
-                abs / 100000000
+                abs /
+                100000000
             ).toFixed(2)
             +
             "億";
 
     }
 
-    else if (abs >= 10000) {
+    else if (
+        abs >= 10000
+    ) {
 
         result =
             (
-                abs / 10000
+                abs /
+                10000
             ).toFixed(0)
             +
             "萬";
@@ -1403,9 +1440,12 @@ function formatInstitutional(value) {
 
         result =
             Math.round(abs)
-                .toLocaleString("zh-TW");
+                .toLocaleString(
+                    "zh-TW"
+                );
 
     }
+
 
     return (
         n > 0
@@ -1416,194 +1456,323 @@ function formatInstitutional(value) {
     )
     +
     result;
+
 }
 
 
 /* ========================================================
-   顏色
+   正負顏色
 ======================================================== */
 
-function positiveNegativeClass(value) {
+function positiveNegativeClass(
+    value
+) {
 
-    const n = num(value);
+    const n =
+        num(value);
 
     if (n === null) {
+
         return "neutral";
+
     }
 
     if (n > 0) {
+
         return "positive";
+
     }
 
     if (n < 0) {
+
         return "negative";
+
     }
 
     return "neutral";
+
 }
 
 
 /* ========================================================
    基本面評分
-   最高 40 分
+   40 分
 ======================================================== */
 
-function fundamentalScore(f) {
+function fundamentalScore(
+    f
+) {
 
     if (
         !f ||
         f.fundamental_available === false
     ) {
+
         return 0;
+
     }
 
 
     let score = 0;
 
 
-    /* 營收成長：最高 8 分 */
+    /* -----------------------------------------------------
+       營收 YoY
+       8 分
+    ----------------------------------------------------- */
 
     const revenueYoY =
         num(
             f.quarter_revenue_yoy
         );
 
-    if (revenueYoY !== null) {
 
-        if (revenueYoY >= 30) {
+    if (
+        revenueYoY !== null
+    ) {
+
+        if (
+            revenueYoY >= 30
+        ) {
+
             score += 8;
+
         }
 
-        else if (revenueYoY >= 15) {
+        else if (
+            revenueYoY >= 15
+        ) {
+
             score += 6;
+
         }
 
-        else if (revenueYoY > 0) {
+        else if (
+            revenueYoY > 0
+        ) {
+
             score += 4;
+
         }
 
-        else {
-            score += 0;
-        }
     }
 
 
-    /* 毛利率：最高 6 分 */
+    /* -----------------------------------------------------
+       毛利率
+       6 分
+    ----------------------------------------------------- */
 
     const grossMargin =
         num(
             f.quarter_gross_margin
         );
 
-    if (grossMargin !== null) {
 
-        if (grossMargin >= 40) {
+    if (
+        grossMargin !== null
+    ) {
+
+        if (
+            grossMargin >= 40
+        ) {
+
             score += 6;
+
         }
 
-        else if (grossMargin >= 25) {
+        else if (
+            grossMargin >= 25
+        ) {
+
             score += 4;
+
         }
 
-        else if (grossMargin >= 15) {
+        else if (
+            grossMargin >= 15
+        ) {
+
             score += 2;
+
         }
+
     }
 
 
-    /* 營益率：最高 6 分 */
+    /* -----------------------------------------------------
+       營益率
+       6 分
+    ----------------------------------------------------- */
 
     const operatingMargin =
         num(
             f.quarter_operating_margin
         );
 
-    if (operatingMargin !== null) {
 
-        if (operatingMargin >= 20) {
+    if (
+        operatingMargin !== null
+    ) {
+
+        if (
+            operatingMargin >= 20
+        ) {
+
             score += 6;
+
         }
 
-        else if (operatingMargin >= 10) {
+        else if (
+            operatingMargin >= 10
+        ) {
+
             score += 4;
+
         }
 
-        else if (operatingMargin > 0) {
+        else if (
+            operatingMargin > 0
+        ) {
+
             score += 2;
+
         }
+
     }
 
 
-    /* ROE：最高 10 分 */
+    /* -----------------------------------------------------
+       ROE
+       10 分
+    ----------------------------------------------------- */
 
     const roe =
         num(
             f.roe_ttm
         );
 
-    if (roe !== null) {
 
-        if (roe >= 20) {
+    if (
+        roe !== null
+    ) {
+
+        if (
+            roe >= 20
+        ) {
+
             score += 10;
+
         }
 
-        else if (roe >= 15) {
+        else if (
+            roe >= 15
+        ) {
+
             score += 8;
+
         }
 
-        else if (roe >= 10) {
+        else if (
+            roe >= 10
+        ) {
+
             score += 5;
+
         }
 
-        else if (roe > 0) {
+        else if (
+            roe > 0
+        ) {
+
             score += 2;
+
         }
+
     }
 
 
-    /* 負債比：最高 5 分 */
+    /* -----------------------------------------------------
+       負債比
+       5 分
+    ----------------------------------------------------- */
 
     const debtRatio =
         num(
             f.debt_ratio
         );
 
-    if (debtRatio !== null) {
 
-        if (debtRatio <= 30) {
+    if (
+        debtRatio !== null
+    ) {
+
+        if (
+            debtRatio <= 30
+        ) {
+
             score += 5;
+
         }
 
-        else if (debtRatio <= 50) {
+        else if (
+            debtRatio <= 50
+        ) {
+
             score += 4;
+
         }
 
-        else if (debtRatio <= 65) {
+        else if (
+            debtRatio <= 65
+        ) {
+
             score += 2;
+
         }
+
     }
 
 
-    /* 流動比：最高 5 分 */
+    /* -----------------------------------------------------
+       流動比
+       5 分
+    ----------------------------------------------------- */
 
     const currentRatio =
         num(
             f.current_ratio
         );
 
-    if (currentRatio !== null) {
 
-        if (currentRatio >= 2) {
+    if (
+        currentRatio !== null
+    ) {
+
+        if (
+            currentRatio >= 2
+        ) {
+
             score += 5;
+
         }
 
-        else if (currentRatio >= 1.5) {
+        else if (
+            currentRatio >= 1.5
+        ) {
+
             score += 4;
+
         }
 
-        else if (currentRatio >= 1) {
+        else if (
+            currentRatio >= 1
+        ) {
+
             score += 2;
+
         }
+
     }
 
 
@@ -1611,125 +1780,202 @@ function fundamentalScore(f) {
         score,
         40
     );
+
 }
 
 
 /* ========================================================
    技術面評分
-   最高 35 分
+   35 分
 ======================================================== */
 
-function technicalScore(s) {
+function technicalScore(
+    s
+) {
 
     let score = 0;
 
 
-    /* 5日報酬：最高 7 */
+    /* -----------------------------------------------------
+       5日報酬
+       7 分
+    ----------------------------------------------------- */
 
     const r5 =
         num(
             s.return_5d
         );
 
-    if (r5 !== null) {
 
-        if (r5 >= 10) {
+    if (
+        r5 !== null
+    ) {
+
+        if (
+            r5 >= 10
+        ) {
+
             score += 7;
+
         }
 
-        else if (r5 >= 5) {
+        else if (
+            r5 >= 5
+        ) {
+
             score += 5;
+
         }
 
-        else if (r5 > 0) {
+        else if (
+            r5 > 0
+        ) {
+
             score += 3;
+
         }
+
     }
 
 
-    /* 20日報酬：最高 8 */
+    /* -----------------------------------------------------
+       20日報酬
+       8 分
+    ----------------------------------------------------- */
 
     const r20 =
         num(
             s.return_20d
         );
 
-    if (r20 !== null) {
 
-        if (r20 >= 20) {
+    if (
+        r20 !== null
+    ) {
+
+        if (
+            r20 >= 20
+        ) {
+
             score += 8;
+
         }
 
-        else if (r20 >= 10) {
+        else if (
+            r20 >= 10
+        ) {
+
             score += 6;
+
         }
 
-        else if (r20 > 0) {
+        else if (
+            r20 > 0
+        ) {
+
             score += 3;
+
         }
+
     }
 
 
-    /* 60日報酬：最高 7 */
+    /* -----------------------------------------------------
+       60日報酬
+       7 分
+    ----------------------------------------------------- */
 
     const r60 =
         num(
             s.return_60d
         );
 
-    if (r60 !== null) {
 
-        if (r60 >= 30) {
+    if (
+        r60 !== null
+    ) {
+
+        if (
+            r60 >= 30
+        ) {
+
             score += 7;
+
         }
 
-        else if (r60 >= 15) {
+        else if (
+            r60 >= 15
+        ) {
+
             score += 5;
+
         }
 
-        else if (r60 > 0) {
+        else if (
+            r60 > 0
+        ) {
+
             score += 3;
+
         }
+
     }
 
 
-    /* 20日量比：最高 5 */
+    /* -----------------------------------------------------
+       20日量比
+       5 分
+    ----------------------------------------------------- */
 
     const volumeRatio =
         num(
             s.volume_ratio_20d
         );
 
-    if (volumeRatio !== null) {
+
+    if (
+        volumeRatio !== null
+    ) {
 
         if (
             volumeRatio >= 1.5 &&
             volumeRatio <= 3
         ) {
+
             score += 5;
+
         }
 
         else if (
             volumeRatio >= 1.2
         ) {
+
             score += 3;
+
         }
 
         else if (
             volumeRatio >= 1
         ) {
+
             score += 2;
+
         }
+
     }
 
 
-    /* 股價相對 MA20：最高 8 */
+    /* -----------------------------------------------------
+       股價相對 MA20
+       8 分
+    ----------------------------------------------------- */
 
     const close =
         num(s.close);
 
     const ma20 =
         num(s.ma20);
+
 
     if (
         close !== null &&
@@ -1739,21 +1985,35 @@ function technicalScore(s) {
 
         const ratio =
             (
-                close / ma20
+                close /
+                ma20
             ) - 1;
 
 
-        if (ratio >= 0.10) {
+        if (
+            ratio >= 0.10
+        ) {
+
             score += 8;
+
         }
 
-        else if (ratio >= 0.03) {
+        else if (
+            ratio >= 0.03
+        ) {
+
             score += 6;
+
         }
 
-        else if (ratio >= 0) {
+        else if (
+            ratio >= 0
+        ) {
+
             score += 3;
+
         }
+
     }
 
 
@@ -1761,15 +2021,18 @@ function technicalScore(s) {
         score,
         35
     );
+
 }
 
 
 /* ========================================================
    法人評分
-   最高 25 分
+   25 分
 ======================================================== */
 
-function institutionalScore(s) {
+function institutionalScore(
+    s
+) {
 
     let score = 0;
 
@@ -1779,10 +2042,12 @@ function institutionalScore(s) {
             s.foreign_net
         ) || 0;
 
+
     const trust =
         num(
             s.trust_net
         ) || 0;
+
 
     const dealer =
         num(
@@ -1790,54 +2055,94 @@ function institutionalScore(s) {
         ) || 0;
 
 
-    /* 外資 */
-
-    if (foreign > 0) {
-        score += 6;
-    }
-
-    else if (foreign < 0) {
-        score += 1;
-    }
-
-
-    /* 投信 */
-
-    if (trust > 0) {
-        score += 6;
-    }
-
-    else if (trust < 0) {
-        score += 1;
-    }
-
-
-    /* 自營商 */
-
-    if (dealer > 0) {
-        score += 4;
-    }
-
-    else if (dealer < 0) {
-        score += 1;
-    }
-
-
-    /* 三大法人方向 */
-
     const total =
         num(
             s.institutional_net
         ) || 0;
 
 
-    if (total > 0) {
+    /* -----------------------------------------------------
+       外資
+       6 分
+    ----------------------------------------------------- */
+
+    if (
+        foreign > 0
+    ) {
+
+        score += 6;
+
+    }
+
+    else if (
+        foreign < 0
+    ) {
+
+        score += 1;
+
+    }
+
+
+    /* -----------------------------------------------------
+       投信
+       6 分
+    ----------------------------------------------------- */
+
+    if (
+        trust > 0
+    ) {
+
+        score += 6;
+
+    }
+
+    else if (
+        trust < 0
+    ) {
+
+        score += 1;
+
+    }
+
+
+    /* -----------------------------------------------------
+       自營商
+       4 分
+    ----------------------------------------------------- */
+
+    if (
+        dealer > 0
+    ) {
+
+        score += 4;
+
+    }
+
+    else if (
+        dealer < 0
+    ) {
+
+        score += 1;
+
+    }
+
+
+    /* -----------------------------------------------------
+       三大法人
+       9 分
+    ----------------------------------------------------- */
+
+    if (
+        total > 0
+    ) {
 
         score += 9;
 
     }
 
-    else if (total < 0) {
+    else if (
+        total < 0
+    ) {
 
         score += 1;
 
@@ -1848,24 +2153,30 @@ function institutionalScore(s) {
         score,
         25
     );
+
 }
 
 
 /* ========================================================
-   AI 總分
+   總分
 ======================================================== */
 
-function calculateScore(stock, fundamental) {
+function calculateScore(
+    stock,
+    fundamental
+) {
 
     const fScore =
         fundamentalScore(
             fundamental
         );
 
+
     const tScore =
         technicalScore(
             stock
         );
+
 
     const iScore =
         institutionalScore(
@@ -1893,6 +2204,7 @@ function calculateScore(stock, fundamental) {
             iScore
 
     };
+
 }
 
 
@@ -1900,29 +2212,52 @@ function calculateScore(stock, fundamental) {
    評級
 ======================================================== */
 
-function getRating(score) {
+function getRating(
+    score
+) {
 
-    if (score >= 80) {
+    if (
+        score >= 80
+    ) {
 
         return {
-            text: "🔥 高分",
-            className: "badge-buy"
+
+            text:
+                "🔥 高分",
+
+            className:
+                "badge-buy"
+
         };
 
     }
 
-    if (score >= 60) {
+
+    if (
+        score >= 60
+    ) {
 
         return {
-            text: "⭐ 候選",
-            className: "badge-watch"
+
+            text:
+                "⭐ 候選",
+
+            className:
+                "badge-watch"
+
         };
 
     }
+
 
     return {
-        text: "觀察",
-        className: "badge-neutral"
+
+        text:
+            "觀察",
+
+        className:
+            "badge-neutral"
+
     };
 
 }
@@ -1960,15 +2295,22 @@ function getSearchRows() {
                 )
                 .toLowerCase();
 
+
             const name =
                 String(
                     item.name
                 )
                 .toLowerCase();
 
+
             return (
-                symbol.includes(keyword) ||
-                name.includes(keyword)
+                symbol.includes(
+                    keyword
+                )
+                ||
+                name.includes(
+                    keyword
+                )
             );
 
         }
@@ -1987,30 +2329,51 @@ function getModeRows() {
         getSearchRows();
 
 
+    /*
+     * 全部
+     */
+    if (
+        currentMode ===
+        "all"
+    ) {
+
+        return rows;
+
+    }
+
+
+    /*
+     * AI 候選股
+     *
+     * Score >= 60
+     */
     if (
         currentMode ===
         "candidate"
     ) {
 
-        rows =
-            rows.filter(
-                item =>
-                    item.score >= 60
-            );
+        return rows.filter(
+            item =>
+                item.score >= 60
+        );
 
     }
 
 
+    /*
+     * 高分股
+     *
+     * Score >= 80
+     */
     if (
         currentMode ===
         "strong"
     ) {
 
-        rows =
-            rows.filter(
-                item =>
-                    item.score >= 80
-            );
+        return rows.filter(
+            item =>
+                item.score >= 80
+        );
 
     }
 
@@ -2021,7 +2384,7 @@ function getModeRows() {
 
 
 /* ========================================================
-   顯示表格
+   Render
 ======================================================== */
 
 function renderTable() {
@@ -2030,6 +2393,7 @@ function renderTable() {
         document.getElementById(
             "tableBody"
         );
+
 
     const summary =
         document.getElementById(
@@ -2051,18 +2415,51 @@ function renderTable() {
         );
 
 
+    let modeName;
+
+
+    if (
+        currentMode ===
+        "candidate"
+    ) {
+
+        modeName =
+            "AI 候選股";
+
+    }
+
+    else if (
+        currentMode ===
+        "strong"
+    ) {
+
+        modeName =
+            "高分股";
+
+    }
+
+    else {
+
+        modeName =
+            "全部";
+
+    }
+
+
     summary.textContent =
 
-        `AI 評分｜`
+        `${modeName}｜`
         +
-        `共 ${rankingData.length} 檔｜`
+        `第一階段候選池 ${rankingData.length} 檔｜`
         +
         `符合條件 ${filtered.length} 檔｜`
         +
         `顯示 TOP ${rows.length}`;
 
 
-    if (rows.length === 0) {
+    if (
+        rows.length === 0
+    ) {
 
         tbody.innerHTML = `
 
@@ -2085,7 +2482,10 @@ function renderTable() {
 
 
     rows.forEach(
-        (item, index) => {
+        (
+            item,
+            index
+        ) => {
 
             const rating =
                 getRating(
@@ -2126,11 +2526,13 @@ function renderTable() {
                 </td>
 
                 <td>
+
                     <span
                         class="badge ${rating.className}"
                     >
                         ${rating.text}
                     </span>
+
                 </td>
 
                 <td
@@ -2138,11 +2540,15 @@ function renderTable() {
                         item.revenue_yoy
                     )}"
                 >
-                    ${pct(item.revenue_yoy)}
+                    ${pct(
+                        item.revenue_yoy
+                    )}
                 </td>
 
                 <td>
-                    ${pct(item.gross_margin)}
+                    ${pct(
+                        item.gross_margin
+                    )}
                 </td>
 
                 <td
@@ -2150,7 +2556,9 @@ function renderTable() {
                         item.roe
                     )}"
                 >
-                    ${pct(item.roe)}
+                    ${pct(
+                        item.roe
+                    )}
                 </td>
 
                 <td
@@ -2158,7 +2566,9 @@ function renderTable() {
                         item.return_5d
                     )}"
                 >
-                    ${pct(item.return_5d)}
+                    ${pct(
+                        item.return_5d
+                    )}
                 </td>
 
                 <td
@@ -2166,7 +2576,9 @@ function renderTable() {
                         item.return_20d
                     )}"
                 >
-                    ${pct(item.return_20d)}
+                    ${pct(
+                        item.return_20d
+                    )}
                 </td>
 
                 <td
@@ -2174,7 +2586,9 @@ function renderTable() {
                         item.return_60d
                     )}"
                 >
-                    ${pct(item.return_60d)}
+                    ${pct(
+                        item.return_60d
+                    )}
                 </td>
 
                 <td>
@@ -2264,17 +2678,9 @@ function buildRanking() {
                         fundamental
                             ?.roe_ttm,
 
-                    return_5d:
-                        stock.return_5d,
-
-                    return_20d:
-                        stock.return_20d,
-
-                    return_60d:
-                        stock.return_60d,
-
                     volume_ratio:
-                        stock.volume_ratio_20d
+                        stock
+                            .volume_ratio_20d
 
                 };
 
@@ -2282,18 +2688,28 @@ function buildRanking() {
         );
 
 
+    /*
+     * 分數由高到低
+     */
     rankingData.sort(
-        (a, b) =>
+        (
+            a,
+            b
+        ) =>
             b.score -
             a.score
     );
 
 
+    /*
+     * AI 候選股數量
+     */
     document
         .getElementById(
             "candidateCount"
         )
         .textContent =
+
         rankingData.filter(
             item =>
                 item.score >= 60
@@ -2335,10 +2751,9 @@ async function loadData() {
         `;
 
 
-        /* ------------------------------------------------
-           同時載入兩個 JSON
-        ------------------------------------------------ */
-
+        /*
+         * 同時取得兩份 JSON
+         */
         const [
             topResponse,
             fundamentalResponse
@@ -2360,23 +2775,31 @@ async function loadData() {
             ]);
 
 
-        if (!topResponse.ok) {
+        if (
+            !topResponse.ok
+        ) {
 
             throw new Error(
+
                 "tw_top100.json 載入失敗：HTTP "
                 +
                 topResponse.status
+
             );
 
         }
 
 
-        if (!fundamentalResponse.ok) {
+        if (
+            !fundamentalResponse.ok
+        ) {
 
             throw new Error(
+
                 "tw_fundamentals.json 載入失敗：HTTP "
                 +
                 fundamentalResponse.status
+
             );
 
         }
@@ -2390,10 +2813,9 @@ async function loadData() {
             await fundamentalResponse.json();
 
 
-        /* ------------------------------------------------
-           Top 100
-        ------------------------------------------------ */
-
+        /*
+         * Top 100
+         */
         if (
             !Array.isArray(
                 topJson.stocks
@@ -2411,10 +2833,9 @@ async function loadData() {
             topJson.stocks;
 
 
-        /* ------------------------------------------------
-           基本面 Map
-        ------------------------------------------------ */
-
+        /*
+         * 基本面
+         */
         if (
             !Array.isArray(
                 fundamentalJson.stocks
@@ -2428,25 +2849,30 @@ async function loadData() {
         }
 
 
+        /*
+         * 建立 symbol → 基本面資料
+         */
         fundamentalMap =
             new Map(
 
                 fundamentalJson.stocks.map(
                     item => [
+
                         String(
                             item.symbol
                         ),
+
                         item
+
                     ]
                 )
 
             );
 
 
-        /* ------------------------------------------------
-           狀態
-        ------------------------------------------------ */
-
+        /*
+         * 狀態
+         */
         document
             .getElementById(
                 "stockCount"
@@ -2461,7 +2887,8 @@ async function loadData() {
             )
             .textContent =
 
-            fundamentalJson.fundamental_count
+            fundamentalJson
+                .fundamental_count
             ??
             fundamentalJson.stocks.filter(
                 item =>
@@ -2474,6 +2901,7 @@ async function loadData() {
                 "dataDate"
             )
             .textContent =
+
             topJson.date
             ??
             fundamentalJson.top100_date
@@ -2481,12 +2909,17 @@ async function loadData() {
             "-";
 
 
+        /*
+         * 建立 AI 排名
+         */
         buildRanking();
 
     }
 
 
-    catch (error) {
+    catch (
+        error
+    ) {
 
         console.error(
             "AI Trading 資料錯誤：",
@@ -2522,7 +2955,7 @@ async function loadData() {
 
                         請確認以下兩個檔案存在於網站根目錄：
 
-                        <br>
+                        <br><br>
 
                         <strong>
                             tw_top100.json
@@ -2548,7 +2981,7 @@ async function loadData() {
 
 
 /* ========================================================
-   模式按鈕
+   Tab
 ======================================================== */
 
 document
@@ -2562,6 +2995,10 @@ document
                 "click",
                 function() {
 
+
+                    /*
+                     * 移除所有 active
+                     */
                     document
                         .querySelectorAll(
                             ".tab"
@@ -2575,15 +3012,24 @@ document
                         );
 
 
+                    /*
+                     * 加入 active
+                     */
                     this.classList.add(
                         "active"
                     );
 
 
+                    /*
+                     * 更新模式
+                     */
                     currentMode =
                         this.dataset.mode;
 
 
+                    /*
+                     * 重新顯示
+                     */
                     renderTable();
 
                 }
