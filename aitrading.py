@@ -11,27 +11,42 @@ import requests
 # ============================================================
 #
 # 功能：
-# 1. TWSE + TPEx
-# 2. 依成交金額取得 Top 100
-# 3. 三大法人
-# 4. 歷史收盤價 / 成交量
-# 5. 計算：
-#       - change_percent
-#       - 5 / 20 / 60 / 120 / 250 日報酬
-#       - MA5 / MA20 / MA60 / MA120
-#       - 20 日平均成交量
-#       - 20 日成交量比
 #
-# 歷史資料會保存於：
+# 1. TWSE + TPEx 每日行情
+# 2. 成交金額 Top 100
+# 3. 三大法人
+# 4. 歷史價格
+# 5. 歷史資料初始化約 300 個交易日
+# 6. 自動計算：
+#
+#       change_percent
+#       return_5d
+#       return_20d
+#       return_60d
+#       return_120d
+#       return_250d
+#       MA5
+#       MA20
+#       MA60
+#       MA120
+#       avg_volume_20d
+#       volume_ratio_20d
+#
+#
+# 歷史資料：
+#
 #       tw_history.json
 #
-# Top 100 結果：
+# AI Top 100：
+#
 #       tw_top100.json
 #
 # ============================================================
 
 
 TOP_N = 100
+
+HISTORY_DAYS = 300
 
 OUTPUT_FILE = Path("tw_top100.json")
 
@@ -47,6 +62,15 @@ HEADERS = {
     ),
     "Accept": "application/json,text/plain,*/*",
 }
+
+
+# ============================================================
+# HTTP Session
+# ============================================================
+
+SESSION = requests.Session()
+
+SESSION.headers.update(HEADERS)
 
 
 # ============================================================
@@ -88,7 +112,21 @@ def clean_symbol(symbol):
     return str(symbol).strip()
 
 
-def is_common_stock(symbol):
+def is_tradeable_symbol(symbol):
+
+    """
+    我們目前的策略：
+
+    4 碼數字標的都允許。
+
+    因為我們已經決定：
+        股票可以
+        ETF 可以
+
+    目前只排除明顯不是一般 4 碼證券代號的項目。
+
+    後續如果要加入更多商品，再另外處理。
+    """
 
     symbol = clean_symbol(symbol)
 
@@ -102,7 +140,7 @@ def is_common_stock(symbol):
 # 日期
 # ============================================================
 
-def get_candidate_dates(days_back=10):
+def get_candidate_dates(days_back=500):
 
     today = datetime.now()
 
@@ -114,9 +152,11 @@ def get_candidate_dates(days_back=10):
 
         dates.append({
 
-            "twse": d.strftime("%Y%m%d"),
+            "twse":
+                d.strftime("%Y%m%d"),
 
-            "tpex": d.strftime("%Y/%m/%d"),
+            "tpex":
+                d.strftime("%Y/%m/%d"),
 
             "display":
                 d.strftime("%Y-%m-%d"),
@@ -127,7 +167,7 @@ def get_candidate_dates(days_back=10):
 
 
 # ============================================================
-# TWSE 當日行情
+# TWSE 每日行情
 # ============================================================
 
 def fetch_twse(date_string):
@@ -148,16 +188,14 @@ def fetch_twse(date_string):
     }
 
     print(
-        f"[TWSE] 取得資料：{date_string}"
+        f"[TWSE] {date_string}"
     )
 
-    response = requests.get(
+    response = SESSION.get(
 
         url,
 
         params=params,
-
-        headers=HEADERS,
 
         timeout=TIMEOUT,
 
@@ -168,6 +206,7 @@ def fetch_twse(date_string):
     data = response.json()
 
     if not data:
+
         return []
 
     tables = data.get(
@@ -176,10 +215,6 @@ def fetch_twse(date_string):
     )
 
     if not tables:
-
-        print(
-            "[TWSE] 找不到 tables"
-        )
 
         return []
 
@@ -199,10 +234,6 @@ def fetch_twse(date_string):
             break
 
     if target_table is None:
-
-        print(
-            "[TWSE] 找不到成交金額表格"
-        )
 
         return []
 
@@ -254,10 +285,6 @@ def fetch_twse(date_string):
 
         if field not in field_index:
 
-            print(
-                f"[TWSE] 缺少欄位：{field}"
-            )
-
             return []
 
     result = []
@@ -274,7 +301,7 @@ def fetch_twse(date_string):
                 ]
             )
 
-            if not is_common_stock(symbol):
+            if not is_tradeable_symbol(symbol):
                 continue
 
             trading_value = clean_number(
@@ -290,9 +317,11 @@ def fetch_twse(date_string):
 
             result.append({
 
-                "market": "TWSE",
+                "market":
+                    "TWSE",
 
-                "symbol": symbol,
+                "symbol":
+                    symbol,
 
                 "name":
                     str(
@@ -378,15 +407,11 @@ def fetch_twse(date_string):
 
             continue
 
-    print(
-        f"[TWSE] 成功取得 {len(result)} 檔"
-    )
-
     return result
 
 
 # ============================================================
-# TPEx 當日行情
+# TPEx 每日行情
 # ============================================================
 
 def fetch_tpex(date_string):
@@ -398,23 +423,23 @@ def fetch_tpex(date_string):
 
     params = {
 
-        "response": "json",
+        "response":
+            "json",
 
-        "date": date_string,
+        "date":
+            date_string,
 
     }
 
     print(
-        f"[TPEx] 取得資料：{date_string}"
+        f"[TPEx] {date_string}"
     )
 
-    response = requests.get(
+    response = SESSION.get(
 
         url,
 
         params=params,
-
-        headers=HEADERS,
 
         timeout=TIMEOUT,
 
@@ -425,6 +450,7 @@ def fetch_tpex(date_string):
     data = response.json()
 
     if not data:
+
         return []
 
     tables = data.get(
@@ -433,10 +459,6 @@ def fetch_tpex(date_string):
     )
 
     if not tables:
-
-        print(
-            "[TPEx] 找不到 tables"
-        )
 
         return []
 
@@ -449,14 +471,14 @@ def fetch_tpex(date_string):
             []
         )
 
-        field_text = "|".join(
+        text = "|".join(
             str(x)
             for x in fields
         )
 
         if (
-            "成交金額" in field_text
-            or "成交千元" in field_text
+            "成交金額" in text
+            or "成交千元" in text
         ):
 
             target_table = table
@@ -554,15 +576,6 @@ def fetch_tpex(date_string):
         or value_i is None
     ):
 
-        print(
-            "[TPEx] 找不到必要欄位"
-        )
-
-        print(
-            "[TPEx] Fields =",
-            fields
-        )
-
         return []
 
     result = []
@@ -575,7 +588,7 @@ def fetch_tpex(date_string):
                 row[symbol_i]
             )
 
-            if not is_common_stock(symbol):
+            if not is_tradeable_symbol(symbol):
                 continue
 
             trading_value = clean_number(
@@ -594,9 +607,11 @@ def fetch_tpex(date_string):
 
             result.append({
 
-                "market": "TPEX",
+                "market":
+                    "TPEX",
 
-                "symbol": symbol,
+                "symbol":
+                    symbol,
 
                 "name":
                     str(
@@ -664,15 +679,75 @@ def fetch_tpex(date_string):
 
             continue
 
-    print(
-        f"[TPEx] 成功取得 {len(result)} 檔"
-    )
-
     return result
 
 
 # ============================================================
-# TWSE 三大法人
+# 找最近交易日
+# ============================================================
+
+def fetch_latest_market_data():
+
+    for candidate in get_candidate_dates(10):
+
+        print()
+        print(
+            "=" * 60
+        )
+
+        print(
+            "嘗試交易日：",
+            candidate["display"]
+        )
+
+        print(
+            "=" * 60
+        )
+
+        try:
+
+            twse = fetch_twse(
+                candidate["twse"]
+            )
+
+            time.sleep(0.5)
+
+            tpex = fetch_tpex(
+                candidate["tpex"]
+            )
+
+            if twse and tpex:
+
+                return (
+
+                    candidate["display"],
+
+                    candidate["twse"],
+
+                    candidate["tpex"],
+
+                    twse,
+
+                    tpex,
+
+                )
+
+        except Exception as exc:
+
+            print(
+                "[WARNING]",
+                exc
+            )
+
+        time.sleep(1)
+
+    raise RuntimeError(
+        "找不到最近交易日"
+    )
+
+
+# ============================================================
+# 三大法人 - TWSE
 # ============================================================
 
 def fetch_twse_institutional(
@@ -686,27 +761,22 @@ def fetch_twse_institutional(
 
     params = {
 
-        "response": "json",
+        "response":
+            "json",
 
-        "date": date_string,
+        "date":
+            date_string,
 
         "selectType":
             "ALLBUT0999",
 
     }
 
-    print(
-        f"[TWSE] 取得三大法人："
-        f"{date_string}"
-    )
-
-    response = requests.get(
+    response = SESSION.get(
 
         url,
 
         params=params,
-
-        headers=HEADERS,
 
         timeout=TIMEOUT,
 
@@ -730,11 +800,11 @@ def fetch_twse_institutional(
 
         return {}
 
-    field_index = {
+    index = {
 
-        field: index
+        field: i
 
-        for index, field in enumerate(
+        for i, field in enumerate(
             fields
         )
 
@@ -756,12 +826,7 @@ def fetch_twse_institutional(
 
     for field in required:
 
-        if field not in field_index:
-
-            print(
-                f"[TWSE] 法人缺少："
-                f"{field}"
-            )
+        if field not in index:
 
             return {}
 
@@ -773,13 +838,13 @@ def fetch_twse_institutional(
 
             symbol = clean_symbol(
                 row[
-                    field_index[
+                    index[
                         "證券代號"
                     ]
                 ]
             )
 
-            if not is_common_stock(symbol):
+            if not is_tradeable_symbol(symbol):
                 continue
 
             result[symbol] = {
@@ -787,7 +852,7 @@ def fetch_twse_institutional(
                 "foreign_net":
                     clean_number(
                         row[
-                            field_index[
+                            index[
                                 "外陸資買賣超股數(不含外資自營商)"
                             ]
                         ]
@@ -796,7 +861,7 @@ def fetch_twse_institutional(
                 "trust_net":
                     clean_number(
                         row[
-                            field_index[
+                            index[
                                 "投信買賣超股數"
                             ]
                         ]
@@ -805,7 +870,7 @@ def fetch_twse_institutional(
                 "dealer_net":
                     clean_number(
                         row[
-                            field_index[
+                            index[
                                 "自營商買賣超股數"
                             ]
                         ]
@@ -814,7 +879,7 @@ def fetch_twse_institutional(
                 "institutional_net":
                     clean_number(
                         row[
-                            field_index[
+                            index[
                                 "三大法人買賣超股數"
                             ]
                         ]
@@ -829,16 +894,11 @@ def fetch_twse_institutional(
 
             continue
 
-    print(
-        f"[TWSE] 法人資料："
-        f"{len(result)} 檔"
-    )
-
     return result
 
 
 # ============================================================
-# TPEx 三大法人
+# 三大法人 - TPEx
 # ============================================================
 
 def fetch_tpex_institutional():
@@ -849,15 +909,9 @@ def fetch_tpex_institutional():
         "tpex_3insti_daily_trading"
     )
 
-    print(
-        "[TPEx] 取得三大法人"
-    )
-
-    response = requests.get(
+    response = SESSION.get(
 
         url,
-
-        headers=HEADERS,
 
         timeout=TIMEOUT,
 
@@ -885,7 +939,7 @@ def fetch_tpex_institutional():
             )
         )
 
-        if not is_common_stock(symbol):
+        if not is_tradeable_symbol(symbol):
             continue
 
         result[symbol] = {
@@ -921,88 +975,33 @@ def fetch_tpex_institutional():
 
         }
 
-    print(
-        f"[TPEx] 法人資料："
-        f"{len(result)} 檔"
-    )
-
     return result
 
 
 # ============================================================
-# 取得最新交易日
-# ============================================================
-
-def fetch_latest_market_data():
-
-    for candidate in get_candidate_dates(10):
-
-        print()
-        print("=" * 60)
-
-        print(
-            "嘗試交易日：",
-            candidate["display"]
-        )
-
-        print("=" * 60)
-
-        try:
-
-            twse = fetch_twse(
-                candidate["twse"]
-            )
-
-            time.sleep(1)
-
-            tpex = fetch_tpex(
-                candidate["tpex"]
-            )
-
-            if twse and tpex:
-
-                return (
-
-                    candidate["display"],
-
-                    candidate["twse"],
-
-                    candidate["tpex"],
-
-                    twse,
-
-                    tpex,
-
-                )
-
-        except requests.RequestException as exc:
-
-            print(
-                f"[WARNING] API：{exc}"
-            )
-
-        except ValueError as exc:
-
-            print(
-                f"[WARNING] JSON：{exc}"
-            )
-
-        time.sleep(1)
-
-    raise RuntimeError(
-        "找不到最近交易日資料"
-    )
-
-
-# ============================================================
-# 歷史資料：讀取
+# History Load
 # ============================================================
 
 def load_history():
 
     if not HISTORY_FILE.exists():
 
-        return {}
+        return {
+
+            "meta": {
+
+                "version": 1,
+
+                "initialized":
+                    False,
+
+                "tracked_symbols": []
+
+            },
+
+            "dates": {}
+
+        }
 
     try:
 
@@ -1013,62 +1012,156 @@ def load_history():
 
             data = json.load(file)
 
-        if not isinstance(data, dict):
+        # 舊版格式轉換
+        if "dates" not in data:
 
-            return {}
+            old_data = data
+
+            return {
+
+                "meta": {
+
+                    "version": 1,
+
+                    "initialized":
+                        False,
+
+                    "tracked_symbols":
+                        []
+
+                },
+
+                "dates":
+                    old_data
+
+            }
 
         return data
 
-    except (
-        json.JSONDecodeError,
-        OSError
-    ):
+    except Exception:
 
-        print(
-            "[WARNING] 歷史資料讀取失敗，"
-            "重新建立。"
+        return {
+
+            "meta": {
+
+                "version": 1,
+
+                "initialized":
+                    False,
+
+                "tracked_symbols":
+                    []
+
+            },
+
+            "dates": {}
+
+        }
+
+
+# ============================================================
+# 儲存 History
+# ============================================================
+
+def save_history(history):
+
+    dates = history.get(
+        "dates",
+        {}
+    )
+
+    # --------------------------------------------------------
+    # 最多保留 320 個交易日
+    # --------------------------------------------------------
+
+    sorted_dates = sorted(
+        dates.keys()
+    )
+
+    if len(sorted_dates) > 320:
+
+        keep_dates = sorted_dates[
+            -320:
+        ]
+
+        history["dates"] = {
+
+            d:
+                dates[d]
+
+            for d in keep_dates
+
+        }
+
+    with HISTORY_FILE.open(
+        "w",
+        encoding="utf-8"
+    ) as file:
+
+        json.dump(
+
+            history,
+
+            file,
+
+            ensure_ascii=False,
+
+            separators=(",", ":")
+
         )
 
-        return {}
-
 
 # ============================================================
-# 歷史資料：更新
+# 加入一天歷史
 # ============================================================
 
-def update_history(
+def add_history_day(
     history,
     date_string,
     twse_rows,
-    tpex_rows
+    tpex_rows,
+    tracked_keys=None
 ):
 
-    if date_string not in history:
+    if "dates" not in history:
 
-        history[date_string] = {}
+        history["dates"] = {}
 
-    all_rows = (
+    if date_string not in history["dates"]:
+
+        history["dates"][date_string] = {}
+
+    target = history[
+        "dates"
+    ][date_string]
+
+    rows = (
         twse_rows +
         tpex_rows
     )
 
-    for stock in all_rows:
-
-        symbol = stock["symbol"]
+    for stock in rows:
 
         key = (
             stock["market"]
             + ":"
-            + symbol
+            + stock["symbol"]
         )
 
-        history[date_string][key] = {
+        if (
+            tracked_keys is not None
+            and key not in tracked_keys
+        ):
+
+            continue
+
+        target[key] = {
 
             "market":
                 stock["market"],
 
             "symbol":
-                symbol,
+                stock["symbol"],
 
             "name":
                 stock["name"],
@@ -1084,63 +1177,100 @@ def update_history(
 
         }
 
-    return history
+
+# ============================================================
+# 建立目前 Top 100
+# ============================================================
+
+def get_top100(
+    twse_rows,
+    tpex_rows
+):
+
+    all_rows = (
+        twse_rows +
+        tpex_rows
+    )
+
+    unique = {}
+
+    for stock in all_rows:
+
+        key = (
+
+            stock["market"],
+
+            stock["symbol"]
+
+        )
+
+        unique[key] = stock
+
+    stocks = list(
+        unique.values()
+    )
+
+    stocks.sort(
+
+        key=lambda x:
+            x["trading_value"]
+            or 0,
+
+        reverse=True
+
+    )
+
+    return stocks[
+        :TOP_N
+    ]
 
 
 # ============================================================
-# 歷史資料：取得股票序列
+# 取得股票歷史序列
 # ============================================================
 
-def get_stock_history(
+def get_series(
     history,
     market,
     symbol
 ):
 
-    series = []
+    key = (
+        market
+        + ":"
+        + symbol
+    )
+
+    result = []
 
     for date_string in sorted(
-        history.keys()
+        history["dates"].keys()
     ):
 
-        key = (
-            market
-            + ":"
-            + symbol
-        )
-
         row = history[
-            date_string
-        ].get(key)
+            "dates"
+        ][date_string].get(key)
 
         if not row:
             continue
 
-        close = row.get(
-            "close"
-        )
-
-        volume = row.get(
-            "volume"
-        )
-
-        if close is None:
+        if row.get("close") is None:
             continue
 
-        series.append({
+        result.append({
 
             "date":
                 date_string,
 
             "close":
-                close,
+                row["close"],
 
             "volume":
-                volume,
+                row.get("volume")
 
         })
 
-    return series
+    return result
 
 
 # ============================================================
@@ -1150,26 +1280,29 @@ def get_stock_history(
 def average(values):
 
     values = [
-        x for x in values
+
+        x
+
+        for x in values
+
         if x is not None
+
     ]
 
     if not values:
         return None
 
-    return (
-        sum(values)
-        / len(values)
-    )
+    return sum(values) / len(values)
 
 
 # ============================================================
-# 技術資料計算
+# 計算技術資料
 # ============================================================
 
 def calculate_metrics(
     history,
-    stock
+    stock,
+    date_string
 ):
 
     market = stock[
@@ -1180,64 +1313,70 @@ def calculate_metrics(
         "symbol"
     ]
 
-    current_close = stock[
+    close = stock[
         "close"
     ]
 
-    current_volume = stock[
+    volume = stock[
         "volume"
     ]
 
-    series = get_stock_history(
+    series = get_series(
+
         history,
+
         market,
+
         symbol
+
     )
 
     # --------------------------------------------------------
-    # 如果歷史資料沒有今天
-    # 使用目前 Top 100 的今天資料補進序列
+    # 確保今天資料存在
     # --------------------------------------------------------
 
     if (
         not series
         or series[-1]["date"]
-        != stock.get(
-            "_date"
-        )
+        != date_string
     ):
 
         series.append({
 
             "date":
-                stock.get(
-                    "_date"
-                ),
+                date_string,
 
             "close":
-                current_close,
+                close,
 
             "volume":
-                current_volume,
+                volume
 
         })
 
-    # 日期排序
     series.sort(
         key=lambda x:
             x["date"]
     )
 
     closes = [
+
         x["close"]
+
         for x in series
+
         if x["close"] is not None
+
     ]
 
     volumes = [
+
         x["volume"]
+
         for x in series
+
         if x["volume"] is not None
+
     ]
 
     metrics = {}
@@ -1252,12 +1391,11 @@ def calculate_metrics(
 
     if (
         change is not None
-        and current_close is not None
-        and current_close != change
+        and close is not None
     ):
 
         previous_close = (
-            current_close - change
+            close - change
         )
 
         if previous_close != 0:
@@ -1300,7 +1438,7 @@ def calculate_metrics(
 
         "return_120d": 120,
 
-        "return_250d": 250,
+        "return_250d": 250
 
     }
 
@@ -1308,9 +1446,9 @@ def calculate_metrics(
 
         if len(closes) > days:
 
-            old_close = (
-                closes[-days - 1]
-            )
+            old_close = closes[
+                -days - 1
+            ]
 
             if (
                 old_close is not None
@@ -1320,7 +1458,7 @@ def calculate_metrics(
                 metrics[name] = round(
 
                     (
-                        current_close
+                        close
                         / old_close
                         - 1
                     )
@@ -1339,7 +1477,7 @@ def calculate_metrics(
             metrics[name] = None
 
     # --------------------------------------------------------
-    # 移動平均線
+    # 移動平均
     # --------------------------------------------------------
 
     moving_averages = {
@@ -1350,7 +1488,7 @@ def calculate_metrics(
 
         "ma60": 60,
 
-        "ma120": 120,
+        "ma120": 120
 
     }
 
@@ -1360,7 +1498,9 @@ def calculate_metrics(
 
         if len(closes) >= days:
 
-            values = closes[-days:]
+            values = closes[
+                -days:
+            ]
 
             metrics[name] = round(
 
@@ -1380,29 +1520,28 @@ def calculate_metrics(
 
     if len(volumes) >= 20:
 
-        avg_volume_20d = average(
+        avg_volume = average(
             volumes[-20:]
         )
 
         metrics[
             "avg_volume_20d"
         ] = round(
-            avg_volume_20d,
+            avg_volume,
             2
         )
 
         if (
-            avg_volume_20d
-            and current_volume
-            is not None
+            avg_volume
+            and volume is not None
         ):
 
             metrics[
                 "volume_ratio_20d"
             ] = round(
 
-                current_volume
-                / avg_volume_20d,
+                volume
+                / avg_volume,
 
                 4
 
@@ -1428,64 +1567,404 @@ def calculate_metrics(
 
 
 # ============================================================
-# 建立 Top 100
+# 歷史初始化
 # ============================================================
 
-def build_top100(
-    date_string,
-    twse_rows,
-    tpex_rows,
-    twse_institutional,
-    tpex_institutional,
-    history
+def bootstrap_history(
+    history,
+    tracked_keys
 ):
 
-    all_stocks = (
-        twse_rows
-        + tpex_rows
+    existing_dates = sorted(
+        history.get(
+            "dates",
+            {}
+        ).keys()
     )
 
-    unique = {}
+    # 已經有足夠歷史，不初始化
+    if len(existing_dates) >= HISTORY_DAYS:
 
-    for stock in all_stocks:
+        print(
+            f"[HISTORY] 已有 "
+            f"{len(existing_dates)} 天資料"
+        )
 
-        key = (
+        return history
 
-            stock["market"],
+    print()
+    print("=" * 60)
 
-            stock["symbol"],
+    print(
+        "[HISTORY] 開始初始化歷史資料"
+    )
+
+    print(
+        f"[HISTORY] 目標：約 {HISTORY_DAYS} 個交易日"
+    )
+
+    print(
+        f"[HISTORY] 追蹤標的："
+        f"{len(tracked_keys)}"
+    )
+
+    print("=" * 60)
+
+    # --------------------------------------------------------
+    # 從約 500 個日曆日往前找，
+    # 足夠取得約 300 個交易日。
+    # --------------------------------------------------------
+
+    candidates = get_candidate_dates(
+        500
+    )
+
+    # 我們需要由舊到新
+    candidates.reverse()
+
+    collected = 0
+
+    for candidate in candidates:
+
+        if (
+            len(
+                history.get(
+                    "dates",
+                    {}
+                )
+            )
+            >= HISTORY_DAYS
+        ):
+
+            break
+
+        date_string = candidate[
+            "display"
+        ]
+
+        # 已經有這天就跳過
+        if date_string in history.get(
+            "dates",
+            {}
+        ):
+
+            continue
+
+        try:
+
+            twse = fetch_twse(
+                candidate["twse"]
+            )
+
+            time.sleep(0.25)
+
+            tpex = fetch_tpex(
+                candidate["tpex"]
+            )
+
+            if not twse and not tpex:
+
+                continue
+
+            add_history_day(
+
+                history,
+
+                date_string,
+
+                twse,
+
+                tpex,
+
+                tracked_keys
+
+            )
+
+            # 如果這一天真的有我們追蹤的資料
+            if history[
+                "dates"
+            ].get(date_string):
+
+                collected += 1
+
+                print(
+                    f"[HISTORY] "
+                    f"{date_string} "
+                    f"第 {collected} 個交易日"
+                )
+
+        except Exception as exc:
+
+            print(
+                f"[HISTORY WARNING] "
+                f"{date_string}: {exc}"
+            )
+
+        time.sleep(0.25)
+
+    print()
+
+    print(
+        "[HISTORY] 初始化完成"
+    )
+
+    print(
+        "[HISTORY] 日期數：",
+        len(
+            history.get(
+                "dates",
+                {}
+            )
+        )
+    )
+
+    return history
+
+
+# ============================================================
+# 建立 Top 100 JSON
+# ============================================================
+
+def build_output(
+    date_string,
+    top100
+):
+
+    return {
+
+        "generated_at":
+            datetime.now().isoformat(
+                timespec="seconds"
+            ),
+
+        "date":
+            date_string,
+
+        "market":
+            "TW",
+
+        "ranking_method":
+            "trading_value",
+
+        "ranking_method_name":
+            "成交金額",
+
+        "top_n":
+            TOP_N,
+
+        "source": [
+
+            "TWSE",
+
+            "TPEx",
+
+            "TWSE T86",
+
+            "TPEx 3insti"
+
+        ],
+
+        "institutional_data": {
+
+            "unit":
+                "shares",
+
+            "positive":
+                "net_buy",
+
+            "negative":
+                "net_sell"
+
+        },
+
+        "technical_data": {
+
+            "return_unit":
+                "percent",
+
+            "moving_average_unit":
+                "price",
+
+            "volume_ratio":
+                "today_volume_divided_by_20d_average"
+
+        },
+
+        "stocks":
+            top100
+
+    }
+
+
+# ============================================================
+# 主程式
+# ============================================================
+
+def main():
+
+    print()
+
+    print(
+        "=" * 60
+    )
+
+    print(
+        "AI Trading - Taiwan Top 100"
+    )
+
+    print(
+        "=" * 60
+    )
+
+    # --------------------------------------------------------
+    # 取得今天市場資料
+    # --------------------------------------------------------
+
+    (
+        date_string,
+
+        twse_date,
+
+        tpex_date,
+
+        twse_rows,
+
+        tpex_rows
+
+    ) = fetch_latest_market_data()
+
+    print()
+
+    print(
+        f"[MARKET] 交易日："
+        f"{date_string}"
+    )
+
+    # --------------------------------------------------------
+    # 目前 Top 100
+    # --------------------------------------------------------
+
+    current_top100 = get_top100(
+
+        twse_rows,
+
+        tpex_rows
+
+    )
+
+    if len(current_top100) != TOP_N:
+
+        raise RuntimeError(
+
+            f"Top 100 異常："
+            f"{len(current_top100)}"
 
         )
 
-        unique[key] = stock
+    # --------------------------------------------------------
+    # 更新追蹤標的
+    # --------------------------------------------------------
 
-    all_stocks = list(
-        unique.values()
+    history = load_history()
+
+    if "meta" not in history:
+
+        history["meta"] = {}
+
+    if "tracked_symbols" not in (
+        history["meta"]
+    ):
+
+        history[
+            "meta"
+        ]["tracked_symbols"] = []
+
+    tracked_keys = set(
+
+        history[
+            "meta"
+        ][
+            "tracked_symbols"
+        ]
+
+    )
+
+    # 加入目前 Top 100
+    for stock in current_top100:
+
+        key = (
+
+            stock["market"]
+            + ":"
+            + stock["symbol"]
+
+        )
+
+        tracked_keys.add(key)
+
+    history[
+        "meta"
+    ][
+        "tracked_symbols"
+    ] = sorted(
+        tracked_keys
     )
 
     # --------------------------------------------------------
-    # 成交金額排序
+    # 歷史初始化
     # --------------------------------------------------------
 
-    all_stocks.sort(
+    history = bootstrap_history(
 
-        key=lambda x:
-            x["trading_value"]
-            or 0,
+        history,
 
-        reverse=True,
+        tracked_keys
 
     )
 
-    top100 = all_stocks[
-        :TOP_N
-    ]
-
     # --------------------------------------------------------
-    # 加入法人 + 技術資料
+    # 加入今天資料
     # --------------------------------------------------------
 
-    for stock in top100:
+    add_history_day(
+
+        history,
+
+        date_string,
+
+        twse_rows,
+
+        tpex_rows,
+
+        tracked_keys
+
+    )
+
+    # --------------------------------------------------------
+    # 三大法人
+    # --------------------------------------------------------
+
+    time.sleep(1)
+
+    twse_institutional = (
+        fetch_twse_institutional(
+            twse_date
+        )
+    )
+
+    time.sleep(1)
+
+    tpex_institutional = (
+        fetch_tpex_institutional()
+    )
+
+    # --------------------------------------------------------
+    # 建立最終 Top 100
+    # --------------------------------------------------------
+
+    final_top100 = []
+
+    for stock in current_top100:
 
         symbol = stock[
             "symbol"
@@ -1523,7 +2002,7 @@ def build_top100(
                     None,
 
                 "institutional_net":
-                    None,
+                    None
 
             }
 
@@ -1531,22 +2010,23 @@ def build_top100(
             institution
         )
 
-        # 今天日期只供計算使用
-        stock["_date"] = date_string
-
+        # 技術資料
         metrics = calculate_metrics(
+
             history,
-            stock
+
+            stock,
+
+            date_string
+
         )
 
         stock.update(
             metrics
         )
 
-        # 移除內部欄位
-        stock.pop(
-            "_date",
-            None
+        final_top100.append(
+            stock
         )
 
     # --------------------------------------------------------
@@ -1554,141 +2034,56 @@ def build_top100(
     # --------------------------------------------------------
 
     for index, stock in enumerate(
-        top100,
+
+        final_top100,
+
         start=1
+
     ):
 
         stock["rank"] = index
 
-    return top100
-
-
-# ============================================================
-# 儲存歷史
-# ============================================================
-
-def save_history(history):
-
     # --------------------------------------------------------
-    # 只保留最近 300 個交易日附近的資料，
-    # 避免 GitHub JSON 無限膨脹。
-    #
-    # 250 日需要約一年資料，
-    # 所以保留 300 天。
+    # 儲存 history
     # --------------------------------------------------------
 
-    dates = sorted(
-        history.keys()
+    history[
+        "meta"
+    ][
+        "initialized"
+    ] = (
+
+        len(
+            history[
+                "dates"
+            ]
+        )
+        >= HISTORY_DAYS
+
     )
 
-    if len(dates) > 300:
+    save_history(
+        history
+    )
 
-        dates = dates[-300:]
+    # --------------------------------------------------------
+    # 儲存 Top 100
+    # --------------------------------------------------------
 
-        history = {
+    output = build_output(
 
-            date:
-                history[date]
+        date_string,
 
-            for date in dates
+        final_top100
 
-        }
-
-    with HISTORY_FILE.open(
-        "w",
-        encoding="utf-8"
-    ) as file:
-
-        json.dump(
-
-            history,
-
-            file,
-
-            ensure_ascii=False,
-
-            indent=2,
-
-        )
-
-
-# ============================================================
-# 儲存 Top 100
-# ============================================================
-
-def save_json(
-    date_string,
-    stocks
-):
-
-    output = {
-
-        "generated_at":
-            datetime.now().isoformat(
-                timespec="seconds"
-            ),
-
-        "date":
-            date_string,
-
-        "market":
-            "TW",
-
-        "ranking_method":
-            "trading_value",
-
-        "ranking_method_name":
-            "成交金額",
-
-        "top_n":
-            TOP_N,
-
-        "source": [
-
-            "TWSE",
-
-            "TPEx",
-
-            "TWSE T86",
-
-            "TPEx 3insti",
-
-        ],
-
-        "institutional_data": {
-
-            "unit":
-                "shares",
-
-            "positive":
-                "net_buy",
-
-            "negative":
-                "net_sell",
-
-        },
-
-        "technical_data": {
-
-            "return_unit":
-                "percent",
-
-            "moving_average_unit":
-                "price",
-
-            "volume_ratio":
-                "today_volume_divided_by_20d_average",
-
-        },
-
-        "stocks":
-            stocks,
-
-    }
+    )
 
     with OUTPUT_FILE.open(
+
         "w",
+
         encoding="utf-8"
+
     ) as file:
 
         json.dump(
@@ -1699,136 +2094,29 @@ def save_json(
 
             ensure_ascii=False,
 
-            indent=2,
+            indent=2
 
         )
 
-
-# ============================================================
-# 主程式
-# ============================================================
-
-def main():
-
-    print()
-    print("=" * 60)
-
-    print(
-        "AI Trading - Taiwan Top 100"
-    )
-
-    print("=" * 60)
-
     # --------------------------------------------------------
-    # 取得當日資料
-    # --------------------------------------------------------
-
-    (
-        date_string,
-
-        twse_date,
-
-        tpex_date,
-
-        twse_rows,
-
-        tpex_rows,
-
-    ) = fetch_latest_market_data()
-
-    # --------------------------------------------------------
-    # 三大法人
-    # --------------------------------------------------------
-
-    time.sleep(1)
-
-    twse_institutional = (
-        fetch_twse_institutional(
-            twse_date
-        )
-    )
-
-    time.sleep(1)
-
-    tpex_institutional = (
-        fetch_tpex_institutional()
-    )
-
-    # --------------------------------------------------------
-    # 讀取歷史
-    # --------------------------------------------------------
-
-    history = load_history()
-
-    # --------------------------------------------------------
-    # 更新今天的歷史資料
-    # --------------------------------------------------------
-
-    history = update_history(
-
-        history,
-
-        date_string,
-
-        twse_rows,
-
-        tpex_rows
-
-    )
-
-    # --------------------------------------------------------
-    # 建立 Top 100
-    # --------------------------------------------------------
-
-    top100 = build_top100(
-
-        date_string,
-
-        twse_rows,
-
-        tpex_rows,
-
-        twse_institutional,
-
-        tpex_institutional,
-
-        history
-
-    )
-
-    if len(top100) < TOP_N:
-
-        print(
-            "[WARNING] Top 100 只有 "
-            f"{len(top100)} 檔"
-        )
-
-    # --------------------------------------------------------
-    # 儲存
-    # --------------------------------------------------------
-
-    save_history(
-        history
-    )
-
-    save_json(
-
-        date_string,
-
-        top100
-
-    )
-
-    # --------------------------------------------------------
-    # 顯示前 10 名
+    # 顯示結果
     # --------------------------------------------------------
 
     print()
+
     print(
-        "前 10 名："
+        "=" * 60
     )
 
-    for stock in top100[:10]:
+    print(
+        "前 10 名"
+    )
+
+    print(
+        "=" * 60
+    )
+
+    for stock in final_top100[:10]:
 
         print()
 
@@ -1850,53 +2138,51 @@ def main():
 
         print(
 
-            f'    漲跌='
-
-            f'{stock["change_percent"]}% '
+            f'    今日='
+            f'{stock.get("change_percent")}% '
 
             f'5日='
-
-            f'{stock["return_5d"]}% '
+            f'{stock.get("return_5d")}% '
 
             f'20日='
-
-            f'{stock["return_20d"]}% '
+            f'{stock.get("return_20d")}% '
 
             f'60日='
+            f'{stock.get("return_60d")}% '
 
-            f'{stock["return_60d"]}%'
+            f'120日='
+            f'{stock.get("return_120d")}% '
+
+            f'250日='
+            f'{stock.get("return_250d")}%'
 
         )
 
         print(
 
             f'    外資='
-
-            f'{stock["foreign_net"]} '
+            f'{stock.get("foreign_net")} '
 
             f'投信='
-
-            f'{stock["trust_net"]} '
+            f'{stock.get("trust_net")} '
 
             f'自營商='
-
-            f'{stock["dealer_net"]} '
+            f'{stock.get("dealer_net")} '
 
             f'三大法人='
-
-            f'{stock["institutional_net"]}'
+            f'{stock.get("institutional_net")}'
 
         )
 
     print()
 
     print(
-        "歷史資料檔案：",
+        "History：",
         HISTORY_FILE
     )
 
     print(
-        "Top 100 檔案：",
+        "Top 100：",
         OUTPUT_FILE
     )
 
