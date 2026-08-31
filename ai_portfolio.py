@@ -2,6 +2,7 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
+import re
 
 import requests
 
@@ -108,6 +109,26 @@ def now_string():
     return datetime.now().isoformat(
         timespec="seconds"
     )
+
+
+def normalize_quote_date(value):
+
+    """
+    TWSE 的 d 欄位通常是 YYYYMMDD，例如 20260831。
+    將它統一轉成 YYYY-MM-DD，避免日期比較失敗。
+    """
+    raw = str(value or "").strip()
+
+    digits = re.sub(r"\\D", "", raw)
+
+    if len(digits) == 8:
+        return (
+            f"{digits[:4]}-"
+            f"{digits[4:6]}-"
+            f"{digits[6:]}"
+        )
+
+    return raw.replace("/", "-")
 
 
 # ============================================================
@@ -649,7 +670,11 @@ def get_twse_quotes(
                     "1",
 
                 "delay":
-                    "0"
+                    "0",
+
+                # 避免 GitHub Runner 取得快取中的舊行情
+                "_":
+                    int(datetime.now().timestamp() * 1000)
 
             },
 
@@ -994,6 +1019,13 @@ def process_first_buy(
 
         if quote is None:
 
+            print(
+                f"{symbol} "
+                f"{signal.get('name', '')} "
+                f"找不到即時行情，"
+                f"跳過本次檢查。"
+            )
+
             continue
 
         # ----------------------------------------------------
@@ -1012,11 +1044,8 @@ def process_first_buy(
 
         if quote_date:
 
-            normalized_quote_date = (
-                quote_date.replace(
-                    "/",
-                    "-"
-                )
+            normalized_quote_date = normalize_quote_date(
+                quote_date
             )
 
             if normalized_quote_date != today:
@@ -1025,6 +1054,7 @@ def process_first_buy(
 
                     f"{symbol} "
                     f"行情日期 {quote_date} "
+                    f"(標準化後 {normalized_quote_date}) "
                     f"不是今天 {today}，"
                     f"不買。"
 
@@ -1061,7 +1091,19 @@ def process_first_buy(
         # 才買入
         # ====================================================
 
+        print(
+            f"檢查 {symbol} "
+            f"{signal.get('name', '')}: "
+            f"現價={current_price} "
+            f"觸發價={reference_close}"
+        )
+
         if current_price > reference_close:
+
+            print(
+                f"{symbol} 尚未觸發："
+                f"{current_price} > {reference_close}"
+            )
 
             continue
 
@@ -1785,6 +1827,15 @@ def main():
         print(
             f"取得行情：{len(quotes)} 檔"
         )
+
+        for symbol, quote in quotes.items():
+
+            print(
+                f"行情 {symbol}: "
+                f"price={quote.get('price')} "
+                f"date={quote.get('date')} "
+                f"time={quote.get('time')}"
+            )
 
     else:
 
