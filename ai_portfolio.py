@@ -709,6 +709,7 @@ def get_twse_quotes(
                 continue
 
             price = None
+            day_low = None
 
             # ------------------------------------------------
             # 最新成交價
@@ -731,6 +732,31 @@ def get_twse_quotes(
                     price = None
 
             # ------------------------------------------------
+            # 今日最低價
+            #
+            # TWSE MIS:
+            # l = today's low
+            #
+            # 用來判斷「今天盤中是否曾經觸發」
+            # ------------------------------------------------
+
+            low_value = item.get("l")
+
+            if low_value not in (
+                None,
+                "",
+                "-"
+            ):
+
+                try:
+
+                    day_low = float(low_value)
+
+                except:
+
+                    day_low = None
+
+            # ------------------------------------------------
             # 注意：
             #
             # 沒有真正成交價時，
@@ -748,6 +774,9 @@ def get_twse_quotes(
 
                     "price":
                         price,
+
+                    "day_low":
+                        day_low,
 
                     "market":
                         "TWSE",
@@ -841,8 +870,25 @@ def get_tpex_quotes(
 
             )
 
+            low_value = item.get("Low")
+
+            if low_value in (
+                None,
+                "",
+                "-"
+            ):
+
+                low_value = item.get(
+                    "LowestPrice"
+                )
+
             price = num(
                 price_value,
+                None
+            )
+
+            day_low = num(
+                low_value,
                 None
             )
 
@@ -855,6 +901,9 @@ def get_tpex_quotes(
 
                     "price":
                         price,
+
+                    "day_low":
+                        day_low,
 
                     "market":
                         "TPEX",
@@ -1091,21 +1140,75 @@ def process_first_buy(
         # 才買入
         # ====================================================
 
+        day_low = num(
+            quote.get(
+                "day_low"
+            ),
+            None
+        )
+
         print(
             f"檢查 {symbol} "
             f"{signal.get('name', '')}: "
             f"現價={current_price} "
+            f"今日最低={day_low} "
             f"觸發價={reference_close}"
         )
 
-        if current_price > reference_close:
+        # ====================================================
+        # 觸發規則
+        #
+        # 1. 現價 <= 觸發價：
+        #    直接視為當下觸發，使用當下價格成交。
+        #
+        # 2. 現價 > 觸發價，但今日最低 <= 觸發價：
+        #    代表盤中曾經觸發，只是 GitHub Actions
+        #    下一次執行時價格已經反彈。
+        #
+        #    這裡以「掛在觸發價的限價單」模擬，
+        #    因此成交價使用 reference_close，
+        #    不使用今日最低價，避免假裝知道最低點成交。
+        # ====================================================
+
+        triggered = False
+        execution_price = current_price
+        trigger_reason = ""
+
+        if current_price <= reference_close:
+
+            triggered = True
+            execution_price = current_price
+            trigger_reason = "即時價格 ≤ 觸發價格"
+
+        elif (
+            day_low is not None
+            and day_low > 0
+            and day_low <= reference_close
+        ):
+
+            triggered = True
+            execution_price = reference_close
+            trigger_reason = (
+                "今日最低價曾 ≤ 觸發價格；"
+                "以觸發價限價單模擬成交"
+            )
+
+        if not triggered:
 
             print(
                 f"{symbol} 尚未觸發："
-                f"{current_price} > {reference_close}"
+                f"現價={current_price}, "
+                f"今日最低={day_low}, "
+                f"觸發價={reference_close}"
             )
 
             continue
+
+        print(
+            f"★ {symbol} 已觸發："
+            f"{trigger_reason}，"
+            f"模擬成交價={execution_price}"
+        )
 
         # ----------------------------------------------------
         # 每檔目標部位 = 初始資金 20%
@@ -1169,7 +1272,7 @@ def process_first_buy(
         actual_amount = (
 
             quantity
-            * current_price
+            * execution_price
 
         )
 
@@ -1214,7 +1317,7 @@ def process_first_buy(
                     quantity,
 
                 "average_cost":
-                    current_price,
+                    execution_price,
 
                 "current_price":
                     current_price,
@@ -1289,7 +1392,7 @@ def process_first_buy(
                     "買入",
 
                 "price":
-                    current_price,
+                    execution_price,
 
                 "quantity":
                     quantity,
@@ -1301,7 +1404,7 @@ def process_first_buy(
                     "30%",
 
                 "reason":
-                    "盤中價格 ≤ AI 選股日收盤價",
+                    trigger_reason,
 
                 "signal_date":
                     signal_date,
@@ -1318,7 +1421,7 @@ def process_first_buy(
             f"★ 第一筆買入："
             f"{symbol} "
             f"{quantity} 股 @ "
-            f"{current_price}"
+            f"{execution_price}"
 
         )
 
