@@ -5,8 +5,8 @@
   "total_assets": 1000000.0,
   "total_profit": 0.0,
   "total_return_percent": 0.0,
-  "date": "2026-08-30",
-  "updated_at": "2026-08-30T13:58:23",
+  "date": "2026-08-31",
+  "updated_at": "2026-08-31T01:06:31",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -106,6 +106,13 @@
   "performance": [
     {
       "date": "2026-08-30",
+      "total_assets": 1000000.0,
+      "cash": 1000000,
+      "return_percent": 0.0,
+      "holding_count": 0
+    },
+    {
+      "date": "2026-08-31",
       "total_assets": 1000000.0,
       "cash": 1000000,
       "return_percent": 0.0,
