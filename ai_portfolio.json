@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 1000000,
+  "cash": 940220.0,
   "total_assets": 1000000.0,
   "total_profit": 0.0,
   "total_return_percent": 0.0,
   "date": "2026-08-31",
-  "updated_at": "2026-08-31T05:39:31",
+  "updated_at": "2026-08-31T05:41:28",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -15,9 +15,11 @@
       "market": "TWSE",
       "reference_close": 317.5,
       "first_buy_trigger": 317.5,
-      "status": "waiting",
+      "status": "holding",
       "first_buy_allocation": 0.3,
-      "created_at": "2026-08-30T13:58:23"
+      "created_at": "2026-08-30T13:58:23",
+      "first_buy_date": "2026-08-31",
+      "first_buy_price": 305.0
     },
     {
       "signal_date": "2026-08-28",
@@ -64,15 +66,26 @@
       "created_at": "2026-08-30T13:58:23"
     }
   ],
-  "holdings": [],
-  "waiting": [
+  "holdings": [
     {
       "symbol": "2301",
       "name": "光寶科",
+      "market": "TWSE",
+      "quantity": 196,
+      "average_cost": 305.0,
+      "current_price": 305.0,
+      "invested": 59780.0,
+      "market_value": 59780.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-08-31",
       "signal_date": "2026-08-28",
-      "trigger_price": 317.5,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
+      "reference_close": 317.5,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    }
+  ],
+  "waiting": [
     {
       "symbol": "3374",
       "name": "精材",
@@ -102,7 +115,21 @@
       "status": "等待價格 ≤ 選股日收盤"
     }
   ],
-  "transactions": [],
+  "transactions": [
+    {
+      "date": "2026-08-31",
+      "symbol": "2301",
+      "name": "光寶科",
+      "action": "買入",
+      "price": 305.0,
+      "quantity": 196,
+      "amount": 59780.0,
+      "allocation": "30%",
+      "reason": "盤中價格 ≤ AI 選股日收盤價",
+      "signal_date": "2026-08-28",
+      "reference_close": 317.5
+    }
+  ],
   "performance": [
     {
       "date": "2026-08-30",
@@ -114,9 +141,9 @@
     {
       "date": "2026-08-31",
       "total_assets": 1000000.0,
-      "cash": 1000000,
+      "cash": 940220.0,
       "return_percent": 0.0,
-      "holding_count": 0
+      "holding_count": 1
     }
   ]
 }
