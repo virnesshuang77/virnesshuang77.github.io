@@ -812,115 +812,276 @@ def get_tpex_quotes(
     symbols
 ):
 
+    """
+    櫃買股票盤中行情。
+
+    TPEx 的免費 OpenAPI tpex_mainboard_quotes 是日行情快照，
+    不適合拿來當 GitHub Actions 的盤中觸發器。
+
+    因此櫃買股票改用 Yahoo Finance 的 1 分鐘 chart：
+    - regularMarketPrice / close：目前價格
+    - day low：今日最低價
+    - timestamps：確認資料確實屬於今天
+
+    Yahoo 是公開行情來源，這裡只做模擬交易的行情判斷，
+    不執行任何真實下單。
+    """
+
     quotes = {}
 
     if not symbols:
         return quotes
 
-    try:
+    for symbol in symbols:
 
-        response = requests.get(
+        try:
 
-            "https://www.tpex.org.tw/"
-            "openapi/v1.1/"
-            "tpex_mainboard_quotes",
+            url = (
+                "https://query1.finance.yahoo.com/"
+                f"v8/finance/chart/{symbol}.TW"
+            )
 
-            headers={
+            response = requests.get(
 
-                "User-Agent":
-                    "Mozilla/5.0"
+                url,
 
-            },
+                params={
 
-            timeout=20
+                    "range":
+                        "1d",
 
-        )
+                    "interval":
+                        "1m",
 
-        response.raise_for_status()
+                    "includePrePost":
+                        "false",
 
-        data = response.json()
+                    "_":
+                        int(
+                            datetime.now().timestamp()
+                            * 1000
+                        )
 
-        wanted = set(
-            symbols
-        )
+                },
 
-        for item in data:
+                headers={
 
-            symbol = str(
+                    "User-Agent":
+                        "Mozilla/5.0"
 
-                item.get(
-                    "SecuritiesCompanyCode",
-                    ""
-                )
+                },
+
+                timeout=20
 
             )
 
-            if symbol not in wanted:
+            response.raise_for_status()
+
+            data = response.json()
+
+            result_list = data.get(
+                "chart",
+                {}
+            ).get(
+                "result"
+            )
+
+            if not result_list:
+
+                print(
+                    f"TPEx/Yahoo {symbol} "
+                    f"沒有盤中資料。"
+                )
+
                 continue
 
-            price_value = (
+            result = result_list[0]
 
-                item.get("Close")
-
-                or
-
-                item.get(
-                    "ClosingPrice"
-                )
-
+            meta = result.get(
+                "meta",
+                {}
             )
 
-            low_value = item.get("Low")
+            timestamps = result.get(
+                "timestamp"
+            ) or []
 
-            if low_value in (
-                None,
-                "",
-                "-"
+            indicators = result.get(
+                "indicators",
+                {}
+            ).get(
+                "quote",
+                []
+            )
+
+            if not indicators:
+
+                print(
+                    f"TPEx/Yahoo {symbol} "
+                    f"沒有 quote 資料。"
+                )
+
+                continue
+
+            quote_data = indicators[0]
+
+            closes = quote_data.get(
+                "close"
+            ) or []
+
+            lows = quote_data.get(
+                "low"
+            ) or []
+
+            # ------------------------------------------------
+            # 找最後一筆有效成交價
+            # ------------------------------------------------
+
+            current_price = None
+
+            for value in reversed(closes):
+
+                if value is None:
+                    continue
+
+                value = num(
+                    value,
+                    None
+                )
+
+                if (
+                    value is not None
+                    and value > 0
+                ):
+
+                    current_price = value
+                    break
+
+            if current_price is None:
+
+                current_price = num(
+                    meta.get(
+                        "regularMarketPrice"
+                    ),
+                    None
+                )
+
+            if (
+                current_price is None
+                or current_price <= 0
             ):
 
-                low_value = item.get(
-                    "LowestPrice"
+                print(
+                    f"TPEx/Yahoo {symbol} "
+                    f"找不到有效現價。"
                 )
 
-            price = num(
-                price_value,
-                None
+                continue
+
+            # ------------------------------------------------
+            # 今日最低價
+            # ------------------------------------------------
+
+            valid_lows = []
+
+            for value in lows:
+
+                if value is None:
+                    continue
+
+                value = num(
+                    value,
+                    None
+                )
+
+                if (
+                    value is not None
+                    and value > 0
+                ):
+
+                    valid_lows.append(
+                        value
+                    )
+
+            day_low = (
+                min(valid_lows)
+                if valid_lows
+                else None
             )
 
-            day_low = num(
-                low_value,
+            # Yahoo 的 meta 若有 regularMarketDayLow，
+            # 也拿來補強今日最低價。
+            meta_day_low = num(
+                meta.get(
+                    "regularMarketDayLow"
+                ),
                 None
             )
 
             if (
-                price is not None
-                and price > 0
+                meta_day_low is not None
+                and meta_day_low > 0
             ):
 
-                quotes[symbol] = {
+                if (
+                    day_low is None
+                    or meta_day_low < day_low
+                ):
 
-                    "price":
-                        price,
+                    day_low = meta_day_low
 
-                    "day_low":
-                        day_low,
+            # ------------------------------------------------
+            # 日期
+            #
+            # range=1d 的 timestamp 是今日交易資料。
+            # 若沒有 timestamp，使用台灣當地日期。
+            # ------------------------------------------------
 
-                    "market":
-                        "TPEX",
+            quote_date = today_string()
 
-                    "time":
-                        "",
+            if timestamps:
 
-                    "date":
-                        today_string()
+                try:
 
-                }
+                    # 不直接依賴 UTC 日期。
+                    # Yahoo 的 1d 資料在交易時段代表當日。
+                    quote_date = today_string()
 
-    except Exception as e:
+                except Exception:
 
-        print(
-            f"TPEx 行情取得失敗：{e}"
-        )
+                    quote_date = today_string()
+
+            quotes[symbol] = {
+
+                "price":
+                    current_price,
+
+                "day_low":
+                    day_low,
+
+                "market":
+                    "TPEX",
+
+                "time":
+                    "",
+
+                "date":
+                    quote_date
+
+            }
+
+            print(
+                f"TPEx/Yahoo {symbol}: "
+                f"price={current_price}, "
+                f"day_low={day_low}"
+            )
+
+        except Exception as e:
+
+            print(
+                f"TPEx/Yahoo 行情取得失敗 "
+                f"{symbol}：{e}"
+            )
 
     return quotes
 
@@ -1936,6 +2097,7 @@ def main():
             print(
                 f"行情 {symbol}: "
                 f"price={quote.get('price')} "
+                f"day_low={quote.get('day_low')} "
                 f"date={quote.get('date')} "
                 f"time={quote.get('time')}"
             )
