@@ -838,7 +838,7 @@ def get_tpex_quotes(
 
             url = (
                 "https://query1.finance.yahoo.com/"
-                f"v8/finance/chart/{symbol}.TW"
+                f"v8/finance/chart/{symbol}.TWO"
             )
 
             response = requests.get(
@@ -1415,7 +1415,7 @@ def process_first_buy(
         quantity = int(
 
             buy_budget
-            // current_price
+            // execution_price
 
         )
 
@@ -1523,7 +1523,7 @@ def process_first_buy(
         signal["first_buy_date"] = today
 
         signal["first_buy_price"] = (
-            current_price
+            execution_price
         )
 
         # ----------------------------------------------------
