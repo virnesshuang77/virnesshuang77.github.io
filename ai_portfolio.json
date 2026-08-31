@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 940220.0,
-  "total_assets": 1000000.0,
-  "total_profit": 0.0,
-  "total_return_percent": 0.0,
+  "cash": 890765.0,
+  "total_assets": 1004095.0,
+  "total_profit": 4095.0,
+  "total_return_percent": 0.4095,
   "date": "2026-08-31",
-  "updated_at": "2026-08-31T05:45:08",
+  "updated_at": "2026-08-31T05:46:17",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -39,9 +39,11 @@
       "market": "TWSE",
       "reference_close": 7065.0,
       "first_buy_trigger": 7065.0,
-      "status": "waiting",
+      "status": "holding",
       "first_buy_allocation": 0.3,
-      "created_at": "2026-08-30T13:58:23"
+      "created_at": "2026-08-30T13:58:23",
+      "first_buy_date": "2026-08-31",
+      "first_buy_price": 7650.0
     },
     {
       "signal_date": "2026-08-28",
@@ -83,6 +85,23 @@
       "reference_close": 317.5,
       "buy_stage": 1,
       "allocation_used": 0.3
+    },
+    {
+      "symbol": "3008",
+      "name": "大立光",
+      "market": "TWSE",
+      "quantity": 7,
+      "average_cost": 7065.0,
+      "current_price": 7650.0,
+      "invested": 49455.0,
+      "market_value": 53550.0,
+      "unrealized_profit": 4095.0,
+      "unrealized_return_percent": 8.280254777070063,
+      "first_buy_date": "2026-08-31",
+      "signal_date": "2026-08-28",
+      "reference_close": 7065.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
     }
   ],
   "waiting": [
@@ -91,13 +110,6 @@
       "name": "精材",
       "signal_date": "2026-08-28",
       "trigger_price": 386.0,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
-      "symbol": "3008",
-      "name": "大立光",
-      "signal_date": "2026-08-28",
-      "trigger_price": 7065.0,
       "status": "等待價格 ≤ 選股日收盤"
     },
     {
@@ -128,6 +140,19 @@
       "reason": "盤中價格 ≤ AI 選股日收盤價",
       "signal_date": "2026-08-28",
       "reference_close": 317.5
+    },
+    {
+      "date": "2026-08-31",
+      "symbol": "3008",
+      "name": "大立光",
+      "action": "買入",
+      "price": 7065.0,
+      "quantity": 7,
+      "amount": 49455.0,
+      "allocation": "30%",
+      "reason": "今日最低價曾 ≤ 觸發價格；以觸發價限價單模擬成交",
+      "signal_date": "2026-08-28",
+      "reference_close": 7065.0
     }
   ],
   "performance": [
@@ -140,10 +165,10 @@
     },
     {
       "date": "2026-08-31",
-      "total_assets": 1000000.0,
-      "cash": 940220.0,
-      "return_percent": 0.0,
-      "holding_count": 1
+      "total_assets": 1004095.0,
+      "cash": 890765.0,
+      "return_percent": 0.4095,
+      "holding_count": 2
     }
   ]
 }
