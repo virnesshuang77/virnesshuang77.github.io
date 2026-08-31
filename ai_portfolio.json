@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 890765.0,
-  "total_assets": 1004095.0,
-  "total_profit": 4095.0,
-  "total_return_percent": 0.4095,
+  "cash": 830835.0,
+  "total_assets": 1006861.0,
+  "total_profit": 6861.0,
+  "total_return_percent": 0.6861,
   "date": "2026-08-31",
-  "updated_at": "2026-08-31T05:46:17",
+  "updated_at": "2026-08-31T05:54:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -52,9 +52,11 @@
       "market": "TPEX",
       "reference_close": 130.0,
       "first_buy_trigger": 130.0,
-      "status": "waiting",
+      "status": "holding",
       "first_buy_allocation": 0.3,
-      "created_at": "2026-08-30T13:58:23"
+      "created_at": "2026-08-30T13:58:23",
+      "first_buy_date": "2026-08-31",
+      "first_buy_price": 130.0
     },
     {
       "signal_date": "2026-08-28",
@@ -102,6 +104,23 @@
       "reference_close": 7065.0,
       "buy_stage": 1,
       "allocation_used": 0.3
+    },
+    {
+      "symbol": "3441",
+      "name": "聯一光",
+      "market": "TPEX",
+      "quantity": 461,
+      "average_cost": 130.0,
+      "current_price": 136.0,
+      "invested": 59930.0,
+      "market_value": 62696.0,
+      "unrealized_profit": 2766.0,
+      "unrealized_return_percent": 4.615384615384616,
+      "first_buy_date": "2026-08-31",
+      "signal_date": "2026-08-28",
+      "reference_close": 130.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
     }
   ],
   "waiting": [
@@ -110,13 +129,6 @@
       "name": "精材",
       "signal_date": "2026-08-28",
       "trigger_price": 386.0,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
-      "symbol": "3441",
-      "name": "聯一光",
-      "signal_date": "2026-08-28",
-      "trigger_price": 130.0,
       "status": "等待價格 ≤ 選股日收盤"
     },
     {
@@ -153,6 +165,19 @@
       "reason": "今日最低價曾 ≤ 觸發價格；以觸發價限價單模擬成交",
       "signal_date": "2026-08-28",
       "reference_close": 7065.0
+    },
+    {
+      "date": "2026-08-31",
+      "symbol": "3441",
+      "name": "聯一光",
+      "action": "買入",
+      "price": 130.0,
+      "quantity": 461,
+      "amount": 59930.0,
+      "allocation": "30%",
+      "reason": "今日最低價曾 ≤ 觸發價格；以觸發價限價單模擬成交",
+      "signal_date": "2026-08-28",
+      "reference_close": 130.0
     }
   ],
   "performance": [
@@ -165,10 +190,10 @@
     },
     {
       "date": "2026-08-31",
-      "total_assets": 1004095.0,
-      "cash": 890765.0,
-      "return_percent": 0.4095,
-      "holding_count": 2
+      "total_assets": 1006861.0,
+      "cash": 830835.0,
+      "return_percent": 0.6861,
+      "holding_count": 3
     }
   ]
 }
