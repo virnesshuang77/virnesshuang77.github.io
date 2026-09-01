@@ -31,6 +31,7 @@ TWSE 融資融券資料更新程式
 import json
 import time
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 import requests
@@ -1166,51 +1167,78 @@ def fetch_prices(date):
 # ============================================================
 
 def find_latest_data():
+    """
+    只抓台灣今天的融資融券資料。
 
-    for date in get_candidate_dates():
+    重要：
+    不再自動往前尋找前一個交易日。
+    如果今天的資料取得不到，直接讓程式失敗，
+    避免網站顯示昨天資料卻看起來像今天已更新。
+    """
+
+    # GitHub Actions Runner 預設使用 UTC，
+    # 因此明確使用台灣時區，確保資料日期永遠以台灣時間判斷。
+    today = datetime.now(
+        ZoneInfo("Asia/Taipei")
+    ).strftime("%Y%m%d")
+
+    print()
+    print("======================================")
+    print(f"[INFO] 只抓台灣今日資料：{today}")
+    print("======================================")
+
+    try:
+
+        data = fetch_margin(today)
+
+        api_date = str(
+            data.get("date", "")
+        ).strip()
+
+        # TWSE API 正常情況下應該回傳 YYYYMMDD。
+        # 如果沒有回傳日期，仍以我們要求的 today 作為預期日期，
+        # 但下面仍會進一步確認資料結構已經有效。
+        if (
+            api_date.isdigit()
+            and len(api_date) == 8
+        ):
+            actual_date = api_date
+        else:
+            actual_date = today
+
+        # --------------------------------------------------------
+        # 最重要的防呆：
+        # API 如果回傳前一交易日資料，絕對不能接受。
+        # --------------------------------------------------------
+
+        if actual_date != today:
+            raise RuntimeError(
+                f"API 回傳日期 {actual_date} "
+                f"不是台灣今天 {today}"
+            )
+
+        print(
+            f"[OK] 成功取得今天資料："
+            f"{actual_date}"
+        )
+
+        return actual_date, data
+
+    except Exception as e:
 
         print()
         print("======================================")
-        print(
-            f"[INFO] 測試日期：{date}"
-        )
+        print("❌ 今天的融資融券資料取得失敗")
         print("======================================")
+        print(f"日期：{today}")
+        print(f"原因：{e}")
+        print("不使用前一交易日資料。")
+        print("======================================")
+        print()
 
-        try:
-
-            data = fetch_margin(date)
-
-            api_date = str(
-                data.get("date", "")
-            ).strip()
-
-            if (
-                api_date.isdigit()
-                and len(api_date) == 8
-            ):
-                actual_date = api_date
-            else:
-                actual_date = date
-
-            print(
-                f"[OK] 找到有效交易日："
-                f"{actual_date}"
-            )
-
-            return actual_date, data
-
-        except Exception as e:
-
-            print(
-                f"[WARN] {date} 無有效資料："
-                f"{e}"
-            )
-
-        time.sleep(0.5)
-
-    raise RuntimeError(
-        "找不到最近的有效融資融券資料"
-    )
+        raise RuntimeError(
+            f"今天 {today} 沒有取得有效融資融券資料"
+        ) from e
 
 
 # ============================================================
