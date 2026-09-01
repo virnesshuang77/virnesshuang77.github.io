@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 from pathlib import Path
 import re
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -97,16 +98,24 @@ def num(value, default=0.0):
         return default
 
 
+TAIPEI_TZ = ZoneInfo("Asia/Taipei")
+
+
+def taipei_now():
+
+    return datetime.now(TAIPEI_TZ)
+
+
 def today_string():
 
-    return datetime.now().strftime(
+    return taipei_now().strftime(
         "%Y-%m-%d"
     )
 
 
 def now_string():
 
-    return datetime.now().isoformat(
+    return taipei_now().isoformat(
         timespec="seconds"
     )
 
@@ -1152,18 +1161,251 @@ def get_realtime_quotes(
 # 是否允許今天進行交易
 # ============================================================
 
-def is_trading_day():
+def is_trading_day(date_string=None):
 
-    weekday = datetime.now().weekday()
+    if date_string:
+        try:
+            check_date = datetime.strptime(
+                str(date_string),
+                "%Y-%m-%d"
+            ).date()
+        except ValueError:
+            return False
+    else:
+        check_date = taipei_now().date()
 
     # 5 = Saturday
     # 6 = Sunday
+    return check_date.weekday() < 5
 
-    if weekday >= 5:
 
-        return False
+# ============================================================
+# 歷史日行情
+# ============================================================
 
-    return True
+def get_historical_daily_quotes(
+    signals,
+    end_date
+):
+
+    """
+    取得等待訊號在「今天以前」的歷史日內最低價。
+
+    用途：
+    GitHub Actions 如果沒有剛好在觸價當下執行，
+    下一次執行時仍可回頭檢查先前交易日是否曾經觸發。
+
+    Yahoo Finance chart API 的日線 low 只用來判斷：
+        當日最低價 <= 參考收盤價
+
+    成交價仍固定使用 reference_close，
+    不假裝知道盤中最低點就是成交價。
+    """
+
+    history = {}
+
+    if not signals:
+        return history
+
+    today = str(end_date)
+
+    for signal in signals:
+
+        symbol = str(
+            signal.get("symbol", "")
+        ).strip()
+
+        signal_date = str(
+            signal.get("signal_date", "")
+        ).strip()
+
+        if not symbol or not signal_date:
+            continue
+
+        try:
+            start_dt = datetime.strptime(
+                signal_date,
+                "%Y-%m-%d"
+            )
+            end_dt = datetime.strptime(
+                today,
+                "%Y-%m-%d"
+            )
+        except ValueError:
+            continue
+
+        # 選股日之後、今天之前才是可回補的歷史交易區間。
+        if end_dt.date() <= start_dt.date():
+            continue
+
+        # Yahoo symbol：
+        # TWSE -> .TW
+        # TPEx -> .TWO
+        market = str(
+            signal.get("market", "")
+        ).upper()
+
+        suffix = ".TWO" if market in (
+            "TPEX",
+            "TPEX",
+            "TPEX ",
+            "TPEX"
+        ) else ".TW"
+
+        yahoo_symbol = f"{symbol}{suffix}"
+
+        try:
+            # period1 / period2 使用 UTC epoch。
+            # 查詢範圍包含 signal_date 後一天到今天，
+            # period2 設成今天台灣時間 00:00 後一天，
+            # 以確保最後一個完整交易日被包含。
+            query_start = start_dt.date()
+            query_end = end_dt.date()
+
+            start_local = datetime(
+                query_start.year,
+                query_start.month,
+                query_start.day,
+                tzinfo=TAIPEI_TZ
+            )
+
+            end_local = datetime(
+                query_end.year,
+                query_end.month,
+                query_end.day,
+                tzinfo=TAIPEI_TZ
+            )
+
+            period1 = int(
+                start_local.timestamp()
+            )
+
+            period2 = int(
+                (end_local.timestamp() + 86400)
+            )
+
+            response = requests.get(
+                "https://query1.finance.yahoo.com/"
+                f"/v8/finance/chart/{yahoo_symbol}",
+                params={
+                    "period1": period1,
+                    "period2": period2,
+                    "interval": "1d",
+                    "includePrePost": "false",
+                    "events": "div,splits",
+                    "_": int(
+                        taipei_now().timestamp() * 1000
+                    )
+                },
+                headers={
+                    "User-Agent": "Mozilla/5.0"
+                },
+                timeout=20
+            )
+
+            response.raise_for_status()
+            data = response.json()
+
+            result_list = data.get(
+                "chart",
+                {}
+            ).get(
+                "result"
+            )
+
+            if not result_list:
+                print(
+                    f"歷史行情 {symbol}：沒有資料。"
+                )
+                continue
+
+            result = result_list[0]
+
+            timestamps = result.get(
+                "timestamp"
+            ) or []
+
+            quote_list = result.get(
+                "indicators",
+                {}
+            ).get(
+                "quote",
+                []
+            )
+
+            if not quote_list:
+                print(
+                    f"歷史行情 {symbol}：沒有 quote。"
+                )
+                continue
+
+            quote_data = quote_list[0]
+
+            lows = quote_data.get(
+                "low"
+            ) or []
+
+            rows = []
+
+            for i, timestamp in enumerate(
+                timestamps
+            ):
+
+                if i >= len(lows):
+                    continue
+
+                low = lows[i]
+
+                if low is None:
+                    continue
+
+                low = num(
+                    low,
+                    None
+                )
+
+                if low is None or low <= 0:
+                    continue
+
+                try:
+                    row_date = datetime.fromtimestamp(
+                        int(timestamp),
+                        tz=TAIPEI_TZ
+                    ).strftime("%Y-%m-%d")
+                except Exception:
+                    continue
+
+                # 絕對不能把選股日當成可交易日。
+                if row_date <= signal_date:
+                    continue
+
+                # 只回補今天以前的完整交易日。
+                if row_date >= today:
+                    continue
+
+                rows.append({
+                    "date": row_date,
+                    "day_low": low
+                })
+
+            rows.sort(
+                key=lambda x: x["date"]
+            )
+
+            history[symbol] = rows
+
+            print(
+                f"歷史行情 {symbol}: "
+                f"取得 {len(rows)} 個交易日"
+            )
+
+        except Exception as e:
+
+            print(
+                f"歷史行情取得失敗 {symbol}：{e}"
+            )
+
+    return history
 
 
 # ============================================================
@@ -1172,23 +1414,30 @@ def is_trading_day():
 
 def process_first_buy(
     portfolio,
-    realtime_quotes
+    realtime_quotes,
+    historical_quotes=None
 ):
+
+    """
+    處理第一筆買入。
+
+    規則：
+    1. AI 選股日不能買。
+    2. 選股日之後，只要某個交易日曾經觸及 reference_close，
+       就在「第一次觸發的交易日」模擬成交。
+    3. 如果是今天，使用即時行情的 price / day_low。
+    4. 如果是過去交易日，使用歷史日線 low 回補漏掉的觸價。
+    5. 回補歷史交易時，成交價使用 reference_close。
+    """
 
     today = today_string()
 
-    # --------------------------------------------------------
-    # ★ 週末絕對不買
-    # --------------------------------------------------------
+    historical_quotes = historical_quotes or {}
 
-    if not is_trading_day():
-
-        print(
-            "今天不是交易日，"
-            "不執行任何買入。"
-        )
-
-        return
+    # 週末不做今天的即時買入；
+    # 但即使今天是週末，也不需要在這裡回補，
+    # 因為歷史回補由今天以前的交易日處理。
+    today_is_trading = is_trading_day(today)
 
     for signal in portfolio.get(
         "signal_queue",
@@ -1198,12 +1447,11 @@ def process_first_buy(
         if signal.get(
             "status"
         ) != "waiting":
-
             continue
 
-        signal_date = signal.get(
-            "signal_date"
-        )
+        signal_date = str(
+            signal.get("signal_date", "")
+        ).strip()
 
         if not signal_date:
             continue
@@ -1212,8 +1460,7 @@ def process_first_buy(
         # 選股當天不能買
         # ----------------------------------------------------
 
-        if str(signal_date) >= str(today):
-
+        if signal_date >= today:
             continue
 
         symbol = str(
@@ -1221,65 +1468,9 @@ def process_first_buy(
                 "symbol",
                 ""
             )
-        )
+        ).strip()
 
-        quote = realtime_quotes.get(
-            symbol
-        )
-
-        if quote is None:
-
-            print(
-                f"{symbol} "
-                f"{signal.get('name', '')} "
-                f"找不到即時行情，"
-                f"跳過本次檢查。"
-            )
-
-            continue
-
-        # ----------------------------------------------------
-        # 確認行情日期
-        #
-        # TWSE 如果有日期欄位，
-        # 必須是今天。
-        # ----------------------------------------------------
-
-        quote_date = str(
-            quote.get(
-                "date",
-                ""
-            )
-        )
-
-        if quote_date:
-
-            normalized_quote_date = normalize_quote_date(
-                quote_date
-            )
-
-            if normalized_quote_date != today:
-
-                print(
-
-                    f"{symbol} "
-                    f"行情日期 {quote_date} "
-                    f"(標準化後 {normalized_quote_date}) "
-                    f"不是今天 {today}，"
-                    f"不買。"
-
-                )
-
-                continue
-
-        current_price = num(
-            quote.get(
-                "price"
-            )
-        )
-
-        if current_price <= 0:
-
+        if not symbol:
             continue
 
         reference_close = num(
@@ -1289,77 +1480,156 @@ def process_first_buy(
         )
 
         if reference_close <= 0:
-
             continue
 
-        # ====================================================
-        # ★ 核心買入規則
-        #
-        # 當日盤中價格
-        # <= AI 選股日收盤價
-        #
-        # 才買入
-        # ====================================================
-
-        day_low = num(
-            quote.get(
-                "day_low"
-            ),
-            None
-        )
-
-        print(
-            f"檢查 {symbol} "
-            f"{signal.get('name', '')}: "
-            f"現價={current_price} "
-            f"今日最低={day_low} "
-            f"觸發價={reference_close}"
-        )
-
-        # ====================================================
-        # 觸發規則
-        #
-        # 1. 現價 <= 觸發價：
-        #    直接視為當下觸發，使用當下價格成交。
-        #
-        # 2. 現價 > 觸發價，但今日最低 <= 觸發價：
-        #    代表盤中曾經觸發，只是 GitHub Actions
-        #    下一次執行時價格已經反彈。
-        #
-        #    這裡以「掛在觸發價的限價單」模擬，
-        #    因此成交價使用 reference_close，
-        #    不使用今日最低價，避免假裝知道最低點成交。
-        # ====================================================
-
         triggered = False
-        execution_price = current_price
+        execution_price = None
+        trigger_date = None
         trigger_reason = ""
 
-        if current_price <= reference_close:
+        # ====================================================
+        # A. 先檢查「今天以前」是否有漏掉的觸價日
+        # ====================================================
 
-            triggered = True
-            execution_price = current_price
-            trigger_reason = "即時價格 ≤ 觸發價格"
+        rows = historical_quotes.get(
+            symbol,
+            []
+        )
 
-        elif (
-            day_low is not None
-            and day_low > 0
-            and day_low <= reference_close
-        ):
+        for row in rows:
 
-            triggered = True
-            execution_price = reference_close
-            trigger_reason = (
-                "今日最低價曾 ≤ 觸發價格；"
-                "以觸發價限價單模擬成交"
+            row_date = str(
+                row.get("date", "")
             )
+
+            day_low = num(
+                row.get("day_low"),
+                None
+            )
+
+            if not row_date:
+                continue
+
+            if row_date <= signal_date:
+                continue
+
+            if row_date >= today:
+                continue
+
+            if not is_trading_day(row_date):
+                continue
+
+            if (
+                day_low is not None
+                and day_low > 0
+                and day_low <= reference_close
+            ):
+
+                triggered = True
+                execution_price = reference_close
+                trigger_date = row_date
+                trigger_reason = (
+                    f"{row_date} 歷史最低價 {day_low} "
+                    f"≤ 觸發價格 {reference_close}；"
+                    f"回補為觸發價限價單成交"
+                )
+
+                break
+
+        # ====================================================
+        # B. 如果今天是交易日，再檢查今天即時行情
+        # ====================================================
+
+        if not triggered and today_is_trading:
+
+            quote = realtime_quotes.get(
+                symbol
+            )
+
+            if quote is None:
+
+                print(
+                    f"{symbol} "
+                    f"{signal.get('name', '')} "
+                    f"找不到即時行情，"
+                    f"跳過本次檢查。"
+                )
+
+            else:
+
+                quote_date = str(
+                    quote.get(
+                        "date",
+                        ""
+                    )
+                )
+
+                # Yahoo TPEx 已經是 YYYY-MM-DD；
+                # TWSE 則可能是 YYYYMMDD。
+                if quote_date:
+
+                    normalized_quote_date = normalize_quote_date(
+                        quote_date
+                    )
+
+                    if normalized_quote_date != today:
+
+                        print(
+                            f"{symbol} "
+                            f"行情日期 {quote_date} "
+                            f"(標準化後 {normalized_quote_date}) "
+                            f"不是今天 {today}，不買。"
+                        )
+
+                        quote = None
+
+                if quote is not None:
+
+                    current_price = num(
+                        quote.get("price")
+                    )
+
+                    day_low = num(
+                        quote.get("day_low"),
+                        None
+                    )
+
+                    print(
+                        f"檢查 {symbol} "
+                        f"{signal.get('name', '')}: "
+                        f"現價={current_price} "
+                        f"今日最低={day_low} "
+                        f"觸發價={reference_close}"
+                    )
+
+                    if current_price > 0 and current_price <= reference_close:
+
+                        triggered = True
+                        execution_price = current_price
+                        trigger_date = today
+                        trigger_reason = (
+                            "即時價格 ≤ 觸發價格"
+                        )
+
+                    elif (
+                        day_low is not None
+                        and day_low > 0
+                        and day_low <= reference_close
+                    ):
+
+                        triggered = True
+                        execution_price = reference_close
+                        trigger_date = today
+                        trigger_reason = (
+                            "今日最低價曾 ≤ 觸發價格；"
+                            "以觸發價限價單模擬成交"
+                        )
 
         if not triggered:
 
             print(
                 f"{symbol} 尚未觸發："
-                f"現價={current_price}, "
-                f"今日最低={day_low}, "
+                f"選股日={signal_date}, "
                 f"觸發價={reference_close}"
             )
 
@@ -1368,7 +1638,8 @@ def process_first_buy(
         print(
             f"★ {symbol} 已觸發："
             f"{trigger_reason}，"
-            f"模擬成交價={execution_price}"
+            f"模擬成交日={trigger_date}，"
+            f"成交價={execution_price}"
         )
 
         # ----------------------------------------------------
@@ -1376,10 +1647,8 @@ def process_first_buy(
         # ----------------------------------------------------
 
         target_budget = (
-
             INITIAL_CAPITAL
             * MAX_ALLOCATION_PER_STOCK
-
         )
 
         # ----------------------------------------------------
@@ -1387,10 +1656,8 @@ def process_first_buy(
         # ----------------------------------------------------
 
         buy_budget = (
-
             target_budget
             * FIRST_BUY_ALLOCATION
-
         )
 
         cash = num(
@@ -1413,28 +1680,21 @@ def process_first_buy(
         )
 
         quantity = int(
-
             buy_budget
             // execution_price
-
         )
 
         if quantity <= 0:
 
             print(
-
-                f"{symbol} "
-                f"資金不足以買入 1 股"
-
+                f"{symbol} 資金不足以買入 1 股"
             )
 
             continue
 
         actual_amount = (
-
             quantity
             * execution_price
-
         )
 
         # ----------------------------------------------------
@@ -1442,76 +1702,70 @@ def process_first_buy(
         # ----------------------------------------------------
 
         portfolio["cash"] = (
-
             cash
             - actual_amount
-
         )
 
         # ----------------------------------------------------
         # 建立持股
         # ----------------------------------------------------
 
+        # 歷史回補時，若今天有即時價格就使用今天價格；
+        # 否則先以成交價建立，之後下一次行情更新會修正。
+        current_price = execution_price
+
+        current_quote = realtime_quotes.get(
+            symbol
+        )
+
+        if current_quote:
+            current_price = num(
+                current_quote.get("price"),
+                execution_price
+            )
+
+            if current_price <= 0:
+                current_price = execution_price
+
         portfolio.setdefault(
             "holdings",
             []
         ).append(
-
             {
-
-                "symbol":
-                    symbol,
-
-                "name":
-                    signal.get(
-                        "name",
-                        ""
-                    ),
-
-                "market":
-                    signal.get(
-                        "market",
-                        ""
-                    ),
-
-                "quantity":
-                    quantity,
-
-                "average_cost":
-                    execution_price,
-
-                "current_price":
-                    current_price,
-
-                "invested":
-                    actual_amount,
-
-                "market_value":
-                    actual_amount,
-
-                "unrealized_profit":
-                    0,
-
-                "unrealized_return_percent":
-                    0,
-
-                "first_buy_date":
-                    today,
-
-                "signal_date":
-                    signal_date,
-
-                "reference_close":
-                    reference_close,
-
-                "buy_stage":
-                    1,
-
-                "allocation_used":
-                    FIRST_BUY_ALLOCATION
-
+                "symbol": symbol,
+                "name": signal.get(
+                    "name",
+                    ""
+                ),
+                "market": signal.get(
+                    "market",
+                    ""
+                ),
+                "quantity": quantity,
+                "average_cost": execution_price,
+                "current_price": current_price,
+                "invested": actual_amount,
+                "market_value": quantity * current_price,
+                "unrealized_profit": (
+                    quantity * current_price
+                    - actual_amount
+                ),
+                "unrealized_return_percent": (
+                    (
+                        (quantity * current_price)
+                        - actual_amount
+                    )
+                    / actual_amount
+                    * 100
+                    if actual_amount > 0
+                    else 0
+                ),
+                "first_buy_date": trigger_date,
+                "signal_date": signal_date,
+                "reference_close": reference_close,
+                "buy_stage": 1,
+                "allocation_used": FIRST_BUY_ALLOCATION
             }
-
         )
 
         # ----------------------------------------------------
@@ -1519,12 +1773,8 @@ def process_first_buy(
         # ----------------------------------------------------
 
         signal["status"] = "holding"
-
-        signal["first_buy_date"] = today
-
-        signal["first_buy_price"] = (
-            execution_price
-        )
+        signal["first_buy_date"] = trigger_date
+        signal["first_buy_price"] = execution_price
 
         # ----------------------------------------------------
         # 交易紀錄
@@ -1534,56 +1784,30 @@ def process_first_buy(
             "transactions",
             []
         ).append(
-
             {
-
-                "date":
-                    today,
-
-                "symbol":
-                    symbol,
-
-                "name":
-                    signal.get(
-                        "name",
-                        ""
-                    ),
-
-                "action":
-                    "買入",
-
-                "price":
-                    execution_price,
-
-                "quantity":
-                    quantity,
-
-                "amount":
-                    actual_amount,
-
-                "allocation":
-                    "30%",
-
-                "reason":
-                    trigger_reason,
-
-                "signal_date":
-                    signal_date,
-
-                "reference_close":
-                    reference_close
-
+                "date": trigger_date,
+                "symbol": symbol,
+                "name": signal.get(
+                    "name",
+                    ""
+                ),
+                "action": "買入",
+                "price": execution_price,
+                "quantity": quantity,
+                "amount": actual_amount,
+                "allocation": "30%",
+                "reason": trigger_reason,
+                "signal_date": signal_date,
+                "reference_close": reference_close
             }
-
         )
 
         print(
-
             f"★ 第一筆買入："
             f"{symbol} "
             f"{quantity} 股 @ "
-            f"{execution_price}"
-
+            f"{execution_price} "
+            f"成交日={trigger_date}"
         )
 
 
@@ -2110,19 +2334,40 @@ def main():
         )
 
     # --------------------------------------------------------
-    # 6. 第一次買入
+    # 6. 回補過去交易日的觸價
+    # --------------------------------------------------------
+
+    waiting_signals = [
+        signal
+        for signal in portfolio.get(
+            "signal_queue",
+            []
+        )
+        if signal.get("status") == "waiting"
+        and str(signal.get("signal_date", "")) < today_string()
+    ]
+
+    historical_quotes = get_historical_daily_quotes(
+        waiting_signals,
+        today_string()
+    )
+
+    # --------------------------------------------------------
+    # 7. 第一次買入
     # --------------------------------------------------------
 
     process_first_buy(
 
         portfolio,
 
-        quotes
+        quotes,
+
+        historical_quotes
 
     )
 
     # --------------------------------------------------------
-    # 7. 更新持股
+    # 8. 更新持股
     # --------------------------------------------------------
 
     update_holdings(
@@ -2134,7 +2379,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 8. 更新等待名單
+    # 9. 更新等待名單
     # --------------------------------------------------------
 
     update_waiting(
@@ -2142,7 +2387,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 9. 更新總資產
+    # 10. 更新總資產
     # --------------------------------------------------------
 
     update_total_assets(
@@ -2150,7 +2395,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 10. 更新每日績效
+    # 11. 更新每日績效
     # --------------------------------------------------------
 
     update_daily_performance(
@@ -2158,7 +2403,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 11. 更新時間
+    # 12. 更新時間
     # --------------------------------------------------------
 
     portfolio[
@@ -2170,7 +2415,7 @@ def main():
     ] = now_string()
 
     # --------------------------------------------------------
-    # 12. 儲存
+    # 13. 儲存
     # --------------------------------------------------------
 
     save_json(
@@ -2182,7 +2427,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 13. 顯示
+    # 14. 顯示
     # --------------------------------------------------------
 
     print()
