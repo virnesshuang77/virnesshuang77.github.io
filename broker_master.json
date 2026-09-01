@@ -1,5 +1,5 @@
 {
-  "data_date": "2026-08-31",
+  "data_date": "2026-09-01",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
   "total": 814,
@@ -3655,7 +3655,7 @@
       "broker_code": "961Y",
       "broker_name": "富邦-屏東",
       "open_date": "1120409",
-      "address": "屏東市中正路125號3樓之1及3樓之2",
+      "address": "屏東市中正路125號3樓之1",
       "phone": "08-7663888"
     },
     {
