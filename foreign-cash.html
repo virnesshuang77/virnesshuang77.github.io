@@ -1,40 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>三大法人買賣超</title>
 
-
 <style>
-
-*{
-  box-sizing:border-box;
-}
-
+*{box-sizing:border-box}
 
 body{
   margin:0;
   background:#f5f6f8;
   color:#222;
-  font-family:
-    "Noto Sans TC",
-    "Microsoft JhengHei",
-    Arial,
-    sans-serif;
+  font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
 }
-
-
-/* =========================================================
-   外層
-   ========================================================= */
 
 .wrap{
   max-width:1150px;
@@ -42,17 +21,11 @@ body{
   padding:0 22px;
 }
 
-
-/* =========================================================
-   標題
-   ========================================================= */
-
 .title{
   font-size:28px;
   font-weight:500;
   margin:0;
 }
-
 
 .subtitle{
   margin-top:8px;
@@ -60,16 +33,35 @@ body{
   font-size:14px;
 }
 
-
 .page-title{
   text-align:center;
-  margin-top:8px;
 }
 
+.navbar{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:28px;
+}
 
-/* =========================================================
-   日期
-   ========================================================= */
+.navlink{
+  display:inline-block;
+  text-decoration:none;
+  border:1px solid #d9e1e9;
+  background:#fff;
+  color:#344454;
+  border-radius:9px;
+  padding:9px 13px;
+  font-weight:700;
+  font-size:14px;
+  white-space:nowrap;
+}
+
+.navlink:hover{
+  border-color:#1677ff;
+  color:#1677ff;
+}
 
 .date{
   margin-top:28px;
@@ -82,22 +74,15 @@ body{
   align-items:center;
 }
 
-
 .date strong{
   font-size:20px;
   font-weight:500;
 }
 
-
 .unit{
   color:#777;
   font-size:13px;
 }
-
-
-/* =========================================================
-   三大法人卡片
-   ========================================================= */
 
 .cards{
   display:grid;
@@ -106,7 +91,6 @@ body{
   margin-top:18px;
 }
 
-
 .card{
   background:#fff;
   border:1px solid #e2e2e2;
@@ -114,12 +98,10 @@ body{
   padding:18px 20px;
 }
 
-
 .card .label{
   font-size:14px;
   color:#666;
 }
-
 
 .card .value{
   font-size:25px;
@@ -127,22 +109,15 @@ body{
   font-weight:600;
 }
 
-
 .positive{
   color:#e53935;
   font-weight:600;
 }
 
-
 .negative{
   color:#1687bf;
   font-weight:600;
 }
-
-
-/* =========================================================
-   表格
-   ========================================================= */
 
 .table-wrap{
   margin-top:18px;
@@ -152,62 +127,46 @@ body{
   overflow:hidden;
 }
 
-
 table{
   width:100%;
   border-collapse:collapse;
 }
-
 
 thead{
   background:#268fc5;
   color:#fff;
 }
 
-
-th,
-td{
+th,td{
   padding:17px 22px;
   text-align:right;
 }
 
-
-th:first-child,
-td:first-child{
+th:first-child,td:first-child{
   text-align:left;
 }
-
 
 th{
   font-size:14px;
   font-weight:500;
 }
 
-
 td{
   font-size:15px;
   border-bottom:1px solid #eee;
 }
 
-
 tbody tr:nth-child(even){
   background:#f2f7fb;
 }
-
 
 tbody tr:last-child td{
   border-bottom:0;
 }
 
-
 .name{
   font-weight:500;
 }
-
-
-/* =========================================================
-   圖表
-   ========================================================= */
 
 .chart-box{
   margin-top:22px;
@@ -217,7 +176,6 @@ tbody tr:last-child td{
   padding:24px 24px 20px;
 }
 
-
 .chart-head{
   display:flex;
   justify-content:space-between;
@@ -225,19 +183,16 @@ tbody tr:last-child td{
   margin-bottom:18px;
 }
 
-
 .chart-title{
   font-size:19px;
   font-weight:500;
 }
-
 
 .chart-desc{
   font-size:12px;
   color:#888;
   margin-top:5px;
 }
-
 
 .legend{
   display:flex;
@@ -246,13 +201,11 @@ tbody tr:last-child td{
   color:#666;
 }
 
-
 .legend span{
   display:flex;
   align-items:center;
   gap:6px;
 }
-
 
 .dot{
   width:10px;
@@ -260,43 +213,30 @@ tbody tr:last-child td{
   border-radius:50%;
 }
 
-
-.dot.foreign{
-  background:#e53935;
-}
-
-
-.dot.trust{
-  background:#1687bf;
-}
-
-
-.dot.dealer{
-  background:#f39c12;
-}
-
+.dot.foreign{background:#e53935}
+.dot.trust{background:#1687bf}
+.dot.dealer{background:#f39c12}
 
 .chart-scroll{
   overflow-x:auto;
+  overflow-y:hidden;
   -webkit-overflow-scrolling:touch;
+  border-radius:4px;
 }
-
 
 .chart-inner{
   position:relative;
-  min-width:850px;
+  min-width:1050px;
 }
-
 
 svg{
   display:block;
   width:100%;
-  min-width:850px;
+  min-width:1050px;
   height:390px;
   touch-action:none;
   cursor:crosshair;
 }
-
 
 .gridline{
   stroke:#e6e9ec;
@@ -304,30 +244,25 @@ svg{
   stroke-dasharray:4 4;
 }
 
-
 .zero-line{
   stroke:#999;
   stroke-width:1.5;
 }
-
 
 .vline{
   stroke:#f0f1f2;
   stroke-width:1;
 }
 
-
 .axis{
   stroke:#aaa;
   stroke-width:1;
 }
 
-
 .axis-text{
   font-size:11px;
   fill:#777;
 }
-
 
 .trend-line{
   fill:none;
@@ -336,13 +271,11 @@ svg{
   stroke-linejoin:round;
 }
 
-
 .trend-point{
   stroke:#fff;
   stroke-width:2;
   cursor:pointer;
 }
-
 
 .hover-line{
   stroke:#555;
@@ -351,22 +284,15 @@ svg{
   pointer-events:none;
 }
 
-
 .focus-point{
   stroke:#fff;
   stroke-width:3;
   pointer-events:none;
 }
 
-
 .date-label{
   user-select:none;
 }
-
-
-/* =========================================================
-   圖表資訊框
-   ========================================================= */
 
 .tooltip{
   position:absolute;
@@ -383,7 +309,6 @@ svg{
   box-shadow:0 4px 16px rgba(0,0,0,.18);
 }
 
-
 .tooltip-date{
   font-size:14px;
   font-weight:700;
@@ -392,35 +317,26 @@ svg{
   border-bottom:1px solid rgba(255,255,255,.18);
 }
 
-
 .tooltip-row{
   display:flex;
   justify-content:space-between;
   gap:20px;
 }
 
-
 .tooltip-label{
   color:#ddd;
 }
-
 
 .tooltip-value{
   font-weight:700;
   white-space:nowrap;
 }
 
-
 .tooltip-total{
   margin-top:5px;
   padding-top:5px;
   border-top:1px solid rgba(255,255,255,.18);
 }
-
-
-/* =========================================================
-   說明
-   ========================================================= */
 
 .note{
   margin-top:16px;
@@ -429,74 +345,28 @@ svg{
   line-height:1.8;
 }
 
-
 .source{
   margin-top:25px;
   font-size:13px;
   color:#777;
 }
 
-
 .source a{
   color:#1687bf;
   text-decoration:none;
 }
 
-
-/* =========================================================
-   導覽列
-   ========================================================= */
-
-.navbar{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:28px;
-}
-
-
-.navlink{
-  display:inline-block;
-  text-decoration:none;
-  border:1px solid #d9e1e9;
-  background:#fff;
-  color:#344454;
-  border-radius:9px;
-  padding:9px 13px;
-  font-weight:700;
-  font-size:14px;
-  white-space:nowrap;
-}
-
-
-.navlink:hover{
-  border-color:#1677ff;
-  color:#1677ff;
-}
-
-
-/* =========================================================
-   手機版
-   ========================================================= */
-
 @media(max-width:700px){
-
   .wrap{
     margin-top:25px;
     padding:0 12px;
   }
 
-
-  .title{
-    font-size:23px;
-  }
-
+  .title{font-size:23px}
 
   .cards{
     grid-template-columns:1fr;
   }
-
 
   .date{
     align-items:flex-start;
@@ -504,28 +374,22 @@ svg{
     flex-direction:column;
   }
 
-
   .table-wrap{
     overflow-x:auto;
   }
-
 
   table{
     min-width:500px;
   }
 
-
-  th,
-  td{
+  th,td{
     padding:13px 10px;
     font-size:13px;
   }
 
-
   .chart-box{
     padding:18px 12px;
   }
-
 
   .chart-head{
     align-items:flex-start;
@@ -533,11 +397,9 @@ svg{
     gap:12px;
   }
 
-
   .legend{
     gap:12px;
   }
-
 
   .navbar{
     display:grid;
@@ -547,7 +409,6 @@ svg{
     margin-bottom:22px;
   }
 
-
   .navlink{
     width:100%;
     text-align:center;
@@ -555,888 +416,309 @@ svg{
     font-size:13px;
   }
 
-
-  .page-title{
-    text-align:center;
-  }
-
+  .page-title{text-align:center}
 
   .tooltip{
     min-width:205px;
     font-size:12px;
   }
-
 }
-
 </style>
-
 </head>
 
-
 <body>
-
-
 <main class="wrap">
 
+<nav class="navbar" aria-label="工具導覽">
+  <a class="navlink" href="index.html">📊 融資融券維持率</a>
+  <a class="navlink" href="calendar.html">📊 每日行事曆</a>
+  <a class="navlink" href="portfolio.html">📊 投資績效名片</a>
+  <a class="navlink" href="foreign.html">🏦 外資買賣超</a>
+  <a class="navlink" href="broker.html">🏦 投信買賣超</a>
+  <a class="navlink" href="credit.html">🏦 融資融券變化</a>
+</nav>
 
-  <!-- =====================================================
-       導覽列
-       ===================================================== -->
+<h1 class="title page-title">三大法人買賣超</h1>
 
-  <nav
-    class="navbar"
-    aria-label="工具導覽"
+<div class="subtitle">
+  每日整理外資、投信與自營商淨買賣金額
+</div>
+
+<section class="date">
+  <strong id="currentDate">載入中...</strong>
+  <span class="unit">單位：億元</span>
+</section>
+
+<section class="cards">
+  <div class="card">
+    <div class="label">外資</div>
+    <div id="foreignValue" class="value">載入中...</div>
+  </div>
+
+  <div class="card">
+    <div class="label">投信</div>
+    <div id="trustValue" class="value">載入中...</div>
+  </div>
+
+  <div class="card">
+    <div class="label">自營商</div>
+    <div id="dealerValue" class="value">載入中...</div>
+  </div>
+</section>
+
+<section class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>法人</th>
+        <th>本日淨買賣金額（億元）</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td class="name">外資</td>
+        <td id="tableForeign">-</td>
+      </tr>
+
+      <tr>
+        <td class="name">投信</td>
+        <td id="tableTrust">-</td>
+      </tr>
+
+      <tr>
+        <td class="name">自營商</td>
+        <td id="tableDealer">-</td>
+      </tr>
+
+      <tr>
+        <td class="name"><strong>三大法人合計</strong></td>
+        <td id="tableTotal">-</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chart-box">
+  <div class="chart-head">
+
+    <div>
+      <div class="chart-title" id="chartTitle">
+        三大法人歷史交易日走勢
+      </div>
+
+      <div class="chart-desc">
+        累積所有交易日資料｜單位：億元｜移動滑鼠或點擊圖表查看每日金額
+      </div>
+    </div>
+
+    <div class="legend">
+      <span><i class="dot foreign"></i>外資</span>
+      <span><i class="dot trust"></i>投信</span>
+      <span><i class="dot dealer"></i>自營商</span>
+    </div>
+  </div>
+
+  <div class="chart-scroll">
+    <div class="chart-inner">
+      <svg
+        id="trendChart"
+        viewBox="0 0 1050 390"
+        preserveAspectRatio="none"
+        aria-label="三大法人歷史交易日走勢圖"
+      ></svg>
+
+      <div id="tooltip" class="tooltip"></div>
+    </div>
+  </div>
+</section>
+
+<div class="note">
+  ※ 所有金額統一以「億元」表示。<br>
+  ※ 走勢圖會自動讀取 cash.json，累積顯示所有歷史交易日資料。<br>
+  ※ 新交易日資料會自動接在歷史資料最右側，不因換月而清空。<br>
+  ※ 電腦可將滑鼠移到圖表上查看每日金額；手機可直接點擊圖表。<br>
+  ※ 正值代表淨買超，負值代表淨賣超。
+</div>
+
+<div class="source">
+  資料來源：
+  <a
+    href="https://www.twse.com.tw/zh/trading/foreign/bfi82u.html"
+    target="_blank"
+    rel="noopener noreferrer"
   >
-
-    <a
-      class="navlink"
-      href="index.html"
-    >
-      📊 融資融券維持率
-    </a>
-
-
-    <a
-      class="navlink"
-      href="calendar.html"
-    >
-      📊 每日行事曆
-    </a>
-
-
-    <a
-      class="navlink"
-      href="portfolio.html"
-    >
-      📊 投資績效名片
-    </a>
-
-
-    <a
-      class="navlink"
-      href="foreign.html"
-    >
-      🏦 外資買賣超
-    </a>
-
-
-    <a
-      class="navlink"
-      href="broker.html"
-    >
-      🏦 投信買賣超
-    </a>
-
-
-    <a
-      class="navlink"
-      href="credit.html"
-    >
-      🏦 融資融券變化
-    </a>
-
-  </nav>
-
-
-  <!-- =====================================================
-       標題
-       ===================================================== -->
-
-  <h1 class="title page-title">
-    三大法人買賣超
-  </h1>
-
-
-  <div class="subtitle">
-    每日整理外資、投信與自營商淨買賣金額
-  </div>
-
-
-  <!-- =====================================================
-       日期
-       ===================================================== -->
-
-  <section class="date">
-
-    <strong id="currentDate">
-      載入中...
-    </strong>
-
-
-    <span class="unit">
-      單位：億元
-    </span>
-
-  </section>
-
-
-  <!-- =====================================================
-       三大法人卡片
-       ===================================================== -->
-
-  <section class="cards">
-
-
-    <div class="card">
-
-      <div class="label">
-        外資
-      </div>
-
-      <div
-        id="foreignValue"
-        class="value"
-      >
-        載入中...
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="label">
-        投信
-      </div>
-
-      <div
-        id="trustValue"
-        class="value"
-      >
-        載入中...
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="label">
-        自營商
-      </div>
-
-      <div
-        id="dealerValue"
-        class="value"
-      >
-        載入中...
-      </div>
-
-    </div>
-
-
-  </section>
-
-
-  <!-- =====================================================
-       表格
-       ===================================================== -->
-
-  <section class="table-wrap">
-
-    <table>
-
-      <thead>
-
-        <tr>
-
-          <th>
-            法人
-          </th>
-
-          <th>
-            本日淨買賣金額（億元）
-          </th>
-
-        </tr>
-
-      </thead>
-
-
-      <tbody>
-
-
-        <tr>
-
-          <td class="name">
-            外資
-          </td>
-
-          <td id="tableForeign">
-            -
-          </td>
-
-        </tr>
-
-
-        <tr>
-
-          <td class="name">
-            投信
-          </td>
-
-          <td id="tableTrust">
-            -
-          </td>
-
-        </tr>
-
-
-        <tr>
-
-          <td class="name">
-            自營商
-          </td>
-
-          <td id="tableDealer">
-            -
-          </td>
-
-        </tr>
-
-
-        <tr>
-
-          <td class="name">
-
-            <strong>
-              三大法人合計
-            </strong>
-
-          </td>
-
-          <td id="tableTotal">
-            -
-          </td>
-
-        </tr>
-
-
-      </tbody>
-
-    </table>
-
-  </section>
-
-
-  <!-- =====================================================
-       圖表
-       ===================================================== -->
-
-  <section class="chart-box">
-
-
-    <div class="chart-head">
-
-
-      <div>
-
-        <div
-          class="chart-title"
-          id="chartTitle"
-        >
-          三大法人最新月份交易日走勢
-        </div>
-
-
-        <div class="chart-desc">
-          最新有資料的月份｜單位：億元｜移動滑鼠或點擊圖表查看每日金額
-        </div>
-
-      </div>
-
-
-      <div class="legend">
-
-
-        <span>
-
-          <i class="dot foreign"></i>
-
-          外資
-
-        </span>
-
-
-        <span>
-
-          <i class="dot trust"></i>
-
-          投信
-
-        </span>
-
-
-        <span>
-
-          <i class="dot dealer"></i>
-
-          自營商
-
-        </span>
-
-
-      </div>
-
-
-    </div>
-
-
-    <div class="chart-scroll">
-
-
-      <div class="chart-inner">
-
-
-        <svg
-          id="trendChart"
-          viewBox="0 0 1050 390"
-          preserveAspectRatio="none"
-          aria-label="三大法人最新月份走勢圖"
-        ></svg>
-
-
-        <div
-          id="tooltip"
-          class="tooltip"
-        ></div>
-
-
-      </div>
-
-    </div>
-
-
-  </section>
-
-
-  <!-- =====================================================
-       說明
-       ===================================================== -->
-
-  <div class="note">
-
-    ※ 所有金額統一以「億元」表示。<br>
-
-    ※ 走勢圖會自動讀取 cash.json，顯示最新有資料月份的所有交易日資料。<br>
-
-    ※ 若當月尚無交易資料，會暫時顯示上一個有資料月份，避免換月後圖表變成空白。<br>
-
-    ※ 電腦可將滑鼠移到圖表上查看每日金額；手機可直接點擊圖表。<br>
-
-    ※ 正值代表淨買超，負值代表淨賣超。
-
-  </div>
-
-
-  <!-- =====================================================
-       資料來源
-       ===================================================== -->
-
-  <div class="source">
-
-    資料來源：
-
-    <a
-      href="https://www.twse.com.tw/zh/trading/foreign/bfi82u.html"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      臺灣證券交易所－三大法人買賣金額統計表
-    </a>
-
-  </div>
-
+    臺灣證券交易所－三大法人買賣金額統計表
+  </a>
+</div>
 
 </main>
 
-
 <script>
+const svg = document.getElementById("trendChart");
+const tooltip = document.getElementById("tooltip");
 
+const currentDateEl = document.getElementById("currentDate");
+const foreignValueEl = document.getElementById("foreignValue");
+const trustValueEl = document.getElementById("trustValue");
+const dealerValueEl = document.getElementById("dealerValue");
 
-/* =========================================================
-   基本設定
-   ========================================================= */
+const tableForeign = document.getElementById("tableForeign");
+const tableTrust = document.getElementById("tableTrust");
+const tableDealer = document.getElementById("tableDealer");
+const tableTotal = document.getElementById("tableTotal");
 
-const svg =
-  document.getElementById(
-    "trendChart"
-  );
-
-
-const tooltip =
-  document.getElementById(
-    "tooltip"
-  );
-
-
-const currentDateEl =
-  document.getElementById(
-    "currentDate"
-  );
-
-
-const foreignValueEl =
-  document.getElementById(
-    "foreignValue"
-  );
-
-
-const trustValueEl =
-  document.getElementById(
-    "trustValue"
-  );
-
-
-const dealerValueEl =
-  document.getElementById(
-    "dealerValue"
-  );
-
-
-const tableForeign =
-  document.getElementById(
-    "tableForeign"
-  );
-
-
-const tableTrust =
-  document.getElementById(
-    "tableTrust"
-  );
-
-
-const tableDealer =
-  document.getElementById(
-    "tableDealer"
-  );
-
-
-const tableTotal =
-  document.getElementById(
-    "tableTotal"
-  );
-
-
-const chartTitle =
-  document.getElementById(
-    "chartTitle"
-  );
-
+const chartTitle = document.getElementById("chartTitle");
 
 let chartData = [];
-
 let chartGeometry = null;
-
 let selectedIndex = null;
 
-
-/* =========================================================
-   格式化數字
-   ========================================================= */
-
 function formatNumber(value){
-
-  const number =
-    Number(value) || 0;
-
-
-  return (
-    number >= 0
-      ? "+"
-      : ""
-  ) + number.toFixed(2);
-
+  const number = Number(value) || 0;
+  return (number >= 0 ? "+" : "") + number.toFixed(2);
 }
-
-
-/* =========================================================
-   格式化日期
-   ========================================================= */
 
 function formatDate(dateString){
+  if(!dateString) return "-";
 
-  if(!dateString){
-    return "-";
-  }
+  const parts = String(dateString).split("-");
 
-
-  const parts =
-    String(dateString).split("-");
-
-
-  if(parts.length !== 3){
-    return dateString;
-  }
-
+  if(parts.length !== 3) return dateString;
 
   return (
-    parts[0] +
-    "年" +
-    Number(parts[1]) +
-    "月" +
-    Number(parts[2]) +
-    "日"
+    parts[0] + "年" +
+    Number(parts[1]) + "月" +
+    Number(parts[2]) + "日"
   );
-
 }
-
-
-/* =========================================================
-   取得正負顏色
-   ========================================================= */
 
 function getValueClass(value){
-
-  return Number(value) >= 0
-    ? "positive"
-    : "negative";
-
+  return Number(value) >= 0 ? "positive" : "negative";
 }
-
-
-/* =========================================================
-   取得月份文字
-   ========================================================= */
-
-function formatMonth(monthString){
-
-  if(
-    !monthString ||
-    monthString.length !== 7
-  ){
-    return monthString || "";
-  }
-
-
-  const parts =
-    monthString.split("-");
-
-
-  return (
-    Number(parts[0]) +
-    "年" +
-    Number(parts[1]) +
-    "月"
-  );
-
-}
-
-
-/* =========================================================
-   更新上方日期 / 卡片 / 表格
-   ========================================================= */
 
 function updateSelectedInfo(item){
+  if(!item) return;
 
-  if(!item){
-    return;
-  }
-
-
-  const foreign =
-    Number(item.foreign) || 0;
-
-
-  const trust =
-    Number(item.trust) || 0;
-
-
-  const dealer =
-    Number(item.dealer) || 0;
-
+  const foreign = Number(item.foreign) || 0;
+  const trust = Number(item.trust) || 0;
+  const dealer = Number(item.dealer) || 0;
 
   const total =
     Number(item.total) ||
-    (
-      foreign +
-      trust +
-      dealer
-    );
+    (foreign + trust + dealer);
 
-
-  currentDateEl.textContent =
-    formatDate(item.date);
-
+  currentDateEl.textContent = formatDate(item.date);
 
   foreignValueEl.textContent =
-    formatNumber(foreign) +
-    " 億元";
-
-
+    formatNumber(foreign) + " 億元";
   foreignValueEl.className =
-    "value " +
-    getValueClass(foreign);
-
+    "value " + getValueClass(foreign);
 
   trustValueEl.textContent =
-    formatNumber(trust) +
-    " 億元";
-
-
+    formatNumber(trust) + " 億元";
   trustValueEl.className =
-    "value " +
-    getValueClass(trust);
-
+    "value " + getValueClass(trust);
 
   dealerValueEl.textContent =
-    formatNumber(dealer) +
-    " 億元";
-
-
+    formatNumber(dealer) + " 億元";
   dealerValueEl.className =
-    "value " +
-    getValueClass(dealer);
+    "value " + getValueClass(dealer);
 
+  tableForeign.textContent = formatNumber(foreign);
+  tableForeign.className = getValueClass(foreign);
 
-  tableForeign.textContent =
-    formatNumber(foreign);
+  tableTrust.textContent = formatNumber(trust);
+  tableTrust.className = getValueClass(trust);
 
+  tableDealer.textContent = formatNumber(dealer);
+  tableDealer.className = getValueClass(dealer);
 
-  tableForeign.className =
-    getValueClass(foreign);
-
-
-  tableTrust.textContent =
-    formatNumber(trust);
-
-
-  tableTrust.className =
-    getValueClass(trust);
-
-
-  tableDealer.textContent =
-    formatNumber(dealer);
-
-
-  tableDealer.className =
-    getValueClass(dealer);
-
-
-  tableTotal.textContent =
-    formatNumber(total);
-
-
-  tableTotal.className =
-    getValueClass(total);
-
+  tableTotal.textContent = formatNumber(total);
+  tableTotal.className = getValueClass(total);
 }
 
-
-/* =========================================================
-   Tooltip
-   ========================================================= */
-
 function showTooltip(item,x,y){
+  if(!item) return;
 
-  if(!item){
-    return;
-  }
-
-
-  const foreign =
-    Number(item.foreign) || 0;
-
-
-  const trust =
-    Number(item.trust) || 0;
-
-
-  const dealer =
-    Number(item.dealer) || 0;
-
+  const foreign = Number(item.foreign) || 0;
+  const trust = Number(item.trust) || 0;
+  const dealer = Number(item.dealer) || 0;
 
   const total =
     Number(item.total) ||
-    (
-      foreign +
-      trust +
-      dealer
-    );
-
+    (foreign + trust + dealer);
 
   tooltip.innerHTML = `
-
     <div class="tooltip-date">
       ${formatDate(item.date)}
     </div>
 
-
     <div class="tooltip-row">
-
-      <span class="tooltip-label">
-        外資
-      </span>
-
-      <span class="tooltip-value">
-        ${formatNumber(foreign)} 億元
-      </span>
-
+      <span class="tooltip-label">外資</span>
+      <span class="tooltip-value">${formatNumber(foreign)} 億元</span>
     </div>
 
-
     <div class="tooltip-row">
-
-      <span class="tooltip-label">
-        投信
-      </span>
-
-      <span class="tooltip-value">
-        ${formatNumber(trust)} 億元
-      </span>
-
+      <span class="tooltip-label">投信</span>
+      <span class="tooltip-value">${formatNumber(trust)} 億元</span>
     </div>
 
-
     <div class="tooltip-row">
-
-      <span class="tooltip-label">
-        自營商
-      </span>
-
-      <span class="tooltip-value">
-        ${formatNumber(dealer)} 億元
-      </span>
-
+      <span class="tooltip-label">自營商</span>
+      <span class="tooltip-value">${formatNumber(dealer)} 億元</span>
     </div>
-
 
     <div class="tooltip-row tooltip-total">
-
-      <span class="tooltip-label">
-        三大法人合計
-      </span>
-
-      <span class="tooltip-value">
-        ${formatNumber(total)} 億元
-      </span>
-
+      <span class="tooltip-label">三大法人合計</span>
+      <span class="tooltip-value">${formatNumber(total)} 億元</span>
     </div>
-
   `;
 
+  tooltip.style.display = "block";
 
-  tooltip.style.display =
-    "block";
+  const container = document.querySelector(".chart-inner");
 
+  const containerWidth = container.clientWidth;
+  const containerHeight = container.clientHeight;
 
-  const container =
-    document.querySelector(
-      ".chart-inner"
-    );
+  let left = x + 15;
+  let top = y - 20;
 
+  const tooltipWidth = tooltip.offsetWidth;
 
-  const containerWidth =
-    container.clientWidth;
-
-
-  const containerHeight =
-    container.clientHeight;
-
-
-  /*
-   * 預設放在游標右上方
-   */
-
-  let left =
-    x + 15;
-
-
-  let top =
-    y - 20;
-
-
-  /*
-   * 如果右邊空間不夠，
-   * 改放到游標左邊
-   */
-
-  const tooltipWidth =
-    tooltip.offsetWidth;
-
-
-  if(
-    left + tooltipWidth >
-    containerWidth - 8
-  ){
-
-    left =
-      x -
-      tooltipWidth -
-      15;
-
+  if(left + tooltipWidth > containerWidth - 8){
+    left = x - tooltipWidth - 15;
   }
 
+  if(top < 8) top = 8;
 
-  /*
-   * 避免超出上方
-   */
+  const tooltipHeight = tooltip.offsetHeight;
 
-  if(top < 8){
-    top = 8;
+  if(top + tooltipHeight > containerHeight - 8){
+    top = containerHeight - tooltipHeight - 8;
   }
 
-
-  /*
-   * 避免超出下方
-   */
-
-  const tooltipHeight =
-    tooltip.offsetHeight;
-
-
-  if(
-    top + tooltipHeight >
-    containerHeight - 8
-  ){
-
-    top =
-      containerHeight -
-      tooltipHeight -
-      8;
-
-  }
-
-
-  tooltip.style.left =
-    left + "px";
-
-
-  tooltip.style.top =
-    top + "px";
-
+  tooltip.style.left = left + "px";
+  tooltip.style.top = top + "px";
 }
-
-
-/* =========================================================
-   SVG 圖表
-   ========================================================= */
 
 function drawChart(history){
 
   const data =
     [...history]
-      .filter(
-        d =>
-          d &&
-          d.date
-      )
+      .filter(d => d && d.date)
       .sort(
         (a,b) =>
-          String(a.date)
-            .localeCompare(
-              String(b.date)
-            )
+          String(a.date).localeCompare(String(b.date))
       );
-
 
   chartData = data;
 
-
   if(!data.length){
+    svg.setAttribute("viewBox","0 0 1050 390");
 
     svg.innerHTML = `
-
       <text
         x="525"
         y="190"
@@ -1446,173 +728,111 @@ function drawChart(history){
       >
         目前沒有資料
       </text>
-
     `;
 
-
     chartGeometry = null;
-
     return;
   }
 
-
-  const W = 1050;
-
+  /*
+   * 歷史資料越多，圖表越寬。
+   * 外層 chart-scroll 負責左右捲動。
+   */
+  const W = Math.max(1050, data.length * 35);
   const H = 390;
 
-
   const left = 72;
-
   const right = 28;
-
   const top = 22;
-
   const bottom = 52;
 
+  const plotW = W - left - right;
+  const plotH = H - top - bottom;
 
-  const plotW =
-    W -
-    left -
-    right;
+  /*
+   * 動態設定 SVG 的 viewBox。
+   */
+  svg.setAttribute(
+    "viewBox",
+    `0 0 ${W} ${H}`
+  );
 
-
-  const plotH =
-    H -
-    top -
-    bottom;
-
+  /*
+   * 實際寬度直接使用 W，
+   * 確保歷史資料增加後可以水平捲動。
+   */
+  svg.style.width = W + "px";
+  svg.style.minWidth = W + "px";
 
   const values =
     data.flatMap(
       d => [
-
         Number(d.foreign) || 0,
-
         Number(d.trust) || 0,
-
         Number(d.dealer) || 0
-
       ]
     );
 
-
   let minVal =
     Math.floor(
-      Math.min(
-        ...values,
-        0
-      ) / 50
+      Math.min(...values,0) / 50
     ) * 50;
-
 
   let maxVal =
     Math.ceil(
-      Math.max(
-        ...values,
-        0
-      ) / 50
+      Math.max(...values,0) / 50
     ) * 50;
 
-
   if(minVal === maxVal){
-
     minVal -= 50;
-
     maxVal += 50;
-
   }
 
-
-  if(
-    maxVal -
-    minVal <
-    200
-  ){
-
-    const mid =
-      (
-        maxVal +
-        minVal
-      ) / 2;
-
+  if(maxVal - minVal < 200){
+    const mid = (maxVal + minVal) / 2;
 
     minVal =
-      Math.floor(
-        (mid - 100) / 50
-      ) * 50;
-
+      Math.floor((mid - 100) / 50) * 50;
 
     maxVal =
-      Math.ceil(
-        (mid + 100) / 50
-      ) * 50;
-
+      Math.ceil((mid + 100) / 50) * 50;
   }
 
-
   const X = i => {
-
     if(data.length === 1){
-
-      return (
-        left +
-        plotW / 2
-      );
-
+      return left + plotW / 2;
     }
-
 
     return (
       left +
-      i *
-      plotW /
-      (data.length - 1)
+      i * plotW / (data.length - 1)
     );
-
   };
 
-
   const Y = v => {
-
     return (
       top +
       (
         (maxVal - v) /
         (maxVal - minVal)
-      ) *
-      plotH
+      ) * plotH
     );
-
   };
-
 
   chartGeometry = {
-
     W,
-
     H,
-
     left,
-
     right,
-
     top,
-
     bottom,
-
     plotW,
-
     plotH,
-
     X,
-
     Y
-
   };
 
-
   let out = `
-
     <rect
       x="0"
       y="0"
@@ -1620,19 +840,13 @@ function drawChart(history){
       height="${H}"
       fill="#fff"
     />
-
   `;
 
-
-  /* =====================================================
-     Y 軸
-     ===================================================== */
-
+  /*
+   * Y 軸網格。
+   */
   const firstGrid =
-    Math.ceil(
-      minVal / 100
-    ) * 100;
-
+    Math.ceil(minVal / 100) * 100;
 
   for(
     let v = firstGrid;
@@ -1640,24 +854,16 @@ function drawChart(history){
     v += 100
   ){
 
-    const yy =
-      Y(v);
-
+    const yy = Y(v);
 
     out += `
-
       <line
-        class="${
-          v === 0
-            ? "zero-line"
-            : "gridline"
-        }"
+        class="${v === 0 ? "zero-line" : "gridline"}"
         x1="${left}"
         y1="${yy}"
         x2="${W - right}"
         y2="${yy}"
       />
-
 
       <text
         class="axis-text"
@@ -1667,55 +873,52 @@ function drawChart(history){
       >
         ${v}
       </text>
-
     `;
-
   }
 
+  /*
+   * X 軸日期。
+   * 歷史資料很多時，只顯示部分日期文字，
+   * 但資料點仍然全部保留。
+   */
+  const labelStep =
+    data.length <= 25
+      ? 1
+      : Math.ceil(data.length / 25);
 
-  /* =====================================================
-     X 軸日期
-     ===================================================== */
+  data.forEach((d,i) => {
 
-  data.forEach(
-    (d,i) => {
+    const xx = X(i);
 
-      const xx =
-        X(i);
+    out += `
+      <line
+        class="vline"
+        x1="${xx}"
+        y1="${top}"
+        x2="${xx}"
+        y2="${H - bottom}"
+      />
+    `;
 
+    if(
+      i % labelStep === 0 ||
+      i === data.length - 1
+    ){
 
       out += `
-
-        <line
-          class="vline"
-          x1="${xx}"
-          y1="${top}"
-          x2="${xx}"
-          y2="${H - bottom}"
-        />
-
-
         <text
           class="axis-text date-label"
           x="${xx}"
           y="${H - 22}"
           text-anchor="middle"
         >
-          ${d.date.slice(5).replace("-", "/")}
+          ${String(d.date).slice(5).replace("-","/")}
         </text>
-
       `;
-
     }
-  );
-
-
-  /* =====================================================
-     座標軸
-     ===================================================== */
+  });
 
   out += `
-
     <line
       class="axis"
       x1="${left}"
@@ -1724,7 +927,6 @@ function drawChart(history){
       y2="${H - bottom}"
     />
 
-
     <line
       class="axis"
       x1="${left}"
@@ -1732,44 +934,31 @@ function drawChart(history){
       x2="${W - right}"
       y2="${H - bottom}"
     />
-
   `;
 
-
-  /* =====================================================
-     三條線
-     ===================================================== */
-
   const series = [
-
     {
       key:"foreign",
       color:"#e53935",
       label:"外資"
     },
-
-
     {
       key:"trust",
       color:"#1687bf",
       label:"投信"
     },
-
-
     {
       key:"dealer",
       color:"#f39c12",
       label:"自營商"
     }
-
   ];
 
+  series.forEach(item => {
 
-  series.forEach(
-    item => {
-
-      const points =
-        data.map(
+    const points =
+      data
+        .map(
           (d,i) =>
             `${X(i).toFixed(1)},${Y(
               Number(d[item.key]) || 0
@@ -1777,60 +966,48 @@ function drawChart(history){
         )
         .join(" ");
 
+    /*
+     * 多於一筆資料時畫折線。
+     * 一筆資料時仍然由 circle 顯示資料點。
+     */
+    if(data.length >= 2){
 
       out += `
-
         <polyline
           class="trend-line"
           points="${points}"
           stroke="${item.color}"
         />
-
       `;
 
-
-      data.forEach(
-        (d,i) => {
-
-          const value =
-            Number(d[item.key]) || 0;
-
-
-          out += `
-
-            <circle
-              class="trend-point"
-              data-index="${i}"
-              data-series="${item.key}"
-              cx="${X(i).toFixed(1)}"
-              cy="${Y(value).toFixed(1)}"
-              r="4.5"
-              fill="${item.color}"
-            >
-
-              <title>
-                ${d.date.slice(5).replace("-", "/")}
-                ｜${item.label}：
-                ${formatNumber(value)} 億元
-              </title>
-
-            </circle>
-
-          `;
-
-        }
-      );
-
     }
-  );
 
+    data.forEach((d,i) => {
 
-  /* =====================================================
-     垂直定位線
-     ===================================================== */
+      const value =
+        Number(d[item.key]) || 0;
+
+      out += `
+        <circle
+          class="trend-point"
+          data-index="${i}"
+          data-series="${item.key}"
+          cx="${X(i).toFixed(1)}"
+          cy="${Y(value).toFixed(1)}"
+          r="4.5"
+          fill="${item.color}"
+        >
+          <title>
+            ${String(d.date).slice(5).replace("-","/")}
+            ｜${item.label}：
+            ${formatNumber(value)} 億元
+          </title>
+        </circle>
+      `;
+    });
+  });
 
   out += `
-
     <line
       id="hoverLine"
       class="hover-line"
@@ -1841,15 +1018,6 @@ function drawChart(history){
       style="display:none"
     />
 
-  `;
-
-
-  /* =====================================================
-     三個被選取的大圓點
-     ===================================================== */
-
-  out += `
-
     <circle
       id="focusForeign"
       class="focus-point"
@@ -1857,7 +1025,6 @@ function drawChart(history){
       fill="#e53935"
       style="display:none"
     />
-
 
     <circle
       id="focusTrust"
@@ -1867,7 +1034,6 @@ function drawChart(history){
       style="display:none"
     />
 
-
     <circle
       id="focusDealer"
       class="focus-point"
@@ -1875,97 +1041,46 @@ function drawChart(history){
       fill="#f39c12"
       style="display:none"
     />
-
   `;
 
-
-  svg.innerHTML =
-    out;
-
-
-  /*
-   * 交易日很多時縮小日期文字
-   */
+  svg.innerHTML = out;
 
   svg
-    .querySelectorAll(
-      ".date-label"
-    )
-    .forEach(
-      el => {
-
-        el.setAttribute(
-          "font-size",
-          data.length >= 18
-            ? "9"
-            : "11"
-        );
-
-      }
-    );
-
-
-  /*
-   * 點擊資料點
-   */
+    .querySelectorAll(".date-label")
+    .forEach(el => {
+      el.setAttribute(
+        "font-size",
+        data.length >= 60 ? "8" :
+        data.length >= 30 ? "9" : "11"
+      );
+    });
 
   svg
-    .querySelectorAll(
-      ".trend-point"
-    )
-    .forEach(
-      point => {
+    .querySelectorAll(".trend-point")
+    .forEach(point => {
 
-        point.addEventListener(
-          "click",
-          event => {
+      point.addEventListener("click",event => {
 
-            event.stopPropagation();
+        event.stopPropagation();
 
+        const index =
+          Number(point.dataset.index);
 
-            const index =
-              Number(
-                point.dataset.index
-              );
-
-
-            selectIndex(index);
-
-          }
-        );
-
-      }
-    );
-
+        selectIndex(index,true);
+      });
+    });
 
   /*
-   * 初始化選取最新一天
+   * 初始顯示最新交易日。
    */
-
-  selectIndex(
-    data.length - 1,
-    false
-  );
-
+  selectIndex(data.length - 1,false);
 }
 
+function selectIndex(index,moveTooltip=true){
 
-/* =========================================================
-   選取某一天
-   ========================================================= */
-
-function selectIndex(
-  index,
-  moveTooltip = true
-){
-
-  if(
-    !chartData.length ||
-    !chartGeometry
-  ){
+  if(!chartData.length || !chartGeometry){
     return;
   }
-
 
   index =
     Math.max(
@@ -1976,508 +1091,230 @@ function selectIndex(
       )
     );
 
+  selectedIndex = index;
 
-  selectedIndex =
-    index;
+  const item = chartData[index];
 
-
-  const item =
-    chartData[index];
-
-
-  updateSelectedInfo(
-    item
-  );
-
+  updateSelectedInfo(item);
 
   const {
     X,
     Y,
     top,
-    bottom
+    bottom,
+    H
   } = chartGeometry;
 
-
-  const x =
-    X(index);
-
+  const x = X(index);
 
   const foreign =
     Number(item.foreign) || 0;
 
-
   const trust =
     Number(item.trust) || 0;
-
 
   const dealer =
     Number(item.dealer) || 0;
 
-
   const hoverLine =
-    document.getElementById(
-      "hoverLine"
-    );
-
+    document.getElementById("hoverLine");
 
   const focusForeign =
-    document.getElementById(
-      "focusForeign"
-    );
-
+    document.getElementById("focusForeign");
 
   const focusTrust =
-    document.getElementById(
-      "focusTrust"
-    );
-
+    document.getElementById("focusTrust");
 
   const focusDealer =
-    document.getElementById(
-      "focusDealer"
-    );
-
+    document.getElementById("focusDealer");
 
   if(hoverLine){
 
-    hoverLine.setAttribute(
-      "x1",
-      x
-    );
-
-
-    hoverLine.setAttribute(
-      "x2",
-      x
-    );
-
-
-    hoverLine.setAttribute(
-      "y1",
-      top
-    );
-
-
-    hoverLine.setAttribute(
-      "y2",
-      chartGeometry.H -
-      bottom
-    );
-
-
-    hoverLine.style.display =
-      "block";
-
+    hoverLine.setAttribute("x1",x);
+    hoverLine.setAttribute("x2",x);
+    hoverLine.setAttribute("y1",top);
+    hoverLine.setAttribute("y2",H - bottom);
+    hoverLine.style.display = "block";
   }
-
 
   if(focusForeign){
 
-    focusForeign.setAttribute(
-      "cx",
-      x
-    );
-
-
-    focusForeign.setAttribute(
-      "cy",
-      Y(foreign)
-    );
-
-
-    focusForeign.style.display =
-      "block";
-
+    focusForeign.setAttribute("cx",x);
+    focusForeign.setAttribute("cy",Y(foreign));
+    focusForeign.style.display = "block";
   }
-
 
   if(focusTrust){
 
-    focusTrust.setAttribute(
-      "cx",
-      x
-    );
-
-
-    focusTrust.setAttribute(
-      "cy",
-      Y(trust)
-    );
-
-
-    focusTrust.style.display =
-      "block";
-
+    focusTrust.setAttribute("cx",x);
+    focusTrust.setAttribute("cy",Y(trust));
+    focusTrust.style.display = "block";
   }
-
 
   if(focusDealer){
 
-    focusDealer.setAttribute(
-      "cx",
-      x
-    );
-
-
-    focusDealer.setAttribute(
-      "cy",
-      Y(dealer)
-    );
-
-
-    focusDealer.style.display =
-      "block";
-
+    focusDealer.setAttribute("cx",x);
+    focusDealer.setAttribute("cy",Y(dealer));
+    focusDealer.style.display = "block";
   }
 
-
   if(moveTooltip){
-
-    /*
-     * SVG viewBox 寬度 1050，
-     * 實際顯示寬度可能不同，
-     * 因此把 SVG 座標換算成實際像素。
-     */
 
     const rect =
       svg.getBoundingClientRect();
 
-
     const scaleX =
-      rect.width /
-      chartGeometry.W;
-
+      rect.width / chartGeometry.W;
 
     const scaleY =
-      rect.height /
-      chartGeometry.H;
-
+      rect.height / chartGeometry.H;
 
     const pixelX =
-      x *
-      scaleX;
-
+      x * scaleX;
 
     const pixelY =
       Math.min(
         Y(foreign),
         Y(trust),
         Y(dealer)
-      ) *
-      scaleY;
-
+      ) * scaleY;
 
     showTooltip(
       item,
       pixelX,
       pixelY
     );
-
   }
-
 }
 
+svg.addEventListener("mousemove",event => {
 
-/* =========================================================
-   滑鼠移動
-   ========================================================= */
-
-svg.addEventListener(
-  "mousemove",
-  event => {
-
-    if(
-      !chartData.length ||
-      !chartGeometry
-    ){
-      return;
-    }
-
-
-    const rect =
-      svg.getBoundingClientRect();
-
-
-    /*
-     * 滑鼠相對 SVG 的位置
-     */
-
-    const px =
-      event.clientX -
-      rect.left;
-
-
-    /*
-     * 轉換成 viewBox 座標
-     */
-
-    const svgX =
-      px *
-      chartGeometry.W /
-      rect.width;
-
-
-    /*
-     * 找最接近的交易日
-     */
-
-    let nearestIndex = 0;
-
-
-    let nearestDistance =
-      Infinity;
-
-
-    chartData.forEach(
-      (item,index) => {
-
-        const distance =
-          Math.abs(
-            chartGeometry.X(index) -
-            svgX
-          );
-
-
-        if(
-          distance <
-          nearestDistance
-        ){
-
-          nearestDistance =
-            distance;
-
-
-          nearestIndex =
-            index;
-
-        }
-
-      }
-    );
-
-
-    selectedIndex =
-      nearestIndex;
-
-
-    const item =
-      chartData[nearestIndex];
-
-
-    updateSelectedInfo(
-      item
-    );
-
-
-    /*
-     * 更新定位線與大圓點
-     */
-
-    selectIndex(
-      nearestIndex,
-      false
-    );
-
-
-    /*
-     * Tooltip 顯示在滑鼠附近
-     */
-
-    const tooltipX =
-      px;
-
-
-    const tooltipY =
-      event.clientY -
-      rect.top;
-
-
-    showTooltip(
-      item,
-      tooltipX,
-      tooltipY
-    );
-
+  if(!chartData.length || !chartGeometry){
+    return;
   }
-);
 
+  const rect =
+    svg.getBoundingClientRect();
 
-/* =========================================================
-   滑鼠離開圖表
-   ========================================================= */
+  const px =
+    event.clientX - rect.left;
 
-svg.addEventListener(
-  "mouseleave",
-  () => {
+  const svgX =
+    px *
+    chartGeometry.W /
+    rect.width;
 
-    /*
-     * 不隱藏資訊，
-     * 讓使用者最後選到的日期保留。
-     */
+  let nearestIndex = 0;
+  let nearestDistance = Infinity;
 
-  }
-);
+  chartData.forEach((item,index) => {
 
+    const distance =
+      Math.abs(
+        chartGeometry.X(index) - svgX
+      );
 
-/* =========================================================
-   手機觸控
-   ========================================================= */
+    if(distance < nearestDistance){
 
-svg.addEventListener(
-  "pointerdown",
-  event => {
-
-    if(
-      event.pointerType !== "touch"
-    ){
-      return;
+      nearestDistance = distance;
+      nearestIndex = index;
     }
+  });
 
+  selectIndex(
+    nearestIndex,
+    false
+  );
 
-    if(
-      !chartData.length ||
-      !chartGeometry
-    ){
-      return;
-    }
+  showTooltip(
+    chartData[nearestIndex],
+    px,
+    event.clientY - rect.top
+  );
+});
 
+svg.addEventListener("pointerdown",event => {
 
-    const rect =
-      svg.getBoundingClientRect();
-
-
-    const px =
-      event.clientX -
-      rect.left;
-
-
-    const svgX =
-      px *
-      chartGeometry.W /
-      rect.width;
-
-
-    let nearestIndex = 0;
-
-
-    let nearestDistance =
-      Infinity;
-
-
-    chartData.forEach(
-      (item,index) => {
-
-        const distance =
-          Math.abs(
-            chartGeometry.X(index) -
-            svgX
-          );
-
-
-        if(
-          distance <
-          nearestDistance
-        ){
-
-          nearestDistance =
-            distance;
-
-
-          nearestIndex =
-            index;
-
-        }
-
-      }
-    );
-
-
-    selectIndex(
-      nearestIndex,
-      true
-    );
-
+  if(event.pointerType !== "touch"){
+    return;
   }
-);
 
+  if(!chartData.length || !chartGeometry){
+    return;
+  }
 
-/* =========================================================
-   讀取 cash.json
-   ========================================================= */
+  const rect =
+    svg.getBoundingClientRect();
+
+  const px =
+    event.clientX - rect.left;
+
+  const svgX =
+    px *
+    chartGeometry.W /
+    rect.width;
+
+  let nearestIndex = 0;
+  let nearestDistance = Infinity;
+
+  chartData.forEach((item,index) => {
+
+    const distance =
+      Math.abs(
+        chartGeometry.X(index) - svgX
+      );
+
+    if(distance < nearestDistance){
+
+      nearestDistance = distance;
+      nearestIndex = index;
+    }
+  });
+
+  selectIndex(
+    nearestIndex,
+    true
+  );
+});
 
 async function loadThreeInstitutionsData(){
 
   try{
 
-
-    /*
-     * cash.json 必須和 foreign.html
-     * 在同一層。
-     */
-
     const response =
       await fetch(
-        "./cash.json?ts=" +
-        Date.now(),
+        "./cash.json?ts=" + Date.now(),
         {
           cache:"no-store"
         }
       );
 
-
     if(!response.ok){
-
-      throw new Error(
-        "HTTP " +
-        response.status
-      );
-
+      throw new Error("HTTP " + response.status);
     }
-
 
     const json =
       await response.json();
 
-
     const history =
-      Array.isArray(
-        json.history
-      )
+      Array.isArray(json.history)
         ? json.history
         : [];
 
-
-    /* =====================================================
-       重要修改：
-       
-       不再使用「今天的月份」來篩選。
-
-       改成：
-       
-       1. 找出 cash.json 最新交易日
-       2. 取得最新交易日所屬月份
-       3. 顯示該月份全部交易日
-       
-       例如：
-       
-       今天 2026/09/01
-       最新資料 2026/08/31
-       
-       → 顯示 2026 年 8 月
-       
-       等 cash.json 出現：
-       
-       2026/09/01
-       
-       → 自動切換成 2026 年 9 月
-       ===================================================== */
-
+    /*
+     * =====================================================
+     * 核心：
+     *
+     * 完全不按照月份篩選。
+     *
+     * cash.json 裡所有歷史交易日，
+     * 全部累積到同一張走勢圖。
+     *
+     * 換月不清空。
+     * =====================================================
+     */
 
     if(history.length){
-
-      /*
-       * 先清理並依日期排序
-       */
 
       const sortedHistory =
         [...history]
@@ -2489,98 +1326,24 @@ async function loadThreeInstitutionsData(){
           .sort(
             (a,b) =>
               String(a.date)
-                .localeCompare(
-                  String(b.date)
-                )
+                .localeCompare(String(b.date))
           );
 
-
-      /*
-       * 找出最新交易日
-       */
-
-      const latestDate =
-        sortedHistory[
-          sortedHistory.length - 1
-        ].date;
-
-
-      /*
-       * 最新交易月份
-       *
-       * 例如：
-       * 2026-08-31
-       * ↓
-       * 2026-08
-       */
-
-      const latestMonth =
-        String(
-          latestDate
-        ).slice(0,7);
-
-
-      /*
-       * 只顯示最新交易月份
-       */
-
-      const monthHistory =
-        sortedHistory.filter(
-          item =>
-            String(item.date)
-              .startsWith(
-                latestMonth
-              )
-        );
-
-
-      /*
-       * 更新圖表標題
-       */
-
-      if(chartTitle){
-
-        chartTitle.textContent =
-          "三大法人" +
-          formatMonth(latestMonth) +
-          "交易日走勢";
-
-      }
-
-
-      /*
-       * 繪製最新交易月份
-       */
+      chartTitle.textContent =
+        "三大法人歷史交易日走勢";
 
       drawChart(
-        monthHistory
+        sortedHistory
       );
-
 
     }else{
 
-      /*
-       * history 完全沒有資料
-       */
-
       drawChart([]);
 
-
-      /*
-       * 如果 json.latest 存在，
-       * 至少更新上方卡片
-       */
-
       if(json.latest){
-
-        updateSelectedInfo(
-          json.latest
-        );
-
+        updateSelectedInfo(json.latest);
       }
-
     }
-
 
   }catch(error){
 
@@ -2589,9 +1352,15 @@ async function loadThreeInstitutionsData(){
       error
     );
 
+    svg.setAttribute(
+      "viewBox",
+      "0 0 1050 390"
+    );
+
+    svg.style.width = "1050px";
+    svg.style.minWidth = "1050px";
 
     svg.innerHTML = `
-
       <text
         x="525"
         y="175"
@@ -2602,7 +1371,6 @@ async function loadThreeInstitutionsData(){
         無法讀取資料
       </text>
 
-
       <text
         x="525"
         y="202"
@@ -2612,24 +1380,12 @@ async function loadThreeInstitutionsData(){
       >
         請確認 cash.json 已存在於網站根目錄
       </text>
-
     `;
-
   }
-
 }
 
-
-/* =========================================================
-   啟動
-   ========================================================= */
-
 loadThreeInstitutionsData();
-
-
 </script>
 
-
 </body>
-
 </html>
