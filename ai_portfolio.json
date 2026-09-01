@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 830835.0,
+  "cash": 535984.5,
   "total_assets": 1004106.0,
   "total_profit": 4106.0,
   "total_return_percent": 0.4106,
   "date": "2026-09-01",
-  "updated_at": "2026-09-01T05:55:15",
+  "updated_at": "2026-09-01T17:33:52+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -68,6 +68,71 @@
       "status": "waiting",
       "first_buy_allocation": 0.3,
       "created_at": "2026-08-30T13:58:23"
+    },
+    {
+      "signal_date": "2026-08-31",
+      "symbol": "3006",
+      "name": "晶豪科",
+      "market": "TWSE",
+      "reference_close": 292.5,
+      "first_buy_trigger": 292.5,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-01T17:33:49+08:00",
+      "first_buy_date": "2026-09-01",
+      "first_buy_price": 278.5
+    },
+    {
+      "signal_date": "2026-08-31",
+      "symbol": "2059",
+      "name": "川湖",
+      "market": "TWSE",
+      "reference_close": 14180.0,
+      "first_buy_trigger": 14180.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-01T17:33:49+08:00",
+      "first_buy_date": "2026-09-01",
+      "first_buy_price": 14150.0
+    },
+    {
+      "signal_date": "2026-08-31",
+      "symbol": "2408",
+      "name": "南亞科",
+      "market": "TWSE",
+      "reference_close": 543.0,
+      "first_buy_trigger": 543.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-01T17:33:49+08:00",
+      "first_buy_date": "2026-09-01",
+      "first_buy_price": 518.0
+    },
+    {
+      "signal_date": "2026-08-31",
+      "symbol": "6446",
+      "name": "藥華藥",
+      "market": "TWSE",
+      "reference_close": 1395.0,
+      "first_buy_trigger": 1395.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-01T17:33:49+08:00",
+      "first_buy_date": "2026-09-01",
+      "first_buy_price": 1310.0
+    },
+    {
+      "signal_date": "2026-08-31",
+      "symbol": "3374",
+      "name": "精材",
+      "market": "TPEX",
+      "reference_close": 422.5,
+      "first_buy_trigger": 422.5,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-01T17:33:49+08:00",
+      "first_buy_date": "2026-09-01",
+      "first_buy_price": 421.5
     }
   ],
   "holdings": [
@@ -121,16 +186,94 @@
       "reference_close": 130.0,
       "buy_stage": 1,
       "allocation_used": 0.3
-    }
-  ],
-  "waiting": [
+    },
+    {
+      "symbol": "3006",
+      "name": "晶豪科",
+      "market": "TWSE",
+      "quantity": 215,
+      "average_cost": 278.5,
+      "current_price": 278.5,
+      "invested": 59877.5,
+      "market_value": 59877.5,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-01",
+      "signal_date": "2026-08-31",
+      "reference_close": 292.5,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
+    {
+      "symbol": "2059",
+      "name": "川湖",
+      "market": "TWSE",
+      "quantity": 4,
+      "average_cost": 14150.0,
+      "current_price": 14150.0,
+      "invested": 56600.0,
+      "market_value": 56600.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-01",
+      "signal_date": "2026-08-31",
+      "reference_close": 14180.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
+    {
+      "symbol": "2408",
+      "name": "南亞科",
+      "market": "TWSE",
+      "quantity": 115,
+      "average_cost": 518.0,
+      "current_price": 518.0,
+      "invested": 59570.0,
+      "market_value": 59570.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-01",
+      "signal_date": "2026-08-31",
+      "reference_close": 543.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
+    {
+      "symbol": "6446",
+      "name": "藥華藥",
+      "market": "TWSE",
+      "quantity": 45,
+      "average_cost": 1310.0,
+      "current_price": 1310.0,
+      "invested": 58950.0,
+      "market_value": 58950.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-01",
+      "signal_date": "2026-08-31",
+      "reference_close": 1395.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
     {
       "symbol": "3374",
       "name": "精材",
-      "signal_date": "2026-08-28",
-      "trigger_price": 386.0,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
+      "market": "TPEX",
+      "quantity": 142,
+      "average_cost": 421.5,
+      "current_price": 421.5,
+      "invested": 59853.0,
+      "market_value": 59853.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-01",
+      "signal_date": "2026-08-31",
+      "reference_close": 422.5,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    }
+  ],
+  "waiting": [
     {
       "symbol": "1303",
       "name": "南亞",
@@ -178,6 +321,71 @@
       "reason": "今日最低價曾 ≤ 觸發價格；以觸發價限價單模擬成交",
       "signal_date": "2026-08-28",
       "reference_close": 130.0
+    },
+    {
+      "date": "2026-09-01",
+      "symbol": "3006",
+      "name": "晶豪科",
+      "action": "買入",
+      "price": 278.5,
+      "quantity": 215,
+      "amount": 59877.5,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-08-31",
+      "reference_close": 292.5
+    },
+    {
+      "date": "2026-09-01",
+      "symbol": "2059",
+      "name": "川湖",
+      "action": "買入",
+      "price": 14150.0,
+      "quantity": 4,
+      "amount": 56600.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-08-31",
+      "reference_close": 14180.0
+    },
+    {
+      "date": "2026-09-01",
+      "symbol": "2408",
+      "name": "南亞科",
+      "action": "買入",
+      "price": 518.0,
+      "quantity": 115,
+      "amount": 59570.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-08-31",
+      "reference_close": 543.0
+    },
+    {
+      "date": "2026-09-01",
+      "symbol": "6446",
+      "name": "藥華藥",
+      "action": "買入",
+      "price": 1310.0,
+      "quantity": 45,
+      "amount": 58950.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-08-31",
+      "reference_close": 1395.0
+    },
+    {
+      "date": "2026-09-01",
+      "symbol": "3374",
+      "name": "精材",
+      "action": "買入",
+      "price": 421.5,
+      "quantity": 142,
+      "amount": 59853.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-08-31",
+      "reference_close": 422.5
     }
   ],
   "performance": [
@@ -198,9 +406,9 @@
     {
       "date": "2026-09-01",
       "total_assets": 1004106.0,
-      "cash": 830835.0,
+      "cash": 535984.5,
       "return_percent": 0.4106,
-      "holding_count": 3
+      "holding_count": 8
     }
   ]
 }
