@@ -6,7 +6,7 @@ on:
   schedule:
     # 台灣時間每個交易日下午 4:30 執行
     # GitHub Actions 使用 UTC，所以台灣 16:30 = UTC 08:30
-    - cron: "30 8 * * 1-5"
+    - cron: "13 01* * 1-5"
 
 permissions:
   contents: write
