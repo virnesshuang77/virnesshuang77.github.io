@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 535984.5,
-  "total_assets": 1010270.5,
-  "total_profit": 10270.5,
-  "total_return_percent": 1.02705,
+  "cash": 416040.3,
+  "total_assets": 1010183.5,
+  "total_profit": 10183.5,
+  "total_return_percent": 1.01835,
   "date": "2026-09-03",
-  "updated_at": "2026-09-03T09:10:33+08:00",
+  "updated_at": "2026-09-03T09:30:14+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -152,9 +152,11 @@
       "market": "TWSE",
       "reference_close": 237.5,
       "first_buy_trigger": 237.5,
-      "status": "waiting",
+      "status": "holding",
       "first_buy_allocation": 0.3,
-      "created_at": "2026-09-03T09:10:31+08:00"
+      "created_at": "2026-09-03T09:10:31+08:00",
+      "first_buy_date": "2026-09-03",
+      "first_buy_price": 232.5
     },
     {
       "signal_date": "2026-09-02",
@@ -174,9 +176,11 @@
       "market": "TWSE",
       "reference_close": 104.5,
       "first_buy_trigger": 104.5,
-      "status": "waiting",
+      "status": "holding",
       "first_buy_allocation": 0.3,
-      "created_at": "2026-09-03T09:10:31+08:00"
+      "created_at": "2026-09-03T09:10:31+08:00",
+      "first_buy_date": "2026-09-03",
+      "first_buy_price": 99.6
     }
   ],
   "holdings": [
@@ -203,11 +207,11 @@
       "market": "TWSE",
       "quantity": 7,
       "average_cost": 7065.0,
-      "current_price": 7770.0,
+      "current_price": 7560.0,
       "invested": 49455.0,
-      "market_value": 54390.0,
-      "unrealized_profit": 4935.0,
-      "unrealized_return_percent": 9.978768577494693,
+      "market_value": 52920.0,
+      "unrealized_profit": 3465.0,
+      "unrealized_return_percent": 7.006369426751593,
       "first_buy_date": "2026-08-31",
       "signal_date": "2026-08-28",
       "reference_close": 7065.0,
@@ -220,11 +224,11 @@
       "market": "TPEX",
       "quantity": 461,
       "average_cost": 130.0,
-      "current_price": 139.5,
+      "current_price": 142.5,
       "invested": 59930.0,
-      "market_value": 64309.5,
-      "unrealized_profit": 4379.5,
-      "unrealized_return_percent": 7.307692307692308,
+      "market_value": 65692.5,
+      "unrealized_profit": 5762.5,
+      "unrealized_return_percent": 9.615384615384617,
       "first_buy_date": "2026-08-31",
       "signal_date": "2026-08-28",
       "reference_close": 130.0,
@@ -315,16 +319,43 @@
       "reference_close": 422.5,
       "buy_stage": 1,
       "allocation_used": 0.3
-    }
-  ],
-  "waiting": [
+    },
     {
       "symbol": "1303",
       "name": "南亞",
-      "signal_date": "2026-08-28",
-      "trigger_price": 220.5,
-      "status": "等待價格 ≤ 選股日收盤"
+      "market": "TWSE",
+      "quantity": 258,
+      "average_cost": 232.5,
+      "current_price": 232.5,
+      "invested": 59985.0,
+      "market_value": 59985.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-03",
+      "signal_date": "2026-09-02",
+      "reference_close": 237.5,
+      "buy_stage": 1,
+      "allocation_used": 0.3
     },
+    {
+      "symbol": "2426",
+      "name": "鼎元",
+      "market": "TWSE",
+      "quantity": 602,
+      "average_cost": 99.6,
+      "current_price": 99.6,
+      "invested": 59959.2,
+      "market_value": 59959.2,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-03",
+      "signal_date": "2026-09-02",
+      "reference_close": 104.5,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    }
+  ],
+  "waiting": [
     {
       "symbol": "3231",
       "name": "緯創",
@@ -333,24 +364,10 @@
       "status": "等待價格 ≤ 選股日收盤"
     },
     {
-      "symbol": "1303",
-      "name": "南亞",
-      "signal_date": "2026-09-02",
-      "trigger_price": 237.5,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
       "symbol": "2464",
       "name": "盟立",
       "signal_date": "2026-09-02",
       "trigger_price": 202.0,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
-      "symbol": "2426",
-      "name": "鼎元",
-      "signal_date": "2026-09-02",
-      "trigger_price": 104.5,
       "status": "等待價格 ≤ 選股日收盤"
     }
   ],
@@ -458,6 +475,32 @@
       "reason": "即時價格 ≤ 觸發價格",
       "signal_date": "2026-08-31",
       "reference_close": 422.5
+    },
+    {
+      "date": "2026-09-03",
+      "symbol": "1303",
+      "name": "南亞",
+      "action": "買入",
+      "price": 232.5,
+      "quantity": 258,
+      "amount": 59985.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-02",
+      "reference_close": 237.5
+    },
+    {
+      "date": "2026-09-03",
+      "symbol": "2426",
+      "name": "鼎元",
+      "action": "買入",
+      "price": 99.6,
+      "quantity": 602,
+      "amount": 59959.2,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-02",
+      "reference_close": 104.5
     }
   ],
   "performance": [
@@ -491,10 +534,10 @@
     },
     {
       "date": "2026-09-03",
-      "total_assets": 1010270.5,
-      "cash": 535984.5,
-      "return_percent": 1.02705,
-      "holding_count": 8
+      "total_assets": 1010183.5,
+      "cash": 416040.3,
+      "return_percent": 1.01835,
+      "holding_count": 10
     }
   ]
 }
