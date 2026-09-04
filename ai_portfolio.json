@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 356064.3,
+  "cash": 421987.3,
   "total_assets": 1008946.8,
   "total_profit": 8946.800000000047,
   "total_return_percent": 0.8946800000000046,
   "date": "2026-09-04",
-  "updated_at": "2026-09-04T14:11:21+08:00",
+  "updated_at": "2026-09-04T21:23:15+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -52,11 +52,13 @@
       "market": "TPEX",
       "reference_close": 130.0,
       "first_buy_trigger": 130.0,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-08-30T13:58:23",
       "first_buy_date": "2026-08-31",
-      "first_buy_price": 130.0
+      "first_buy_price": 130.0,
+      "sell_date": "2026-09-04",
+      "sell_price": 143.0
     },
     {
       "signal_date": "2026-08-28",
@@ -205,6 +207,39 @@
       "status": "waiting",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-04T09:09:17+08:00"
+    },
+    {
+      "signal_date": "2026-09-04",
+      "symbol": "3231",
+      "name": "緯創",
+      "market": "TWSE",
+      "reference_close": 198.0,
+      "first_buy_trigger": 198.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-04T21:23:14+08:00"
+    },
+    {
+      "signal_date": "2026-09-04",
+      "symbol": "8039",
+      "name": "台虹",
+      "market": "TWSE",
+      "reference_close": 297.5,
+      "first_buy_trigger": 297.5,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-04T21:23:14+08:00"
+    },
+    {
+      "signal_date": "2026-09-04",
+      "symbol": "2464",
+      "name": "盟立",
+      "market": "TWSE",
+      "reference_close": 211.0,
+      "first_buy_trigger": 211.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-04T21:23:14+08:00"
     }
   ],
   "holdings": [
@@ -239,23 +274,6 @@
       "first_buy_date": "2026-08-31",
       "signal_date": "2026-08-28",
       "reference_close": 7065.0,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
-      "symbol": "3441",
-      "name": "聯一光",
-      "market": "TPEX",
-      "quantity": 461,
-      "average_cost": 130.0,
-      "current_price": 143.0,
-      "invested": 59930.0,
-      "market_value": 65923.0,
-      "unrealized_profit": 5993.0,
-      "unrealized_return_percent": 10.0,
-      "first_buy_date": "2026-08-31",
-      "signal_date": "2026-08-28",
-      "reference_close": 130.0,
       "buy_stage": 1,
       "allocation_used": 0.3
     },
@@ -424,6 +442,27 @@
       "signal_date": "2026-09-03",
       "trigger_price": 293.0,
       "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "3231",
+      "name": "緯創",
+      "signal_date": "2026-09-04",
+      "trigger_price": 198.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "8039",
+      "name": "台虹",
+      "signal_date": "2026-09-04",
+      "trigger_price": 297.5,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "2464",
+      "name": "盟立",
+      "signal_date": "2026-09-04",
+      "trigger_price": 211.0,
+      "status": "等待價格 ≤ 選股日收盤"
     }
   ],
   "transactions": [
@@ -569,6 +608,20 @@
       "reason": "今日最低價曾 ≤ 觸發價格；以觸發價限價單模擬成交",
       "signal_date": "2026-08-28",
       "reference_close": 220.5
+    },
+    {
+      "date": "2026-09-04",
+      "symbol": "3441",
+      "name": "聯一光",
+      "action": "賣出",
+      "price": 143.0,
+      "quantity": 461,
+      "amount": 65923.0,
+      "allocation": "100%",
+      "reason": "現價達到 +10% 停利條件；以當下價格模擬賣出",
+      "first_buy_date": "2026-08-31",
+      "average_cost": 130.0,
+      "return_percent": 10.0
     }
   ],
   "performance": [
@@ -610,9 +663,9 @@
     {
       "date": "2026-09-04",
       "total_assets": 1008946.8,
-      "cash": 356064.3,
+      "cash": 421987.3,
       "return_percent": 0.8946800000000046,
-      "holding_count": 11
+      "holding_count": 10
     }
   ]
 }
