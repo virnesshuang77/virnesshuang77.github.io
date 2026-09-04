@@ -288,6 +288,38 @@ th {
         text-align: left;
     }
 }
+
+.navbar {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    overflow-x: auto;
+}
+
+.navlink {
+    flex: 0 0 auto;
+    color: #475569;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.navlink:hover {
+    background: #f1f5f9;
+}
+
+.navlink.active {
+    background: #e2e8f0;
+    color: #111827;
+}
+
 </style>
 
 
@@ -299,6 +331,17 @@ th {
         <p>AI 自動交易模擬投資組合</p>
     </div>
 </header>
+
+
+<nav class="navbar">
+    <a class="navlink" href="index.html">融資融券維持率</a>
+    <a class="navlink" href="calendar.html">每日行事曆</a>
+    <a class="navlink active" href="portfolio.html">投資績效名片</a>
+    <a class="navlink" href="foreign.html">外資買賣超</a>
+    <a class="navlink" href="broker.html">投信買賣超</a>
+    <a class="navlink" href="credit.html">融資融券變化</a>
+    <a class="navlink" href="foreign-cash.html">三大法人買賣超</a>
+</nav>
 
 <main class="container">
 
