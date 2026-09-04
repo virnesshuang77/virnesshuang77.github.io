@@ -899,8 +899,8 @@ let events = [
         type: "important",
         title: "🇺🇸 美國非農就業人數",
         previous: "-2.3萬",
-        forecast: "+1.2萬",
-        actual: null,
+        forecast: "+5.6萬",
+        actual: "+16.2萬",
         importance: "high",
         description: "美國8月非農就業人數。"
     },
@@ -912,8 +912,8 @@ let events = [
         type: "important",
         title: "🇺🇸 美國失業率",
         previous: "4.1%",
-        forecast: "4.2%",
-        actual: null,
+        forecast: "4.1%",
+        actual: "4.1%",
         importance: "high",
         description: "美國8月失業率。"
     }
@@ -1935,6 +1935,67 @@ async function loadCalendarData() {
 
             console.warn(
                 "⚠️ JSON 沒有 earnings_events"
+            );
+
+        }
+
+
+        /* =================================================
+           重要經濟數據／央行動態更新
+
+           Python 會把最新公布值寫進
+           calendar-data.json 的 important_events。
+
+           以 date + title 對應網頁內建事件，
+           所以前值／預期等固定資料仍由 HTML 保留，
+           actual 則可由 JSON 動態覆蓋。
+        ================================================= */
+
+        if (Array.isArray(data.important_events)) {
+
+            const dynamicEvents =
+                data.important_events
+                    .filter(event =>
+                        event &&
+                        event.date &&
+                        event.title
+                    )
+                    .map(event => ({
+                        ...event,
+                        type:
+                            event.type ||
+                            "important"
+                    }));
+
+            dynamicEvents.forEach(dynamicEvent => {
+
+                const index =
+                    events.findIndex(event =>
+                        event.date ===
+                            String(dynamicEvent.date).substring(0, 10) &&
+                        event.title ===
+                            dynamicEvent.title
+                    );
+
+                if (index >= 0) {
+
+                    events[index] = {
+                        ...events[index],
+                        ...dynamicEvent
+                    };
+
+                } else {
+
+                    events.push(dynamicEvent);
+
+                }
+
+            });
+
+            console.log(
+                "📅 動態重要事件：",
+                dynamicEvents.length,
+                "筆"
             );
 
         }
