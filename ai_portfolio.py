@@ -27,6 +27,9 @@ MAX_ALLOCATION_PER_STOCK = 0.20
 # 第一筆買入 = 該檔目標部位的 30%
 FIRST_BUY_ALLOCATION = 0.30
 
+# 持有股票達到 +10% 即全部停利賣出
+TAKE_PROFIT_RATE = 0.10
+
 
 # ============================================================
 # JSON
@@ -719,6 +722,7 @@ def get_twse_quotes(
 
             price = None
             day_low = None
+            day_high = None
 
             # ------------------------------------------------
             # 最新成交價
@@ -766,6 +770,31 @@ def get_twse_quotes(
                     day_low = None
 
             # ------------------------------------------------
+            # 今日最高價
+            #
+            # TWSE MIS:
+            # h = today's high
+            #
+            # 用來判斷盤中是否曾經達到 +10% 停利價
+            # ------------------------------------------------
+
+            high_value = item.get("h")
+
+            if high_value not in (
+                None,
+                "",
+                "-"
+            ):
+
+                try:
+
+                    day_high = float(high_value)
+
+                except:
+
+                    day_high = None
+
+            # ------------------------------------------------
             # 注意：
             #
             # 沒有真正成交價時，
@@ -786,6 +815,9 @@ def get_twse_quotes(
 
                     "day_low":
                         day_low,
+
+                    "day_high":
+                        day_high,
 
                     "market":
                         "TWSE",
@@ -942,6 +974,10 @@ def get_tpex_quotes(
                 "low"
             ) or []
 
+            highs = quote_data.get(
+                "high"
+            ) or []
+
             # ------------------------------------------------
             # 找最後一筆有效成交價
             # ------------------------------------------------
@@ -1018,11 +1054,38 @@ def get_tpex_quotes(
                 else None
             )
 
+            valid_highs = []
+            for value in highs:
+                if value is None:
+                    continue
+                value = num(
+                    value,
+                    None
+                )
+                if (
+                    value is not None
+                    and value > 0
+                ):
+                    valid_highs.append(value)
+
+            day_high = (
+                max(valid_highs)
+                if valid_highs
+                else None
+            )
+
             # Yahoo 的 meta 若有 regularMarketDayLow，
             # 也拿來補強今日最低價。
             meta_day_low = num(
                 meta.get(
                     "regularMarketDayLow"
+                ),
+                None
+            )
+
+            meta_day_high = num(
+                meta.get(
+                    "regularMarketDayHigh"
                 ),
                 None
             )
@@ -1038,6 +1101,16 @@ def get_tpex_quotes(
                 ):
 
                     day_low = meta_day_low
+
+            if (
+                meta_day_high is not None
+                and meta_day_high > 0
+            ):
+                if (
+                    day_high is None
+                    or meta_day_high > day_high
+                ):
+                    day_high = meta_day_high
 
             # ------------------------------------------------
             # 日期
@@ -1067,6 +1140,9 @@ def get_tpex_quotes(
 
                 "day_low":
                     day_low,
+
+                "day_high":
+                    day_high,
 
                 "market":
                     "TPEX",
@@ -1915,6 +1991,183 @@ def update_holdings(
 
 
 # ============================================================
+# 10% 停利賣出
+# ============================================================
+
+def process_take_profit(
+    portfolio,
+    realtime_quotes
+):
+
+    """
+    持有部位達到 +10% 即全部賣出。
+
+    判斷方式：
+    1. 現價 >= 平均成本 * 1.10：以現價模擬賣出。
+    2. 現價尚未到，但今日最高價曾 >= 停利價：
+       視為盤中曾觸發停利，以停利價模擬成交。
+
+    這樣即使 GitHub Actions 每 5 分鐘執行時，
+    股價已從 +10% 回落，也不會漏掉停利。
+    """
+
+    remaining_holdings = []
+
+    for holding in portfolio.get(
+        "holdings",
+        []
+    ):
+
+        symbol = str(
+            holding.get(
+                "symbol",
+                ""
+            )
+        )
+
+        quote = realtime_quotes.get(
+            symbol
+        )
+
+        if quote is None:
+            remaining_holdings.append(holding)
+            continue
+
+        quantity = int(
+            num(
+                holding.get(
+                    "quantity"
+                )
+            )
+        )
+
+        average_cost = num(
+            holding.get(
+                "average_cost"
+            )
+        )
+
+        if quantity <= 0 or average_cost <= 0:
+            remaining_holdings.append(holding)
+            continue
+
+        current_price = num(
+            quote.get(
+                "price"
+            )
+        )
+
+        day_high = num(
+            quote.get(
+                "day_high"
+            ),
+            None
+        )
+
+        target_price = (
+            average_cost
+            * (1 + TAKE_PROFIT_RATE)
+        )
+
+        triggered = False
+        execution_price = current_price
+        reason = ""
+
+        if (
+            current_price > 0
+            and current_price >= target_price
+        ):
+            triggered = True
+            execution_price = current_price
+            reason = (
+                "現價達到 +10% 停利條件；"
+                "以當下價格模擬賣出"
+            )
+
+        elif (
+            day_high is not None
+            and day_high >= target_price
+        ):
+            triggered = True
+            execution_price = target_price
+            reason = (
+                "今日最高價曾達到 +10% 停利價；"
+                "以停利價限價單模擬成交"
+            )
+
+        if not triggered:
+            remaining_holdings.append(holding)
+            continue
+
+        amount = (
+            quantity
+            * execution_price
+        )
+
+        portfolio["cash"] = (
+            num(
+                portfolio.get(
+                    "cash"
+                )
+            )
+            + amount
+        )
+
+        # 將對應訊號標記為已賣出，避免把同一訊號誤當成仍在持有。
+        for signal in portfolio.get(
+            "signal_queue",
+            []
+        ):
+            if (
+                str(signal.get("symbol", "")) == symbol
+                and str(signal.get("first_buy_date", "")) ==
+                    str(holding.get("first_buy_date", ""))
+            ):
+                signal["status"] = "sold"
+                signal["sell_date"] = today_string()
+                signal["sell_price"] = execution_price
+
+        portfolio.setdefault(
+            "transactions",
+            []
+        ).append(
+            {
+                "date": today_string(),
+                "symbol": symbol,
+                "name": holding.get(
+                    "name",
+                    ""
+                ),
+                "action": "賣出",
+                "price": execution_price,
+                "quantity": quantity,
+                "amount": amount,
+                "allocation": "100%",
+                "reason": reason,
+                "first_buy_date": holding.get(
+                    "first_buy_date",
+                    ""
+                ),
+                "average_cost": average_cost,
+                "return_percent": (
+                    (execution_price - average_cost)
+                    / average_cost
+                    * 100
+                )
+            }
+        )
+
+        print(
+            f"★ 10% 停利賣出：{symbol} "
+            f"{quantity} 股 @ {execution_price} "
+            f"(成本 {average_cost}, "
+            f"停利價 {target_price:.2f})"
+        )
+
+    portfolio["holdings"] = remaining_holdings
+
+
+# ============================================================
 # 更新等待名單
 # ============================================================
 
@@ -2322,6 +2575,7 @@ def main():
                 f"行情 {symbol}: "
                 f"price={quote.get('price')} "
                 f"day_low={quote.get('day_low')} "
+                f"day_high={quote.get('day_high')} "
                 f"date={quote.get('date')} "
                 f"time={quote.get('time')}"
             )
@@ -2379,7 +2633,19 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 9. 更新等待名單
+    # 9. +10% 停利賣出
+    # --------------------------------------------------------
+
+    process_take_profit(
+
+        portfolio,
+
+        quotes
+
+    )
+
+    # --------------------------------------------------------
+    # 10. 更新等待名單
     # --------------------------------------------------------
 
     update_waiting(
@@ -2387,7 +2653,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 10. 更新總資產
+    # 11. 更新總資產
     # --------------------------------------------------------
 
     update_total_assets(
@@ -2395,7 +2661,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 11. 更新每日績效
+    # 12. 更新每日績效
     # --------------------------------------------------------
 
     update_daily_performance(
@@ -2403,7 +2669,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 12. 更新時間
+    # 13. 更新時間
     # --------------------------------------------------------
 
     portfolio[
@@ -2415,7 +2681,7 @@ def main():
     ] = now_string()
 
     # --------------------------------------------------------
-    # 13. 儲存
+    # 14. 儲存
     # --------------------------------------------------------
 
     save_json(
@@ -2427,7 +2693,7 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 14. 顯示
+    # 15. 顯示
     # --------------------------------------------------------
 
     print()
@@ -2480,6 +2746,11 @@ def main():
             4
         ),
         "%"
+    )
+
+    print(
+        "停利條件：",
+        f"+{TAKE_PROFIT_RATE * 100:.0f}%"
     )
 
     print(
