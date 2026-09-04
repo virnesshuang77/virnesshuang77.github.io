@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Trading Portfolio</title>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>AI Trading Portfolio</title>
 
@@ -25,6 +31,353 @@ body {
         sans-serif;
     line-height: 1.6;
 }
+
+/* ===== Portfolio layout ===== */
+
+.site-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 28px 24px;
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.site-header p {
+    margin: 4px 0 0;
+    color: #64748b;
+}
+
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.summary-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.summary-label {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.summary-value {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 16px 0 28px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.section {
+    margin-top: 28px;
+}
+
+.section-title {
+    margin: 0 0 12px;
+    font-size: 20px;
+}
+
+.holding {
+    display: grid;
+    grid-template-columns: 60px 90px minmax(100px, 1fr) repeat(3, minmax(110px, 150px));
+    align-items: center;
+    gap: 14px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+}
+
+.holding-rank {
+    color: #64748b;
+    font-weight: 700;
+}
+
+.holding-symbol {
+    font-weight: 800;
+}
+
+.holding-name {
+    font-weight: 700;
+}
+
+.holding-number {
+    text-align: right;
+}
+
+.holding-label {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.holding-value {
+    font-weight: 700;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #eef2f7;
+    text-align: left;
+    white-space: nowrap;
+}
+
+th {
+    background: #f8fafc;
+    color: #475569;
+    font-size: 13px;
+}
+
+.action-buy {
+    font-weight: 700;
+}
+
+.action-add {
+    font-weight: 700;
+}
+
+.action-reduce {
+    font-weight: 700;
+}
+
+.action-sell {
+    font-weight: 800;
+}
+
+.profit {
+    color: #16a34a;
+}
+
+.loss {
+    color: #dc2626;
+}
+
+.flat {
+    color: #64748b;
+}
+
+.performance-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 160px;
+    gap: 16px;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 8px;
+}
+
+.performance-assets {
+    font-weight: 700;
+}
+
+.performance-return {
+    text-align: right;
+    font-weight: 700;
+}
+
+.empty,
+.error {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 28px;
+    text-align: center;
+}
+
+.rules {
+    margin: 28px 0 40px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.rule {
+    padding: 8px 0;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.rule:last-child {
+    border-bottom: 0;
+}
+
+@media (max-width: 900px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .holding {
+        grid-template-columns: 50px 80px minmax(100px, 1fr);
+    }
+
+    .holding-number {
+        text-align: left;
+    }
+
+    .meta {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 16px;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .site-header {
+        padding: 22px 16px;
+    }
+
+    .site-header h1 {
+        font-size: 23px;
+    }
+
+    .holding {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .holding-name {
+        grid-column: 1 / -1;
+    }
+
+    .performance-row {
+        grid-template-columns: 1fr;
+    }
+
+    .performance-return {
+        text-align: left;
+    }
+}
+</style>
+
+
+<body>
+
+<header class="site-header">
+    <div>
+        <h1>🤖 AI Trading Portfolio</h1>
+        <p>AI 自動交易模擬投資組合</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="summary-grid">
+        <div class="summary-card">
+            <div class="summary-label">初始資金</div>
+            <div class="summary-value" id="initialCapital">—</div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-label">目前總資產</div>
+            <div class="summary-value" id="totalAssets">—</div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-label">累積損益</div>
+            <div class="summary-value" id="totalProfit">—</div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-label">累積報酬率</div>
+            <div class="summary-value" id="totalReturn">—</div>
+        </div>
+    </section>
+
+    <section class="meta">
+        <span>資料日期：<strong id="dataDate">—</strong></span>
+        <span>更新時間：<strong id="updatedAt">—</strong></span>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">📊 目前持有</h2>
+        <div id="holdings"></div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">🧾 交易紀錄</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>標的</th>
+                        <th>動作</th>
+                        <th>價格</th>
+                        <th>配置</th>
+                        <th>原因</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">📈 每日績效</h2>
+        <div id="performance"></div>
+    </section>
+
+    <section class="rules">
+        <h2 class="section-title">⚙️ 交易規則</h2>
+        <div class="rule">
+            <strong>① 單一標的最大配置：</strong>20%
+        </div>
+        <div class="rule">
+            <strong>② 首次買入：</strong>AI 選股當日不視為已買入，必須等下一個交易日才執行交易。
+        </div>
+        <div class="rule">
+            <strong>③ 停利：</strong>持有股票達到 <strong>+10%</strong> 報酬率時，全部賣出。
+        </div>
+        <div class="rule">
+            <strong>④ 持股上限：</strong>5 檔
+        </div>
+    </section>
+
+</main>
+
+<script>
 const PORTFOLIO_URL = "ai_portfolio.json";
 
 
@@ -621,8 +974,6 @@ document.getElementById(
 ========================================================= */
 
 loadPortfolio();
-
 </script>
-
 </body>
 </html>
