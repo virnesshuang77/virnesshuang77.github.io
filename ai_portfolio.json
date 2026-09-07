@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 421987.3,
-  "total_assets": 1006496.8,
-  "total_profit": 6496.800000000047,
-  "total_return_percent": 0.6496800000000047,
+  "cash": 302143.8,
+  "total_assets": 1011121.8,
+  "total_profit": 11121.800000000047,
+  "total_return_percent": 1.1121800000000046,
   "date": "2026-09-07",
-  "updated_at": "2026-09-07T09:11:00+08:00",
+  "updated_at": "2026-09-07T09:26:26+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -215,9 +215,11 @@
       "market": "TWSE",
       "reference_close": 198.0,
       "first_buy_trigger": 198.0,
-      "status": "waiting",
+      "status": "holding",
       "first_buy_allocation": 0.3,
-      "created_at": "2026-09-04T21:23:14+08:00"
+      "created_at": "2026-09-04T21:23:14+08:00",
+      "first_buy_date": "2026-09-07",
+      "first_buy_price": 192.5
     },
     {
       "signal_date": "2026-09-04",
@@ -237,9 +239,11 @@
       "market": "TWSE",
       "reference_close": 211.0,
       "first_buy_trigger": 211.0,
-      "status": "waiting",
+      "status": "holding",
       "first_buy_allocation": 0.3,
-      "created_at": "2026-09-04T21:23:14+08:00"
+      "created_at": "2026-09-04T21:23:14+08:00",
+      "first_buy_date": "2026-09-07",
+      "first_buy_price": 204.0
     }
   ],
   "holdings": [
@@ -249,11 +253,11 @@
       "market": "TWSE",
       "quantity": 196,
       "average_cost": 305.0,
-      "current_price": 308.0,
+      "current_price": 304.0,
       "invested": 59780.0,
-      "market_value": 60368.0,
-      "unrealized_profit": 588.0,
-      "unrealized_return_percent": 0.9836065573770493,
+      "market_value": 59584.0,
+      "unrealized_profit": -196.0,
+      "unrealized_return_percent": -0.32786885245901637,
       "first_buy_date": "2026-08-31",
       "signal_date": "2026-08-28",
       "reference_close": 317.5,
@@ -266,11 +270,11 @@
       "market": "TWSE",
       "quantity": 7,
       "average_cost": 7065.0,
-      "current_price": 7050.0,
+      "current_price": 7100.0,
       "invested": 49455.0,
-      "market_value": 49350.0,
-      "unrealized_profit": -105.0,
-      "unrealized_return_percent": -0.21231422505307856,
+      "market_value": 49700.0,
+      "unrealized_profit": 245.0,
+      "unrealized_return_percent": 0.4953998584571833,
       "first_buy_date": "2026-08-31",
       "signal_date": "2026-08-28",
       "reference_close": 7065.0,
@@ -317,11 +321,11 @@
       "market": "TWSE",
       "quantity": 115,
       "average_cost": 518.0,
-      "current_price": 496.0,
+      "current_price": 519.0,
       "invested": 59570.0,
-      "market_value": 57040.0,
-      "unrealized_profit": -2530.0,
-      "unrealized_return_percent": -4.247104247104247,
+      "market_value": 59685.0,
+      "unrealized_profit": 115.0,
+      "unrealized_return_percent": 0.19305019305019305,
       "first_buy_date": "2026-09-01",
       "signal_date": "2026-08-31",
       "reference_close": 543.0,
@@ -351,11 +355,11 @@
       "market": "TPEX",
       "quantity": 142,
       "average_cost": 421.5,
-      "current_price": 430.0,
+      "current_price": 447.0,
       "invested": 59853.0,
-      "market_value": 61060.0,
-      "unrealized_profit": 1207.0,
-      "unrealized_return_percent": 2.0166073546856467,
+      "market_value": 63474.0,
+      "unrealized_profit": 3621.0,
+      "unrealized_return_percent": 6.049822064056939,
       "first_buy_date": "2026-09-01",
       "signal_date": "2026-08-31",
       "reference_close": 422.5,
@@ -412,30 +416,43 @@
       "reference_close": 220.5,
       "buy_stage": 1,
       "allocation_used": 0.3
-    }
-  ],
-  "waiting": [
+    },
     {
       "symbol": "3231",
       "name": "緯創",
-      "signal_date": "2026-09-02",
-      "trigger_price": 185.5,
-      "status": "等待價格 ≤ 選股日收盤"
+      "market": "TWSE",
+      "quantity": 311,
+      "average_cost": 192.5,
+      "current_price": 192.5,
+      "invested": 59867.5,
+      "market_value": 59867.5,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-07",
+      "signal_date": "2026-09-04",
+      "reference_close": 198.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
     },
     {
       "symbol": "2464",
       "name": "盟立",
-      "signal_date": "2026-09-02",
-      "trigger_price": 202.0,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
-      "symbol": "3231",
-      "name": "緯創",
-      "signal_date": "2026-09-03",
-      "trigger_price": 188.5,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
+      "market": "TWSE",
+      "quantity": 294,
+      "average_cost": 204.0,
+      "current_price": 204.0,
+      "invested": 59976.0,
+      "market_value": 59976.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-07",
+      "signal_date": "2026-09-04",
+      "reference_close": 211.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    }
+  ],
+  "waiting": [
     {
       "symbol": "8039",
       "name": "台虹",
@@ -444,24 +461,10 @@
       "status": "等待價格 ≤ 選股日收盤"
     },
     {
-      "symbol": "3231",
-      "name": "緯創",
-      "signal_date": "2026-09-04",
-      "trigger_price": 198.0,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
       "symbol": "8039",
       "name": "台虹",
       "signal_date": "2026-09-04",
       "trigger_price": 297.5,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
-      "symbol": "2464",
-      "name": "盟立",
-      "signal_date": "2026-09-04",
-      "trigger_price": 211.0,
       "status": "等待價格 ≤ 選股日收盤"
     }
   ],
@@ -622,6 +625,32 @@
       "first_buy_date": "2026-08-31",
       "average_cost": 130.0,
       "return_percent": 10.0
+    },
+    {
+      "date": "2026-09-07",
+      "symbol": "3231",
+      "name": "緯創",
+      "action": "買入",
+      "price": 192.5,
+      "quantity": 311,
+      "amount": 59867.5,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-04",
+      "reference_close": 198.0
+    },
+    {
+      "date": "2026-09-07",
+      "symbol": "2464",
+      "name": "盟立",
+      "action": "買入",
+      "price": 204.0,
+      "quantity": 294,
+      "amount": 59976.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-04",
+      "reference_close": 211.0
     }
   ],
   "performance": [
@@ -669,10 +698,10 @@
     },
     {
       "date": "2026-09-07",
-      "total_assets": 1006496.8,
-      "cash": 421987.3,
-      "return_percent": 0.6496800000000047,
-      "holding_count": 10
+      "total_assets": 1011121.8,
+      "cash": 302143.8,
+      "return_percent": 1.1121800000000046,
+      "holding_count": 12
     }
   ]
 }
