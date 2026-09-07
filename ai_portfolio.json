@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 302143.8,
-  "total_assets": 1014934.3,
-  "total_profit": 14934.300000000047,
-  "total_return_percent": 1.4934300000000047,
+  "cash": 369238.8,
+  "total_assets": 1020348.3,
+  "total_profit": 20348.300000000047,
+  "total_return_percent": 2.034830000000005,
   "date": "2026-09-07",
-  "updated_at": "2026-09-07T09:55:11+08:00",
+  "updated_at": "2026-09-07T10:12:13+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -132,11 +132,13 @@
       "market": "TPEX",
       "reference_close": 422.5,
       "first_buy_trigger": 422.5,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-01T17:33:49+08:00",
       "first_buy_date": "2026-09-01",
-      "first_buy_price": 421.5
+      "first_buy_price": 421.5,
+      "sell_date": "2026-09-07",
+      "sell_price": 472.5
     },
     {
       "signal_date": "2026-09-02",
@@ -350,33 +352,16 @@
       "allocation_used": 0.3
     },
     {
-      "symbol": "3374",
-      "name": "精材",
-      "market": "TPEX",
-      "quantity": 142,
-      "average_cost": 421.5,
-      "current_price": 460.5,
-      "invested": 59853.0,
-      "market_value": 65391.0,
-      "unrealized_profit": 5538.0,
-      "unrealized_return_percent": 9.252669039145907,
-      "first_buy_date": "2026-09-01",
-      "signal_date": "2026-08-31",
-      "reference_close": 422.5,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
       "symbol": "1303",
       "name": "南亞",
       "market": "TWSE",
       "quantity": 258,
       "average_cost": 232.5,
-      "current_price": 225.5,
+      "current_price": 232.5,
       "invested": 59985.0,
-      "market_value": 58179.0,
-      "unrealized_profit": -1806.0,
-      "unrealized_return_percent": -3.010752688172043,
+      "market_value": 59985.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
       "first_buy_date": "2026-09-03",
       "signal_date": "2026-09-02",
       "reference_close": 237.5,
@@ -406,11 +391,11 @@
       "market": "TWSE",
       "quantity": 272,
       "average_cost": 220.5,
-      "current_price": 225.5,
+      "current_price": 232.5,
       "invested": 59976.0,
-      "market_value": 61336.0,
-      "unrealized_profit": 1360.0,
-      "unrealized_return_percent": 2.2675736961451247,
+      "market_value": 63240.0,
+      "unrealized_profit": 3264.0,
+      "unrealized_return_percent": 5.442176870748299,
       "first_buy_date": "2026-09-03",
       "signal_date": "2026-08-28",
       "reference_close": 220.5,
@@ -453,6 +438,13 @@
     }
   ],
   "waiting": [
+    {
+      "symbol": "3374",
+      "name": "精材",
+      "signal_date": "2026-08-28",
+      "trigger_price": 386.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
     {
       "symbol": "8039",
       "name": "台虹",
@@ -651,6 +643,20 @@
       "reason": "即時價格 ≤ 觸發價格",
       "signal_date": "2026-09-04",
       "reference_close": 211.0
+    },
+    {
+      "date": "2026-09-07",
+      "symbol": "3374",
+      "name": "精材",
+      "action": "賣出",
+      "price": 472.5,
+      "quantity": 142,
+      "amount": 67095.0,
+      "allocation": "100%",
+      "reason": "現價達到 +10% 停利條件；以當下價格模擬賣出",
+      "first_buy_date": "2026-09-01",
+      "average_cost": 421.5,
+      "return_percent": 12.099644128113878
     }
   ],
   "performance": [
@@ -698,10 +704,10 @@
     },
     {
       "date": "2026-09-07",
-      "total_assets": 1014934.3,
-      "cash": 302143.8,
-      "return_percent": 1.4934300000000047,
-      "holding_count": 12
+      "total_assets": 1020348.3,
+      "cash": 369238.8,
+      "return_percent": 2.034830000000005,
+      "holding_count": 11
     }
   ]
 }
