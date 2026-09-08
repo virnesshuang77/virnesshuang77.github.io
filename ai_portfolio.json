@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 369238.8,
-  "total_assets": 1015790.0,
-  "total_profit": 15790.0,
-  "total_return_percent": 1.5789999999999997,
-  "date": "2026-09-07",
-  "updated_at": "2026-09-07T14:03:02+08:00",
+  "cash": 312818.8,
+  "total_assets": 1015805.0,
+  "total_profit": 15805.0,
+  "total_return_percent": 1.5805,
+  "date": "2026-09-08",
+  "updated_at": "2026-09-08T09:11:30+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -246,6 +246,30 @@
       "created_at": "2026-09-04T21:23:14+08:00",
       "first_buy_date": "2026-09-07",
       "first_buy_price": 204.0
+    },
+    {
+      "signal_date": "2026-09-03",
+      "symbol": "3324",
+      "name": "雙鴻",
+      "market": "TPEX",
+      "reference_close": 1350.0,
+      "first_buy_trigger": 1350.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-08T09:11:29+08:00"
+    },
+    {
+      "signal_date": "2026-09-03",
+      "symbol": "2454",
+      "name": "聯發科",
+      "market": "TWSE",
+      "reference_close": 4340.0,
+      "first_buy_trigger": 4340.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-08T09:11:29+08:00",
+      "first_buy_date": "2026-09-04",
+      "first_buy_price": 4340.0
     }
   ],
   "holdings": [
@@ -272,11 +296,11 @@
       "market": "TWSE",
       "quantity": 7,
       "average_cost": 7065.0,
-      "current_price": 6660.0,
+      "current_price": 6435.0,
       "invested": 49455.0,
-      "market_value": 46620.0,
-      "unrealized_profit": -2835.0,
-      "unrealized_return_percent": -5.7324840764331215,
+      "market_value": 45045.0,
+      "unrealized_profit": -4410.0,
+      "unrealized_return_percent": -8.9171974522293,
       "first_buy_date": "2026-08-31",
       "signal_date": "2026-08-28",
       "reference_close": 7065.0,
@@ -357,11 +381,11 @@
       "market": "TWSE",
       "quantity": 258,
       "average_cost": 232.5,
-      "current_price": 230.5,
+      "current_price": 233.5,
       "invested": 59985.0,
-      "market_value": 59469.0,
-      "unrealized_profit": -516.0,
-      "unrealized_return_percent": -0.8602150537634409,
+      "market_value": 60243.0,
+      "unrealized_profit": 258.0,
+      "unrealized_return_percent": 0.43010752688172044,
       "first_buy_date": "2026-09-03",
       "signal_date": "2026-09-02",
       "reference_close": 237.5,
@@ -391,11 +415,11 @@
       "market": "TWSE",
       "quantity": 272,
       "average_cost": 220.5,
-      "current_price": 230.5,
+      "current_price": 233.5,
       "invested": 59976.0,
-      "market_value": 62696.0,
-      "unrealized_profit": 2720.0,
-      "unrealized_return_percent": 4.535147392290249,
+      "market_value": 63512.0,
+      "unrealized_profit": 3536.0,
+      "unrealized_return_percent": 5.895691609977324,
       "first_buy_date": "2026-09-03",
       "signal_date": "2026-08-28",
       "reference_close": 220.5,
@@ -435,6 +459,23 @@
       "reference_close": 211.0,
       "buy_stage": 1,
       "allocation_used": 0.3
+    },
+    {
+      "symbol": "2454",
+      "name": "聯發科",
+      "market": "TWSE",
+      "quantity": 13,
+      "average_cost": 4340.0,
+      "current_price": 4340.0,
+      "invested": 56420.0,
+      "market_value": 56420.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-04",
+      "signal_date": "2026-09-03",
+      "reference_close": 4340.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
     }
   ],
   "waiting": [
@@ -457,6 +498,13 @@
       "name": "台虹",
       "signal_date": "2026-09-04",
       "trigger_price": 297.5,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "3324",
+      "name": "雙鴻",
+      "signal_date": "2026-09-03",
+      "trigger_price": 1350.0,
       "status": "等待價格 ≤ 選股日收盤"
     }
   ],
@@ -657,6 +705,19 @@
       "first_buy_date": "2026-09-01",
       "average_cost": 421.5,
       "return_percent": 12.099644128113878
+    },
+    {
+      "date": "2026-09-04",
+      "symbol": "2454",
+      "name": "聯發科",
+      "action": "買入",
+      "price": 4340.0,
+      "quantity": 13,
+      "amount": 56420.0,
+      "allocation": "30%",
+      "reason": "2026-09-04 歷史最低價 4340.0 ≤ 觸發價格 4340.0；回補為觸發價限價單成交",
+      "signal_date": "2026-09-03",
+      "reference_close": 4340.0
     }
   ],
   "performance": [
@@ -708,6 +769,13 @@
       "cash": 369238.8,
       "return_percent": 1.5789999999999997,
       "holding_count": 11
+    },
+    {
+      "date": "2026-09-08",
+      "total_assets": 1015805.0,
+      "cash": 312818.8,
+      "return_percent": 1.5805,
+      "holding_count": 12
     }
   ]
 }
