@@ -2,11 +2,11 @@
   "version": 1,
   "initial_capital": 1000000,
   "cash": 261466.55,
-  "total_assets": 1025325.05,
-  "total_profit": 25325.050000000047,
-  "total_return_percent": 2.532505000000005,
+  "total_assets": 1024445.05,
+  "total_profit": 24445.050000000047,
+  "total_return_percent": 2.444505000000005,
   "date": "2026-09-08",
-  "updated_at": "2026-09-08T10:59:31+08:00",
+  "updated_at": "2026-09-08T11:19:19+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -493,11 +493,11 @@
       "market": "TPEX",
       "quantity": 44,
       "average_cost": 1350.0,
-      "current_price": 1330.0,
+      "current_price": 1310.0,
       "invested": 59400.0,
-      "market_value": 58520.0,
-      "unrealized_profit": -880.0,
-      "unrealized_return_percent": -1.4814814814814816,
+      "market_value": 57640.0,
+      "unrealized_profit": -1760.0,
+      "unrealized_return_percent": -2.9629629629629632,
       "first_buy_date": "2026-09-08",
       "signal_date": "2026-09-03",
       "reference_close": 1350.0,
@@ -852,9 +852,9 @@
     },
     {
       "date": "2026-09-08",
-      "total_assets": 1025325.05,
+      "total_assets": 1024445.05,
       "cash": 261466.55,
-      "return_percent": 2.532505000000005,
+      "return_percent": 2.444505000000005,
       "holding_count": 13
     }
   ]
