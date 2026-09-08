@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 374880.8,
-  "total_assets": 1020842.0,
-  "total_profit": 20842.0,
-  "total_return_percent": 2.0842,
+  "cash": 314886.8,
+  "total_assets": 1018496.0,
+  "total_profit": 18496.0,
+  "total_return_percent": 1.8496,
   "date": "2026-09-08",
-  "updated_at": "2026-09-08T09:27:38+08:00",
+  "updated_at": "2026-09-08T09:44:19+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -171,9 +171,11 @@
       "market": "TWSE",
       "reference_close": 202.0,
       "first_buy_trigger": 202.0,
-      "status": "waiting",
+      "status": "holding",
       "first_buy_allocation": 0.3,
-      "created_at": "2026-09-03T09:10:31+08:00"
+      "created_at": "2026-09-03T09:10:31+08:00",
+      "first_buy_date": "2026-09-08",
+      "first_buy_price": 202.0
     },
     {
       "signal_date": "2026-09-02",
@@ -281,11 +283,11 @@
       "market": "TWSE",
       "quantity": 196,
       "average_cost": 305.0,
-      "current_price": 299.0,
+      "current_price": 293.0,
       "invested": 59780.0,
-      "market_value": 58604.0,
-      "unrealized_profit": -1176.0,
-      "unrealized_return_percent": -1.9672131147540985,
+      "market_value": 57428.0,
+      "unrealized_profit": -2352.0,
+      "unrealized_return_percent": -3.934426229508197,
       "first_buy_date": "2026-08-31",
       "signal_date": "2026-08-28",
       "reference_close": 317.5,
@@ -332,11 +334,11 @@
       "market": "TWSE",
       "quantity": 4,
       "average_cost": 14150.0,
-      "current_price": 13905.0,
+      "current_price": 13095.0,
       "invested": 56600.0,
-      "market_value": 55620.0,
-      "unrealized_profit": -980.0,
-      "unrealized_return_percent": -1.7314487632508833,
+      "market_value": 52380.0,
+      "unrealized_profit": -4220.0,
+      "unrealized_return_percent": -7.455830388692579,
       "first_buy_date": "2026-09-01",
       "signal_date": "2026-08-31",
       "reference_close": 14180.0,
@@ -451,14 +453,31 @@
       "market": "TWSE",
       "quantity": 294,
       "average_cost": 204.0,
-      "current_price": 203.0,
+      "current_price": 206.0,
       "invested": 59976.0,
-      "market_value": 59682.0,
-      "unrealized_profit": -294.0,
-      "unrealized_return_percent": -0.49019607843137253,
+      "market_value": 60564.0,
+      "unrealized_profit": 588.0,
+      "unrealized_return_percent": 0.9803921568627451,
       "first_buy_date": "2026-09-07",
       "signal_date": "2026-09-04",
       "reference_close": 211.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
+    {
+      "symbol": "2464",
+      "name": "盟立",
+      "market": "TWSE",
+      "quantity": 297,
+      "average_cost": 202.0,
+      "current_price": 206.0,
+      "invested": 59994.0,
+      "market_value": 61182.0,
+      "unrealized_profit": 1188.0,
+      "unrealized_return_percent": 1.9801980198019802,
+      "first_buy_date": "2026-09-08",
+      "signal_date": "2026-09-02",
+      "reference_close": 202.0,
       "buy_stage": 1,
       "allocation_used": 0.3
     }
@@ -717,6 +736,19 @@
       "first_buy_date": "2026-09-04",
       "average_cost": 4340.0,
       "return_percent": 10.0
+    },
+    {
+      "date": "2026-09-08",
+      "symbol": "2464",
+      "name": "盟立",
+      "action": "買入",
+      "price": 202.0,
+      "quantity": 297,
+      "amount": 59994.0,
+      "allocation": "30%",
+      "reason": "今日最低價曾 ≤ 觸發價格；以觸發價限價單模擬成交",
+      "signal_date": "2026-09-02",
+      "reference_close": 202.0
     }
   ],
   "performance": [
@@ -771,10 +803,10 @@
     },
     {
       "date": "2026-09-08",
-      "total_assets": 1020842.0,
-      "cash": 374880.8,
-      "return_percent": 2.0842,
-      "holding_count": 11
+      "total_assets": 1018496.0,
+      "cash": 314886.8,
+      "return_percent": 1.8496,
+      "holding_count": 12
     }
   ]
 }
