@@ -1,8 +1,8 @@
 {
-  "data_date": "2026-09-08",
+  "data_date": "2026-09-09",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
-  "total": 814,
+  "total": 815,
   "brokers": [
     {
       "broker_code": "1021",
@@ -1039,6 +1039,13 @@
       "open_date": "1031013",
       "address": "苗栗縣竹南鎮中正路217號2樓",
       "phone": "037-480666"
+    },
+    {
+      "broker_code": "585n",
+      "broker_name": "統一-青埔簡易",
+      "open_date": "1150916",
+      "address": "桃園市中壢區領航南路一段79號",
+      "phone": "03-2878696"
     },
     {
       "broker_code": "585s",
