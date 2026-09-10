@@ -30,6 +30,12 @@ FIRST_BUY_ALLOCATION = 0.30
 # 持有股票達到 +10% 即全部停利賣出
 TAKE_PROFIT_RATE = 0.10
 
+# 持有股票跌至 -10% 即全部停損賣出
+STOP_LOSS_RATE = -0.10
+
+# 最多持有 5 個交易日，滿 5 個交易日即全部出場
+MAX_HOLDING_DAYS = 5
+
 
 # ============================================================
 # JSON
@@ -1991,25 +1997,93 @@ def update_holdings(
 
 
 # ============================================================
-# 10% 停利賣出
+# 停利 / 停損 / 最長持有天數
 # ============================================================
 
-def process_take_profit(
+def count_holding_trading_days(
+    first_buy_date,
+    today=None
+):
+    """
+    計算持有幾個交易日。
+
+    規則：
+    - 買入當天算第 1 個交易日。
+    - 週六、週日不計算。
+    - 目前未另外載入台股國定休市日，因此這裡以週一～週五
+      作為交易日計算基準。
+    """
+    if not first_buy_date:
+        return 0
+
+    today = today or today_string()
+
+    try:
+        start_date = datetime.strptime(
+            str(first_buy_date),
+            "%Y-%m-%d"
+        ).date()
+
+        end_date = datetime.strptime(
+            str(today),
+            "%Y-%m-%d"
+        ).date()
+
+    except ValueError:
+        return 0
+
+    if end_date < start_date:
+        return 0
+
+    days = 0
+    current_date = start_date
+
+    while current_date <= end_date:
+
+        if current_date.weekday() < 5:
+            days += 1
+
+        current_date = (
+            current_date.fromordinal(
+                current_date.toordinal() + 1
+            )
+        )
+
+    return days
+
+
+def process_exit_rules(
     portfolio,
     realtime_quotes
 ):
 
     """
-    持有部位達到 +10% 即全部賣出。
+    統一處理持股出場規則：
 
-    判斷方式：
-    1. 現價 >= 平均成本 * 1.10：以現價模擬賣出。
-    2. 現價尚未到，但今日最高價曾 >= 停利價：
-       視為盤中曾觸發停利，以停利價模擬成交。
+    ① 停損：
+       報酬率 <= -10% 即全部賣出。
 
-    這樣即使 GitHub Actions 每 5 分鐘執行時，
-    股價已從 +10% 回落，也不會漏掉停利。
+    ② 停利：
+       報酬率 >= +10% 即全部賣出。
+
+    ③ 最長持有：
+       買入當天算第 1 個交易日，
+       持有滿 5 個交易日即全部賣出。
+
+    盤中觸發：
+    - 停損使用今日最低價 day_low 判斷。
+    - 停利使用今日最高價 day_high 判斷。
+    - 若現價已經越過條件，直接以現價模擬成交。
+    - 若盤中曾觸發但目前已經回來，則以停損 / 停利價模擬成交。
+
+    特別處理：
+    如果同一天最高價與最低價同時跨過停利與停損，
+    單靠 daily high / low 無法知道先後順序。
+    為避免回測產生過度樂觀結果，採保守原則：
+    優先視為停損先觸發。
     """
+
+    today = today_string()
 
     remaining_holdings = []
 
@@ -2029,8 +2103,12 @@ def process_take_profit(
             symbol
         )
 
+        # 沒有即時行情時，不能可靠地判斷價格型出場；
+        # 但也不能因為沒有行情就直接刪除持股。
         if quote is None:
-            remaining_holdings.append(holding)
+            remaining_holdings.append(
+                holding
+            )
             continue
 
         quantity = int(
@@ -2047,14 +2125,33 @@ def process_take_profit(
             )
         )
 
-        if quantity <= 0 or average_cost <= 0:
-            remaining_holdings.append(holding)
+        first_buy_date = str(
+            holding.get(
+                "first_buy_date",
+                ""
+            )
+        ).strip()
+
+        if (
+            quantity <= 0
+            or average_cost <= 0
+        ):
+            remaining_holdings.append(
+                holding
+            )
             continue
 
         current_price = num(
             quote.get(
                 "price"
             )
+        )
+
+        day_low = num(
+            quote.get(
+                "day_low"
+            ),
+            None
         )
 
         day_high = num(
@@ -2064,40 +2161,162 @@ def process_take_profit(
             None
         )
 
-        target_price = (
+        if current_price <= 0:
+            remaining_holdings.append(
+                holding
+            )
+            continue
+
+        stop_loss_price = (
+            average_cost
+            * (1 + STOP_LOSS_RATE)
+        )
+
+        take_profit_price = (
             average_cost
             * (1 + TAKE_PROFIT_RATE)
         )
+
+        current_return = (
+            (
+                current_price
+                - average_cost
+            )
+            / average_cost
+            * 100
+        )
+
+        # --------------------------------------------------------
+        # 持有天數
+        # --------------------------------------------------------
+
+        holding_days = count_holding_trading_days(
+            first_buy_date,
+            today
+        )
+
+        max_holding_triggered = (
+            holding_days >= MAX_HOLDING_DAYS
+            if holding_days > 0
+            else False
+        )
+
+        # --------------------------------------------------------
+        # 停損 / 停利觸發
+        #
+        # 如果買入當天就執行，daily high / low 可能包含
+        # 「買入以前」的價格，因此第一天只使用目前價格。
+        # 從下一個交易日開始，才使用 day_high / day_low
+        # 判斷盤中曾經觸發。
+        # --------------------------------------------------------
+
+        is_buy_date = (
+            first_buy_date == today
+        )
+
+        stop_loss_triggered = False
+        take_profit_triggered = False
+
+        # 目前價格已直接觸發
+        if current_price <= stop_loss_price:
+            stop_loss_triggered = True
+
+        if current_price >= take_profit_price:
+            take_profit_triggered = True
+
+        # 從買入隔日開始，才使用當日最高 / 最低價補抓
+        # 盤中曾經觸發但目前已回落的情況。
+        if not is_buy_date:
+
+            if (
+                day_low is not None
+                and day_low > 0
+                and day_low <= stop_loss_price
+            ):
+                stop_loss_triggered = True
+
+            if (
+                day_high is not None
+                and day_high > 0
+                and day_high >= take_profit_price
+            ):
+                take_profit_triggered = True
+
+        # --------------------------------------------------------
+        # 決定出場原因與模擬成交價
+        # --------------------------------------------------------
 
         triggered = False
         execution_price = current_price
         reason = ""
 
-        if (
-            current_price > 0
-            and current_price >= target_price
-        ):
+        # 若停損與停利同日都曾觸發，
+        # 採保守原則：停損優先。
+        if stop_loss_triggered:
+
+            triggered = True
+            execution_price = stop_loss_price
+
+            if current_price <= stop_loss_price:
+                execution_price = current_price
+                reason = (
+                    "現價達到 -10% 停損條件；"
+                    "以當下價格模擬賣出"
+                )
+
+            else:
+                reason = (
+                    "今日最低價曾達到 -10% 停損價；"
+                    "以停損價限價單模擬成交"
+                )
+
+        elif take_profit_triggered:
+
+            triggered = True
+            execution_price = take_profit_price
+
+            if current_price >= take_profit_price:
+                execution_price = current_price
+                reason = (
+                    "現價達到 +10% 停利條件；"
+                    "以當下價格模擬賣出"
+                )
+
+            else:
+                reason = (
+                    "今日最高價曾達到 +10% 停利價；"
+                    "以停利價限價單模擬成交"
+                )
+
+        elif max_holding_triggered:
+
             triggered = True
             execution_price = current_price
             reason = (
-                "現價達到 +10% 停利條件；"
+                f"已持有 {holding_days} 個交易日，"
+                f"達到最長持有 {MAX_HOLDING_DAYS} 個交易日；"
                 "以當下價格模擬賣出"
             )
 
-        elif (
-            day_high is not None
-            and day_high >= target_price
-        ):
-            triggered = True
-            execution_price = target_price
-            reason = (
-                "今日最高價曾達到 +10% 停利價；"
-                "以停利價限價單模擬成交"
+        if not triggered:
+
+            print(
+                f"{symbol} 持有中："
+                f"報酬={current_return:.2f}%，"
+                f"持有={holding_days} 天，"
+                f"停損={stop_loss_price:.2f}，"
+                f"停利={take_profit_price:.2f}"
             )
 
-        if not triggered:
-            remaining_holdings.append(holding)
+            remaining_holdings.append(
+                holding
+            )
+
             continue
+
+        # --------------------------------------------------------
+        # 執行模擬賣出
+        # --------------------------------------------------------
 
         amount = (
             quantity
@@ -2113,26 +2332,52 @@ def process_take_profit(
             + amount
         )
 
-        # 將對應訊號標記為已賣出，避免把同一訊號誤當成仍在持有。
+        # 將對應訊號標記為已賣出，
+        # 避免同一訊號被誤判為仍在持有。
         for signal in portfolio.get(
             "signal_queue",
             []
         ):
+
             if (
-                str(signal.get("symbol", "")) == symbol
-                and str(signal.get("first_buy_date", "")) ==
-                    str(holding.get("first_buy_date", ""))
+                str(
+                    signal.get(
+                        "symbol",
+                        ""
+                    )
+                ) == symbol
+
+                and str(
+                    signal.get(
+                        "first_buy_date",
+                        ""
+                    )
+                ) == first_buy_date
             ):
+
                 signal["status"] = "sold"
-                signal["sell_date"] = today_string()
-                signal["sell_price"] = execution_price
+
+                signal["sell_date"] = today
+
+                signal["sell_price"] = (
+                    execution_price
+                )
+
+        return_percent = (
+            (
+                execution_price
+                - average_cost
+            )
+            / average_cost
+            * 100
+        )
 
         portfolio.setdefault(
             "transactions",
             []
         ).append(
             {
-                "date": today_string(),
+                "date": today,
                 "symbol": symbol,
                 "name": holding.get(
                     "name",
@@ -2144,30 +2389,48 @@ def process_take_profit(
                 "amount": amount,
                 "allocation": "100%",
                 "reason": reason,
-                "first_buy_date": holding.get(
-                    "first_buy_date",
-                    ""
-                ),
+                "first_buy_date": first_buy_date,
                 "average_cost": average_cost,
-                "return_percent": (
-                    (execution_price - average_cost)
-                    / average_cost
-                    * 100
-                )
+                "return_percent": return_percent,
+                "holding_days": holding_days
             }
         )
 
-        print(
-            f"★ 10% 停利賣出：{symbol} "
-            f"{quantity} 股 @ {execution_price} "
-            f"(成本 {average_cost}, "
-            f"停利價 {target_price:.2f})"
-        )
+        if stop_loss_triggered:
+
+            print(
+                f"★ -10% 停損賣出："
+                f"{symbol} "
+                f"{quantity} 股 @ "
+                f"{execution_price:.2f} "
+                f"(成本 {average_cost:.2f}, "
+                f"停損價 {stop_loss_price:.2f})"
+            )
+
+        elif take_profit_triggered:
+
+            print(
+                f"★ +10% 停利賣出："
+                f"{symbol} "
+                f"{quantity} 股 @ "
+                f"{execution_price:.2f} "
+                f"(成本 {average_cost:.2f}, "
+                f"停利價 {take_profit_price:.2f})"
+            )
+
+        else:
+
+            print(
+                f"★ {MAX_HOLDING_DAYS} 天到期出場："
+                f"{symbol} "
+                f"{quantity} 股 @ "
+                f"{execution_price:.2f} "
+                f"(成本 {average_cost:.2f}, "
+                f"持有 {holding_days} 個交易日)"
+            )
 
     portfolio["holdings"] = remaining_holdings
 
-
-# ============================================================
 # 更新等待名單
 # ============================================================
 
@@ -2633,10 +2896,10 @@ def main():
     )
 
     # --------------------------------------------------------
-    # 9. +10% 停利賣出
+    # 9. 停利 / 停損 / 5 個交易日到期出場
     # --------------------------------------------------------
 
-    process_take_profit(
+    process_exit_rules(
 
         portfolio,
 
@@ -2749,8 +3012,10 @@ def main():
     )
 
     print(
-        "停利條件：",
-        f"+{TAKE_PROFIT_RATE * 100:.0f}%"
+        "出場條件：",
+        f"停損 {STOP_LOSS_RATE * 100:.0f}% / "
+        f"停利 +{TAKE_PROFIT_RATE * 100:.0f}% / "
+        f"最長 {MAX_HOLDING_DAYS} 個交易日"
     )
 
     print(
