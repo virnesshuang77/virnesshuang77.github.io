@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 41575.149999999994,
-  "total_assets": 1024255.85,
-  "total_profit": 24255.849999999977,
-  "total_return_percent": 2.4255849999999977,
+  "cash": 155.14999999999418,
+  "total_assets": 1025954.35,
+  "total_profit": 25954.349999999977,
+  "total_return_percent": 2.5954349999999975,
   "date": "2026-09-10",
-  "updated_at": "2026-09-10T11:19:36+08:00",
+  "updated_at": "2026-09-10T11:35:42+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -341,9 +341,11 @@
       "market": "TWSE",
       "reference_close": 1110.0,
       "first_buy_trigger": 1110.0,
-      "status": "waiting",
+      "status": "holding",
       "first_buy_allocation": 0.3,
-      "created_at": "2026-09-10T09:11:25+08:00"
+      "created_at": "2026-09-10T09:11:25+08:00",
+      "first_buy_date": "2026-09-10",
+      "first_buy_price": 1090.0
     },
     {
       "signal_date": "2026-09-09",
@@ -519,11 +521,11 @@
       "market": "TPEX",
       "quantity": 44,
       "average_cost": 1350.0,
-      "current_price": 1365.0,
+      "current_price": 1380.0,
       "invested": 59400.0,
-      "market_value": 60060.0,
-      "unrealized_profit": 660.0,
-      "unrealized_return_percent": 1.1111111111111112,
+      "market_value": 60720.0,
+      "unrealized_profit": 1320.0,
+      "unrealized_return_percent": 2.2222222222222223,
       "first_buy_date": "2026-09-08",
       "signal_date": "2026-09-03",
       "reference_close": 1350.0,
@@ -604,11 +606,11 @@
       "market": "TPEX",
       "quantity": 461,
       "average_cost": 130.0,
-      "current_price": 127.0,
+      "current_price": 127.5,
       "invested": 59930.0,
-      "market_value": 58547.0,
-      "unrealized_profit": -1383.0,
-      "unrealized_return_percent": -2.307692307692308,
+      "market_value": 58777.5,
+      "unrealized_profit": -1152.5,
+      "unrealized_return_percent": -1.9230769230769231,
       "first_buy_date": "2026-09-08",
       "signal_date": "2026-09-07",
       "reference_close": 130.0,
@@ -621,11 +623,11 @@
       "market": "TWSE",
       "quantity": 202,
       "average_cost": 297.0,
-      "current_price": 306.5,
+      "current_price": 310.5,
       "invested": 59994.0,
-      "market_value": 61913.0,
-      "unrealized_profit": 1919.0,
-      "unrealized_return_percent": 3.1986531986531985,
+      "market_value": 62721.0,
+      "unrealized_profit": 2727.0,
+      "unrealized_return_percent": 4.545454545454546,
       "first_buy_date": "2026-09-08",
       "signal_date": "2026-09-07",
       "reference_close": 297.0,
@@ -648,6 +650,23 @@
       "reference_close": 143.5,
       "buy_stage": 1,
       "allocation_used": 0.3
+    },
+    {
+      "symbol": "3406",
+      "name": "玉晶光",
+      "market": "TWSE",
+      "quantity": 38,
+      "average_cost": 1090.0,
+      "current_price": 1090.0,
+      "invested": 41420.0,
+      "market_value": 41420.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-10",
+      "signal_date": "2026-09-09",
+      "reference_close": 1110.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
     }
   ],
   "waiting": [
@@ -656,13 +675,6 @@
       "name": "精材",
       "signal_date": "2026-08-28",
       "trigger_price": 386.0,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
-      "symbol": "3406",
-      "name": "玉晶光",
-      "signal_date": "2026-09-09",
-      "trigger_price": 1110.0,
       "status": "等待價格 ≤ 選股日收盤"
     }
   ],
@@ -1076,6 +1088,19 @@
       "reason": "即時價格 ≤ 觸發價格",
       "signal_date": "2026-09-09",
       "reference_close": 143.5
+    },
+    {
+      "date": "2026-09-10",
+      "symbol": "3406",
+      "name": "玉晶光",
+      "action": "買入",
+      "price": 1090.0,
+      "quantity": 38,
+      "amount": 41420.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-09",
+      "reference_close": 1110.0
     }
   ],
   "performance": [
@@ -1144,10 +1169,10 @@
     },
     {
       "date": "2026-09-10",
-      "total_assets": 1024255.85,
-      "cash": 41575.149999999994,
-      "return_percent": 2.4255849999999977,
-      "holding_count": 17
+      "total_assets": 1025954.35,
+      "cash": 155.14999999999418,
+      "return_percent": 2.5954349999999975,
+      "holding_count": 18
     }
   ]
 }
