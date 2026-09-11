@@ -1,8 +1,8 @@
 {
-  "data_date": "2026-09-10",
+  "data_date": "2026-09-11",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
-  "total": 815,
+  "total": 816,
   "brokers": [
     {
       "broker_code": "1021",
@@ -3202,6 +3202,13 @@
       "open_date": "981221",
       "address": "台南市永康區中山南路1042號1、2樓",
       "phone": "06-2038899"
+    },
+    {
+      "broker_code": "9279",
+      "broker_name": "凱基-忠孝",
+      "open_date": "1150929",
+      "address": "台北市大安區忠孝東路四段270號8樓之1",
+      "phone": "02-27315898"
     },
     {
       "broker_code": "9281",
