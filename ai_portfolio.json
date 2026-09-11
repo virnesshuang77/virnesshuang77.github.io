@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 334660.35000000003,
+  "cash": 277795.35000000003,
   "total_assets": 1026866.8500000001,
   "total_profit": 26866.850000000093,
   "total_return_percent": 2.6866850000000095,
-  "date": "2026-09-10",
-  "updated_at": "2026-09-10T19:25:06+08:00",
+  "date": "2026-09-11",
+  "updated_at": "2026-09-11T09:10:39+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -377,9 +377,11 @@
       "market": "TWSE",
       "reference_close": 3460.0,
       "first_buy_trigger": 3460.0,
-      "status": "waiting",
+      "status": "holding",
       "first_buy_allocation": 0.3,
-      "created_at": "2026-09-10T19:25:04+08:00"
+      "created_at": "2026-09-10T19:25:04+08:00",
+      "first_buy_date": "2026-09-11",
+      "first_buy_price": 3345.0
     },
     {
       "signal_date": "2026-09-10",
@@ -597,6 +599,23 @@
       "reference_close": 1110.0,
       "buy_stage": 1,
       "allocation_used": 0.3
+    },
+    {
+      "symbol": "3017",
+      "name": "奇鋐",
+      "market": "TWSE",
+      "quantity": 17,
+      "average_cost": 3345.0,
+      "current_price": 3345.0,
+      "invested": 56865.0,
+      "market_value": 56865.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-11",
+      "signal_date": "2026-09-10",
+      "reference_close": 3460.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
     }
   ],
   "waiting": [
@@ -605,13 +624,6 @@
       "name": "精材",
       "signal_date": "2026-08-28",
       "trigger_price": 386.0,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
-      "symbol": "3017",
-      "name": "奇鋐",
-      "signal_date": "2026-09-10",
-      "trigger_price": 3460.0,
       "status": "等待價格 ≤ 選股日收盤"
     },
     {
@@ -1135,6 +1147,19 @@
       "average_cost": 99.6,
       "return_percent": -3.5140562248995986,
       "holding_days": 6
+    },
+    {
+      "date": "2026-09-11",
+      "symbol": "3017",
+      "name": "奇鋐",
+      "action": "買入",
+      "price": 3345.0,
+      "quantity": 17,
+      "amount": 56865.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-10",
+      "reference_close": 3460.0
     }
   ],
   "performance": [
@@ -1207,6 +1232,13 @@
       "cash": 334660.35000000003,
       "return_percent": 2.6866850000000095,
       "holding_count": 12
+    },
+    {
+      "date": "2026-09-11",
+      "total_assets": 1026866.8500000001,
+      "cash": 277795.35000000003,
+      "return_percent": 2.6866850000000095,
+      "holding_count": 13
     }
   ]
 }
