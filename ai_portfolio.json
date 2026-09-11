@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 217945.35000000003,
-  "total_assets": 1020939.3500000001,
-  "total_profit": 20939.350000000093,
-  "total_return_percent": 2.0939350000000094,
+  "cash": 284407.35000000003,
+  "total_assets": 1025789.8500000001,
+  "total_profit": 25789.850000000093,
+  "total_return_percent": 2.578985000000009,
   "date": "2026-09-11",
-  "updated_at": "2026-09-11T09:42:24+08:00",
+  "updated_at": "2026-09-11T09:55:01+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -364,11 +364,13 @@
       "market": "TPEX",
       "reference_close": 143.5,
       "first_buy_trigger": 143.5,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-10T09:11:25+08:00",
       "first_buy_date": "2026-09-10",
-      "first_buy_price": 143.5
+      "first_buy_price": 143.5,
+      "sell_date": "2026-09-11",
+      "sell_price": 159.0
     },
     {
       "signal_date": "2026-09-10",
@@ -455,11 +457,11 @@
       "market": "TPEX",
       "quantity": 44,
       "average_cost": 1350.0,
-      "current_price": 1340.0,
+      "current_price": 1350.0,
       "invested": 59400.0,
-      "market_value": 58960.0,
-      "unrealized_profit": -440.0,
-      "unrealized_return_percent": -0.7407407407407408,
+      "market_value": 59400.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
       "first_buy_date": "2026-09-08",
       "signal_date": "2026-09-03",
       "reference_close": 1350.0,
@@ -540,11 +542,11 @@
       "market": "TPEX",
       "quantity": 461,
       "average_cost": 130.0,
-      "current_price": 124.5,
+      "current_price": 125.0,
       "invested": 59930.0,
-      "market_value": 57394.5,
-      "unrealized_profit": -2535.5,
-      "unrealized_return_percent": -4.230769230769231,
+      "market_value": 57625.0,
+      "unrealized_profit": -2305.0,
+      "unrealized_return_percent": -3.8461538461538463,
       "first_buy_date": "2026-09-08",
       "signal_date": "2026-09-07",
       "reference_close": 130.0,
@@ -565,23 +567,6 @@
       "first_buy_date": "2026-09-08",
       "signal_date": "2026-09-07",
       "reference_close": 297.0,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
-      "symbol": "3441",
-      "name": "聯一光",
-      "market": "TPEX",
-      "quantity": 418,
-      "average_cost": 143.5,
-      "current_price": 149.0,
-      "invested": 59983.0,
-      "market_value": 62282.0,
-      "unrealized_profit": 2299.0,
-      "unrealized_return_percent": 3.8327526132404177,
-      "first_buy_date": "2026-09-10",
-      "signal_date": "2026-09-09",
-      "reference_close": 143.5,
       "buy_stage": 1,
       "allocation_used": 0.3
     },
@@ -1185,6 +1170,21 @@
       "reason": "即時價格 ≤ 觸發價格",
       "signal_date": "2026-09-10",
       "reference_close": 6225.0
+    },
+    {
+      "date": "2026-09-11",
+      "symbol": "3441",
+      "name": "聯一光",
+      "action": "賣出",
+      "price": 159.0,
+      "quantity": 418,
+      "amount": 66462.0,
+      "allocation": "100%",
+      "reason": "現價達到 +10% 停利條件；以當下價格模擬賣出",
+      "first_buy_date": "2026-09-10",
+      "average_cost": 143.5,
+      "return_percent": 10.801393728222997,
+      "holding_days": 2
     }
   ],
   "performance": [
@@ -1260,10 +1260,10 @@
     },
     {
       "date": "2026-09-11",
-      "total_assets": 1020939.3500000001,
-      "cash": 217945.35000000003,
-      "return_percent": 2.0939350000000094,
-      "holding_count": 14
+      "total_assets": 1025789.8500000001,
+      "cash": 284407.35000000003,
+      "return_percent": 2.578985000000009,
+      "holding_count": 13
     }
   ]
 }
