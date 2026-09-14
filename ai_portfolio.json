@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 399221.35000000003,
-  "total_assets": 1024229.2522216798,
-  "total_profit": 24229.25222167978,
-  "total_return_percent": 2.422925222167978,
+  "cash": 452384.35000000003,
+  "total_assets": 1021737.2522216798,
+  "total_profit": 21737.25222167978,
+  "total_return_percent": 2.173725222167978,
   "date": "2026-09-14",
-  "updated_at": "2026-09-14T11:19:42+08:00",
+  "updated_at": "2026-09-14T11:36:45+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -189,11 +189,13 @@
       "market": "TWSE",
       "reference_close": 202.0,
       "first_buy_trigger": 202.0,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-03T09:10:31+08:00",
       "first_buy_date": "2026-09-08",
-      "first_buy_price": 202.0
+      "first_buy_price": 202.0,
+      "sell_date": "2026-09-14",
+      "sell_price": 179.0
     },
     {
       "signal_date": "2026-09-02",
@@ -465,23 +467,6 @@
   ],
   "holdings": [
     {
-      "symbol": "2464",
-      "name": "盟立",
-      "market": "TWSE",
-      "quantity": 297,
-      "average_cost": 202.0,
-      "current_price": 188.5,
-      "invested": 59994.0,
-      "market_value": 55984.5,
-      "unrealized_profit": -4009.5,
-      "unrealized_return_percent": -6.683168316831684,
-      "first_buy_date": "2026-09-08",
-      "signal_date": "2026-09-02",
-      "reference_close": 202.0,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
       "symbol": "3231",
       "name": "緯創",
       "market": "TWSE",
@@ -623,11 +608,11 @@
       "market": "TWSE",
       "quantity": 635,
       "average_cost": 94.4,
-      "current_price": 94.4,
+      "current_price": 95.8,
       "invested": 59944.0,
-      "market_value": 59944.0,
-      "unrealized_profit": 0.0,
-      "unrealized_return_percent": 0.0,
+      "market_value": 60833.0,
+      "unrealized_profit": 889.0,
+      "unrealized_return_percent": 1.4830508474576272,
       "first_buy_date": "2026-09-14",
       "signal_date": "2026-09-11",
       "reference_close": 97.1,
@@ -640,11 +625,11 @@
       "market": "TPEX",
       "quantity": 373,
       "average_cost": 160.5,
-      "current_price": 161.5,
+      "current_price": 160.0,
       "invested": 59866.5,
-      "market_value": 60239.5,
-      "unrealized_profit": 373.0,
-      "unrealized_return_percent": 0.6230529595015576,
+      "market_value": 59680.0,
+      "unrealized_profit": -186.5,
+      "unrealized_return_percent": -0.3115264797507788,
       "first_buy_date": "2026-09-14",
       "signal_date": "2026-09-11",
       "reference_close": 166.0,
@@ -1357,6 +1342,21 @@
       "reason": "即時價格 ≤ 觸發價格",
       "signal_date": "2026-09-11",
       "reference_close": 166.0
+    },
+    {
+      "date": "2026-09-14",
+      "symbol": "2464",
+      "name": "盟立",
+      "action": "賣出",
+      "price": 179.0,
+      "quantity": 297,
+      "amount": 53163.0,
+      "allocation": "100%",
+      "reason": "現價達到 -10% 停損條件；以當下價格模擬賣出",
+      "first_buy_date": "2026-09-08",
+      "average_cost": 202.0,
+      "return_percent": -11.386138613861387,
+      "holding_days": 5
     }
   ],
   "performance": [
@@ -1439,10 +1439,10 @@
     },
     {
       "date": "2026-09-14",
-      "total_assets": 1024229.2522216798,
-      "cash": 399221.35000000003,
-      "return_percent": 2.422925222167978,
-      "holding_count": 11
+      "total_assets": 1021737.2522216798,
+      "cash": 452384.35000000003,
+      "return_percent": 2.173725222167978,
+      "holding_count": 10
     }
   ]
 }
