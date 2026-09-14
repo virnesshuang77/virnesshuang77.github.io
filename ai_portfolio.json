@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 459087.85000000003,
-  "total_assets": 1023565.0511108399,
-  "total_profit": 23565.051110839937,
-  "total_return_percent": 2.356505111083994,
+  "cash": 399221.35000000003,
+  "total_assets": 1022982.6488891602,
+  "total_profit": 22982.64888916025,
+  "total_return_percent": 2.298264888916025,
   "date": "2026-09-14",
-  "updated_at": "2026-09-14T09:28:21+08:00",
+  "updated_at": "2026-09-14T09:44:09+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -448,6 +448,19 @@
       "created_at": "2026-09-14T09:11:52+08:00",
       "first_buy_date": "2026-09-14",
       "first_buy_price": 94.4
+    },
+    {
+      "signal_date": "2026-09-11",
+      "symbol": "3441",
+      "name": "聯一光",
+      "market": "TPEX",
+      "reference_close": 166.0,
+      "first_buy_trigger": 166.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-14T09:44:07+08:00",
+      "first_buy_date": "2026-09-14",
+      "first_buy_price": 160.5
     }
   ],
   "holdings": [
@@ -593,11 +606,11 @@
       "market": "TPEX",
       "quantity": 728,
       "average_cost": 82.4,
-      "current_price": 81.9000015258789,
+      "current_price": 81.0999984741211,
       "invested": 59987.200000000004,
-      "market_value": 59623.201110839844,
-      "unrealized_profit": -363.9988891601606,
-      "unrealized_return_percent": -0.6067942647100725,
+      "market_value": 59040.798889160156,
+      "unrealized_profit": -946.4011108398481,
+      "unrealized_return_percent": -1.5776717547074177,
       "first_buy_date": "2026-09-14",
       "signal_date": "2026-09-11",
       "reference_close": 82.4,
@@ -618,6 +631,23 @@
       "first_buy_date": "2026-09-14",
       "signal_date": "2026-09-11",
       "reference_close": 97.1,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
+    {
+      "symbol": "3441",
+      "name": "聯一光",
+      "market": "TPEX",
+      "quantity": 373,
+      "average_cost": 160.5,
+      "current_price": 160.5,
+      "invested": 59866.5,
+      "market_value": 59866.5,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-14",
+      "signal_date": "2026-09-11",
+      "reference_close": 166.0,
       "buy_stage": 1,
       "allocation_used": 0.3
     }
@@ -1314,6 +1344,19 @@
       "average_cost": 151.0,
       "return_percent": 10.000000000000014,
       "holding_days": 2
+    },
+    {
+      "date": "2026-09-14",
+      "symbol": "3441",
+      "name": "聯一光",
+      "action": "買入",
+      "price": 160.5,
+      "quantity": 373,
+      "amount": 59866.5,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-11",
+      "reference_close": 166.0
     }
   ],
   "performance": [
@@ -1396,10 +1439,10 @@
     },
     {
       "date": "2026-09-14",
-      "total_assets": 1023565.0511108399,
-      "cash": 459087.85000000003,
-      "return_percent": 2.356505111083994,
-      "holding_count": 10
+      "total_assets": 1022982.6488891602,
+      "cash": 399221.35000000003,
+      "return_percent": 2.298264888916025,
+      "holding_count": 11
     }
   ]
 }
