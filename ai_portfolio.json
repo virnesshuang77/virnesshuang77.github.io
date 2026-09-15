@@ -2,11 +2,11 @@
   "version": 1,
   "initial_capital": 1000000,
   "cash": 654988.1500000001,
-  "total_assets": 1015639.0522216798,
-  "total_profit": 15639.052221679827,
-  "total_return_percent": 1.5639052221679828,
+  "total_assets": 1015194.5522216798,
+  "total_profit": 15194.552221679827,
+  "total_return_percent": 1.5194552221679827,
   "date": "2026-09-15",
-  "updated_at": "2026-09-15T11:49:19+08:00",
+  "updated_at": "2026-09-15T12:01:14+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -546,11 +546,11 @@
       "market": "TWSE",
       "quantity": 635,
       "average_cost": 94.4,
-      "current_price": 92.9,
+      "current_price": 92.2,
       "invested": 59944.0,
-      "market_value": 58991.5,
-      "unrealized_profit": -952.5,
-      "unrealized_return_percent": -1.5889830508474576,
+      "market_value": 58547.0,
+      "unrealized_profit": -1397.0,
+      "unrealized_return_percent": -2.330508474576271,
       "first_buy_date": "2026-09-14",
       "signal_date": "2026-09-11",
       "reference_close": 97.1,
@@ -1489,9 +1489,9 @@
     },
     {
       "date": "2026-09-15",
-      "total_assets": 1015639.0522216798,
+      "total_assets": 1015194.5522216798,
       "cash": 654988.1500000001,
-      "return_percent": 1.5639052221679828,
+      "return_percent": 1.5194552221679827,
       "holding_count": 6
     }
   ]
