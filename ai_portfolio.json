@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 654988.1500000001,
+  "cash": 595768.1500000001,
   "total_assets": 1002688.6500000001,
   "total_profit": 2688.6500000001397,
   "total_return_percent": 0.26886500000001395,
-  "date": "2026-09-15",
-  "updated_at": "2026-09-15T14:00:02+08:00",
+  "date": "2026-09-16",
+  "updated_at": "2026-09-16T09:11:12+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -486,6 +486,41 @@
       "created_at": "2026-09-14T13:47:09+08:00",
       "first_buy_date": "2026-09-14",
       "first_buy_price": 954.0
+    },
+    {
+      "signal_date": "2026-09-15",
+      "symbol": "3324",
+      "name": "雙鴻",
+      "market": "TPEX",
+      "reference_close": 1260.0,
+      "first_buy_trigger": 1260.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-16T09:11:10+08:00",
+      "first_buy_date": "2026-09-16",
+      "first_buy_price": 1260.0
+    },
+    {
+      "signal_date": "2026-09-15",
+      "symbol": "3653",
+      "name": "健策",
+      "market": "TWSE",
+      "reference_close": 5310.0,
+      "first_buy_trigger": 5310.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-16T09:11:10+08:00"
+    },
+    {
+      "signal_date": "2026-09-15",
+      "symbol": "2454",
+      "name": "聯發科",
+      "market": "TWSE",
+      "reference_close": 4430.0,
+      "first_buy_trigger": 4430.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-16T09:11:10+08:00"
     }
   ],
   "holdings": [
@@ -590,6 +625,23 @@
       "reference_close": 1060.0,
       "buy_stage": 1,
       "allocation_used": 0.3
+    },
+    {
+      "symbol": "3324",
+      "name": "雙鴻",
+      "market": "TPEX",
+      "quantity": 47,
+      "average_cost": 1260.0,
+      "current_price": 1260.0,
+      "invested": 59220.0,
+      "market_value": 59220.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-16",
+      "signal_date": "2026-09-15",
+      "reference_close": 1260.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
     }
   ],
   "waiting": [
@@ -598,6 +650,20 @@
       "name": "精材",
       "signal_date": "2026-08-28",
       "trigger_price": 386.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "3653",
+      "name": "健策",
+      "signal_date": "2026-09-15",
+      "trigger_price": 5310.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "2454",
+      "name": "聯發科",
+      "signal_date": "2026-09-15",
+      "trigger_price": 4430.0,
       "status": "等待價格 ≤ 選股日收盤"
     }
   ],
@@ -1400,6 +1466,19 @@
       "reason": "即時價格 ≤ 觸發價格",
       "signal_date": "2026-09-11",
       "reference_close": 1060.0
+    },
+    {
+      "date": "2026-09-16",
+      "symbol": "3324",
+      "name": "雙鴻",
+      "action": "買入",
+      "price": 1260.0,
+      "quantity": 47,
+      "amount": 59220.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-15",
+      "reference_close": 1260.0
     }
   ],
   "performance": [
@@ -1493,6 +1572,13 @@
       "cash": 654988.1500000001,
       "return_percent": 0.26886500000001395,
       "holding_count": 6
+    },
+    {
+      "date": "2026-09-16",
+      "total_assets": 1002688.6500000001,
+      "cash": 595768.1500000001,
+      "return_percent": 0.26886500000001395,
+      "holding_count": 7
     }
   ]
 }
