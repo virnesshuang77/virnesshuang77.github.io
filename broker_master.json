@@ -1,5 +1,5 @@
 {
-  "data_date": "2026-09-16",
+  "data_date": "2026-09-17",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
   "total": 816,
@@ -638,7 +638,7 @@
       "broker_code": "5323",
       "broker_name": "高橋-內壢",
       "open_date": "870307",
-      "address": "桃園市中壢區忠孝路159,161號1,2樓163號2樓(營業廳于159,161號1F",
+      "address": "桃園市中壢區忠孝路一五九號及一六一號一樓",
       "phone": "03-4351010"
     },
     {
