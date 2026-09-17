@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 610652.9500000002,
-  "total_assets": 1028689.1500000001,
-  "total_profit": 28689.15000000014,
-  "total_return_percent": 2.868915000000014,
+  "cash": 676487.9500000002,
+  "total_assets": 1032168.9488891603,
+  "total_profit": 32168.948889160296,
+  "total_return_percent": 3.2168948889160296,
   "date": "2026-09-17",
-  "updated_at": "2026-09-17T09:57:14+08:00",
+  "updated_at": "2026-09-17T10:16:08+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -414,11 +414,13 @@
       "market": "TWSE",
       "reference_close": 6225.0,
       "first_buy_trigger": 6225.0,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-10T19:25:04+08:00",
       "first_buy_date": "2026-09-11",
-      "first_buy_price": 5985.0
+      "first_buy_price": 5985.0,
+      "sell_date": "2026-09-17",
+      "sell_price": 6583.500000000001
     },
     {
       "signal_date": "2026-09-10",
@@ -572,33 +574,16 @@
       "allocation_used": 0.3
     },
     {
-      "symbol": "3443",
-      "name": "創意",
-      "market": "TWSE",
-      "quantity": 10,
-      "average_cost": 5985.0,
-      "current_price": 6170.0,
-      "invested": 59850.0,
-      "market_value": 61700.0,
-      "unrealized_profit": 1850.0,
-      "unrealized_return_percent": 3.091060985797828,
-      "first_buy_date": "2026-09-11",
-      "signal_date": "2026-09-10",
-      "reference_close": 6225.0,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
       "symbol": "4939",
       "name": "亞電",
       "market": "TPEX",
       "quantity": 728,
       "average_cost": 82.4,
-      "current_price": 82.0,
+      "current_price": 81.0999984741211,
       "invested": 59987.200000000004,
-      "market_value": 59696.0,
-      "unrealized_profit": -291.20000000000437,
-      "unrealized_return_percent": -0.4854368932038907,
+      "market_value": 59040.798889160156,
+      "unrealized_profit": -946.4011108398481,
+      "unrealized_return_percent": -1.5776717547074177,
       "first_buy_date": "2026-09-14",
       "signal_date": "2026-09-11",
       "reference_close": 82.4,
@@ -1565,6 +1550,21 @@
       "average_cost": 1260.0,
       "return_percent": 12.3015873015873,
       "holding_days": 2
+    },
+    {
+      "date": "2026-09-17",
+      "symbol": "3443",
+      "name": "創意",
+      "action": "賣出",
+      "price": 6583.500000000001,
+      "quantity": 10,
+      "amount": 65835.00000000001,
+      "allocation": "100%",
+      "reason": "今日最高價曾達到 +10% 停利價；以停利價限價單模擬成交",
+      "first_buy_date": "2026-09-11",
+      "average_cost": 5985.0,
+      "return_percent": 10.000000000000016,
+      "holding_days": 5
     }
   ],
   "performance": [
@@ -1668,10 +1668,10 @@
     },
     {
       "date": "2026-09-17",
-      "total_assets": 1028689.1500000001,
-      "cash": 610652.9500000002,
-      "return_percent": 2.868915000000014,
-      "holding_count": 7
+      "total_assets": 1032168.9488891603,
+      "cash": 676487.9500000002,
+      "return_percent": 3.2168948889160296,
+      "holding_count": 6
     }
   ]
 }
