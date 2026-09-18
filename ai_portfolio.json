@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 613443.2500000002,
-  "total_assets": 1031980.7500000002,
-  "total_profit": 31980.750000000233,
-  "total_return_percent": 3.1980750000000233,
+  "cash": 674974.7500000002,
+  "total_assets": 1033941.7500000002,
+  "total_profit": 33941.75000000023,
+  "total_return_percent": 3.3941750000000237,
   "date": "2026-09-18",
-  "updated_at": "2026-09-18T09:11:32+08:00",
+  "updated_at": "2026-09-18T09:26:17+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -461,11 +461,13 @@
       "market": "TWSE",
       "reference_close": 97.1,
       "first_buy_trigger": 97.1,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-14T09:11:52+08:00",
       "first_buy_date": "2026-09-14",
-      "first_buy_price": 94.4
+      "first_buy_price": 94.4,
+      "sell_date": "2026-09-18",
+      "sell_price": 96.9
     },
     {
       "signal_date": "2026-09-11",
@@ -611,26 +613,20 @@
       "created_at": "2026-09-18T09:11:30+08:00",
       "first_buy_date": "2026-09-18",
       "first_buy_price": 2720.0
+    },
+    {
+      "signal_date": "2026-09-17",
+      "symbol": "3443",
+      "name": "創意",
+      "market": "TWSE",
+      "reference_close": 6500.0,
+      "first_buy_trigger": 6500.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-18T09:26:16+08:00"
     }
   ],
   "holdings": [
-    {
-      "symbol": "2426",
-      "name": "鼎元",
-      "market": "TWSE",
-      "quantity": 635,
-      "average_cost": 94.4,
-      "current_price": 96.0,
-      "invested": 59944.0,
-      "market_value": 60960.0,
-      "unrealized_profit": 1016.0,
-      "unrealized_return_percent": 1.694915254237288,
-      "first_buy_date": "2026-09-14",
-      "signal_date": "2026-09-11",
-      "reference_close": 97.1,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
     {
       "symbol": "3406",
       "name": "玉晶光",
@@ -688,11 +684,11 @@
       "market": "TPEX",
       "quantity": 311,
       "average_cost": 192.5,
-      "current_price": 192.5,
+      "current_price": 182.0,
       "invested": 59867.5,
-      "market_value": 59867.5,
-      "unrealized_profit": 0.0,
-      "unrealized_return_percent": 0.0,
+      "market_value": 56602.0,
+      "unrealized_profit": -3265.5,
+      "unrealized_return_percent": -5.454545454545454,
       "first_buy_date": "2026-09-18",
       "signal_date": "2026-09-17",
       "reference_close": 192.5,
@@ -705,11 +701,11 @@
       "market": "TPEX",
       "quantity": 43,
       "average_cost": 1385.0,
-      "current_price": 1385.0,
+      "current_price": 1460.0,
       "invested": 59555.0,
-      "market_value": 59555.0,
-      "unrealized_profit": 0.0,
-      "unrealized_return_percent": 0.0,
+      "market_value": 62780.0,
+      "unrealized_profit": 3225.0,
+      "unrealized_return_percent": 5.415162454873646,
       "first_buy_date": "2026-09-18",
       "signal_date": "2026-09-17",
       "reference_close": 1385.0,
@@ -722,11 +718,11 @@
       "market": "TPEX",
       "quantity": 22,
       "average_cost": 2720.0,
-      "current_price": 2720.0,
+      "current_price": 2785.0,
       "invested": 59840.0,
-      "market_value": 59840.0,
-      "unrealized_profit": 0.0,
-      "unrealized_return_percent": 0.0,
+      "market_value": 61270.0,
+      "unrealized_profit": 1430.0,
+      "unrealized_return_percent": 2.389705882352941,
       "first_buy_date": "2026-09-18",
       "signal_date": "2026-09-17",
       "reference_close": 2720.0,
@@ -747,6 +743,13 @@
       "name": "聯發科",
       "signal_date": "2026-09-15",
       "trigger_price": 4430.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "3443",
+      "name": "創意",
+      "signal_date": "2026-09-17",
+      "trigger_price": 6500.0,
       "status": "等待價格 ≤ 選股日收盤"
     }
   ],
@@ -1730,6 +1733,21 @@
       "average_cost": 6120.0,
       "return_percent": 10.130718954248366,
       "holding_days": 5
+    },
+    {
+      "date": "2026-09-18",
+      "symbol": "2426",
+      "name": "鼎元",
+      "action": "賣出",
+      "price": 96.9,
+      "quantity": 635,
+      "amount": 61531.5,
+      "allocation": "100%",
+      "reason": "已持有 5 個交易日，達到最長持有 5 個交易日；以當下價格模擬賣出",
+      "first_buy_date": "2026-09-14",
+      "average_cost": 94.4,
+      "return_percent": 2.6483050847457625,
+      "holding_days": 5
     }
   ],
   "performance": [
@@ -1840,10 +1858,10 @@
     },
     {
       "date": "2026-09-18",
-      "total_assets": 1031980.7500000002,
-      "cash": 613443.2500000002,
-      "return_percent": 3.1980750000000233,
-      "holding_count": 7
+      "total_assets": 1033941.7500000002,
+      "cash": 674974.7500000002,
+      "return_percent": 3.3941750000000237,
+      "holding_count": 6
     }
   ]
 }
