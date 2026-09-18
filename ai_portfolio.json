@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 675552.9500000002,
-  "total_assets": 1029820.7488891603,
-  "total_profit": 29820.748889160343,
-  "total_return_percent": 2.9820748889160344,
-  "date": "2026-09-17",
-  "updated_at": "2026-09-17T14:13:14+08:00",
+  "cash": 613443.2500000002,
+  "total_assets": 1031980.7500000002,
+  "total_profit": 31980.750000000233,
+  "total_return_percent": 3.1980750000000233,
+  "date": "2026-09-18",
+  "updated_at": "2026-09-18T09:11:32+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -446,11 +446,13 @@
       "market": "TPEX",
       "reference_close": 82.4,
       "first_buy_trigger": 82.4,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-14T09:11:52+08:00",
       "first_buy_date": "2026-09-14",
-      "first_buy_price": 82.4
+      "first_buy_price": 82.4,
+      "sell_date": "2026-09-18",
+      "sell_price": 77.6
     },
     {
       "signal_date": "2026-09-11",
@@ -563,31 +565,55 @@
       "market": "TWSE",
       "reference_close": 6120.0,
       "first_buy_trigger": 6120.0,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-17T10:32:34+08:00",
       "first_buy_date": "2026-09-14",
-      "first_buy_price": 6120.0
+      "first_buy_price": 6120.0,
+      "sell_date": "2026-09-18",
+      "sell_price": 6740.0
+    },
+    {
+      "signal_date": "2026-09-17",
+      "symbol": "3441",
+      "name": "聯一光",
+      "market": "TPEX",
+      "reference_close": 192.5,
+      "first_buy_trigger": 192.5,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-18T09:11:30+08:00",
+      "first_buy_date": "2026-09-18",
+      "first_buy_price": 192.5
+    },
+    {
+      "signal_date": "2026-09-17",
+      "symbol": "3324",
+      "name": "雙鴻",
+      "market": "TPEX",
+      "reference_close": 1385.0,
+      "first_buy_trigger": 1385.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-18T09:11:30+08:00",
+      "first_buy_date": "2026-09-18",
+      "first_buy_price": 1385.0
+    },
+    {
+      "signal_date": "2026-09-17",
+      "symbol": "3081",
+      "name": "聯亞",
+      "market": "TPEX",
+      "reference_close": 2720.0,
+      "first_buy_trigger": 2720.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-18T09:11:30+08:00",
+      "first_buy_date": "2026-09-18",
+      "first_buy_price": 2720.0
     }
   ],
   "holdings": [
-    {
-      "symbol": "4939",
-      "name": "亞電",
-      "market": "TPEX",
-      "quantity": 728,
-      "average_cost": 82.4,
-      "current_price": 77.5999984741211,
-      "invested": 59987.200000000004,
-      "market_value": 56492.798889160156,
-      "unrealized_profit": -3494.401110839848,
-      "unrealized_return_percent": -5.825244570241398,
-      "first_buy_date": "2026-09-14",
-      "signal_date": "2026-09-11",
-      "reference_close": 82.4,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
     {
       "symbol": "2426",
       "name": "鼎元",
@@ -657,19 +683,53 @@
       "allocation_used": 0.3
     },
     {
-      "symbol": "3443",
-      "name": "創意",
-      "market": "TWSE",
-      "quantity": 9,
-      "average_cost": 6120.0,
-      "current_price": 6500.0,
-      "invested": 55080.0,
-      "market_value": 58500.0,
-      "unrealized_profit": 3420.0,
-      "unrealized_return_percent": 6.209150326797386,
-      "first_buy_date": "2026-09-14",
-      "signal_date": "2026-09-11",
-      "reference_close": 6120.0,
+      "symbol": "3441",
+      "name": "聯一光",
+      "market": "TPEX",
+      "quantity": 311,
+      "average_cost": 192.5,
+      "current_price": 192.5,
+      "invested": 59867.5,
+      "market_value": 59867.5,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-18",
+      "signal_date": "2026-09-17",
+      "reference_close": 192.5,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
+    {
+      "symbol": "3324",
+      "name": "雙鴻",
+      "market": "TPEX",
+      "quantity": 43,
+      "average_cost": 1385.0,
+      "current_price": 1385.0,
+      "invested": 59555.0,
+      "market_value": 59555.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-18",
+      "signal_date": "2026-09-17",
+      "reference_close": 1385.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
+    {
+      "symbol": "3081",
+      "name": "聯亞",
+      "market": "TPEX",
+      "quantity": 22,
+      "average_cost": 2720.0,
+      "current_price": 2720.0,
+      "invested": 59840.0,
+      "market_value": 59840.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-18",
+      "signal_date": "2026-09-17",
+      "reference_close": 2720.0,
       "buy_stage": 1,
       "allocation_used": 0.3
     }
@@ -687,13 +747,6 @@
       "name": "聯發科",
       "signal_date": "2026-09-15",
       "trigger_price": 4430.0,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
-      "symbol": "3441",
-      "name": "聯一光",
-      "signal_date": "2026-09-15",
-      "trigger_price": 169.5,
       "status": "等待價格 ≤ 選股日收盤"
     }
   ],
@@ -1608,6 +1661,75 @@
       "average_cost": 3345.0,
       "return_percent": -4.783258594917788,
       "holding_days": 5
+    },
+    {
+      "date": "2026-09-18",
+      "symbol": "3441",
+      "name": "聯一光",
+      "action": "買入",
+      "price": 192.5,
+      "quantity": 311,
+      "amount": 59867.5,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-17",
+      "reference_close": 192.5
+    },
+    {
+      "date": "2026-09-18",
+      "symbol": "3324",
+      "name": "雙鴻",
+      "action": "買入",
+      "price": 1385.0,
+      "quantity": 43,
+      "amount": 59555.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-17",
+      "reference_close": 1385.0
+    },
+    {
+      "date": "2026-09-18",
+      "symbol": "3081",
+      "name": "聯亞",
+      "action": "買入",
+      "price": 2720.0,
+      "quantity": 22,
+      "amount": 59840.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-17",
+      "reference_close": 2720.0
+    },
+    {
+      "date": "2026-09-18",
+      "symbol": "4939",
+      "name": "亞電",
+      "action": "賣出",
+      "price": 77.6,
+      "quantity": 728,
+      "amount": 56492.799999999996,
+      "allocation": "100%",
+      "reason": "已持有 5 個交易日，達到最長持有 5 個交易日；以當下價格模擬賣出",
+      "first_buy_date": "2026-09-14",
+      "average_cost": 82.4,
+      "return_percent": -5.825242718446615,
+      "holding_days": 5
+    },
+    {
+      "date": "2026-09-18",
+      "symbol": "3443",
+      "name": "創意",
+      "action": "賣出",
+      "price": 6740.0,
+      "quantity": 9,
+      "amount": 60660.0,
+      "allocation": "100%",
+      "reason": "現價達到 +10% 停利條件；以當下價格模擬賣出",
+      "first_buy_date": "2026-09-14",
+      "average_cost": 6120.0,
+      "return_percent": 10.130718954248366,
+      "holding_days": 5
     }
   ],
   "performance": [
@@ -1715,6 +1837,13 @@
       "cash": 675552.9500000002,
       "return_percent": 2.9820748889160344,
       "holding_count": 6
+    },
+    {
+      "date": "2026-09-18",
+      "total_assets": 1031980.7500000002,
+      "cash": 613443.2500000002,
+      "return_percent": 3.1980750000000233,
+      "holding_count": 7
     }
   ]
 }
