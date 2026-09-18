@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 674974.7500000002,
-  "total_assets": 1033136.2500000002,
-  "total_profit": 33136.25000000023,
-  "total_return_percent": 3.3136250000000236,
+  "cash": 733958.9500000002,
+  "total_assets": 1034109.4500000002,
+  "total_profit": 34109.450000000186,
+  "total_return_percent": 3.4109450000000185,
   "date": "2026-09-18",
-  "updated_at": "2026-09-18T09:52:53+08:00",
+  "updated_at": "2026-09-18T10:07:18+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -554,11 +554,13 @@
       "market": "TWSE",
       "reference_close": 30.2,
       "first_buy_trigger": 30.2,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-17T09:11:43+08:00",
       "first_buy_date": "2026-09-14",
-      "first_buy_price": 30.2
+      "first_buy_price": 30.2,
+      "sell_date": "2026-09-18",
+      "sell_price": 29.7
     },
     {
       "signal_date": "2026-09-11",
@@ -662,33 +664,16 @@
       "allocation_used": 0.3
     },
     {
-      "symbol": "2409",
-      "name": "友達",
-      "market": "TWSE",
-      "quantity": 1986,
-      "average_cost": 30.2,
-      "current_price": 30.0,
-      "invested": 59977.2,
-      "market_value": 59580.0,
-      "unrealized_profit": -397.1999999999971,
-      "unrealized_return_percent": -0.6622516556291342,
-      "first_buy_date": "2026-09-14",
-      "signal_date": "2026-09-11",
-      "reference_close": 30.2,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
       "symbol": "3441",
       "name": "聯一光",
       "market": "TPEX",
       "quantity": 311,
       "average_cost": 192.5,
-      "current_price": 181.5,
+      "current_price": 185.5,
       "invested": 59867.5,
-      "market_value": 56446.5,
-      "unrealized_profit": -3421.0,
-      "unrealized_return_percent": -5.714285714285714,
+      "market_value": 57690.5,
+      "unrealized_profit": -2177.0,
+      "unrealized_return_percent": -3.6363636363636362,
       "first_buy_date": "2026-09-18",
       "signal_date": "2026-09-17",
       "reference_close": 192.5,
@@ -701,11 +686,11 @@
       "market": "TPEX",
       "quantity": 43,
       "average_cost": 1385.0,
-      "current_price": 1450.0,
+      "current_price": 1455.0,
       "invested": 59555.0,
-      "market_value": 62350.0,
-      "unrealized_profit": 2795.0,
-      "unrealized_return_percent": 4.693140794223827,
+      "market_value": 62565.0,
+      "unrealized_profit": 3010.0,
+      "unrealized_return_percent": 5.054151624548736,
       "first_buy_date": "2026-09-18",
       "signal_date": "2026-09-17",
       "reference_close": 1385.0,
@@ -718,11 +703,11 @@
       "market": "TPEX",
       "quantity": 22,
       "average_cost": 2720.0,
-      "current_price": 2775.0,
+      "current_price": 2780.0,
       "invested": 59840.0,
-      "market_value": 61050.0,
-      "unrealized_profit": 1210.0,
-      "unrealized_return_percent": 2.0220588235294117,
+      "market_value": 61160.0,
+      "unrealized_profit": 1320.0,
+      "unrealized_return_percent": 2.2058823529411766,
       "first_buy_date": "2026-09-18",
       "signal_date": "2026-09-17",
       "reference_close": 2720.0,
@@ -1748,6 +1733,21 @@
       "average_cost": 94.4,
       "return_percent": 2.6483050847457625,
       "holding_days": 5
+    },
+    {
+      "date": "2026-09-18",
+      "symbol": "2409",
+      "name": "友達",
+      "action": "賣出",
+      "price": 29.7,
+      "quantity": 1986,
+      "amount": 58984.2,
+      "allocation": "100%",
+      "reason": "已持有 5 個交易日，達到最長持有 5 個交易日；以當下價格模擬賣出",
+      "first_buy_date": "2026-09-14",
+      "average_cost": 30.2,
+      "return_percent": -1.6556291390728477,
+      "holding_days": 5
     }
   ],
   "performance": [
@@ -1858,10 +1858,10 @@
     },
     {
       "date": "2026-09-18",
-      "total_assets": 1033136.2500000002,
-      "cash": 674974.7500000002,
-      "return_percent": 3.3136250000000236,
-      "holding_count": 6
+      "total_assets": 1034109.4500000002,
+      "cash": 733958.9500000002,
+      "return_percent": 3.4109450000000185,
+      "holding_count": 5
     }
   ]
 }
