@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 734330.9500000002,
-  "total_assets": 1040060.4500000002,
-  "total_profit": 40060.450000000186,
-  "total_return_percent": 4.006045000000018,
-  "date": "2026-09-18",
-  "updated_at": "2026-09-18T14:06:51+08:00",
+  "cash": 800154.9500000002,
+  "total_assets": 1045478.9500000002,
+  "total_profit": 45478.950000000186,
+  "total_return_percent": 4.547895000000018,
+  "date": "2026-09-21",
+  "updated_at": "2026-09-21T09:11:22+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -612,11 +612,13 @@
       "market": "TPEX",
       "reference_close": 2720.0,
       "first_buy_trigger": 2720.0,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-18T09:11:30+08:00",
       "first_buy_date": "2026-09-18",
-      "first_buy_price": 2720.0
+      "first_buy_price": 2720.0,
+      "sell_date": "2026-09-21",
+      "sell_price": 2992.0000000000005
     },
     {
       "signal_date": "2026-09-17",
@@ -667,11 +669,11 @@
       "market": "TPEX",
       "quantity": 311,
       "average_cost": 192.5,
-      "current_price": 185.5,
+      "current_price": 195.0,
       "invested": 59867.5,
-      "market_value": 57690.5,
-      "unrealized_profit": -2177.0,
-      "unrealized_return_percent": -3.6363636363636362,
+      "market_value": 60645.0,
+      "unrealized_profit": 777.5,
+      "unrealized_return_percent": 1.2987012987012987,
       "first_buy_date": "2026-09-18",
       "signal_date": "2026-09-17",
       "reference_close": 192.5,
@@ -692,23 +694,6 @@
       "first_buy_date": "2026-09-18",
       "signal_date": "2026-09-17",
       "reference_close": 1385.0,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
-      "symbol": "3081",
-      "name": "聯亞",
-      "market": "TPEX",
-      "quantity": 22,
-      "average_cost": 2720.0,
-      "current_price": 2880.0,
-      "invested": 59840.0,
-      "market_value": 63360.0,
-      "unrealized_profit": 3520.0,
-      "unrealized_return_percent": 5.88235294117647,
-      "first_buy_date": "2026-09-18",
-      "signal_date": "2026-09-17",
-      "reference_close": 2720.0,
       "buy_stage": 1,
       "allocation_used": 0.3
     },
@@ -1791,6 +1776,21 @@
       "reason": "今日最低價曾 ≤ 觸發價格；以觸發價限價單模擬成交",
       "signal_date": "2026-09-17",
       "reference_close": 965.0
+    },
+    {
+      "date": "2026-09-21",
+      "symbol": "3081",
+      "name": "聯亞",
+      "action": "賣出",
+      "price": 2992.0000000000005,
+      "quantity": 22,
+      "amount": 65824.00000000001,
+      "allocation": "100%",
+      "reason": "今日最高價曾達到 +10% 停利價；以停利價限價單模擬成交",
+      "first_buy_date": "2026-09-18",
+      "average_cost": 2720.0,
+      "return_percent": 10.000000000000018,
+      "holding_days": 2
     }
   ],
   "performance": [
@@ -1905,6 +1905,13 @@
       "cash": 734330.9500000002,
       "return_percent": 4.006045000000018,
       "holding_count": 5
+    },
+    {
+      "date": "2026-09-21",
+      "total_assets": 1045478.9500000002,
+      "cash": 800154.9500000002,
+      "return_percent": 4.547895000000018,
+      "holding_count": 4
     }
   ]
 }
