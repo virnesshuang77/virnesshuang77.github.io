@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 800154.9500000002,
-  "total_assets": 1045478.9500000002,
-  "total_profit": 45478.950000000186,
-  "total_return_percent": 4.547895000000018,
+  "cash": 865665.4500000002,
+  "total_assets": 1044239.4500000002,
+  "total_profit": 44239.450000000186,
+  "total_return_percent": 4.4239450000000184,
   "date": "2026-09-21",
-  "updated_at": "2026-09-21T09:11:22+08:00",
+  "updated_at": "2026-09-21T09:28:04+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -599,11 +599,13 @@
       "market": "TPEX",
       "reference_close": 1385.0,
       "first_buy_trigger": 1385.0,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-18T09:11:30+08:00",
       "first_buy_date": "2026-09-18",
-      "first_buy_price": 1385.0
+      "first_buy_price": 1385.0,
+      "sell_date": "2026-09-21",
+      "sell_price": 1523.5000000000002
     },
     {
       "signal_date": "2026-09-17",
@@ -669,31 +671,14 @@
       "market": "TPEX",
       "quantity": 311,
       "average_cost": 192.5,
-      "current_price": 195.0,
+      "current_price": 185.0,
       "invested": 59867.5,
-      "market_value": 60645.0,
-      "unrealized_profit": 777.5,
-      "unrealized_return_percent": 1.2987012987012987,
+      "market_value": 57535.0,
+      "unrealized_profit": -2332.5,
+      "unrealized_return_percent": -3.896103896103896,
       "first_buy_date": "2026-09-18",
       "signal_date": "2026-09-17",
       "reference_close": 192.5,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
-      "symbol": "3324",
-      "name": "雙鴻",
-      "market": "TPEX",
-      "quantity": 43,
-      "average_cost": 1385.0,
-      "current_price": 1480.0,
-      "invested": 59555.0,
-      "market_value": 63640.0,
-      "unrealized_profit": 4085.0,
-      "unrealized_return_percent": 6.859205776173286,
-      "first_buy_date": "2026-09-18",
-      "signal_date": "2026-09-17",
-      "reference_close": 1385.0,
       "buy_stage": 1,
       "allocation_used": 0.3
     },
@@ -1791,6 +1776,21 @@
       "average_cost": 2720.0,
       "return_percent": 10.000000000000018,
       "holding_days": 2
+    },
+    {
+      "date": "2026-09-21",
+      "symbol": "3324",
+      "name": "雙鴻",
+      "action": "賣出",
+      "price": 1523.5000000000002,
+      "quantity": 43,
+      "amount": 65510.50000000001,
+      "allocation": "100%",
+      "reason": "今日最高價曾達到 +10% 停利價；以停利價限價單模擬成交",
+      "first_buy_date": "2026-09-18",
+      "average_cost": 1385.0,
+      "return_percent": 10.000000000000016,
+      "holding_days": 2
     }
   ],
   "performance": [
@@ -1908,10 +1908,10 @@
     },
     {
       "date": "2026-09-21",
-      "total_assets": 1045478.9500000002,
-      "cash": 800154.9500000002,
-      "return_percent": 4.547895000000018,
-      "holding_count": 4
+      "total_assets": 1044239.4500000002,
+      "cash": 865665.4500000002,
+      "return_percent": 4.4239450000000184,
+      "holding_count": 3
     }
   ]
 }
