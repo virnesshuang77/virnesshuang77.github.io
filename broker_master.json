@@ -1,8 +1,8 @@
 {
-  "data_date": "2026-09-18",
+  "data_date": "2026-09-21",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
-  "total": 816,
+  "total": 817,
   "brokers": [
     {
       "broker_code": "1021",
@@ -3951,6 +3951,13 @@
       "open_date": "890911",
       "address": "雲林縣虎尾鎮德興里1鄰公安路133號2樓",
       "phone": "05-6336611"
+    },
+    {
+      "broker_code": "9698",
+      "broker_name": "富邦-數位大安",
+      "open_date": "1150921",
+      "address": "台北市忠孝東路四段300號2樓部份",
+      "phone": "02-27311098"
     },
     {
       "broker_code": "969C",
