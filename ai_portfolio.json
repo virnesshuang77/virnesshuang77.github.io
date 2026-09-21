@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 865665.4500000002,
-  "total_assets": 1041692.4500000002,
-  "total_profit": 41692.450000000186,
-  "total_return_percent": 4.169245000000019,
+  "cash": 929916.4500000002,
+  "total_assets": 1043987.4500000002,
+  "total_profit": 43987.450000000186,
+  "total_return_percent": 4.398745000000019,
   "date": "2026-09-21",
-  "updated_at": "2026-09-21T13:26:16+08:00",
+  "updated_at": "2026-09-21T13:42:05+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -521,11 +521,13 @@
       "market": "TWSE",
       "reference_close": 5310.0,
       "first_buy_trigger": 5310.0,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-16T09:11:10+08:00",
       "first_buy_date": "2026-09-16",
-      "first_buy_price": 5310.0
+      "first_buy_price": 5310.0,
+      "sell_date": "2026-09-21",
+      "sell_price": 5841.000000000001
     },
     {
       "signal_date": "2026-09-15",
@@ -649,33 +651,16 @@
   ],
   "holdings": [
     {
-      "symbol": "3653",
-      "name": "健策",
-      "market": "TWSE",
-      "quantity": 11,
-      "average_cost": 5310.0,
-      "current_price": 5525.0,
-      "invested": 58410.0,
-      "market_value": 60775.0,
-      "unrealized_profit": 2365.0,
-      "unrealized_return_percent": 4.048964218455744,
-      "first_buy_date": "2026-09-16",
-      "signal_date": "2026-09-15",
-      "reference_close": 5310.0,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
       "symbol": "3441",
       "name": "聯一光",
       "market": "TPEX",
       "quantity": 311,
       "average_cost": 192.5,
-      "current_price": 180.0,
+      "current_price": 177.0,
       "invested": 59867.5,
-      "market_value": 55980.0,
-      "unrealized_profit": -3887.5,
-      "unrealized_return_percent": -6.493506493506493,
+      "market_value": 55047.0,
+      "unrealized_profit": -4820.5,
+      "unrealized_return_percent": -8.051948051948052,
       "first_buy_date": "2026-09-18",
       "signal_date": "2026-09-17",
       "reference_close": 192.5,
@@ -688,11 +673,11 @@
       "market": "TWSE",
       "quantity": 62,
       "average_cost": 965.0,
-      "current_price": 956.0,
+      "current_price": 952.0,
       "invested": 59830.0,
-      "market_value": 59272.0,
-      "unrealized_profit": -558.0,
-      "unrealized_return_percent": -0.932642487046632,
+      "market_value": 59024.0,
+      "unrealized_profit": -806.0,
+      "unrealized_return_percent": -1.3471502590673576,
       "first_buy_date": "2026-09-18",
       "signal_date": "2026-09-17",
       "reference_close": 965.0,
@@ -1791,6 +1776,21 @@
       "average_cost": 1385.0,
       "return_percent": 10.000000000000016,
       "holding_days": 2
+    },
+    {
+      "date": "2026-09-21",
+      "symbol": "3653",
+      "name": "健策",
+      "action": "賣出",
+      "price": 5841.000000000001,
+      "quantity": 11,
+      "amount": 64251.00000000001,
+      "allocation": "100%",
+      "reason": "今日最高價曾達到 +10% 停利價；以停利價限價單模擬成交",
+      "first_buy_date": "2026-09-16",
+      "average_cost": 5310.0,
+      "return_percent": 10.000000000000018,
+      "holding_days": 4
     }
   ],
   "performance": [
@@ -1908,10 +1908,10 @@
     },
     {
       "date": "2026-09-21",
-      "total_assets": 1041692.4500000002,
-      "cash": 865665.4500000002,
-      "return_percent": 4.169245000000019,
-      "holding_count": 3
+      "total_assets": 1043987.4500000002,
+      "cash": 929916.4500000002,
+      "return_percent": 4.398745000000019,
+      "holding_count": 2
     }
   ]
 }
