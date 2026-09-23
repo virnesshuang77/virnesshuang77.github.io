@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 923873.2000000002,
-  "total_assets": 1039440.7000000002,
-  "total_profit": 39440.700000000186,
-  "total_return_percent": 3.944070000000019,
-  "date": "2026-09-22",
-  "updated_at": "2026-09-22T14:01:04+08:00",
+  "cash": 807693.2000000002,
+  "total_assets": 1039605.7000000002,
+  "total_profit": 39605.700000000186,
+  "total_return_percent": 3.960570000000019,
+  "date": "2026-09-23",
+  "updated_at": "2026-09-23T09:11:27+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -706,6 +706,65 @@
       "status": "waiting",
       "first_buy_allocation": 0.3,
       "created_at": "2026-09-22T09:10:17+08:00"
+    },
+    {
+      "signal_date": "2026-09-22",
+      "symbol": "6805",
+      "name": "富世達",
+      "market": "TWSE",
+      "reference_close": 2500.0,
+      "first_buy_trigger": 2500.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-23T09:11:23+08:00"
+    },
+    {
+      "signal_date": "2026-09-22",
+      "symbol": "3324",
+      "name": "雙鴻",
+      "market": "TPEX",
+      "reference_close": 1600.0,
+      "first_buy_trigger": 1600.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-23T09:11:23+08:00",
+      "first_buy_date": "2026-09-23",
+      "first_buy_price": 1600.0
+    },
+    {
+      "signal_date": "2026-09-22",
+      "symbol": "3167",
+      "name": "大量",
+      "market": "TWSE",
+      "reference_close": 864.0,
+      "first_buy_trigger": 864.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-23T09:11:23+08:00"
+    },
+    {
+      "signal_date": "2026-09-22",
+      "symbol": "8996",
+      "name": "高力",
+      "market": "TWSE",
+      "reference_close": 1655.0,
+      "first_buy_trigger": 1655.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-23T09:11:23+08:00"
+    },
+    {
+      "signal_date": "2026-09-22",
+      "symbol": "2454",
+      "name": "聯發科",
+      "market": "TWSE",
+      "reference_close": 5180.0,
+      "first_buy_trigger": 5180.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-23T09:11:23+08:00",
+      "first_buy_date": "2026-09-23",
+      "first_buy_price": 5180.0
     }
   ],
   "holdings": [
@@ -742,6 +801,40 @@
       "reference_close": 284.0,
       "buy_stage": 1,
       "allocation_used": 0.3
+    },
+    {
+      "symbol": "3324",
+      "name": "雙鴻",
+      "market": "TPEX",
+      "quantity": 37,
+      "average_cost": 1600.0,
+      "current_price": 1600.0,
+      "invested": 59200.0,
+      "market_value": 59200.0,
+      "unrealized_profit": 0.0,
+      "unrealized_return_percent": 0.0,
+      "first_buy_date": "2026-09-23",
+      "signal_date": "2026-09-22",
+      "reference_close": 1600.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
+    {
+      "symbol": "2454",
+      "name": "聯發科",
+      "market": "TWSE",
+      "quantity": 11,
+      "average_cost": 5180.0,
+      "current_price": 5195.0,
+      "invested": 56980.0,
+      "market_value": 57145.0,
+      "unrealized_profit": 165.0,
+      "unrealized_return_percent": 0.28957528957528955,
+      "first_buy_date": "2026-09-23",
+      "signal_date": "2026-09-22",
+      "reference_close": 5180.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
     }
   ],
   "waiting": [
@@ -750,13 +843,6 @@
       "name": "精材",
       "signal_date": "2026-08-28",
       "trigger_price": 386.0,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
-      "symbol": "2454",
-      "name": "聯發科",
-      "signal_date": "2026-09-15",
-      "trigger_price": 4430.0,
       "status": "等待價格 ≤ 選股日收盤"
     },
     {
@@ -788,17 +874,31 @@
       "status": "等待價格 ≤ 選股日收盤"
     },
     {
-      "symbol": "2454",
-      "name": "聯發科",
-      "signal_date": "2026-09-21",
-      "trigger_price": 5010.0,
-      "status": "等待價格 ≤ 選股日收盤"
-    },
-    {
       "symbol": "3189",
       "name": "景碩",
       "signal_date": "2026-09-21",
       "trigger_price": 827.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "6805",
+      "name": "富世達",
+      "signal_date": "2026-09-22",
+      "trigger_price": 2500.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "3167",
+      "name": "大量",
+      "signal_date": "2026-09-22",
+      "trigger_price": 864.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "8996",
+      "name": "高力",
+      "signal_date": "2026-09-22",
+      "trigger_price": 1655.0,
       "status": "等待價格 ≤ 選股日收盤"
     }
   ],
@@ -1913,6 +2013,32 @@
       "average_cost": 192.5,
       "return_percent": -10.0,
       "holding_days": 3
+    },
+    {
+      "date": "2026-09-23",
+      "symbol": "3324",
+      "name": "雙鴻",
+      "action": "買入",
+      "price": 1600.0,
+      "quantity": 37,
+      "amount": 59200.0,
+      "allocation": "30%",
+      "reason": "即時價格 ≤ 觸發價格",
+      "signal_date": "2026-09-22",
+      "reference_close": 1600.0
+    },
+    {
+      "date": "2026-09-23",
+      "symbol": "2454",
+      "name": "聯發科",
+      "action": "買入",
+      "price": 5180.0,
+      "quantity": 11,
+      "amount": 56980.0,
+      "allocation": "30%",
+      "reason": "今日最低價曾 ≤ 觸發價格；以觸發價限價單模擬成交",
+      "signal_date": "2026-09-22",
+      "reference_close": 5180.0
     }
   ],
   "performance": [
@@ -2041,6 +2167,13 @@
       "cash": 923873.2000000002,
       "return_percent": 3.944070000000019,
       "holding_count": 2
+    },
+    {
+      "date": "2026-09-23",
+      "total_assets": 1039605.7000000002,
+      "cash": 807693.2000000002,
+      "return_percent": 3.960570000000019,
+      "holding_count": 4
     }
   ]
 }
