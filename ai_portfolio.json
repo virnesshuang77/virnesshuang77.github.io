@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 686700.8000000002,
-  "total_assets": 1049023.8000000003,
-  "total_profit": 49023.80000000028,
-  "total_return_percent": 4.9023800000000275,
+  "cash": 627070.8000000002,
+  "total_assets": 1052976.8000000003,
+  "total_profit": 52976.80000000028,
+  "total_return_percent": 5.297680000000028,
   "date": "2026-09-24",
-  "updated_at": "2026-09-24T13:54:37+08:00",
+  "updated_at": "2026-09-24T19:11:36+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -803,6 +803,19 @@
       "created_at": "2026-09-24T13:54:35+08:00",
       "first_buy_date": "2026-09-24",
       "first_buy_price": 246.0
+    },
+    {
+      "signal_date": "2026-09-23",
+      "symbol": "3167",
+      "name": "大量",
+      "market": "TWSE",
+      "reference_close": 890.0,
+      "first_buy_trigger": 890.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-09-24T19:11:34+08:00",
+      "first_buy_date": "2026-09-24",
+      "first_buy_price": 890.0
     }
   ],
   "holdings": [
@@ -905,6 +918,23 @@
       "first_buy_date": "2026-09-24",
       "signal_date": "2026-09-23",
       "reference_close": 252.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
+    {
+      "symbol": "3167",
+      "name": "大量",
+      "market": "TWSE",
+      "quantity": 67,
+      "average_cost": 890.0,
+      "current_price": 949.0,
+      "invested": 59630.0,
+      "market_value": 63583.0,
+      "unrealized_profit": 3953.0,
+      "unrealized_return_percent": 6.629213483146068,
+      "first_buy_date": "2026-09-24",
+      "signal_date": "2026-09-23",
+      "reference_close": 890.0,
       "buy_stage": 1,
       "allocation_used": 0.3
     }
@@ -2193,6 +2223,19 @@
       "average_cost": 864.0,
       "return_percent": 10.00000000000001,
       "holding_days": 2
+    },
+    {
+      "date": "2026-09-24",
+      "symbol": "3167",
+      "name": "大量",
+      "action": "買入",
+      "price": 890.0,
+      "quantity": 67,
+      "amount": 59630.0,
+      "allocation": "30%",
+      "reason": "今日最低價曾 ≤ 觸發價格；以觸發價限價單模擬成交",
+      "signal_date": "2026-09-23",
+      "reference_close": 890.0
     }
   ],
   "performance": [
@@ -2331,10 +2374,10 @@
     },
     {
       "date": "2026-09-24",
-      "total_assets": 1049023.8000000003,
-      "cash": 686700.8000000002,
-      "return_percent": 4.9023800000000275,
-      "holding_count": 6
+      "total_assets": 1052976.8000000003,
+      "cash": 627070.8000000002,
+      "return_percent": 5.297680000000028,
+      "holding_count": 7
     }
   ]
 }
