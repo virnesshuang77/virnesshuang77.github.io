@@ -1,5 +1,5 @@
 {
-  "data_date": "2026-09-29",
+  "data_date": "2026-09-30",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
   "total": 817,
@@ -4313,7 +4313,7 @@
       "broker_code": "981r",
       "broker_name": "元大-屏南",
       "open_date": "960926",
-      "address": "屏東縣屏東市濟南街10號",
+      "address": "屏東縣屏東市中正路50號2樓",
       "phone": "08-7361777"
     },
     {
@@ -4388,7 +4388,7 @@
     },
     {
       "broker_code": "9831",
-      "broker_name": "元大-四維",
+      "broker_name": "元大-亞灣",
       "open_date": "960926",
       "address": "高雄市前鎮區一心二路228號3樓",
       "phone": "07-3306666"
@@ -4558,7 +4558,7 @@
       "broker_code": "9853",
       "broker_name": "元大-南屯",
       "open_date": "1010402",
-      "address": "台中市南屯區向上路1段580號1、2樓",
+      "address": "臺中市西屯區市政北一路77號3樓之2、6、8、10、79號2樓",
       "phone": "04-23269999"
     },
     {
