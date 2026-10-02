@@ -1,5 +1,5 @@
 {
-  "data_date": "2026-10-01",
+  "data_date": "2026-10-02",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
   "total": 817,
@@ -5258,7 +5258,7 @@
       "broker_code": "9A9c",
       "broker_name": "永豐金-永康",
       "open_date": "870128",
-      "address": "台南市永康區中華路423號2樓",
+      "address": "台南市永康區中華路425號3樓之1及3樓之4",
       "phone": "06-302-5982"
     },
     {
