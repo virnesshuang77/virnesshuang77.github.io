@@ -1,5 +1,5 @@
 {
-  "data_date": "2026-10-02",
+  "data_date": "2026-10-05",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
   "total": 817,
@@ -2113,14 +2113,14 @@
     },
     {
       "broker_code": "8586",
-      "broker_name": "聯邦-大業",
+      "broker_name": "聯邦-桃園",
       "open_date": "1150504",
       "address": "桃園市桃園區大業路1段388號3樓",
       "phone": "03-3579739"
     },
     {
       "broker_code": "8587",
-      "broker_name": "聯邦-興中",
+      "broker_name": "聯邦-台中",
       "open_date": "1150504",
       "address": "臺中市南區復興路1段406號3樓",
       "phone": "04-22613636"
