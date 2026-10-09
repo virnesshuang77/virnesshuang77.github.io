@@ -296,6 +296,12 @@ def main() -> None:
 
     print(f"[INFO] Taiwan date: {today}")
 
+    # 週六、週日不執行抓取，避免沒有交易資料時造成失敗
+    if today.weekday() >= 5:
+        print("[INFO] Today is Saturday or Sunday.")
+        print("[INFO] Skip TWSE fetch; cash.json remains unchanged.")
+        return
+
     history = load_history()
 
     known_dates = {
