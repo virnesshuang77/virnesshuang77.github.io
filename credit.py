@@ -366,6 +366,35 @@ def fetch_margin(date):
                 timeout=30,
             )
 
+            # DEBUG：檢查 TWSE API 實際回傳格式；不改變原本解析邏輯
+            print(f"[DEBUG] URL：{url}")
+            print(f"[DEBUG] 回傳型別：{type(data).__name__}")
+
+            if isinstance(data, dict):
+                print(f"[DEBUG] JSON keys：{list(data.keys())}")
+                print(f"[DEBUG] stat：{data.get('stat')}")
+                print(f"[DEBUG] date：{data.get('date')}")
+                print(f"[DEBUG] tables 型別：{type(data.get('tables')).__name__}")
+
+                tables = data.get("tables", [])
+                if isinstance(tables, list):
+                    print(f"[DEBUG] tables 數量：{len(tables)}")
+                    for i, table in enumerate(tables):
+                        if isinstance(table, dict):
+                            rows = table.get("data", [])
+                            row_count = len(rows) if isinstance(rows, list) else "N/A"
+                            print(
+                                f"[DEBUG] table {i}: "
+                                f"title={table.get('title')!r}, "
+                                f"fields={table.get('fields')}, "
+                                f"rows={row_count}"
+                            )
+
+            elif isinstance(data, list):
+                print(f"[DEBUG] list 筆數：{len(data)}")
+                if data:
+                    print(f"[DEBUG] 第一筆資料：{data[0]}")
+
             if is_valid_margin_payload(data):
 
                 print(
