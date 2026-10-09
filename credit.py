@@ -1577,12 +1577,22 @@ def build_json():
 
 if __name__ == "__main__":
 
-    try:
-        build_json()
+    # 使用台灣時間判斷是否為週末。
+    # 週六、週日不呼叫 API、不改寫 credit_rank.json，並正常結束 Actions。
+    taiwan_now = datetime.now(ZoneInfo("Asia/Taipei"))
 
-    except Exception as e:
+    print(f"[INFO] 台灣日期：{taiwan_now:%Y-%m-%d}")
+    print(f"[INFO] 星期編號：{taiwan_now.weekday()}（週一=0，週日=6）")
 
-        print()
-        print("❌ credit.py 執行失敗")
-        print(str(e))
-        raise
+    if taiwan_now.weekday() >= 5:
+        print("[INFO] 今天是週末，跳過融資融券資料更新。")
+        print("[INFO] 保留現有 credit_rank.json，不使用前一交易日資料。")
+    else:
+        try:
+            build_json()
+
+        except Exception as e:
+            print()
+            print("❌ credit.py 執行失敗")
+            print(str(e))
+            raise
