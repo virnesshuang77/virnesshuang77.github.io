@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 737742.5500000002,
-  "total_assets": 1094563.5500000003,
-  "total_profit": 94563.55000000028,
-  "total_return_percent": 9.456355000000027,
-  "date": "2026-10-12",
-  "updated_at": "2026-10-12T15:01:23+08:00",
+  "cash": 845202.5500000002,
+  "total_assets": 1075317.5500000003,
+  "total_profit": 75317.55000000028,
+  "total_return_percent": 7.531755000000027,
+  "date": "2026-10-13",
+  "updated_at": "2026-10-13T15:25:45+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -1166,11 +1166,13 @@
       "market": "TPEX",
       "reference_close": 249.0,
       "first_buy_trigger": 249.0,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-10-08T15:02:28+08:00",
       "first_buy_date": "2026-10-08",
-      "first_buy_price": 249.0
+      "first_buy_price": 249.0,
+      "sell_date": "2026-10-13",
+      "sell_price": 224.1
     },
     {
       "signal_date": "2026-10-08",
@@ -1192,11 +1194,24 @@
       "market": "TPEX",
       "reference_close": 497.0,
       "first_buy_trigger": 497.0,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-10-09T15:10:31+08:00",
       "first_buy_date": "2026-10-09",
-      "first_buy_price": 497.0
+      "first_buy_price": 497.0,
+      "sell_date": "2026-10-13",
+      "sell_price": 447.3
+    },
+    {
+      "signal_date": "2026-10-08",
+      "symbol": "6187",
+      "name": "萬潤",
+      "market": "TPEX",
+      "reference_close": 1525.0,
+      "first_buy_trigger": 1525.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-10-13T15:25:41+08:00"
     }
   ],
   "holdings": [
@@ -1206,11 +1221,11 @@
       "market": "TWSE",
       "quantity": 10,
       "average_cost": 5950.0,
-      "current_price": 6150.0,
+      "current_price": 5545.0,
       "invested": 59500.0,
-      "market_value": 61500.0,
-      "unrealized_profit": 2000.0,
-      "unrealized_return_percent": 3.361344537815126,
+      "market_value": 55450.0,
+      "unrealized_profit": -4050.0,
+      "unrealized_return_percent": -6.80672268907563,
       "first_buy_date": "2026-10-08",
       "signal_date": "2026-10-07",
       "reference_close": 5950.0,
@@ -1223,11 +1238,11 @@
       "market": "TPEX",
       "quantity": 452,
       "average_cost": 132.5,
-      "current_price": 133.0,
+      "current_price": 130.0,
       "invested": 59890.0,
-      "market_value": 60116.0,
-      "unrealized_profit": 226.0,
-      "unrealized_return_percent": 0.37735849056603776,
+      "market_value": 58760.0,
+      "unrealized_profit": -1130.0,
+      "unrealized_return_percent": -1.8867924528301887,
       "first_buy_date": "2026-10-08",
       "signal_date": "2026-10-07",
       "reference_close": 132.5,
@@ -1240,48 +1255,14 @@
       "market": "TWSE",
       "quantity": 215,
       "average_cost": 278.0,
-      "current_price": 287.0,
+      "current_price": 279.0,
       "invested": 59770.0,
-      "market_value": 61705.0,
-      "unrealized_profit": 1935.0,
-      "unrealized_return_percent": 3.237410071942446,
+      "market_value": 59985.0,
+      "unrealized_profit": 215.0,
+      "unrealized_return_percent": 0.3597122302158274,
       "first_buy_date": "2026-10-08",
       "signal_date": "2026-10-07",
       "reference_close": 278.0,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
-      "symbol": "3441",
-      "name": "聯一光",
-      "market": "TPEX",
-      "quantity": 240,
-      "average_cost": 249.0,
-      "current_price": 243.5,
-      "invested": 59760.0,
-      "market_value": 58440.0,
-      "unrealized_profit": -1320.0,
-      "unrealized_return_percent": -2.208835341365462,
-      "first_buy_date": "2026-10-08",
-      "signal_date": "2026-10-07",
-      "reference_close": 249.0,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
-      "symbol": "3374",
-      "name": "精材",
-      "market": "TPEX",
-      "quantity": 120,
-      "average_cost": 497.0,
-      "current_price": 481.5,
-      "invested": 59640.0,
-      "market_value": 57780.0,
-      "unrealized_profit": -1860.0,
-      "unrealized_return_percent": -3.118712273641851,
-      "first_buy_date": "2026-10-09",
-      "signal_date": "2026-10-08",
-      "reference_close": 497.0,
       "buy_stage": 1,
       "allocation_used": 0.3
     },
@@ -1291,11 +1272,11 @@
       "market": "TWSE",
       "quantity": 8,
       "average_cost": 7160.0,
-      "current_price": 7160.0,
+      "current_price": 6990.0,
       "invested": 57280.0,
-      "market_value": 57280.0,
-      "unrealized_profit": 0.0,
-      "unrealized_return_percent": 0.0,
+      "market_value": 55920.0,
+      "unrealized_profit": -1360.0,
+      "unrealized_return_percent": -2.3743016759776534,
       "first_buy_date": "2026-10-12",
       "signal_date": "2026-10-08",
       "reference_close": 7165.0,
@@ -1305,10 +1286,24 @@
   ],
   "waiting": [
     {
+      "symbol": "3374",
+      "name": "精材",
+      "signal_date": "2026-08-28",
+      "trigger_price": 386.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
       "symbol": "2454",
       "name": "聯發科",
       "signal_date": "2026-09-15",
       "trigger_price": 4430.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "3441",
+      "name": "聯一光",
+      "signal_date": "2026-09-15",
+      "trigger_price": 169.5,
       "status": "等待價格 ≤ 選股日收盤"
     },
     {
@@ -1330,6 +1325,20 @@
       "name": "景碩",
       "signal_date": "2026-09-21",
       "trigger_price": 827.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "3441",
+      "name": "聯一光",
+      "signal_date": "2026-10-02",
+      "trigger_price": 211.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "6187",
+      "name": "萬潤",
+      "signal_date": "2026-10-08",
+      "trigger_price": 1525.0,
       "status": "等待價格 ≤ 選股日收盤"
     }
   ],
@@ -3336,6 +3345,36 @@
       "average_cost": 1310.0,
       "return_percent": -4.198473282442748,
       "holding_days": 5
+    },
+    {
+      "date": "2026-10-13",
+      "symbol": "3441",
+      "name": "聯一光",
+      "action": "賣出",
+      "price": 224.1,
+      "quantity": 240,
+      "amount": 53784.0,
+      "allocation": "100%",
+      "reason": "今日最低價曾達到 -10% 停損價；以停損價限價單模擬成交",
+      "first_buy_date": "2026-10-08",
+      "average_cost": 249.0,
+      "return_percent": -10.000000000000002,
+      "holding_days": 4
+    },
+    {
+      "date": "2026-10-13",
+      "symbol": "3374",
+      "name": "精材",
+      "action": "賣出",
+      "price": 447.3,
+      "quantity": 120,
+      "amount": 53676.0,
+      "allocation": "100%",
+      "reason": "今日最低價曾達到 -10% 停損價；以停損價限價單模擬成交",
+      "first_buy_date": "2026-10-09",
+      "average_cost": 497.0,
+      "return_percent": -9.999999999999998,
+      "holding_days": 3
     }
   ],
   "performance": [
@@ -3562,6 +3601,13 @@
       "cash": 737742.5500000002,
       "return_percent": 9.456355000000027,
       "holding_count": 6
+    },
+    {
+      "date": "2026-10-13",
+      "total_assets": 1075317.5500000003,
+      "cash": 845202.5500000002,
+      "return_percent": 7.531755000000027,
+      "holding_count": 4
     }
   ]
 }
