@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 961050.5500000002,
-  "total_assets": 1077670.5500000003,
-  "total_profit": 77670.55000000028,
-  "total_return_percent": 7.7670550000000285,
+  "cash": 841114.5500000002,
+  "total_assets": 1075954.5500000003,
+  "total_profit": 75954.55000000028,
+  "total_return_percent": 7.595455000000027,
   "date": "2026-10-14",
-  "updated_at": "2026-10-14T13:53:32+08:00",
+  "updated_at": "2026-10-14T19:06:52+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -1220,6 +1220,32 @@
       "created_at": "2026-10-13T15:25:41+08:00",
       "first_buy_date": "2026-10-12",
       "first_buy_price": 1525.0
+    },
+    {
+      "signal_date": "2026-10-08",
+      "symbol": "1815",
+      "name": "富喬",
+      "market": "TPEX",
+      "reference_close": 135.0,
+      "first_buy_trigger": 135.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-10-14T19:06:48+08:00",
+      "first_buy_date": "2026-10-12",
+      "first_buy_price": 135.0
+    },
+    {
+      "signal_date": "2026-10-08",
+      "symbol": "6257",
+      "name": "矽格",
+      "market": "TWSE",
+      "reference_close": 283.0,
+      "first_buy_trigger": 283.0,
+      "status": "holding",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-10-14T19:06:48+08:00",
+      "first_buy_date": "2026-10-12",
+      "first_buy_price": 283.0
     }
   ],
   "holdings": [
@@ -1254,6 +1280,40 @@
       "first_buy_date": "2026-10-12",
       "signal_date": "2026-10-08",
       "reference_close": 1525.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
+    {
+      "symbol": "1815",
+      "name": "富喬",
+      "market": "TPEX",
+      "quantity": 444,
+      "average_cost": 135.0,
+      "current_price": 134.0,
+      "invested": 59940.0,
+      "market_value": 59496.0,
+      "unrealized_profit": -444.0,
+      "unrealized_return_percent": -0.7407407407407408,
+      "first_buy_date": "2026-10-12",
+      "signal_date": "2026-10-08",
+      "reference_close": 135.0,
+      "buy_stage": 1,
+      "allocation_used": 0.3
+    },
+    {
+      "symbol": "6257",
+      "name": "矽格",
+      "market": "TWSE",
+      "quantity": 212,
+      "average_cost": 283.0,
+      "current_price": 277.0,
+      "invested": 59996.0,
+      "market_value": 58724.0,
+      "unrealized_profit": -1272.0,
+      "unrealized_return_percent": -2.1201413427561837,
+      "first_buy_date": "2026-10-12",
+      "signal_date": "2026-10-08",
+      "reference_close": 283.0,
       "buy_stage": 1,
       "allocation_used": 0.3
     }
@@ -3400,6 +3460,32 @@
       "average_cost": 278.0,
       "return_percent": -0.3597122302158274,
       "holding_days": 5
+    },
+    {
+      "date": "2026-10-12",
+      "symbol": "1815",
+      "name": "富喬",
+      "action": "買入",
+      "price": 135.0,
+      "quantity": 444,
+      "amount": 59940.0,
+      "allocation": "30%",
+      "reason": "2026-10-12 歷史最低價 130.0 ≤ 觸發價格 135.0；回補為觸發價限價單成交",
+      "signal_date": "2026-10-08",
+      "reference_close": 135.0
+    },
+    {
+      "date": "2026-10-12",
+      "symbol": "6257",
+      "name": "矽格",
+      "action": "買入",
+      "price": 283.0,
+      "quantity": 212,
+      "amount": 59996.0,
+      "allocation": "30%",
+      "reason": "2026-10-12 歷史最低價 276.0 ≤ 觸發價格 283.0；回補為觸發價限價單成交",
+      "signal_date": "2026-10-08",
+      "reference_close": 283.0
     }
   ],
   "performance": [
@@ -3636,10 +3722,10 @@
     },
     {
       "date": "2026-10-14",
-      "total_assets": 1077670.5500000003,
-      "cash": 961050.5500000002,
-      "return_percent": 7.7670550000000285,
-      "holding_count": 2
+      "total_assets": 1075954.5500000003,
+      "cash": 841114.5500000002,
+      "return_percent": 7.595455000000027,
+      "holding_count": 4
     }
   ]
 }
