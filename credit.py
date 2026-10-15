@@ -1,33 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-credit.py
-=========
-TWSE 融資融券資料更新程式
-
-輸出：
-    credit_rank.json
-
-本版重點修正：
-1. 優先使用 TWSE 官方 MI_MARGN 網頁 API。
-2. 不再把「HTTP 200 / stat=OK」誤判成「有可解析資料」。
-3. 若某個 endpoint 回傳空資料，會繼續嘗試下一個 endpoint。
-4. 個股融資增減：
-       今日融資餘額 - 前日融資餘額
-   2330 台積電 2026/08/26：
-       27,677 - 27,969 = -292 張
-5. 個股融資增減金額：
-       融資增減張數 × 收盤價 × 1000
-6. 個股融券增減：
-       今日融券餘額 - 前日融券餘額
-7. 全市場融資增減：
-       官方「融資金額(仟元)」
-       今日餘額 - 前日餘額，再 × 1000
-8. 全市場融券增減：
-       官方「融券(交易單位)」
-       今日餘額 - 前日餘額
-9. update_time 固定為 21:00:00。
-"""
-
 import json
 import time
 from datetime import datetime, timedelta
@@ -273,6 +243,18 @@ def is_valid_margin_payload(data):
         2. 融資融券彙總個股表
     """
 
+    # OpenAPI 版本會直接回傳個股清單（list），欄位名稱與網頁 tables 不同。
+    # 它沒有市場總表，因此只在個股解析階段使用；市場總計會在 build_json
+    # 中以個股資料估算，並在 log 明確標示，避免誤認為官方市場總表。
+    if isinstance(data, list):
+        if not data:
+            return False
+        required = {
+            "股票代號", "股票名稱", "融資前日餘額", "融資今日餘額",
+            "融券前日餘額", "融券今日餘額"
+        }
+        return required.issubset(set(data[0].keys())) if isinstance(data[0], dict) else False
+
     if not isinstance(data, dict):
         return False
 
@@ -396,6 +378,13 @@ def fetch_margin(date):
                     print(f"[DEBUG] 第一筆資料：{data[0]}")
 
             if is_valid_margin_payload(data):
+                if isinstance(data, list):
+                    print(
+                        "[WARN] 使用 TWSE OpenAPI 個股清單格式；"
+                        "此格式沒有官方市場總表，且回應未附資料日期。"
+                        "程式會依要求日期標記，但請以 TWSE 當日發布狀態確認。"
+                    )
+                    return {"__openapi_stock_rows__": data, "date": date}
 
                 print(
                     f"[OK] 取得完整 MI_MARGN："
@@ -434,6 +423,10 @@ def fetch_margin(date):
 # ============================================================
 
 def parse_market_summary(data):
+
+    if isinstance(data, dict) and "__openapi_stock_rows__" in data:
+        # OpenAPI 個股清單沒有官方市場彙總表，稍後以個股資料估算。
+        return None
 
     tables = get_table_objects(data)
 
@@ -633,6 +626,9 @@ def parse_market_summary(data):
 
 def find_stock_table(data):
 
+    if isinstance(data, dict) and "__openapi_stock_rows__" in data:
+        return None
+
     tables = get_table_objects(data)
 
     # 優先找 title
@@ -693,6 +689,34 @@ def find_stock_table(data):
 # ============================================================
 
 def parse_stock_rows(data):
+
+    if isinstance(data, dict) and "__openapi_stock_rows__" in data:
+        raw_rows = data["__openapi_stock_rows__"]
+        result = []
+        for row in raw_rows:
+            if not isinstance(row, dict):
+                continue
+            stock_id = clean_stock_id(row.get("股票代號", ""))
+            if not stock_id:
+                continue
+            result.append({
+                "stock_id": stock_id,
+                "stock_name": str(row.get("股票名稱", "")).strip(),
+                "margin_buy": to_number(row.get("融資買進")),
+                "margin_sell": to_number(row.get("融資賣出")),
+                "margin_redeem": to_number(row.get("融資現金償還")),
+                "margin_previous": to_number(row.get("融資前日餘額")),
+                "margin_today": to_number(row.get("融資今日餘額")),
+                "short_buy": to_number(row.get("融券買進")),
+                "short_sell": to_number(row.get("融券賣出")),
+                "short_redeem": to_number(row.get("融券現券償還")),
+                "short_previous": to_number(row.get("融券前日餘額")),
+                "short_today": to_number(row.get("融券今日餘額")),
+            })
+        if not result:
+            raise RuntimeError("TWSE OpenAPI 個股清單沒有可用股票資料")
+        print(f"[OK] 成功解析 OpenAPI 個股資料 {len(result)} 筆")
+        return result
 
     table = find_stock_table(data)
 
@@ -1314,6 +1338,26 @@ def build_json():
         f"[INFO] 收盤價資料："
         f"{len(prices)} 筆"
     )
+
+    # OpenAPI 個股清單不提供官方市場總表，退而以個股資料估算。
+    # 注意：這是估算值，不等同 TWSE 官方「融資金額(仟元)」市場統計。
+    if market is None:
+        estimated_margin_total = 0.0
+        estimated_short_total = 0
+        for item in stock_rows:
+            close_price = prices.get(item["stock_id"], 0)
+            if close_price > 0:
+                estimated_margin_total += (
+                    item["margin_today"] - item["margin_previous"]
+                ) * close_price * 1000
+            estimated_short_total += (
+                item["short_today"] - item["short_previous"]
+            )
+        market = {
+            "margin_change_amount": estimated_margin_total,
+            "short_change": estimated_short_total,
+        }
+        print("[WARN] margin_total / short_total 使用個股資料估算，非官方市場總表數字。")
 
     # --------------------------------------------------------
     # 建立個股 JSON
