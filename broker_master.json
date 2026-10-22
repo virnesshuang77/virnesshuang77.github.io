@@ -1,5 +1,5 @@
 {
-  "data_date": "2026-10-21",
+  "data_date": "2026-10-22",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
   "total": 817,
@@ -1884,7 +1884,7 @@
       "broker_code": "779v",
       "broker_name": "國票-台中",
       "open_date": "980406",
-      "address": "臺中市西屯區市政北一路1號7樓",
+      "address": "台中市南屯區五權西路2段236號2樓之2",
       "phone": "(04)22553232"
     },
     {
@@ -4341,7 +4341,7 @@
       "broker_code": "9824",
       "broker_name": "元大-向上",
       "open_date": "960926",
-      "address": "臺中市西區美村路一段272號2樓",
+      "address": "臺中市南屯區向上路1段580號1、2樓",
       "phone": "04-23028588"
     },
     {
@@ -4859,7 +4859,7 @@
       "broker_code": "989J",
       "broker_name": "元大-彰化民生",
       "open_date": "960926",
-      "address": "彰化縣彰化市中正路1段292號、296號",
+      "address": "彰化縣彰化市中山路2段898號3樓",
       "phone": "04-7261988"
     },
     {
