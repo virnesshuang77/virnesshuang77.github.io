@@ -1,8 +1,8 @@
 {
-  "data_date": "2026-10-29",
+  "data_date": "2026-10-30",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
-  "total": 817,
+  "total": 816,
   "brokers": [
     {
       "broker_code": "1021",
@@ -2693,13 +2693,6 @@
       "phone": "05-2258666"
     },
     {
-      "broker_code": "918P",
-      "broker_name": "群益金鼎-天母",
-      "open_date": "890515",
-      "address": "台北市中山北路7段18號3樓之1、之2",
-      "phone": "02-28767388"
-    },
-    {
       "broker_code": "918W",
       "broker_name": "群益金鼎-忠孝",
       "open_date": "1000503",
@@ -4150,7 +4143,7 @@
     },
     {
       "broker_code": "981G",
-      "broker_name": "元大-彰化",
+      "broker_name": "元大-彰興",
       "open_date": "960926",
       "address": "彰化縣彰化市華山路37號3樓",
       "phone": "04-7257001"
