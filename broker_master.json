@@ -1,5 +1,5 @@
 {
-  "data_date": "2026-11-02",
+  "data_date": "2026-11-03",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
   "total": 816,
@@ -3900,7 +3900,7 @@
       "broker_code": "9672",
       "broker_name": "富邦-員林",
       "open_date": "890911",
-      "address": "彰化縣員林鎮莒光路五九八號",
+      "address": "彰化縣員林市莒光路697號2樓",
       "phone": "04-8343100"
     },
     {
