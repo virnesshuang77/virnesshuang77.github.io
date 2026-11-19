@@ -1,5 +1,5 @@
 {
-  "data_date": "2026-11-18",
+  "data_date": "2026-11-19",
   "source": "TWSE OpenAPI",
   "description": "證券商分公司基本資料",
   "total": 816,
@@ -2358,7 +2358,7 @@
     },
     {
       "broker_code": "888B",
-      "broker_name": "國泰綜合證券股份有限公司",
+      "broker_name": "國泰-信義簡易",
       "open_date": "1150715",
       "address": "台北市信義區忠孝東路五段68號41樓部分",
       "phone": "02-77050168"
