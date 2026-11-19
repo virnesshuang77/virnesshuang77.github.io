@@ -1,12 +1,12 @@
 {
   "version": 1,
   "initial_capital": 1000000,
-  "cash": 541393.8709811403,
-  "total_assets": 1023349.0709811402,
-  "total_profit": 23349.07098114025,
-  "total_return_percent": 2.3349070981140247,
-  "date": "2026-11-18",
-  "updated_at": "2026-11-18T16:16:14+08:00",
+  "cash": 593845.8709811403,
+  "total_assets": 1011371.0709811402,
+  "total_profit": 11371.070981140248,
+  "total_return_percent": 1.1371070981140248,
+  "date": "2026-11-19",
+  "updated_at": "2026-11-19T16:28:18+08:00",
   "signal_queue": [
     {
       "signal_date": "2026-08-28",
@@ -2255,11 +2255,13 @@
       "market": "TPEX",
       "reference_close": 512.0,
       "first_buy_trigger": 512.0,
-      "status": "holding",
+      "status": "sold",
       "first_buy_allocation": 0.3,
       "created_at": "2026-11-17T16:51:50+08:00",
       "first_buy_date": "2026-11-17",
-      "first_buy_price": 481.0
+      "first_buy_price": 481.0,
+      "sell_date": "2026-11-19",
+      "sell_price": 423.0
     },
     {
       "signal_date": "2026-11-17",
@@ -2312,6 +2314,28 @@
       "created_at": "2026-11-18T16:16:11+08:00",
       "first_buy_date": "2026-11-18",
       "first_buy_price": 164.5
+    },
+    {
+      "signal_date": "2026-11-18",
+      "symbol": "3661",
+      "name": "世芯-KY",
+      "market": "TWSE",
+      "reference_close": 3950.0,
+      "first_buy_trigger": 3950.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-11-19T16:27:57+08:00"
+    },
+    {
+      "signal_date": "2026-11-18",
+      "symbol": "4977",
+      "name": "眾達-KY",
+      "market": "TWSE",
+      "reference_close": 197.0,
+      "first_buy_trigger": 197.0,
+      "status": "waiting",
+      "first_buy_allocation": 0.3,
+      "created_at": "2026-11-19T16:27:57+08:00"
     }
   ],
   "holdings": [
@@ -2346,23 +2370,6 @@
       "first_buy_date": "2026-11-16",
       "signal_date": "2026-11-13",
       "reference_close": 112.5,
-      "buy_stage": 1,
-      "allocation_used": 0.3
-    },
-    {
-      "symbol": "3105",
-      "name": "穩懋",
-      "market": "TPEX",
-      "quantity": 124,
-      "average_cost": 481.0,
-      "current_price": 470.0,
-      "invested": 59644.0,
-      "market_value": 58280.0,
-      "unrealized_profit": -1364.0,
-      "unrealized_return_percent": -2.2869022869022873,
-      "first_buy_date": "2026-11-17",
-      "signal_date": "2026-11-16",
-      "reference_close": 512.0,
       "buy_stage": 1,
       "allocation_used": 0.3
     },
@@ -2423,11 +2430,11 @@
       "market": "TPEX",
       "quantity": 41,
       "average_cost": 1445.0,
-      "current_price": 1510.0,
+      "current_price": 1360.0,
       "invested": 59245.0,
-      "market_value": 61910.0,
-      "unrealized_profit": 2665.0,
-      "unrealized_return_percent": 4.498269896193772,
+      "market_value": 55760.0,
+      "unrealized_profit": -3485.0,
+      "unrealized_return_percent": -5.88235294117647,
       "first_buy_date": "2026-11-18",
       "signal_date": "2026-11-17",
       "reference_close": 1445.0,
@@ -2458,6 +2465,20 @@
       "name": "天品",
       "signal_date": "2026-11-06",
       "trigger_price": 163.5,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "3661",
+      "name": "世芯-KY",
+      "signal_date": "2026-11-18",
+      "trigger_price": 3950.0,
+      "status": "等待價格 ≤ 選股日收盤"
+    },
+    {
+      "symbol": "4977",
+      "name": "眾達-KY",
+      "signal_date": "2026-11-18",
+      "trigger_price": 197.0,
       "status": "等待價格 ≤ 選股日收盤"
     }
   ],
@@ -6646,6 +6667,21 @@
       "average_cost": 69.0,
       "return_percent": -9.999999999999998,
       "holding_days": 2
+    },
+    {
+      "date": "2026-11-19",
+      "symbol": "3105",
+      "name": "穩懋",
+      "action": "賣出",
+      "price": 423.0,
+      "quantity": 124,
+      "amount": 52452.0,
+      "allocation": "100%",
+      "reason": "現價達到 -10% 停損條件；以當下價格模擬賣出",
+      "first_buy_date": "2026-11-17",
+      "average_cost": 481.0,
+      "return_percent": -12.058212058212058,
+      "holding_days": 3
     }
   ],
   "performance": [
@@ -7061,6 +7097,13 @@
       "cash": 541393.8709811403,
       "return_percent": 2.3349070981140247,
       "holding_count": 8
+    },
+    {
+      "date": "2026-11-19",
+      "total_assets": 1011371.0709811402,
+      "cash": 593845.8709811403,
+      "return_percent": 1.1371070981140248,
+      "holding_count": 7
     }
   ]
 }
