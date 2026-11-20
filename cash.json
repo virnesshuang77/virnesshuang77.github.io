@@ -1,23 +1,38 @@
 {
   "source": "https://www.twse.com.tw/rwd/zh/fund/BFI82U",
   "unit": "億元",
-  "updated_at": "2026-11-20T00:27:03.802167+08:00",
+  "updated_at": "2026-11-20T23:58:40.866504+08:00",
   "latest": {
-    "date": "2026-11-13",
-    "foreign": 288.37,
-    "trust": 95.39,
-    "dealer": 68.92,
-    "total": 452.68,
+    "date": "2026-11-20",
+    "foreign": -95.11,
+    "trust": -73.47,
+    "dealer": -340.83,
+    "total": -509.41,
     "raw": {
-      "foreign_net": 28836686051,
-      "trust_net": 9539169401,
-      "dealer_proprietary_net": 4298817360,
-      "dealer_hedge_net": 2593659685,
-      "dealer_net": 6892477045,
-      "total_net": 45268332497
+      "foreign_net": -9510543572,
+      "trust_net": -7346992003,
+      "dealer_proprietary_net": -5067838740,
+      "dealer_hedge_net": -29015401380,
+      "dealer_net": -34083240120,
+      "total_net": -50940775695
     }
   },
   "history": [
+    {
+      "date": "2026-11-20",
+      "foreign": -95.11,
+      "trust": -73.47,
+      "dealer": -340.83,
+      "total": -509.41,
+      "raw": {
+        "foreign_net": -9510543572,
+        "trust_net": -7346992003,
+        "dealer_proprietary_net": -5067838740,
+        "dealer_hedge_net": -29015401380,
+        "dealer_net": -34083240120,
+        "total_net": -50940775695
+      }
+    },
     {
       "date": "2026-11-13",
       "foreign": 288.37,
